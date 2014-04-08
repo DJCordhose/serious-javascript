@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Serious JavaScript</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+<!-- JAX -->
+<!--Sind ernsthafte JavaScript-Projekte möglich?-->
+
+<!--Unabhängig von der steigenden Verbreitung von JavaScript, werden JavaScript-Projekten immer noch von manchen die-->
+<!--Professionalität abgesprochen. Um das zu widerlegen, zeige ich in diesem Talk alle Werkzeuge, Techniken und-->
+<!--Spracheigenschaften, die man braucht, um auch große und langlebige Projekte in JavaScript umzusetzen. Dazu gehören-->
+<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse und-->
+<!--Tests.-->
+
+<!-- enterJS -->
+<!--Unabhängig von der steigenden Verbreitung von JavaScript wird JavaScript-Projekten häufig immer noch die-->
+<!--Professionalität abgesprochen. Dieser Vortrag stellt alle Werkzeuge, Techniken und Spracheigenschaften vor, die man-->
+<!--braucht, um auch große und langlebige Projekte in JavaScript umzusetzen und die Spötter so zu widerlegen. Methoden zur-->
+<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse-->
+<!--sollen genauso Thema sein wie Tests.-->
+
+<div class="slides">
+<section>
+    <h1>Ernsthaftes JavaScript</h1>
+    <br>
+
+    <h2 class="fragment">in Enterprise-Projekten</h2>
+    <br>
+
+    <h3 class="fragment">Aus der Perspektive eines Java-Entwicklers</h3>
+
+    <p class="fragment">
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+</section>
+<section>
+    <h2>Was ist ein ernsthaftes Enterprise-Projekt?</h2>
+    <ul>
+        <li class="fragment">es ist unternehmenskritisch, d.h. der Erfolg des Unternehmens ist davon abhängig
+        <li class="fragment">lebt für viele Jahre
+        <li class="fragment">ist ein unendliches Spiel (im Gegensatz zu einem endlichen Spiel in der Spieltheorie)
+        <li class="fragment">es gibt ein Team (mehr als ein Mitglied)
+        <li class="fragment">es gibt kein konstantes Team, Mitglieder kommen und gehen
+    </ul>
+</section>
+
+<!-- Aufbau -->
+<!-- Wartbarkeit -->
+<!-- Skalierbarkeit -->
+<!-- Frameworks -->
+<!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
+
+<section>
+    <h2>JavaScript-Projekte</h2>
+    <ul>
+        <!-- Frischer Anfang gleich mit viel Code -->
+        <li class="fragment">haben keine Struktur und sind Chaos <!-- Aufbau -->
+        <!-- Lockere Übersicht über Frameworks  -->
+        <li class="fragment">sind allein schon wegen der Ablaufumgebung (Browser) der Horror <!-- Frameworks -->
+        <!-- Der Fleißteil -->
+        <li class="fragment">sind von Anfang an unwartbar ... <!-- Wartbarkeit -->
+        <li class="fragment">... und können nur im kleinen Rahmen funktionieren
+            <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
+        <!-- Der spannende und wohl neue Teil -->
+        <li class="fragment">erfordern in jedem Fall eine polyglotte Programmierung <!-- Node.js, Nashorn, Avatar.js -->
+    </ul>
+    <p></p>
+
+    <h3 class="fragment">Stimmt das? Oder sind das Vorurteile?</h3>
+
+    <p class="fragment">Die Untersuchung ist Gegenstand dieser Session</p>
+</section>
+
+<section>
+    <h2>Oliver Zeigermann</h2>
+    <img src="olli.JPG" height="200">
+    <ul>
+        <li><a target="_blank" href="http://zeigermann.eu">http://zeigermann.eu</a>
+        <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+        <li><a target="_blank" href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>
+        <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+        <li><a target="_blank" href="http://entwickler.de/press/JavaScript-fuer-Java-Entwickler">JavaScript für
+            Java-Entwickler</a>
+    </ul>
+</section>
+
+<section>
+    <section>
+        <h2>Aufbau moderner Webanwendungen</h2>
+
+        <p>Erzeugt mit <a target="_blank" href="http://yeoman.io/">http://yeoman.io/</a></p>
+
+        <p class="fragment">Untersuchung der Frage: Haben JavaScript-Projekte keine Struktur und sind Chaos?</p>
+    </section>
+
+    <section>
+        <h3>Eine komplette Webanwendung</h3>
+        <ul>
+            <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+            <li class="fragment"><code>yo webapp</code>
+            <li class="fragment">HTML5 Boilerplate: Grundstruktur
+            <li class="fragment">Grunt.js: Build-Tool
+            <li class="fragment">Bower: Abhängigkeitsmanagement
+            <li class="fragment">jQuery: Standard Web-Framework
+            <li class="fragment">Bootstrap: Einfaches Layout
+            <li class="fragment">Comapss und SASS: Abstraktion von CSS
+            <li class="fragment">Modernizr: Check für Browser-Features
+            <li class="fragment">Mocha / Chai: BDD-/Unit-Test-Framework
+            <li class="fragment">JsHint: Linter
+        </ul>
+    </section>
+
+    <section>
+        <h3>Eine komplette AngularJS-Anwendung</h3>
+        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+        <ul>
+            <li class="fragment"><code>yo angular</code>
+            <li class="fragment">Angular
+            <li class="fragment">Jasmine: BDD-/Unit-Test-Framework
+            <li class="fragment">Angular-Scenario: E2E-Test-Framework
+            <li class="fragment">Karma: Test-Runner mit WebStorm-Integration
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Browser-Frameworks</h2>
+        <p class="fragment">Untersuchung der Frage: Sind JavaScript-Projekte allein schon wegen der Ablaufumgebung
+            (Browser) der Horror?</p>
+    </section>
+    <section>
+        <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
+        <ul>
+            <li class="fragment">Es gibt immer noch eine Reihe von Unterschieden bzgl. DOM und JavaScript (insbesondere
+                pre IE9)
+            <li class="fragment">Das DOM ist eine etwas "umständliche" API
+            <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
+            <li class="fragment">Angemessenes UX
+            <li class="fragment">Unterstützung unterschiedlicher Gerätekonzepte und Gerätegrößen
+        </ul>
+    </section>
+    <section>
+        <h3>Anforderungen an ein Browser-Framework für Enterprise-Projekte</h3>
+        <ul>
+            <li class="fragment">Es muss zu meiner Anwendung passen
+                <ul>
+                    <li class="fragment">Business-Anwendung?
+                    <li class="fragment">Soll auf mobilen Geräten laufen?
+                    <li class="fragment">Grafisch sehr ansprechend?
+                    <li class="fragment">Leicht Bedienung?
+                </ul>
+            <li class="fragment">Es muss über viele Jahre gewartet bleiben
+            <li class="fragment">Rückwärtskompatibilität
+            <li class="fragment">Es muss leicht erlernbar sein
+        </ul>
+    </section>
+    <section>
+        <h3>Kultur-Clash Java- / JavaScript-Frameworks</h3>
+        <ul>
+            <li class="fragment">kleinere Module dominieren die JavaScript-Framework-Welt
+                <ul>
+                    <li class="fragment">npm und bower mit anarchischer Organisationsstruktur
+                    <li class="fragment">Wenn überhaupt dann Defacto-Standards
+                    <li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen
+                    <li class="fragment">yeoman und Bootstrap-Prakete versuchen dagegen zu wirken
+                </ul>
+            </li>
+            <li class="fragment">Java kommt mit komplettem JDK und JEE-Standard
+                <ul>
+                    <li class="fragment">bietet Orientierung
+                    <li class="fragment">allerdings auch weniger Freiheit (bzw. andere Auswahl muss auch vertreten
+                        werden)
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Option: jQuery</h3>
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
+    <section>
+        <h3>Option: AngularJS / Polymer</h3>
+        <ul>
+            <li class="fragment">Wird Polymer als Komponenten-Framework unterstützen
+        </ul>
+    </section>
+    <section>
+        <h3>Option: React.js</h3>
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
+    <section>
+        <h3>Option: ExtJs</h3>
+        <ul>
+            <li class="fragment">hat alle Komponenten für eine Business-Anwendung
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.sencha.com/blog/announcing-public-beta-of-ext-js-5/">ExtJS 5</a>
+                unterstützt alle Devices
+            <li class="fragment">Unterstützt weiterhin IE8
+            <li class="fragment">existiert seit vielen Jahren, Einsatz kommerziell
+        </ul>
+    </section>
+    <section>
+        <h3>Letzte Option: Kein Framework</h3>
+        <ul>
+            <li class="fragment">Was ist die Motivation?
+            <li class="fragment">Passt keines der Frameworks zu den Anforderungen?
+            <li class="fragment">Selbstbetrug ausschließen: Bauen wir uns nicht unser eigenes Framework?
+            <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
+                Standard-Framework?
+            <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Code Qualität, Module, statische Analyse und Tests</h2>
+
+        <p class="fragment">Untersuchung der Fragen: Sind JavaScript-Projekte von Anfang an unwartbar und können nur im
+            kleinen Rahmen funktionieren?</p>
+
+        <h3 class="fragment">Provokantere Frage: Selbst wenn ich schnell in JavaScript entwickeln kann, wird mein Code
+            in einem Jahr noch wartbar sein?</h3>
+        <h4 class="fragment">Und in 5 Jahren?</h4>
+        <h5 class="fragment">Und in 10 Jahren?</h5>
+    </section>
+
+    <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
+    <!--Test-Frameworks-->
+    <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
+    <section>
+        <h3>Fragestellungen der Wartbarkeit</h3>
+        <ul>
+            <li class="fragment">Wie modularisiere ich meinen Code, um
+                <ul>
+                    <li class="fragment">ihn handhabbar zu halten
+                    <li class="fragment">mit mehreren Entwicklern daran arbeiten zu können
+                </ul>
+            </li>
+            <li class="fragment">Wie halte ich meinen Code einfach lesbar?
+            <li class="fragment">Wie definiere ich ein Maß für Code-Qualität und wie erreiche ich diese?
+            <li class="fragment">Wie ermögliche ich eine statische Analyse?
+            <li class="fragment">Wie teste ich meinen Code?
+            <li class="fragment">Wie automatisiere ich Analyse und Test?
+                <!--
+
+                Paypal and Walmart use node and are really fast. But, will it be
+                maintainable in 1 year and in 5 years?
+                 -->
+
+        </ul>
+    </section>
+    <section>
+        <h3>Modularisierung</h3>
+        <ul>
+            <li class="fragment">Revealing Module Pattern
+            <li class="fragment">AMD und RequireJS
+            <li class="fragment">CommonJS und Broserify
+        </ul>
+    </section>
+    <section>
+        <h3>Statische Analyse und Refactoring</h3>
+        <ul>
+            <li class="fragment">Google Closure Compiler
+            <li class="fragment">TypeScript
+            <li class="fragment">Esprima
+        </ul>
+    </section>
+
+
+    <section>
+        <h3>Code Qualität</h3>
+        <!-- Standard JSHint-Folien und Beispiel nehmen -->
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Node.js und Avatar.js</h2>
+
+        <p class="fragment">Untersuchung der Frage: Erfordern JavaScript-Projekte in jedem Fall eine polyglotte
+            Programmierung?</p>
+    </section>
+
+    <!-- Node.js, Nashorn, Avatar.js -->
+
+    <!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
+
+    <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
+    <!--Test-Frameworks-->
+
+    <section>
+        <h3>Fragestellung</h3>
+        <ul>
+            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
+            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
+            <li class="fragment">Wie setzt man diesen um?
+            <li class="fragment">JEE/Spring/.NET/Rails/Python?
+            <li class="fragment">Oder ebenfalls in JavaScript?
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h1>Vielen Dank</h1>
+
+    <h3>Fragen / Feedback / Diskussion</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+</section>
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

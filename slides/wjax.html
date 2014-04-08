@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Serious JavaScript</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+<!-- JAX -->
+<!--Sind ernsthafte JavaScript-Projekte möglich?-->
+
+<!--Unabhängig von der steigenden Verbreitung von JavaScript, werden JavaScript-Projekten immer noch von manchen die-->
+<!--Professionalität abgesprochen. Um das zu widerlegen, zeige ich in diesem Talk alle Werkzeuge, Techniken und-->
+<!--Spracheigenschaften, die man braucht, um auch große und langlebige Projekte in JavaScript umzusetzen. Dazu gehören-->
+<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse und-->
+<!--Tests.-->
+
+<!-- enterJS -->
+<!--Unabhängig von der steigenden Verbreitung von JavaScript wird JavaScript-Projekten häufig immer noch die-->
+<!--Professionalität abgesprochen. Dieser Vortrag stellt alle Werkzeuge, Techniken und Spracheigenschaften vor, die man-->
+<!--braucht, um auch große und langlebige Projekte in JavaScript umzusetzen und die Spötter so zu widerlegen. Methoden zur-->
+<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse-->
+<!--sollen genauso Thema sein wie Tests.-->
+
+<div class="slides">
+<section>
+    <h1>Serious JavaScript</h1>
+    <br>
+
+    <h2 class="fragment">in Enterprise Projects</h2>
+    <br>
+
+    <h3 class="fragment">Looking from the perspective of a Java guy</h3>
+
+    <p class="fragment">
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+</section>
+
+<!--<section>-->
+<!--<h2>My philosophy for talks and workshops</h2>-->
+<!--<img src="Twitter-Talk-Philosophy.png" height="200">-->
+<!--</section>-->
+
+<section>
+    <h2>Prerequisite: What is an Enterprise Project?</h2>
+    <ul>
+        <li class="fragment">is important for a company's success
+        <li class="fragment">lives for many years
+        <li class="fragment">an infinite game (as opposed to finite game in game theory)
+        <li class="fragment">has to deal with a number of team members > 1
+        <li class="fragment">team members will change, maybe completely
+    </ul>
+</section>
+<section>
+    <!--
+     Key questions:
+     - Do you need a rich Web application? Rendering on client-side or on server side?
+     - Generate JavaScript or write plain?
+     - How to abstract from DOM? Frameworks vs no frameworks?
+     - Use a different language on server side? Go polyglot? Use JavaScript on server side as well?
+    -->
+    <h2>Central questions</h2>
+    <ul>
+        <li class="fragment">Do you need a rich Web application?
+        <li class="fragment">Generate JavaScript or write plain?
+        <li class="fragment">How to abstract from DOM? Frameworks vs no frameworks?
+        <li class="fragment">Use a different language on server side? Go polyglot? Use JavaScript on server side as
+            well?
+    </ul>
+    <p class="fragment">You have to answer those questions for yourself</p>
+
+    <p class="fragment">Much of the rest of this talk are implications of those answers</p>
+</section>
+<section>
+    <section>
+        <h2>Let us ask ourselves</h2>
+    </section>
+    <section>
+        <h3>What is our motivation for JavaScript in the Enterprise world?</h3>
+        <ul>
+            <li class="fragment">It is the hype, dude!
+            <li class="fragment">I want faster development
+            <li class="fragment">We are bored with Java and want to try something new
+            <li class="fragment">We are excited about JavaScript
+        </ul>
+    </section>
+    <section>
+        <h3>Or rather ...</h3>
+
+        <h3 class="fragment">... JavaScript is the only language that runs in every browser</h3>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>What are the main issues with JavaScript in Enterprise Projects?</h2>
+    </section>
+    <section>
+        <h3>How do I keep my codebase maintainable?</h3>
+        <ul>
+            <li class="fragment">How do I modularize my code?
+            <li class="fragment">How do I keep my code readable?
+            <li class="fragment">How do I keep my code analyzable?
+            <li class="fragment">How do I keep my code refactorable?
+            <li class="fragment">How do I test my code?
+            <li class="fragment">Is CI possible?
+                <!--
+
+                Paypal and Walmart use node and are really fast. But, will it be
+                maintainable in 1 year and in 5 years?
+                 -->
+
+        </ul>
+    </section>
+    <section>
+        <h3>Frameworks</h3>
+        <ul>
+            <li class="fragment">What <em>standard</em> frameworks should I use?
+            <li class="fragment">Will the frameworks I have chosen be maintained for long enough?
+            <li class="fragment">Will future version be as backward compatible as the Java ones?
+        </ul>
+        <!--Immer eine Reihe von Optionen aufzeigen-->
+        <!--Framework-->
+        <!--- nix-->
+        <!--- jQuery-->
+        <!--- angular /polymer-->
+        <!--- react.js-->
+    </section>
+    <section>
+        <h3>Integration with Legacy</h3>
+        <ul>
+            <li class="fragment">Many times you do not start from scratch, but have legacy systems
+            <li class="fragment">Legacy might be <em>Java</em> systems ;)
+            <li class="fragment">How do I reuse existing Java (server-)code?
+            <li class="fragment">What will I use on the server side?
+        </ul>
+    </section>
+    <section>
+        <h3>Complexities of browser development</h3>
+        <ul>
+            <li class="fragment">How do I deal with legacy browsers?
+            <li class="fragment">How to make the experience compelling?
+            <li class="fragment">How do I abstract from the DOM?
+        </ul>
+    </section>
+    <section>
+        <h3>Application development in the browser calls for new tools</h3>
+        <ul>
+            <li class="fragment">Memory/CPU profiling
+            <li class="fragment">Optimization / Deoptimization
+                <!--  trace deopt ect. -->
+            <li class="fragment">How to debug mobile apps?
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Clash of Cultures</h2>
+    </section>
+    <!--
+
+Philosophy: npm vs jdk
+
+What is Enterprise Software?
+
+Wieso JS? Was ist Enterprise Software?
+
+These Antithese Synthese
+
+    If you are working in a team - it does not matter much if agile or not - the Java approach is closer to you. You decide which way to go and then you have to follow that as a team. You can not say, OK I will use react.js and Jan is going to use Angular
+
+    Why do we like AngularJS so much?
+- Built by Java developers
+- Culture familiar with Java
+    -->
+    <section>
+        <h3>...</h3>
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Tools</h2>
+    </section>
+    <section>
+        <h3>Dependency Management</h3>
+        <ul>
+            <li class="fragment">npm (and browserify)
+            <li class="fragment">bower
+        </ul>
+    </section>
+    <section>
+        <h3>Building</h3>
+        <ul>
+            <li class="fragment">grunt
+            <li class="fragment">gulp
+            <li class="fragment">brocoli
+        </ul>
+    </section>
+    <section>
+        <h3>Productivity</h3>
+        <ul>
+            <li class="fragment">IDEA IntelliJ / WebStorm
+            <li class="fragment">Chrome Dev Tools
+            <li class="fragment">Spy.js
+        </ul>
+    </section>
+    <section>
+        <h3>Analysis / Refactoring</h3>
+        <ul>
+            <li class="fragment">Google Closure Compiler
+            <li class="fragment">TypeScript
+            <li class="fragment">Esprima
+        </ul>
+    </section>
+    <section>
+        <h3>Shims</h3>
+        <ul>
+            <li class="fragment">Modernizr
+            <li class="fragment">HTML5Shim
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>What should I use on the server side?</h2>
+    </section>
+    <section>
+        <h3>Options include</h3>
+        <ul>
+            <li class="fragment">JEE/Spring/.NET
+            <li class="fragment">node.js
+            <li class="fragment">Avatar.js
+        </ul>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Common Frameworks / Libraries</h2>
+    </section>
+    <section>
+        <h3>Frontend Libs</h3>
+        <ul>
+            <li class="fragment">plain DOM (nothing)
+            <li class="fragment">jQuery
+            <li class="fragment">Underscore
+        </ul>
+    </section>
+    <section>
+        <h3>Frontend Frameworks</h3>
+        <ul>
+            <li class="fragment">Backbone
+            <li class="fragment">EmberJs
+            <li class="fragment">AngularJS
+            <li class="fragment">Director (just routing)
+        </ul>
+    </section>
+    <section>
+        <h3>Frontend Template Engines</h3>
+        <ul>
+            <li class="fragment">Mustache
+            <li class="fragment">react.js
+        </ul>
+    </section>
+    <section>
+        <h3>Backend Frameworks</h3>
+        <ul>
+            <li class="fragment">plain Node (nothing)
+            <li class="fragment">expressJS
+            <li class="fragment">koa
+            <li class="fragment">Template engines
+                <ul>
+                    <li class="fragment">
+                    <li class="fragment">expressJS
+                    <li class="fragment">Template engines
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Backend Template Engines</h3>
+        <ul>
+            <li class="fragment">Jade
+            <li class="fragment">EJS
+            <li class="fragment">JSHTML
+            <li class="fragment">Hogan.js
+            <li class="fragment">react.js
+        </ul>
+    </section>
+</section>
+
+
+<section>
+    <h1>Thank you</h1>
+
+    <h3>Questions / Feedback / Discussion</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+</section>
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
