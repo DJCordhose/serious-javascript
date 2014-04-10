@@ -244,6 +244,10 @@
     </section>
 </section>
 
+<!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
+<!--Test-Frameworks-->
+
+
 <section>
     <section>
         <h2>Code Qualität, Module, statische Analyse und Tests</h2>
@@ -321,9 +325,6 @@
 
     <!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
 
-    <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
-    <!--Test-Frameworks-->
-
     <section>
         <h3>Fragestellung</h3>
         <ul>
@@ -334,12 +335,136 @@
             <li class="fragment">Oder ebenfalls in JavaScript?
         </ul>
     </section>
+
+    <section>
+        <h3>JavaScript auch auf dem Server?</h3>
+        <ul>
+            <li class="fragment">Code kann wieder verwendet werden
+            <li class="fragment">Dieselben Tools für Frontend und Backend
+            <li class="fragment">Kleinerer Technologiestack
+            <li class="fragment">Vertikale Teams einfacher zu realisieren
+            <li class="fragment">Einheitliche Entwicklungsphilosophie
+            <li class="fragment">JSON als natürliches Datenformat
+        </ul>
+    </section>
+    <section>
+        <h3>Node.js</h3>
+        <ul>
+            <li class="fragment">Erlaubt die Ausführung von JavaScript auch auf dem Server
+            <li class="fragment">Bestandteile
+                <ul>
+                    <li class="fragment">Chrome V8 JavaScript-Engine
+                    <li class="fragment">Asynchrone IO-Bibliothek (libuv), die auf allen Plattformen läuft
+                </ul>
+            </li>
+            <li class="fragment">Asynchones Programmiermodell, kein Multithreading
+            <li class="fragment">Clustering als Kernmodul vorhanden
+            <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
+            <li class="fragment">Express als Modul für klassische Webanwendungen
+            <li class="fragment">Auch ideal als API-Server
+        </ul>
+    </section>
+                    <section>
+                        <h3>Beispiel-Server für node</h3>
+<pre><code class="javascript" contenteditable>var http = require('http');
+
+function handleRequest (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}
+http.createServer(handleRequest).listen(1337, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:1337/');</code></pre>
+                        <p class="fragment">Starten</p>
+<pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
+                    </section>
+
+    <section>
+        <h3>Umstellung auf Node.js? Aber:</h3>
+        <ul>
+            <li class="fragment">Legacy code?
+            <li class="fragment">Nur ein Teil soll auf Node.js umgestellt werden?
+            <li class="fragment">Schrittweise Umstellung?
+            <li class="fragment">JavaScript hat nur "number". Wie sieht es mit Geld-Berechnungen aus?
+        </ul>
+    </section>
+
+    <section>
+        <h3>JDK 8 Nashorn</h3>
+        <ul>
+            <li class="fragment">JDK 8 hat eine neue JavaScript-Engine: Nashorn
+            <li class="fragment">Ersetzt Rhino
+            <li class="fragment">ECMAScript 5.1-Kompatibel
+            <li class="fragment">Übersetzt JavaScript in Java Bytecode
+            <li class="fragment">Deutlich schneller als Rhino bei länger laufenden Tasks (Server)
+            <li class="fragment">Zugriff auf Java-Klassen und SAM types sehr einfach
+        </ul>
+    </section>
+
+    <section>
+        <h3>Avatar.js</h3>
+        <ul>
+            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
+            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
+            <li class="fragment">Start aus Java heraus möglich
+            <li class="fragment">Threading für JavaScript möglich
+            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
+            <li class="fragment">Nutzung aller Java-Klassen (BigDecimal!)
+        </ul>
+    </section>
+                    <section>
+                        <h3>Beispiel-Code Avatar</h3>
+<pre><code class="javascript" contenteditable>var BigDecimal = Java.type('java.math.BigDecimal');
+
+function calculatePercentage(amount, percentage) {
+    var result = new BigDecimal(amount).multiply(
+        new BigDecimal(percentage)).divide(new BigDecimal('100'),
+        2, BigDecimal.ROUND_HALF_EVEN);
+    return result.toPlainString();
+}
+</code></pre>
+                        <p class="fragment">Ja, das ist JavaScript-Code</p>
+                    </section>
+
+    <section>
+        <h3>Wer nutzt Node.js in Produktion?</h3>
+        <ul>
+            <li class="fragment"><a target="_blank" href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+            <li class="fragment"><a target="_blank" href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linedin</a>
+            <li class="fragment"><a target="_blank" href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele weitere</a>
+            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
+        </ul>
+    </section>
+
+</section>
+
+<section>
+    <h2>Was haben wir gesehen?</h2>
+    <ul>
+        <li class="fragment">JavaScript-Projekte haben brauchbar Struktur, Prozesse und Tools
+        <li class="fragment">Gute Frameworks machen das DOM und die Browser-Vielfalt erträglich
+        <li class="fragment">Die Sprache JavaScript und Werkzeuge um die Sprache herum ermöglichen Wartbarkeit auch für große Projekte
+        <li class="fragment">JavaScript ist auf Client und auf Server möglich
+    </ul>
+</section>
+<section>
+    <h2>Allerdings</h2>
+    <ul>
+        <li class="fragment">Herangehensweise anders als bei Java / .NET
+        <li class="fragment">Vieles muss man sich selbst erarbeiten
+        <li class="fragment">Es gibt wenige echte Standards
+        <li class="fragment">Die meisten Entscheidungen muss man selbst treffen (und verantworten)
+        <li class="fragment">Langlebigkeit von Bibliotheken teilweise fraglich
+        <li class="fragment">Einstieg daher oft mit Angst und Unsicherheit verbunden
+    </ul>
 </section>
 
 <section>
     <h1>Vielen Dank</h1>
 
-    <h3>Fragen / Feedback / Diskussion</h3>
+    <h3>Fragen / Diskussion</h3>
 
     <p>
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
