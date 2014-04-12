@@ -3,10 +3,14 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/code/typescript/5e-typescript-overloading.js" />
+        <item url="file://$PROJECT_DIR$/code/typescript/jquery/jquery-tests.js" />
+        <item url="file://$PROJECT_DIR$/code/typescript/Person.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/code/typescript/5e-typescript-overloading.js" />
+      <root url="file://$PROJECT_DIR$/code/typescript/jquery/jquery-tests.js" />
+      <root url="file://$PROJECT_DIR$/code/typescript/Person.js" />
     </CLASSES>
     <SOURCES />
   </library>

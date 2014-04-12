@@ -82,13 +82,13 @@
     <ul>
         <!-- Frischer Anfang gleich mit viel Code -->
         <li class="fragment">haben keine Struktur und sind Chaos <!-- Aufbau -->
-        <!-- Lockere Übersicht über Frameworks  -->
+            <!-- Lockere Übersicht über Frameworks  -->
         <li class="fragment">sind allein schon wegen der Ablaufumgebung (Browser) der Horror <!-- Frameworks -->
-        <!-- Der Fleißteil -->
+            <!-- Der Fleißteil -->
         <li class="fragment">sind von Anfang an unwartbar ... <!-- Wartbarkeit -->
         <li class="fragment">... und können nur im kleinen Rahmen funktionieren
             <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
-        <!-- Der spannende und wohl neue Teil -->
+            <!-- Der spannende und wohl neue Teil -->
         <li class="fragment">erfordern in jedem Fall eine polyglotte Programmierung <!-- Node.js, Nashorn, Avatar.js -->
     </ul>
     <p></p>
@@ -153,6 +153,7 @@
 <section>
     <section>
         <h2>Browser-Frameworks</h2>
+
         <p class="fragment">Untersuchung der Frage: Sind JavaScript-Projekte allein schon wegen der Ablaufumgebung
             (Browser) der Horror?</p>
     </section>
@@ -303,25 +304,111 @@
         </ul>
     </section>
     <section>
-        <h3>TypeScript</h3>
+        <h3>Google Closure Compiler</h3>
         <ul>
-            <li class="fragment">Mehr oder weniger ECMAScript 6 mit deklarierten Typen
-            <li class="fragment">Compiliert und JavaScript
-            <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
-            <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk zum 1.0 Release von Anders Hejlsberg</a>
+            <li class="fragment">Statisch deklarierte Typ-Information werden in Kommentaren angegeben
+            <li class="fragment">Erweiterung von Jsdoc
+            <li class="fragment">Compiler nutzt Typ-Information für statische Checks und optimierten Code
+            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Hauptseite des Compilers</a>
+            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/library/">Module funktionieren über die Closure Library</a>
+        </ul>
+    </section>
+        <section>
+        <h3>Beispiel-Code: Interface</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @interface
+ */
+function HasName() { }
+
+/**
+ * @returns {string}
+ */
+HasName.prototype.getName = function() {};
+</code></pre>
+    </section>
+
+        <section>
+        <h3>Beispiel-Code: Class</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @param name {string}
+ * @param alter {number}
+ * @param geschlecht {string=}
+ * @constructor
+ * @implements {HasName}
+ */
+function Person(name, alter, geschlecht) {
+    this.name = name;
+    this.alter = alter;
+    this.geschlecht = geschlecht;
+}
+</code></pre>
+    </section>
+
+    <section>
+        <h3>Google Closure Compiler: Bewertung</h3>
+        <ul>
+            <li class="fragment">Vorteile
+                <ul>
+                    <li class="fragment">Lesbarkeit für Menschen verbessert
+                    <li class="fragment">Verbesserter IDE-Support durch deklarierte Typen
+                    <li class="fragment">Kein Compilierungsschritt zur Ausführung notwendig
+                    <li class="fragment">Compiler nutzt Typ-Informationen auch zur Optimierung
+                </ul>
+            </li>
+            <li class="fragment">Nachteile
+                <ul>
+                    <li class="fragment">Technologie-Stack wächst
+                    <li class="fragment">Es sieht nicht sonderlich schön aus
+                    <li class="fragment">Abhängigkeit von Google-Technologie (Rückkehr zu einfach JavaScript möglich)
+                    <li class="fragment">JavaScript-Konstrukte (z.B. für Interfaces oder Varargs) teilweise etwas überraschend
+                </ul>
+            </li>
         </ul>
     </section>
     <section>
+        <h3>TypeScript</h3>
+        <ul>
+            <li class="fragment">Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
+            <li class="fragment">Compiliert zu JavaScript, das man so auch von Hand schreiben würde
+            <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
+            <li class="fragment">Externe Deklarationen erlauben nachträgliche Typisierung von existierendem JavaScript-Code
+            <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">Externe
+                Deklarationen für sehr viele JavaScript-Biblitotheken</a>
+            <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk zum 1.0
+                Release von Anders Hejlsberg</a>
+        </ul>
+    </section>
+            <section>
+        <h3>Beispiel-Code</h3>
+<pre><code class="java javascript" contenteditable>interface HasName {
+    getName(): string;
+}
+
+class Person implements HasName {
+    constructor(private name: string, private alter: number,
+    private geschlecht: string = 'M') {
+    }
+    getName() {
+        return this.name;
+    }
+}
+
+var olli: HasName = new Person('Olli', 43);</code></pre>
+    </section>
+
+    <section>
         <h3>TypeScript: Bewertung</h3>
         <ul>
-            <li class="fragment">Vorteil
+            <li class="fragment">Vorteile
                 <ul>
                     <li class="fragment">Lesbarkeit für Menschen verbessert
                     <li class="fragment">Start Verbesserter IDE-Support durch deklarierte Typen
                     <li class="fragment">Typinformation sogar für JSON-Objekte
                 </ul>
             </li>
-            <li class="fragment">Nachteil
+            <li class="fragment">Nachteile
                 <ul>
                     <li class="fragment">Technologie-Stack wächst
                     <li class="fragment">Compilierungsschritt immer notwendig
@@ -387,28 +474,31 @@
                 </ul>
             </li>
             <li class="fragment">Asynchones Programmiermodell, kein Multithreading
-            <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank" href="http://nodejs.org/api/cluster.html">"Clustering" als Kernmodul</a>
+            <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank"
+                                                                          href="http://nodejs.org/api/cluster.html">"Clustering"
+                als Kernmodul</a>
 
-            <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung über viele Maschinen</a> möglich
+            <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung
+                über viele Maschinen</a> möglich
             <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
             <li class="fragment">Express als Modul für klassische Webanwendungen
             <li class="fragment">Auch ideal als API-Server
         </ul>
     </section>
-                    <section>
-                        <h3>Beispiel-Server für node</h3>
+    <section>
+        <h3>Beispiel-Server für node</h3>
 <pre><code class="javascript" contenteditable>var http = require('http');
 
 function handleRequest (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
 }
 http.createServer(handleRequest).listen(1337, '127.0.0.1');
 
 console.log('Server running at http://127.0.0.1:1337/');</code></pre>
-                        <p class="fragment">Starten</p>
-<pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
-                    </section>
+        <p class="fragment">Starten</p>
+        <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
+    </section>
 
     <section>
         <h3>Umstellung auf Node.js? Aber:</h3>
@@ -443,28 +533,33 @@ console.log('Server running at http://127.0.0.1:1337/');</code></pre>
             <li class="fragment">Nutzung aller Java-Klassen (BigDecimal!)
         </ul>
     </section>
-                    <section>
-                        <h3>Beispiel-Code Avatar</h3>
+    <section>
+        <h3>Beispiel-Code Avatar</h3>
 <pre><code class="javascript" contenteditable>var BigDecimal = Java.type('java.math.BigDecimal');
 
 function calculatePercentage(amount, percentage) {
     var result = new BigDecimal(amount).multiply(
-        new BigDecimal(percentage)).divide(new BigDecimal('100'),
+       new BigDecimal(percentage)).divide(new BigDecimal('100'),
         2, BigDecimal.ROUND_HALF_EVEN);
     return result.toPlainString();
 }
 </code></pre>
-                        <p class="fragment">Ja, das ist JavaScript-Code</p>
-                    </section>
+        <p class="fragment">Ja, das ist JavaScript-Code</p>
+    </section>
 
     <section>
         <h3>Wer nutzt Node.js in Produktion?</h3>
         <ul>
-            <li class="fragment"><a target="_blank" href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
-            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
-            <li class="fragment"><a target="_blank" href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
+            <li class="fragment"><a target="_blank"
+                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
             <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linedin</a>
-            <li class="fragment"><a target="_blank" href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele weitere</a>
+            <li class="fragment"><a target="_blank"
+                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
+                weitere</a>
             <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
         </ul>
     </section>
@@ -476,7 +571,8 @@ function calculatePercentage(amount, percentage) {
     <ul>
         <li class="fragment">JavaScript-Projekte haben brauchbar Struktur, Prozesse und Tools
         <li class="fragment">Gute Frameworks machen das DOM und die Browser-Vielfalt erträglich
-        <li class="fragment">Die Sprache JavaScript und Werkzeuge um die Sprache herum ermöglichen Wartbarkeit auch für große Projekte
+        <li class="fragment">Die Sprache JavaScript und Werkzeuge um die Sprache herum ermöglichen Wartbarkeit auch für
+            große Projekte
         <li class="fragment">JavaScript ist auf Client und auf Server möglich
     </ul>
 </section>
