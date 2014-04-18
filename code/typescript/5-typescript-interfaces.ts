@@ -17,8 +17,3 @@ eatThis({
     name: 'Olli',
     singleLine: true
 });
-
-eatThis({
-    name: 'Olli',
-    singleLine: false
-});

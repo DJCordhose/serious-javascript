@@ -5,12 +5,16 @@
         <item url="file://$PROJECT_DIR$/code/typescript/5e-typescript-overloading.js" />
         <item url="file://$PROJECT_DIR$/code/typescript/jquery/jquery-tests.js" />
         <item url="file://$PROJECT_DIR$/code/typescript/Person.js" />
+        <item url="file://$PROJECT_DIR$/code/typescript/1-javascript.js" />
+        <item url="file://$PROJECT_DIR$/code/typescript/5-typescript-interfaces.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/code/typescript/5e-typescript-overloading.js" />
       <root url="file://$PROJECT_DIR$/code/typescript/jquery/jquery-tests.js" />
       <root url="file://$PROJECT_DIR$/code/typescript/Person.js" />
+      <root url="file://$PROJECT_DIR$/code/typescript/1-javascript.js" />
+      <root url="file://$PROJECT_DIR$/code/typescript/5-typescript-interfaces.js" />
     </CLASSES>
     <SOURCES />
   </library>

@@ -1,13 +1,13 @@
 // JavaScript does have dynamic types
 
 function eatThis(conf) {
-    console.log("Type of name: " +
-        typeof conf.name);
-    console.log("Type of singleLine: " +
-        typeof conf.singleLine);
+    console.log(typeof conf.name);
+    // => string
+    console.log(typeof conf.singleLine);
+    // => boolean
 }
 
 eatThis({
-   name: 'Olli',
+    name: 'Olli',
     singleLine: true
 });

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Pros and Cons of declared types</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!--http://contribs.jsunconf.eu/contribs/892CE5E6-72BC-4B5F-B25C-958DCB020B43-->
+<!--Pros and Cons of declared types-->
+
+<!--In my long history of advocating declared types in this talk I want to give survey of the pros and cons of declared-->
+<!--types in programming languages. To do this I will provide you with JavaScript and TypeScript snippets that basically do-->
+<!--the same thing. Based on that we can discuss if, where and how declared types can make your life easier. If you think I-->
+<!--will be strongly biased towards declared types you might be surprised.-->
+
+<div class="slides">
+<section>
+    <h1>Pros and Cons of declared types</h1>
+    <br>
+
+    <h2 class="fragment">in JavaScript</h2>
+
+    <p class="fragment">
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+        <br>
+        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        </small>
+    </p>
+
+</section>
+    <section>
+        <h2>Looking at popular type systems for JavaScript</h2>
+        <ul>
+            <li class="fragment">Google Closure Compiler
+            <li class="fragment">TypeScript
+        </ul>
+    </section>
+<section>
+
+    <section>
+        <h3>Google Closure Compiler</h3>
+        <ul>
+            <li class="fragment">Optional Static type information in comments
+            <li class="fragment">Supports a superset of <a target="_blank" href="http://usejsdoc.org/">JSDoc</a>
+            <li class="fragment">Compiler uses type information for static checks and optimizations
+            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Main Page of Compilers</a>
+            <li class="fragment">Used in many Google products and standard way to write JavaScript at Google
+        </ul>
+    </section>
+        <section>
+        <h3>Code Sample: Interface</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @interface
+ */
+function HasName() { }
+
+/**
+ * @returns {string}
+ */
+HasName.prototype.getName = function() {};
+</code></pre>
+    </section>
+
+        <section>
+        <h3>Code Sample: Class</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @param name {string}
+ * @param age {number=}
+ * @constructor
+ * @implements {HasName}
+ */
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+/**
+ * @type {Person}
+ */
+var olli = new Person('Olli', 43);
+</code></pre>
+    </section>
+
+    <section>
+        <h3>Google Closure Compiler: Pros and Cons</h3>
+        <ul>
+            <li class="fragment">Pros
+                <ul>
+                    <li class="fragment">Improved human readability
+                    <li class="fragment">Enhanced IDE-Support
+                    <li class="fragment">Code runs without compilation step
+                    <li class="fragment">Type information can also be used for enhanced minifying
+                </ul>
+            </li>
+            <li class="fragment">Cons
+                <ul>
+                    <li class="fragment">Growing technology stack
+                    <li class="fragment">Looks sort of ugly
+                    <li class="fragment">Dependency on Google technology (way back to pure JavaScript easy, though)
+                    <li class="fragment">Extensions of JSDoc sometimes surprising (e.g. Interfaces or Varargs)
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>TypeScript</h3>
+        <ul>
+            <li class="fragment">Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
+            <li class="fragment">Compiliert zu JavaScript, das man so auch von Hand schreiben würde
+            <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
+            <li class="fragment">Externe Deklarationen erlauben nachträgliche Typisierung von existierendem JavaScript-Code
+            <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">Externe
+                Deklarationen für sehr viele JavaScript-Biblitotheken</a>
+            <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk zum 1.0
+                Release von Anders Hejlsberg</a>
+        </ul>
+    </section>
+            <section>
+        <h3>Code Sample</h3>
+<pre><code class="java javascript" contenteditable>interface HasName {
+    getName(): string;
+}
+
+class Person implements HasName {
+    constructor(private name: string, private age?: number) {
+    }
+    getName() {
+        return this.name;
+    }
+}
+
+var olli: HasName = new Person('Olli', 43);</code></pre>
+    </section>
+
+    <section>
+        <h3>TypeScript: Pros and Cons</h3>
+        <ul>
+            <li class="fragment">Pros
+                <ul>
+                    <li class="fragment">Improved human readability
+                    <li class="fragment">Looks nice
+                    <li class="fragment">Enhanced IDE-Support
+                    <li class="fragment">Typed IDE-Support even for JSON-Objekts (via interfaces)
+                </ul>
+            </li>
+            <li class="fragment">Cons
+                <ul>
+                    <li class="fragment">Growing technology stack
+                    <li class="fragment">Mandatory compilation step
+                    <li class="fragment">Dependency on Microsoft technology (way back to pure JavaScript easy, though)
+                    <li class="fragment">Optional types may impose too much responsibility on developer
+                </ul>
+            </li>
+        </ul>
+    </section>
+</section>
+    <section>
+        <section>
+            <h2>Case study #1: The Use of Types in JavaScript and TypeScript</h2>
+        </section>
+        <section>
+            <h3>JavaScript does not have declared types</h3>
+<pre><code class="javascript" contenteditable>function eatThis(conf) {
+    console.log(conf.name);
+    if (conf.singleLine) {
+        console.log('----');
+    }
+}
+
+eatThis({
+   name: 'Olli',
+   singleLine: true
+});
+</code></pre>
+        </section>
+        <section>
+            <h3>JavaScript does have dynamic types</h3>
+<pre><code class="javascript" contenteditable>function eatThis(conf) {
+    console.log(typeof conf.name);
+    // => string
+    console.log(typeof conf.singleLine);
+    // => boolean
+}
+
+eatThis({
+    name: 'Olli',
+    singleLine: true
+});
+</code></pre>
+        </section>
+        <section>
+            <h3>You can check for the right type in JavaScript dynamically</h3>
+<pre><code class="javascript" contenteditable>function eatThis(conf) {
+    if (typeof conf.name !== 'string') {
+        throw new Error("Config object needs name of type string");
+    }
+    if (typeof conf.singleLine !== 'boolean') {
+        throw new Error("Config object needs singleLine of type boolean");
+    }
+}
+
+// Will fail at runtime
+eatThis({
+   name: 'Olli',
+    singleLine: 10
+});
+</code></pre>
+        </section>
+        <section>
+            <h3>Declared types in TypeScript - will be be gone at runtime, no runtime checking</h3>
+<pre><code class="javascript" contenteditable>function eatThis(conf: {name: string; singleLine?: boolean}) {
+    console.log(conf.name);
+    if (conf.singleLine) {
+        console.log('----');
+    }
+}
+
+// Won't even compile
+eatThis({
+   name: 'Olli',
+    singleLine: 10
+});
+
+</code></pre>
+        </section>
+        <section>
+            <h3>Interfaces in TypeScript can contain fields and methods - structural compatibility</h3>
+<pre><code class="javascript" contenteditable>interface EatThisConfig {
+    name: string;
+    singleLine?: boolean;
+}
+
+function eatThis(conf: EatThisConfig) {
+    console.log(conf.name);
+    if (conf.singleLine) {
+        console.log('----');
+    }
+}
+
+eatThis({
+    name: 'Olli',
+    singleLine: 10
+});
+</code></pre>
+        </section>
+
+    </section>
+<section>
+    <section>
+        <h2>Case study #2: Going from JavaScript to TypeScript in a Browser Game</h2>
+    </section>
+    <section>
+        <h3>TODO Nils</h3>
+    </section>
+</section>
+
+
+<section>
+<h1>Thank you</h1>
+
+        <h3>Questions / Feedback / Discussion</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+        <br>
+        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        </small>
+    </p>
+    </section>
+
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
