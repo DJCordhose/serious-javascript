@@ -54,13 +54,123 @@
     </p>
 
 </section>
-    <section>
-        <h2>Looking at popular type systems for JavaScript</h2>
-        <ul>
-            <li class="fragment">Google Closure Compiler
-            <li class="fragment">TypeScript
-        </ul>
-    </section>
+
+<section>
+  <h2>Background</h2>
+  <h3>"Types" in JavaScript</h3>
+ </section>
+
+<section>
+  <h3>JavaScript does not have declared types</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  if (conf.fillStyle) {
+    context.fillStyle = conf.color;
+  }
+
+  context.fillRect(conf.x, conf.y, conf.size, conf.size);
+}
+
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10,
+  size: 20
+});
+</code></pre>
+</section>
+
+<section>
+  <h3>JavaScript does have dynamic types</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  console.log(typeof conf.fillStyle);
+  // => string
+  console.log(typeof conf.x);
+  // => number
+  console.log(typeof conf.size);
+  // => undefined
+}
+
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+});
+</code></pre>
+</section>
+<section>
+  <h3>Objects can be modified at any time</h3>
+<pre><code class="javascript" contenteditable>var squareConfig = {
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+  };
+
+  var aNewPropertyName = getAPropertyName();
+  squareConfig[aNewPropertyName] = 10;  // which property is added here???
+
+  var aPropertyName = getAPropertyName();
+  delete squareConfig[x]; // which property is removed here???
+</code></pre>
+</section>
+<section>
+  <h3>You can check for the right type in JavaScript dynamically</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  if (typeof conf.fillStyle !== 'string') {
+    throw new Error("Config object needs fillStyle of type string");
+  }
+
+  if (typeof conf.size !== 'number') {
+    throw new Error("Config object needs size of type number");
+  }
+  // ...
+}
+
+// Will fail at runtime
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+});
+</code></pre>
+</section>
+<section>
+  <h2>"Class" in JavaScript</h2>
+  <p>Classes are functions</p>
+<pre><code class="javascript" contenteditable>function Ball(config) {
+  this.position = config.position;
+  this.r = config.r;
+  this.color = config.color;
+}
+
+Ball.prototype.draw = function() { ... }
+
+var ball = new Ball();
+console.log(typeof ball)
+// => object
+
+ball.draw();
+</code></pre>
+</section>
+<section>
+  <h2>Problems with dynamic types</h2>
+
+  <ul>
+    <li>What attributes exists at runtime?</li>
+    <li>What parameters must be set?</li>
+  </ul>
+  <h2>Why/requirements for static types?</h2>
+  <ul>
+    <li>Documentation</li>
+    <li>Better IDE Support</li>
+  </ul>
+</section>
+<section>
+  <h2>Looking at popular type systems for JavaScript</h2>
+  <ul>
+    <li class="fragment">Google Closure Compiler
+    <li class="fragment">TypeScript
+  </ul>
+</section>
 <section>
 
     <section>
@@ -130,6 +240,7 @@ var olli = new Person('Olli', 43);
             </li>
         </ul>
     </section>
+	</section>
     <section>
         <h3>TypeScript</h3>
         <ul>
@@ -183,104 +294,98 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
     </section>
 </section>
     <section>
-        <section>
-            <h2>Case study #1: The Use of Types in JavaScript and TypeScript</h2>
-        </section>
-        <section>
-            <h3>JavaScript does not have declared types</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
-}
+						<h1>Part Two</h1>
+            <h3>Case study: The Use of Types in JavaScript and TypeScript</h3>
+				</section>
+		<section>
+			<section>
+				<h2>Background: The Browser Game</h2>
+				<ul>
+					<li>TODO: Ganz kurzer Überblick, woraus besteht das Spiel:</li>
+					<li>Canvas</li>
+					<li>Ball</li>
+					<li>Player</li>
+					<li>Physik</li>
+				</ul>
+			</section>
+      <section>
+        <h2>Interfaces</h2>
+        Regular JavaScript:
+<pre><code class="javascript" contenteditable>
+  function MovingObject(config) {
+  // ...
+  }
 
-eatThis({
-   name: 'Olli',
-   singleLine: true
-});
-</code></pre>
-        </section>
-        <section>
-            <h3>JavaScript does have dynamic types</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    console.log(typeof conf.name);
-    // => string
-    console.log(typeof conf.singleLine);
-    // => boolean
-}
+  // What parameters are required for MovingObject ????
+  var mo = new MovingObject( { ??? } );
 
-eatThis({
-    name: 'Olli',
-    singleLine: true
-});
 </code></pre>
-        </section>
-        <section>
-            <h3>You can check for the right type in JavaScript dynamically</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    if (typeof conf.name !== 'string') {
-        throw new Error("Config object needs name of type string");
-    }
-    if (typeof conf.singleLine !== 'boolean') {
-        throw new Error("Config object needs singleLine of type boolean");
-    }
-}
+      </section>
 
-// Will fail at runtime
-eatThis({
-   name: 'Olli',
-    singleLine: 10
-});
-</code></pre>
-        </section>
+
         <section>
             <h3>Declared types in TypeScript - will be be gone at runtime, no runtime checking</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf: {name: string; singleLine?: boolean}) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
+          <p>TODO SCREENSHOT</p>
+<pre><code class="javascript" contenteditable>function MovingObject(
+  conf: {fillStyle?:string,size:number,x:number,y:number}) {
+  if (conf.fillStyle) {
+    // optional
+    context.fillStyle = conf.color;
+  }
+  context.fillRect(conf.x, conf.y, conf.size, conf.size);
 }
 
-// Won't even compile
-eatThis({
-   name: 'Olli',
-    singleLine: 10
+// Won't even compile => 'size' is not a number
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10,
+  size: 'large'
 });
 
 </code></pre>
         </section>
         <section>
-            <h3>Interfaces in TypeScript can contain fields and methods - structural compatibility</h3>
-<pre><code class="javascript" contenteditable>interface EatThisConfig {
-    name: string;
-    singleLine?: boolean;
-}
+            <h3>Interfaces in TypeScript</h3>
+            <p>Contain fields and methods - structural compatibility</p>
 
-function eatThis(conf: EatThisConfig) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
-}
+            <img src="ts_images/interface_def.png">
 
-eatThis({
-    name: 'Olli',
-    singleLine: 10
-});
-</code></pre>
-        </section>
-
-    </section>
-<section>
-    <section>
-        <h2>Case study #2: Going from JavaScript to TypeScript in a Browser Game</h2>
-    </section>
-    <section>
-        <h3>TODO Nils</h3>
-    </section>
 </section>
+
+      <section>
+        <h2>Interfaces</h2>
+        Using Interfaces - just as 'regular' JavaScript objects
+        <div></div>
+        <img src="ts_images/interface_usage.png">
+        (Interface definitions already exists for a lot of standard JS libs)
+      </section>
+      <section>
+        <h2>Classes</h2>
+        Define classes with public, private and static members
+        <img src="ts_images/class_definition.png">
+      </section>
+
+      <section>
+        <h2>Classes</h2>
+        Instantiation and Usage
+        <div></div>
+        <img src="ts_images/class_usage.png">
+      </section>
+
+      <section>
+        <h3>Modules</h3>
+        Define Modules with private and public members
+        <img src="ts_images/module_definition.png">
+      </section>
+      <section>
+        <h2>Modules</h2>
+        Using Modules
+        <div></div>
+        <img src="ts_images/module_usage.png">
+      </section>
+    </section>
+
 
 <section>
 <h1>Thank you</h1>
