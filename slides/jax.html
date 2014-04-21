@@ -148,6 +148,7 @@
             <li class="fragment">Karma: Test-Runner mit WebStorm-Integration
         </ul>
     </section>
+
 </section>
 
 <section>
@@ -287,15 +288,96 @@
 
         </ul>
     </section>
+
+    <section>
+        <h2>Muster für größere Projekte</h2>
+        <h3>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h3>
+    </section>
+                <section>
+                    <h3>this in Objekten</h3>
+                    <ul>
+                        <li class="fragment">Objekte können auch Funktionen als Properties haben
+                        <li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden
+    <li class="fragment"><pre><code class="javascript" contenteditable>var obj = {
+    field: 10,
+    log: function() {
+        console.log(this.field);
+    }
+};
+
+obj.log(); // 10
+    </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Singleton</h3>
+                    <ul>
+                        <li class="fragment">Wie gesehen, kann man in JavaScript Objekte auch ohne einen Typ erzeugen
+                        <li class="fragment">In klassenbasierten Sprachen muss man auch dafür einen Typ erzeugen und darauf achten, dass man nur eine Instanz erzeugen kann
+                        <li class="fragment">Das Pattern dazu heißt <code>Singleton</code>
+                        <li class="fragment">In JavaScript braucht man dieses Pattern nicht
+                        <li class="fragment">Manchmal möchte man allerdings auch mehrere Objekte mit dergleichen oder ähnlichen Struktur erzeugen
+                    </ul>
+                </section>
+    <section>
+        <h2>Klassische Typen und Vererbung mit JavaScript</h2>
+        <ul>
+            <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+            <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
+            <li class="fragment">Einfachvererbung ist ebenso möglich
+            <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
+            <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
+            <li class="fragment">Grundlage ist die prototypische Vererbung
+        </ul>
+    </section>
+            <section>
+                <h2>Setzen des Prototypen aka das Typen-System</h2>
+                <p class="fragment">Typen werden über Konstruktor-Funktionen definiert</p>
+    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.getName = function() {
+    return this.name;
+};
+
+var olli = new Person('Olli');
+olli.getName() === 'Olli';</code></pre>
+    <pre class="fragment"><code class="javascript" contenteditable>olli.__proto__ === Person.prototype;
+olli.constructor === Person;</code></pre>
+    <pre class="fragment"><code class="javascript" contenteditable>olli instanceof Object;
+olli instanceof Person;</code></pre>
+            </section>
+
     <section>
         <h3>Modularisierung</h3>
-        <!-- Module und Typhierarchien fördern strukturiertes Arbeiten -->
         <ul>
             <li class="fragment">Revealing Module Pattern
             <li class="fragment">AMD und RequireJS
-            <li class="fragment">CommonJS und Broserify
+            <li class="fragment">CommonJS und Browserify
         </ul>
     </section>
+    <section>
+        <h3>Revealing Module Pattern</h3>
+<pre><code class="javascript" contenteditable>var eu = eu || {};
+eu.zeigermann = eu.zeigermann || {};
+eu.zeigermann.person = eu.zeigermann.person || {};
+(function (person) {
+    // Constructor
+    function Person(name) {
+        this.name = name;
+    }
+
+    // Factory
+    function create(name) {
+        return new Person(name);
+    }
+
+    // Export der Factory-Methode
+    person.createPerson = create;
+})(eu.zeigermann.person);
+</code></pre>
+                    </section>
     <section>
         <h3>Statische Analyse und Refactoring</h3>
         <ul>
@@ -420,6 +502,12 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         </ul>
     </section>
 
+    <section>
+        <h3>Esprima: TODO</h3>
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
 
     <section>
         <h3>Code Qualität</h3>
