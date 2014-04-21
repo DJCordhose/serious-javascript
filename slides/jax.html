@@ -79,18 +79,18 @@
 
 <section>
     <h2>JavaScript-Projekte</h2>
-    <ul>
+    <ol>
         <!-- Frischer Anfang gleich mit viel Code -->
         <li class="fragment">haben keine Struktur und sind Chaos <!-- Aufbau -->
             <!-- Lockere Übersicht über Frameworks  -->
         <li class="fragment">sind allein schon wegen der Ablaufumgebung (Browser) der Horror <!-- Frameworks -->
             <!-- Der Fleißteil -->
         <li class="fragment">sind von Anfang an unwartbar ... <!-- Wartbarkeit -->
-        <li class="fragment">... und können nur im kleinen Rahmen funktionieren
+        <li class="fragment" value="3">... und können nur im kleinen Rahmen funktionieren
             <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
             <!-- Der spannende und wohl neue Teil -->
         <li class="fragment">erfordern in jedem Fall eine polyglotte Programmierung <!-- Node.js, Nashorn, Avatar.js -->
-    </ul>
+    </ol>
     <p></p>
 
     <h3 class="fragment">Stimmt das? Oder sind das Vorurteile?</h3>
@@ -118,6 +118,11 @@
         <p>Erzeugt mit <a target="_blank" href="http://yeoman.io/">http://yeoman.io/</a></p>
 
         <p class="fragment">Untersuchung der Frage: Haben JavaScript-Projekte keine Struktur und sind Chaos?</p>
+        <p class="fragment">Wie teste ich meinen Code?</p>
+        <p class="fragment">Wie automatisiere ich?</p>
+
+        <br>
+        <h4 class="fragment">Wir beginnen mit Live-Demos für etwas Leben in der Bude</h4>
     </section>
 
     <section>
@@ -143,9 +148,10 @@
         <ul>
             <li class="fragment"><code>yo angular</code>
             <li class="fragment">Angular
+            <li class="fragment">Karma: Test-Runner mit WebStorm-Integration
+            <li class="fragment">PhantomJS
             <li class="fragment">Jasmine: BDD-/Unit-Test-Framework
             <li class="fragment">Angular-Scenario: E2E-Test-Framework
-            <li class="fragment">Karma: Test-Runner mit WebStorm-Integration
         </ul>
     </section>
 
@@ -177,7 +183,7 @@
                     <li class="fragment">Business-Anwendung?
                     <li class="fragment">Soll auf mobilen Geräten laufen?
                     <li class="fragment">Grafisch sehr ansprechend?
-                    <li class="fragment">Leicht Bedienung?
+                    <li class="fragment">Leichte Bedienung? (Business-User vs. Casual)
                 </ul>
             <li class="fragment">Es muss über viele Jahre gewartet bleiben
             <li class="fragment">Rückwärtskompatibilität
@@ -247,12 +253,10 @@
 </section>
 
 <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
-<!--Test-Frameworks-->
-
 
 <section>
     <section>
-        <h2>Code Qualität, Module, statische Analyse und Tests</h2>
+        <h2>Code Qualität, Module, statische Analyse</h2>
 
         <p class="fragment">Untersuchung der Fragen: Sind JavaScript-Projekte von Anfang an unwartbar und können nur im
             kleinen Rahmen funktionieren?</p>
@@ -278,8 +282,9 @@
             <li class="fragment">Wie halte ich meinen Code einfach lesbar?
             <li class="fragment">Wie definiere ich ein Maß für Code-Qualität und wie erreiche ich diese?
             <li class="fragment">Wie ermögliche ich eine statische Analyse?
-            <li class="fragment">Wie teste ich meinen Code?
-            <li class="fragment">Wie automatisiere ich Analyse und Test?
+            <!--<li class="fragment">Wie teste ich meinen Code?-->
+            <!-- Ist schon im ersten Teil beantwortet -->
+            <!--<li class="fragment">Wie automatisiere ich Analyse und Test?-->
                 <!--
 
                 Paypal and Walmart use node and are really fast. But, will it be
@@ -293,32 +298,32 @@
         <h2>Muster für größere Projekte</h2>
         <h3>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h3>
     </section>
-                <section>
-                    <h3>this in Objekten</h3>
-                    <ul>
-                        <li class="fragment">Objekte können auch Funktionen als Properties haben
-                        <li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden
-    <li class="fragment"><pre><code class="javascript" contenteditable>var obj = {
-    field: 10,
-    log: function() {
-        console.log(this.field);
-    }
-};
+                <!--<section>-->
+                    <!--<h3>this in Objekten</h3>-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">Objekte können auch Funktionen als Properties haben-->
+                        <!--<li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden-->
+    <!--<li class="fragment"><pre><code class="javascript" contenteditable>var obj = {-->
+    <!--field: 10,-->
+    <!--log: function() {-->
+        <!--console.log(this.field);-->
+    <!--}-->
+<!--};-->
 
-obj.log(); // 10
-    </code></pre>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Singleton</h3>
-                    <ul>
-                        <li class="fragment">Wie gesehen, kann man in JavaScript Objekte auch ohne einen Typ erzeugen
-                        <li class="fragment">In klassenbasierten Sprachen muss man auch dafür einen Typ erzeugen und darauf achten, dass man nur eine Instanz erzeugen kann
-                        <li class="fragment">Das Pattern dazu heißt <code>Singleton</code>
-                        <li class="fragment">In JavaScript braucht man dieses Pattern nicht
-                        <li class="fragment">Manchmal möchte man allerdings auch mehrere Objekte mit dergleichen oder ähnlichen Struktur erzeugen
-                    </ul>
-                </section>
+<!--obj.log(); // 10-->
+    <!--</code></pre>-->
+                    <!--</ul>-->
+                <!--</section>-->
+                <!--<section>-->
+                    <!--<h3>Singleton</h3>-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">Wie gesehen, kann man in JavaScript Objekte auch ohne einen Typ erzeugen-->
+                        <!--<li class="fragment">In klassenbasierten Sprachen muss man auch dafür einen Typ erzeugen und darauf achten, dass man nur eine Instanz erzeugen kann-->
+                        <!--<li class="fragment">Das Pattern dazu heißt <code>Singleton</code>-->
+                        <!--<li class="fragment">In JavaScript braucht man dieses Pattern nicht-->
+                        <!--<li class="fragment">Manchmal möchte man allerdings auch mehrere Objekte mit dergleichen oder ähnlichen Struktur erzeugen-->
+                    <!--</ul>-->
+                <!--</section>-->
     <section>
         <h2>Klassische Typen und Vererbung mit JavaScript</h2>
         <ul>
@@ -383,14 +388,14 @@ eu.zeigermann.person = eu.zeigermann.person || {};
         <ul>
             <li class="fragment">Google Closure Compiler
             <li class="fragment">TypeScript
-            <li class="fragment">Esprima
+            <!--<li class="fragment">Esprima-->
         </ul>
     </section>
     <section>
         <h3>Google Closure Compiler</h3>
         <ul>
             <li class="fragment">Statisch deklarierte Typ-Information werden in Kommentaren angegeben
-            <li class="fragment">Erweiterung von Jsdoc
+            <li class="fragment">Erweiterung von JSDoc
             <li class="fragment">Compiler nutzt Typ-Information für statische Checks und optimierten Code
             <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Hauptseite des Compilers</a>
             <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/library/">Module funktionieren über die Closure Library</a>
@@ -502,19 +507,38 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         </ul>
     </section>
 
-    <section>
-        <h3>Esprima: TODO</h3>
-        <ul>
-            <li class="fragment">
-        </ul>
-    </section>
+    <!--<section>-->
+        <!--<h3>Esprima: TODO</h3>-->
+        <!--<ul>-->
+            <!--<li class="fragment">-->
+        <!--</ul>-->
+    <!--</section>-->
 
     <section>
-        <h3>Code Qualität</h3>
-        <!-- Standard JSHint-Folien und Beispiel nehmen -->
+        <h2>Code Qualität mit JSHint</h2>
         <ul>
-            <li class="fragment">
+            <li class="fragment">Analysiert JavaScript-Files und macht konfigurierbare Prüfungen
+            <li class="fragment"><a target="_blank" href="http://www.jshint.com/about//">http://www.jshint.com/</a>
+            <li class="fragment">Deckt potentielle Fehler auf
+            <li class="fragment">Kann die Code-Conventions des Teams unterstützen
         </ul>
+    </section>
+    <section>
+        <h3>Was könnten hier die Probleme sein?</h3>
+<pre class="fragment"><code class="javascript" contenteditable>function olli() {
+    console.log("aha")
+    func();
+    variable = 10;
+ var myVar;
+    10 == "10";
+    if (true) console.log('Yo');
+}</code></pre>
+        <ul>
+            <li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration
+            <li class="fragment">Anhand eine Konfigurationsfiles können <em>alle</em> Optionen an oder ausgeschaltet bzw. konfiguriert werden
+            <li class="fragment">In jeder JavaScript-Datei können zudem Warnungen ausgeschaltet werden (vgl. @SuppressWarnings in Java)
+        </ul>
+
     </section>
 </section>
 
@@ -562,7 +586,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
                     <li class="fragment">Asynchrone IO-Bibliothek (libuv), die auf allen Plattformen läuft
                 </ul>
             </li>
-            <li class="fragment">Asynchones Programmiermodell, kein Multithreading
+            <li class="fragment">Asynchrones Programmiermodell, kein Multithreading
             <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank"
                                                                           href="http://nodejs.org/api/cluster.html">"Clustering"
                 als Kernmodul</a>
