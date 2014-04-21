@@ -294,16 +294,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
 						<h1>Part Two</h1>
             <h3>Case study: The Use of Types in JavaScript and TypeScript</h3>
 				</section>
-		<section>
-				<h2>Background: The Browser Game</h2>
-				<ul>
-					<li>TODO: Ganz kurzer Überblick, woraus besteht das Spiel:</li>
-					<li>Canvas</li>
-					<li>Ball</li>
-					<li>Player</li>
-					<li>Physik</li>
-				</ul>
-			</section>
+
       <section>
         <h2>Interfaces</h2>
         Regular JavaScript:
@@ -320,24 +311,10 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
 
 
         <section>
-            <h3>Declared types in TypeScript - will be be gone at runtime, no runtime checking</h3>
-          <p>TODO SCREENSHOT</p>
-<pre><code class="javascript" contenteditable>function MovingObject(
-  conf: {fillStyle?:string,size:number,x:number,y:number}) {
-  if (conf.fillStyle) {
-    // optional
-    context.fillStyle = conf.color;
-  }
-  context.fillRect(conf.x, conf.y, conf.size, conf.size);
-}
-
-// Won't even compile => 'size' is not a number
-drawSquare({
-  fillStyle: 'red',
-  x: 10,
-  y: 10,
-  size: 'large'
-});
+            <h3>Declared types in TypeScript</h3>
+          <p>Problems reported by the Compiler</p>
+          <p>Types will be be gone at runtime, no runtime checking</p>
+          <img src="ts_images/method_invalid.png">
 
 </code></pre>
         </section>
@@ -358,6 +335,21 @@ drawSquare({
       </section>
       <section>
         <h2>Classes</h2>
+       </section>
+      <section>
+        <h2>Classes in JavaScript</h2>
+        TODO: Example
+       </section>
+      <section>
+        <h2>Classes in JavaScript</h2>
+        <h3>Problems</h3>
+        <p>No first class citizen in JS</p>
+        <p>Lots of Boilerplate, unreadable code</p>
+        <p>Even worse: visibility of members</p>
+        <p>Inheritance</p>
+      </section>
+      <section>
+        <h2>Classes in TypeScript</h2>
         Define classes with public, private and static members
         <img src="ts_images/class_definition.png">
       </section>
@@ -370,7 +362,20 @@ drawSquare({
       </section>
 
       <section>
-        <h3>Modules</h3>
+        <h2>Modules</h2>
+      </section>
+      <section>
+        <h2>Modules in JavaScript</h2>
+      </section>
+      <section>
+        <h2>Problems</h2>
+          <ul>
+            <li>No language construct</li>
+          <li>Various pattern exists (STIMMT DAS????)</li>
+         </ul>
+      </section>
+<section>
+  <h2>Modules in TypeScript</h2>
         Define Modules with private and public members
         <img src="ts_images/module_definition.png">
       </section>
