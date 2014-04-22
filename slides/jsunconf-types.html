@@ -49,7 +49,7 @@
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
         <br>
-        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        <small><a href="http://nilshartmann.net">Nils Hartmann</a> / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
         </small>
     </p>
 
@@ -57,7 +57,7 @@
 
 <section>
   <h2>Background</h2>
-  <h3>"Types" in JavaScript</h3>
+  <h3>Types in JavaScript</h3>
  </section>
 
 <section>
@@ -133,6 +133,7 @@ drawSquare({
 });
 </code></pre>
 </section>
+
 <section>
   <h2>"Class" in JavaScript</h2>
   <p>Classes are functions</p>
@@ -152,16 +153,57 @@ ball.draw();
 </code></pre>
 </section>
 <section>
-  <h2>Problems with dynamic types</h2>
+  <h2>Inheritance in JavaScript</h2>
+  <p>Prototype-based inheritance</p>
+<pre><code class="javascript" contenteditable>function MovingBall(config) {
+  // Invoke super constructor
+  Ball.call(this, config);
 
+  this.acceleration = config.acceleration;
+}
+
+// Create Prototype Hierarchy
+MovingBall.prototype = Object.create(Ball.prototype);
+MovingBall.prototype.constructor = MovingBall;
+MovingBall.Ball = Ball.prototype;
+</code></pre>
+</section>
+<section>
+  <h2>Modules in JavaScript</h2>
+
+<pre><code class="javascript" contenteditable>var gamelib = {};
+(function() {
+  function Canvas() {
+  }
+  function Ball(config) {
+    // ...
+  }
+  // export ball
+  gamelib.Ball = Ball;
+})();
+
+// => Error: 'internal' type
+new gamelib.Canvas();
+
+// => Works: 'public' type
+new gamelib.Ball({...});
+</code></pre>
+</section>
+<section>
+  <h2>Problems with JavaScript types</h2>
   <ul>
-    <li>What attributes exists at runtime?</li>
-    <li>What parameters must be set?</li>
+    <li class="fragment">What attributes exists at runtime?</li>
+    <li class="fragment">What parameters must be set?</li>
+    <li class="fragment">Missing useful IDE support</li>
+    <img class="fragment" src="ts_images/nils_01_codecompletion_js.png">
   </ul>
-  <h2>Why/requirements for static types?</h2>
+</section>
+<section>
+  <h2>Problems with JavaScript OO</h2>
   <ul>
-    <li>Documentation</li>
-    <li>Better IDE Support</li>
+    <li class="fragment">No "real" support by the language itself</li>
+    <li class="fragment">Various pattern exists, not "the" one and only</li>
+    <li class="fragment">Ugly technical, cluttered boilerplate Code</li>
   </ul>
 </section>
 <section>
@@ -296,8 +338,8 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
 				</section>
 
       <section>
-        <h2>Interfaces</h2>
-        Regular JavaScript:
+        <h2>Regular JavaScript</h2>
+
 <pre><code class="javascript" contenteditable>
   function MovingObject(config) {
   // ...
@@ -337,17 +379,20 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         <h2>Classes</h2>
        </section>
       <section>
-        <h2>Classes in JavaScript</h2>
-        TODO: Example
+        <h2>Recap: Classes in JavaScript</h2>
+        <pre><code class="javascript" contenteditable>function Ball(config) {
+  this.position = config.position;
+  this.r = config.r;
+  this.color = config.color;
+}
+
+Ball.prototype.draw = function() { ... }
+
+var ball = new Ball();
+ball.draw();
+        </code></pre>
        </section>
-      <section>
-        <h2>Classes in JavaScript</h2>
-        <h3>Problems</h3>
-        <p>No first class citizen in JS</p>
-        <p>Lots of Boilerplate, unreadable code</p>
-        <p>Even worse: visibility of members</p>
-        <p>Inheritance</p>
-      </section>
+
       <section>
         <h2>Classes in TypeScript</h2>
         Define classes with public, private and static members
@@ -364,16 +409,27 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
       <section>
         <h2>Modules</h2>
       </section>
-      <section>
-        <h2>Modules in JavaScript</h2>
-      </section>
-      <section>
-        <h2>Problems</h2>
-          <ul>
-            <li>No language construct</li>
-          <li>Various pattern exists (STIMMT DAS????)</li>
-         </ul>
-      </section>
+<section>
+  <h2>Recap: Modules in JavaScript</h2>
+
+  <pre><code class="javascript" contenteditable>var gamelib = gamelib || {};
+(function() {
+  // 'public' or 'private'??? What 'type'???
+  var canvas;
+
+  // Is this 'public' or 'private'???
+  function Canvas() {
+  }
+  // Is this 'public' or 'private'???
+  function Ball(config) {
+  }
+
+  // export public members
+  gamelib.Ball = Ball;
+  gamelib.canvas = canvas;
+})();
+  </code></pre>
+</section>
 <section>
   <h2>Modules in TypeScript</h2>
         Define Modules with private and public members
@@ -396,7 +452,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
         <br>
-        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        <small><a href="http://nilshartmann.net">Nils Hartmann</a> / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
         </small>
     </p>
     </section>
