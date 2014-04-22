@@ -118,15 +118,15 @@
         <p>Erzeugt mit <a target="_blank" href="http://yeoman.io/">http://yeoman.io/</a></p>
 
         <p class="fragment">Untersuchung der Frage: Haben JavaScript-Projekte keine Struktur und sind Chaos?</p>
-        <p class="fragment">Wie teste ich meinen Code?</p>
-        <p class="fragment">Wie automatisiere ich?</p>
+        <!--<p class="fragment">Wie automatisiere ich?</p>-->
+        <!--<p class="fragment">Wie teste ich meinen Code?</p>-->
 
-        <br>
-        <h4 class="fragment">Wir beginnen mit Live-Demos für etwas Leben in der Bude</h4>
+        <!--<br>-->
+        <!--<h4 class="fragment">Wir beginnen mit Live-Demos für etwas Leben in der Bude</h4>-->
     </section>
 
     <section>
-        <h3>Eine komplette Webanwendung</h3>
+        <h3>Live-Demo: Eine komplette Webanwendung</h3>
         <ul>
             <!-- Jeden einzelnen Punkt am Projekt zeigen -->
             <li class="fragment"><code>yo webapp</code>
@@ -134,7 +134,7 @@
             <li class="fragment">Grunt.js: Build-Tool
             <li class="fragment">Bower: Abhängigkeitsmanagement
             <li class="fragment">jQuery: Standard Web-Framework
-            <li class="fragment">Bootstrap: Einfaches Layout
+            <li class="fragment"><a target="_blank" href="http://getbootstrap.com/">Bootstrap</a>: Responsive Layout
             <li class="fragment">Comapss und SASS: Abstraktion von CSS
             <li class="fragment">Modernizr: Check für Browser-Features
             <li class="fragment">Mocha / Chai: BDD-/Unit-Test-Framework
@@ -143,7 +143,7 @@
     </section>
 
     <section>
-        <h3>Eine komplette AngularJS-Anwendung</h3>
+        <h3>Live-Demo: Eine komplette AngularJS-Anwendung</h3>
         <!-- Jeden einzelnen Punkt am Projekt zeigen -->
         <ul>
             <li class="fragment"><code>yo angular</code>
@@ -158,98 +158,148 @@
 </section>
 
 <section>
-    <section>
-        <h2>Browser-Frameworks</h2>
+    <h1>Fragen?</h1>
+</section>
 
-        <p class="fragment">Untersuchung der Frage: Sind JavaScript-Projekte allein schon wegen der Ablaufumgebung
-            (Browser) der Horror?</p>
-    </section>
+<section>
     <section>
-        <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
+        <h2>Node.js und Avatar.js</h2>
+
+        <p class="fragment">Untersuchung der Frage: Erfordern JavaScript-Projekte in jedem Fall eine polyglotte
+            Programmierung?</p>
+    </section>
+
+    <!-- Node.js, Nashorn, Avatar.js -->
+
+    <!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
+
+    <section>
+        <h3>Fragestellung</h3>
         <ul>
-            <li class="fragment">Es gibt immer noch eine Reihe von Unterschieden bzgl. DOM und JavaScript (insbesondere
-                pre IE9)
-            <li class="fragment">Das DOM ist eine etwas "umständliche" API
-            <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
-            <li class="fragment">Angemessenes UX
-            <li class="fragment">Unterstützung unterschiedlicher Gerätekonzepte und Gerätegrößen
+            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
+            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
+            <li class="fragment">Wie setzt man diesen um?
+            <li class="fragment">JEE/Spring/.NET/Rails/Python?
+            <li class="fragment">Oder ebenfalls in JavaScript?
+        </ul>
+    </section>
+
+    <section>
+        <h3>JavaScript auch auf dem Server?</h3>
+        <ul>
+            <li class="fragment">Code kann wieder verwendet werden
+            <li class="fragment">Dieselben Tools für Frontend und Backend
+            <li class="fragment">Kleinerer Technologiestack
+            <li class="fragment">Vertikale Teams einfacher zu realisieren
+            <li class="fragment">Einheitliche Entwicklungsphilosophie
+            <li class="fragment">JSON als natürliches Datenformat
         </ul>
     </section>
     <section>
-        <h3>Anforderungen an ein Browser-Framework für Enterprise-Projekte</h3>
+        <h3>Node.js</h3>
         <ul>
-            <li class="fragment">Es muss zu meiner Anwendung passen
+            <li class="fragment">Erlaubt die Ausführung von JavaScript auch auf dem Server
+            <li class="fragment">Bestandteile
                 <ul>
-                    <li class="fragment">Business-Anwendung?
-                    <li class="fragment">Soll auf mobilen Geräten laufen?
-                    <li class="fragment">Grafisch sehr ansprechend?
-                    <li class="fragment">Leichte Bedienung? (Business-User vs. Casual)
-                </ul>
-            <li class="fragment">Es muss über viele Jahre gewartet bleiben
-            <li class="fragment">Rückwärtskompatibilität
-            <li class="fragment">Es muss leicht erlernbar sein
-        </ul>
-    </section>
-    <section>
-        <h3>Kultur-Clash Java- / JavaScript-Frameworks</h3>
-        <ul>
-            <li class="fragment">kleinere Module dominieren die JavaScript-Framework-Welt
-                <ul>
-                    <li class="fragment">npm und bower mit anarchischer Organisationsstruktur
-                    <li class="fragment">Wenn überhaupt dann Defacto-Standards
-                    <li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen
-                    <li class="fragment">yeoman und Bootstrap-Prakete versuchen dagegen zu wirken
-                </ul>
-            </li>
-            <li class="fragment">Java kommt mit komplettem JDK und JEE-Standard
-                <ul>
-                    <li class="fragment">bietet Orientierung
-                    <li class="fragment">allerdings auch weniger Freiheit (bzw. andere Auswahl muss auch vertreten
-                        werden)
+                    <li class="fragment">Chrome V8 JavaScript-Engine
+                    <li class="fragment">Asynchrone IO-Bibliothek (libuv), die auf allen Plattformen läuft
                 </ul>
             </li>
+            <li class="fragment">Asynchrones Programmiermodell, kein Multithreading
+            <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank"
+                                                                          href="http://nodejs.org/api/cluster.html">"Clustering"
+                als Kernmodul</a>
+
+            <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung
+                über viele Maschinen</a> möglich
+            <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
+            <li class="fragment">Express als Modul für klassische Webanwendungen
+            <li class="fragment">Auch ideal als API-Server
         </ul>
     </section>
     <section>
-        <h3>Option: jQuery</h3>
+        <h3>Beispiel-Server für node</h3>
+<pre><code class="javascript" contenteditable>var http = require('http');
+
+function handleRequest (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+}
+http.createServer(handleRequest).listen(1337, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:1337/');</code></pre>
+        <p class="fragment">Starten</p>
+        <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
+    </section>
+
+    <section>
+        <h3>Umstellung auf Node.js? Aber:</h3>
         <ul>
-            <li class="fragment">
+            <li class="fragment">Legacy code?
+            <li class="fragment">Nur ein Teil soll auf Node.js umgestellt werden?
+            <li class="fragment">Schrittweise Umstellung?
+            <li class="fragment">JavaScript hat nur "number". Wie sieht es mit Geld-Berechnungen aus?
+        </ul>
+    </section>
+
+    <section>
+        <h3>JDK 8 Nashorn</h3>
+        <ul>
+            <li class="fragment">JDK 8 hat eine neue JavaScript-Engine: Nashorn
+            <li class="fragment">Ersetzt Rhino
+            <li class="fragment">ECMAScript 5.1-Kompatibel
+            <li class="fragment">Übersetzt JavaScript in Java Bytecode
+            <li class="fragment">Deutlich schneller als Rhino bei länger laufenden Tasks (Server)
+            <li class="fragment">Zugriff auf Java-Klassen und SAM types sehr einfach
+        </ul>
+    </section>
+
+    <section>
+        <h3>Avatar.js</h3>
+        <ul>
+            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
+            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
+            <li class="fragment">Start aus Java heraus möglich
+            <li class="fragment">Threading für JavaScript möglich
+            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
+            <li class="fragment">Nutzung aller Java-Klassen (BigDecimal!)
         </ul>
     </section>
     <section>
-        <h3>Option: AngularJS / Polymer</h3>
-        <ul>
-            <li class="fragment">Wird Polymer als Komponenten-Framework unterstützen
-        </ul>
+        <h3>Beispiel-Code Avatar</h3>
+<pre><code class="javascript" contenteditable>var BigDecimal = Java.type('java.math.BigDecimal');
+
+function calculatePercentage(amount, percentage) {
+    var result = new BigDecimal(amount).multiply(
+       new BigDecimal(percentage)).divide(new BigDecimal('100'),
+        2, BigDecimal.ROUND_HALF_EVEN);
+    return result.toPlainString();
+}
+</code></pre>
+        <p class="fragment">Ja, das ist JavaScript-Code</p>
     </section>
+
     <section>
-        <h3>Option: React.js</h3>
+        <h3>Wer nutzt Node.js in Produktion?</h3>
         <ul>
-            <li class="fragment">
-        </ul>
-    </section>
-    <section>
-        <h3>Option: ExtJs</h3>
-        <ul>
-            <li class="fragment">hat alle Komponenten für eine Business-Anwendung
             <li class="fragment"><a target="_blank"
-                                    href="http://www.sencha.com/blog/announcing-public-beta-of-ext-js-5/">ExtJS 5</a>
-                unterstützt alle Devices
-            <li class="fragment">Unterstützt weiterhin IE8
-            <li class="fragment">existiert seit vielen Jahren, Einsatz kommerziell
+                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linedin</a>
+            <li class="fragment"><a target="_blank"
+                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
+                weitere</a>
+            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
         </ul>
     </section>
-    <section>
-        <h3>Letzte Option: Kein Framework</h3>
-        <ul>
-            <li class="fragment">Was ist die Motivation?
-            <li class="fragment">Passt keines der Frameworks zu den Anforderungen?
-            <li class="fragment">Selbstbetrug ausschließen: Bauen wir uns nicht unser eigenes Framework?
-            <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
-                Standard-Framework?
-            <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
-        </ul>
-    </section>
+
+</section>
+
+<section>
+    <h1>Fragen?</h1>
 </section>
 
 <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
@@ -357,9 +407,9 @@ olli instanceof Person;</code></pre>
     <section>
         <h3>Modularisierung</h3>
         <ul>
-            <li class="fragment">Revealing Module Pattern
-            <li class="fragment">AMD und RequireJS
-            <li class="fragment">CommonJS und Browserify
+            <li class="fragment">Revealing Module Pattern: Sichtbarkeit
+            <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten asynchron
+            <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten synchron
         </ul>
     </section>
     <section>
@@ -382,7 +432,44 @@ eu.zeigermann.person = eu.zeigermann.person || {};
     person.createPerson = create;
 })(eu.zeigermann.person);
 </code></pre>
-                    </section>
+    </section>
+
+    <section>
+        <h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>
+        <ul>
+            <li class="fragment">AMD
+                <ul>
+                    <li class="fragment">Module werden nicht blockierend und potentiell asynchron geladen
+                    <li class="fragment">Module werden über bower oder manuell installiert
+                    <li class="fragment">Verwendung nur auf Client-Seite
+                    <li class="fragment">Default-Implementierung: RequireJS
+                </ul>
+            </li>
+            <li class="fragment">CommonJS
+                <ul>
+                    <li class="fragment">Module werden blockierend und synchron geladen
+                    <li class="fragment">Module werden über npm installiert
+                    <li class="fragment">Verwendung nur auf Server-Seite
+                    <li class="fragment">Für nicht blockierendes Laden auf Client-Seite kann Browserify genutzt werden
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>Live-Demo: Eine komplette Browserify-Anwendung</h3>
+        <p class="fragment">Anwendung für den Client mit CommonJS</p>
+        <p class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen</p>
+        <p class="fragment">Diese werden dann zwar immer noch synchron geladen, aber ohne merklich Verzögerung</p>
+        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+        <ul>
+            <li class="fragment"><code>yo browserify</code>
+            <li class="fragment">Gulp.js: Build-Tool mit Stream-Support
+            <li class="fragment">Uglify: Minifiy / Obfuscate
+            <li class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen
+            <!--<li class="fragment"><a target="_blank" href="http://foundation.zurb.com/">Foundation</a>: Responsive Layout-->
+            <!--<li class="fragment">Jade: Serverseitige Templates-->
+        </ul>
+    </section>
     <section>
         <h3>Statische Analyse und Refactoring</h3>
         <ul>
@@ -543,140 +630,116 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
 </section>
 
 <section>
-    <section>
-        <h2>Node.js und Avatar.js</h2>
+    <h1>Fragen?</h1>
+</section>
 
-        <p class="fragment">Untersuchung der Frage: Erfordern JavaScript-Projekte in jedem Fall eine polyglotte
-            Programmierung?</p>
+<section>
+    <section>
+        <h2>Browser-Frameworks</h2>
+
+        <p class="fragment">Untersuchung der Frage: Sind JavaScript-Projekte allein schon wegen der Ablaufumgebung
+            (Browser) der Horror?</p>
     </section>
-
-    <!-- Node.js, Nashorn, Avatar.js -->
-
-    <!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
-
     <section>
-        <h3>Fragestellung</h3>
+        <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
         <ul>
-            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
-            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
-            <li class="fragment">Wie setzt man diesen um?
-            <li class="fragment">JEE/Spring/.NET/Rails/Python?
-            <li class="fragment">Oder ebenfalls in JavaScript?
-        </ul>
-    </section>
-
-    <section>
-        <h3>JavaScript auch auf dem Server?</h3>
-        <ul>
-            <li class="fragment">Code kann wieder verwendet werden
-            <li class="fragment">Dieselben Tools für Frontend und Backend
-            <li class="fragment">Kleinerer Technologiestack
-            <li class="fragment">Vertikale Teams einfacher zu realisieren
-            <li class="fragment">Einheitliche Entwicklungsphilosophie
-            <li class="fragment">JSON als natürliches Datenformat
+            <li class="fragment">Es gibt immer noch eine Reihe von Unterschieden bzgl. DOM und JavaScript (insbesondere
+                pre IE9)
+            <li class="fragment">Das DOM ist eine etwas "umständliche" API
+            <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
+            <li class="fragment">Angemessenes UX
+            <li class="fragment">Unterstützung unterschiedlicher Gerätekonzepte und Gerätegrößen
         </ul>
     </section>
     <section>
-        <h3>Node.js</h3>
+        <h3>Anforderungen an ein Browser-Framework für Enterprise-Projekte</h3>
         <ul>
-            <li class="fragment">Erlaubt die Ausführung von JavaScript auch auf dem Server
-            <li class="fragment">Bestandteile
+            <li class="fragment">Es muss zu meiner Anwendung passen
                 <ul>
-                    <li class="fragment">Chrome V8 JavaScript-Engine
-                    <li class="fragment">Asynchrone IO-Bibliothek (libuv), die auf allen Plattformen läuft
+                    <li class="fragment">Business-Anwendung?
+                    <li class="fragment">Soll auf mobilen Geräten laufen?
+                    <li class="fragment">Grafisch sehr ansprechend?
+                    <li class="fragment">Leichte Bedienung? (Business-User vs. Casual)
+                </ul>
+            <li class="fragment">Es muss über viele Jahre gewartet bleiben
+            <li class="fragment">Rückwärtskompatibilität
+            <li class="fragment">Es muss leicht erlernbar sein
+        </ul>
+    </section>
+    <section>
+        <h3>Kultur-Clash Java- / JavaScript-Frameworks</h3>
+        <ul>
+            <li class="fragment">kleinere Module dominieren die JavaScript-Framework-Welt
+                <ul>
+                    <li class="fragment">npm und bower mit anarchischer Organisationsstruktur
+                    <li class="fragment">Wenn überhaupt dann Defacto-Standards
+                    <li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen
+                    <li class="fragment">yeoman und Bootstrap-Prakete versuchen dagegen zu wirken
                 </ul>
             </li>
-            <li class="fragment">Asynchrones Programmiermodell, kein Multithreading
-            <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank"
-                                                                          href="http://nodejs.org/api/cluster.html">"Clustering"
-                als Kernmodul</a>
-
-            <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung
-                über viele Maschinen</a> möglich
-            <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
-            <li class="fragment">Express als Modul für klassische Webanwendungen
-            <li class="fragment">Auch ideal als API-Server
+            <li class="fragment">Java kommt mit komplettem JDK und JEE-Standard
+                <ul>
+                    <li class="fragment">bietet Orientierung
+                    <li class="fragment">allerdings auch weniger Freiheit (bzw. andere Auswahl muss auch vertreten
+                        werden)
+                </ul>
+            </li>
         </ul>
     </section>
     <section>
-        <h3>Beispiel-Server für node</h3>
-<pre><code class="javascript" contenteditable>var http = require('http');
-
-function handleRequest (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello World\n');
-}
-http.createServer(handleRequest).listen(1337, '127.0.0.1');
-
-console.log('Server running at http://127.0.0.1:1337/');</code></pre>
-        <p class="fragment">Starten</p>
-        <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
-    </section>
-
-    <section>
-        <h3>Umstellung auf Node.js? Aber:</h3>
+        <h3>Option: jQuery</h3>
         <ul>
-            <li class="fragment">Legacy code?
-            <li class="fragment">Nur ein Teil soll auf Node.js umgestellt werden?
-            <li class="fragment">Schrittweise Umstellung?
-            <li class="fragment">JavaScript hat nur "number". Wie sieht es mit Geld-Berechnungen aus?
+            <li class="fragment">
         </ul>
     </section>
-
     <section>
-        <h3>JDK 8 Nashorn</h3>
+        <h3>Option: AngularJS / Polymer</h3>
         <ul>
-            <li class="fragment">JDK 8 hat eine neue JavaScript-Engine: Nashorn
-            <li class="fragment">Ersetzt Rhino
-            <li class="fragment">ECMAScript 5.1-Kompatibel
-            <li class="fragment">Übersetzt JavaScript in Java Bytecode
-            <li class="fragment">Deutlich schneller als Rhino bei länger laufenden Tasks (Server)
-            <li class="fragment">Zugriff auf Java-Klassen und SAM types sehr einfach
+            <li class="fragment">Wird Polymer als Komponenten-Framework unterstützen
         </ul>
     </section>
-
     <section>
-        <h3>Avatar.js</h3>
+        <h3>Option: React.js</h3>
         <ul>
-            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
-            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
-            <li class="fragment">Start aus Java heraus möglich
-            <li class="fragment">Threading für JavaScript möglich
-            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
-            <li class="fragment">Nutzung aller Java-Klassen (BigDecimal!)
+            <li class="fragment">
         </ul>
     </section>
     <section>
-        <h3>Beispiel-Code Avatar</h3>
-<pre><code class="javascript" contenteditable>var BigDecimal = Java.type('java.math.BigDecimal');
-
-function calculatePercentage(amount, percentage) {
-    var result = new BigDecimal(amount).multiply(
-       new BigDecimal(percentage)).divide(new BigDecimal('100'),
-        2, BigDecimal.ROUND_HALF_EVEN);
-    return result.toPlainString();
-}
-</code></pre>
-        <p class="fragment">Ja, das ist JavaScript-Code</p>
-    </section>
-
-    <section>
-        <h3>Wer nutzt Node.js in Produktion?</h3>
+        <h3>Live-Demo: React.js mit RequireJS</h3>
+        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
         <ul>
-            <li class="fragment"><a target="_blank"
-                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
-            <li class="fragment"><a target="_blank"
-                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
-            <li class="fragment"><a target="_blank"
-                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
-            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linedin</a>
-            <li class="fragment"><a target="_blank"
-                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
-                weitere</a>
-            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
+            <li class="fragment"><code>yo react</code>
+            <li class="fragment">Modul-Definition und Abhängigkeitsauflösung mit requireJs
+            <li class="fragment">Einfache JSX basierte React-Anwendung
         </ul>
     </section>
 
+    <section>
+        <h3>Option: ExtJs</h3>
+        <ul>
+            <li class="fragment">hat alle Komponenten für eine Business-Anwendung
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.sencha.com/blog/announcing-public-beta-of-ext-js-5/">ExtJS 5</a>
+                unterstützt alle Devices
+            <li class="fragment">Unterstützt weiterhin IE8
+            <li class="fragment">existiert seit vielen Jahren, Einsatz kommerziell
+        </ul>
+    </section>
+    <section>
+        <h3>Letzte Option: Kein Framework</h3>
+        <ul>
+            <li class="fragment">Was ist die Motivation?
+            <li class="fragment">Passt keines der Frameworks zu den Anforderungen?
+            <li class="fragment">Selbstbetrug ausschließen: Bauen wir uns nicht unser eigenes Framework?
+            <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
+                Standard-Framework?
+            <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h1>Fragen?</h1>
 </section>
 
 <section>
