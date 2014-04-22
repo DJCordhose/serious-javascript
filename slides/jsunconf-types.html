@@ -380,16 +380,22 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
        </section>
       <section>
         <h2>Recap: Classes in JavaScript</h2>
-        <pre><code class="javascript" contenteditable>function Ball(config) {
-  this.position = config.position;
-  this.r = config.r;
-  this.color = config.color;
+        <pre><code class="javascript" contenteditable>function SoundManager(loudness) {
+  ManageableObject.call(this, "The Game's SoundManager");
+  this.loudness = loudness;
+
+  // private
+  var audioContext = SoundManager.createContext();
 }
+// Prototype Inheritance
+_extends(SoundManager, ManageableObject);
+// Static
+SoundManager.createContext = function() { ... }
+// Instance member
+SoundManager.prototype.play = function() { ... }
 
-Ball.prototype.draw = function() { ... }
-
-var ball = new Ball();
-ball.draw();
+var soundManager = new SoundManager('very loud'); // => Correct?
+soundManager.play();
         </code></pre>
        </section>
 
@@ -418,14 +424,14 @@ ball.draw();
   var canvas;
 
   // Is this 'public' or 'private'???
-  function Canvas() {
+  function KeyboardObserver() {
   }
   // Is this 'public' or 'private'???
-  function Ball(config) {
+  function SoundManager(config) {
   }
 
   // export public members
-  gamelib.Ball = Ball;
+  gamelib.SoundManager = SoundManager;
   gamelib.canvas = canvas;
 })();
   </code></pre>
