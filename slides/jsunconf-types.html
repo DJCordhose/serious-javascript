@@ -49,21 +49,174 @@
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
         <br>
-        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        <small><a href="http://nilshartmann.net">Nils Hartmann</a> / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
         </small>
     </p>
 
 </section>
-    <section>
-        <h2>Looking at popular type systems for JavaScript</h2>
-        <ul>
-            <li class="fragment">Google Closure Compiler
-            <li class="fragment">TypeScript
-        </ul>
-    </section>
+
+<section>
+  <h2>Background</h2>
+  <h3>Types in JavaScript</h3>
+ </section>
+
+<section>
+  <h3>JavaScript does not have declared types</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  if (conf.fillStyle) {
+    context.fillStyle = conf.color;
+  }
+
+  context.fillRect(conf.x, conf.y, conf.size, conf.size);
+}
+
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10,
+  size: 20
+});
+</code></pre>
+</section>
+
+<section>
+  <h3>JavaScript does have dynamic types</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  console.log(typeof conf.fillStyle);
+  // => string
+  console.log(typeof conf.x);
+  // => number
+  console.log(typeof conf.size);
+  // => undefined
+}
+
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+});
+</code></pre>
+</section>
+<section>
+  <h3>Objects can be modified at any time</h3>
+<pre><code class="javascript" contenteditable>var squareConfig = {
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+  };
+
+  var aNewPropertyName = getAPropertyName();
+  squareConfig[aNewPropertyName] = 10;  // which property is added here???
+
+  var aPropertyName = getAPropertyName();
+  delete squareConfig[aPropertyName]; // which property is removed here???
+</code></pre>
+</section>
+<section>
+  <h3>You can check for the right type in JavaScript dynamically</h3>
+<pre><code class="javascript" contenteditable>function drawSquare(conf) {
+  if (typeof conf.fillStyle !== 'string') {
+    throw new Error("Config object needs fillStyle of type string");
+  }
+
+  if (typeof conf.size !== 'number') {
+    throw new Error("Config object needs size of type number");
+  }
+  // ...
+}
+
+// Will fail at runtime
+drawSquare({
+  fillStyle: 'red',
+  x: 10,
+  y: 10
+});
+</code></pre>
+</section>
+
+<section>
+  <h2>"Class" in JavaScript</h2>
+  <p>Types (Classes) can be defined using constructor functions</p>
+<pre><code class="javascript" contenteditable>function Ball(config) {
+  this.position = config.position;
+  this.r = config.r;
+  this.color = config.color;
+}
+
+Ball.prototype.draw = function() { ... }
+
+var ball = new Ball();
+console.log(typeof ball)
+// => object
+console.log(ball instanceof Ball)
+// => true
+
+ball.draw();
+</code></pre>
+</section>
+<section>
+  <h2>Inheritance in JavaScript</h2>
+  <p>Prototype-based inheritance</p>
+<pre><code class="javascript" contenteditable>function MovingBall(config) {
+  // Invoke super constructor
+  MovingBall.Ball.call(this, config);
+
+  this.acceleration = config.acceleration;
+}
+
+// Create Prototype Hierarchy
+MovingBall.prototype = Object.create(Ball.prototype);
+MovingBall.prototype.constructor = MovingBall;
+MovingBall.Ball = Ball.prototype;
+</code></pre>
+</section>
+<section>
+  <h2>Modules in JavaScript</h2>
+
+<pre><code class="javascript" contenteditable>var gamelib = {};
+(function() {
+  function Canvas() {
+  }
+  function Ball(config) {
+    // ...
+  }
+  // export ball
+  gamelib.Ball = Ball;
+})();
+
+// => Error: 'internal' type
+new gamelib.Canvas();
+
+// => Works: 'public' type
+new gamelib.Ball({...});
+</code></pre>
+</section>
+<section>
+  <h2>Problems with JavaScript types</h2>
+  <ul>
+    <li class="fragment">What attributes exists at runtime?</li>
+    <li class="fragment">What parameters must be set?</li>
+    <li class="fragment">Missing useful IDE support</li>
+    <img class="fragment" src="ts_images/nils_01_codecompletion_js.png">
+  </ul>
+</section>
+<section>
+  <h2>Problems with JavaScript OO</h2>
+  <ul>
+    <li class="fragment">No "real" support by the language itself</li>
+    <li class="fragment">Various pattern exists, not "the" one and only</li>
+    <li class="fragment">Ugly technical, cluttered boilerplate Code</li>
+  </ul>
+</section>
+<section>
+  <h2>Looking at popular type systems for JavaScript</h2>
+  <ul>
+    <li class="fragment">Google Closure Compiler
+    <li class="fragment">TypeScript
+  </ul>
+</section>
 <section>
 
-    <section>
         <h3>Google Closure Compiler</h3>
         <ul>
             <li class="fragment">Optional Static type information in comments
@@ -133,12 +286,12 @@ var olli = new Person('Olli', 43);
     <section>
         <h3>TypeScript</h3>
         <ul>
+						<li class="fragment">Developed by Microsoft, v1.0 released April, 2nd
             <li class="fragment">More or less ECMAScript 6 with optional declared types
             <li class="fragment">Compiles to human readable JavaScript
             <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
             <li class="fragment">External declarations allow for type declarations for existing JavaScript code
-            <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">Externe
-            External declarations for many JavaScript libraries exists already</a>
+            <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">External declarations for many JavaScript libraries exists already</a>
             <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk on 1.0
                 Release by Anders Hejlsberg</a>
         </ul>
@@ -168,7 +321,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
                     <li class="fragment">Improved human readability
                     <li class="fragment">Looks nice
                     <li class="fragment">Enhanced IDE-Support
-                    <li class="fragment">Typed IDE-Support even for JSON-Objekts (via interfaces)
+                    <li class="fragment">Typed IDE-Support even for JSON-Objects (via interfaces)
                 </ul>
             </li>
             <li class="fragment">Cons
@@ -181,106 +334,122 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             </li>
         </ul>
     </section>
-</section>
     <section>
-        <section>
-            <h2>Case study #1: The Use of Types in JavaScript and TypeScript</h2>
-        </section>
-        <section>
-            <h3>JavaScript does not have declared types</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
-}
+						<h1>Part Two</h1>
+            <h3>Case study: The Use of Types in JavaScript and TypeScript</h3>
+				</section>
 
-eatThis({
-   name: 'Olli',
-   singleLine: true
-});
+      <section>
+        <h2>Regular JavaScript</h2>
+
+<pre><code class="javascript" contenteditable>
+  function MovingObject(config) {
+  // ...
+  }
+
+  // What parameters are required for MovingObject ????
+  var mo = new MovingObject( { ??? } );
+
 </code></pre>
-        </section>
-        <section>
-            <h3>JavaScript does have dynamic types</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    console.log(typeof conf.name);
-    // => string
-    console.log(typeof conf.singleLine);
-    // => boolean
-}
+      </section>
 
-eatThis({
-    name: 'Olli',
-    singleLine: true
-});
-</code></pre>
-        </section>
-        <section>
-            <h3>You can check for the right type in JavaScript dynamically</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf) {
-    if (typeof conf.name !== 'string') {
-        throw new Error("Config object needs name of type string");
-    }
-    if (typeof conf.singleLine !== 'boolean') {
-        throw new Error("Config object needs singleLine of type boolean");
-    }
-}
 
-// Will fail at runtime
-eatThis({
-   name: 'Olli',
-    singleLine: 10
-});
-</code></pre>
-        </section>
         <section>
-            <h3>Declared types in TypeScript - will be be gone at runtime, no runtime checking</h3>
-<pre><code class="javascript" contenteditable>function eatThis(conf: {name: string; singleLine?: boolean}) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
-}
-
-// Won't even compile
-eatThis({
-   name: 'Olli',
-    singleLine: 10
-});
+            <h3>Declared types in TypeScript</h3>
+          <p>Problems reported by the Compiler</p>
+          <p>Types will be be gone at runtime, no runtime checking</p>
+          <img src="ts_images/method_invalid.png">
 
 </code></pre>
         </section>
         <section>
-            <h3>Interfaces in TypeScript can contain fields and methods - structural compatibility</h3>
-<pre><code class="javascript" contenteditable>interface EatThisConfig {
-    name: string;
-    singleLine?: boolean;
+            <h3>Interfaces in TypeScript</h3>
+            <p>Contain fields and methods - structural compatibility</p>
+
+            <img src="ts_images/interface_def.png">
+
+</section>
+
+      <section>
+        <h2>Interfaces</h2>
+        Using Interfaces - just as 'regular' JavaScript objects
+        <div></div>
+        <img src="ts_images/interface_usage.png">
+        (Interface definitions already exists for a lot of standard JS libs)
+      </section>
+      <section>
+        <h2>Classes</h2>
+       </section>
+      <section>
+        <h2>Recap: Classes in JavaScript</h2>
+        <pre><code class="javascript" contenteditable>function SoundManager(loudness) {
+  ManageableObject.call(this, "The Game's SoundManager");
+  this.loudness = loudness;
+
+  // private
+  var audioContext = SoundManager.createContext();
 }
+// Prototype Inheritance
+_extends(SoundManager, ManageableObject);
+// Static
+SoundManager.createContext = function() { ... }
+// Instance member
+SoundManager.prototype.play = function() { ... }
 
-function eatThis(conf: EatThisConfig) {
-    console.log(conf.name);
-    if (conf.singleLine) {
-        console.log('----');
-    }
-}
+var soundManager = new SoundManager('very loud'); // => Correct?
+soundManager.play();
+        </code></pre>
+       </section>
 
-eatThis({
-    name: 'Olli',
-    singleLine: 10
-});
-</code></pre>
-        </section>
+      <section>
+        <h2>Classes in TypeScript</h2>
+        Define classes with public, private and static members
+        <img src="ts_images/class_definition.png">
+      </section>
 
-    </section>
+      <section>
+        <h2>Classes</h2>
+        Instantiation and Usage
+        <div></div>
+        <img src="ts_images/class_usage.png">
+      </section>
+
+      <section>
+        <h2>Modules</h2>
+      </section>
 <section>
-    <section>
-        <h2>Case study #2: Going from JavaScript to TypeScript in a Browser Game</h2>
-    </section>
-    <section>
-        <h3>TODO Nils</h3>
-    </section>
+  <h2>Recap: Modules in JavaScript</h2>
+
+  <pre><code class="javascript" contenteditable>var gamelib = gamelib || {};
+(function() {
+  // 'public' or 'private'??? What 'type'???
+  var canvas;
+
+  // Is this 'public' or 'private'???
+  function KeyboardObserver() {
+  }
+  // Is this 'public' or 'private'???
+  function SoundManager(config) {
+  }
+
+  // export public members
+  gamelib.SoundManager = SoundManager;
+  gamelib.canvas = canvas;
+})();
+  </code></pre>
 </section>
+<section>
+  <h2>Modules in TypeScript</h2>
+        Define Modules with private and public members
+        <img src="ts_images/module_definition.png">
+      </section>
+      <section>
+        <h2>Modules</h2>
+        Using Modules
+        <div></div>
+        <img src="ts_images/module_usage.png">
+      </section>
+
 
 <section>
 <h1>Thank you</h1>
@@ -291,7 +460,7 @@ eatThis({
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
         <br>
-        <small>Nils Hartmann / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
+        <small><a href="http://nilshartmann.net">Nils Hartmann</a> / <a href="https://twitter.com/nilshartmann">@nilshartmann</a>
         </small>
     </p>
     </section>
