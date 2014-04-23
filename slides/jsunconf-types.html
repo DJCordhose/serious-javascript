@@ -160,7 +160,7 @@ ball.draw();
   <p>Prototype-based inheritance</p>
 <pre><code class="javascript" contenteditable>function MovingBall(config) {
   // Invoke super constructor
-  MovingBall.Ball.call(this, config);
+  Ball.call(this, config);
 
   this.acceleration = config.acceleration;
 }
