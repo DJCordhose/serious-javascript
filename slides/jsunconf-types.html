@@ -109,7 +109,7 @@ drawSquare({
   squareConfig[aNewPropertyName] = 10;  // which property is added here???
 
   var aPropertyName = getAPropertyName();
-  delete squareConfig[x]; // which property is removed here???
+  delete squareConfig[aPropertyName]; // which property is removed here???
 </code></pre>
 </section>
 <section>
@@ -136,7 +136,7 @@ drawSquare({
 
 <section>
   <h2>"Class" in JavaScript</h2>
-  <p>Classes are functions</p>
+  <p>Types (Classes) can be defined using constructor functions</p>
 <pre><code class="javascript" contenteditable>function Ball(config) {
   this.position = config.position;
   this.r = config.r;
@@ -148,6 +148,8 @@ Ball.prototype.draw = function() { ... }
 var ball = new Ball();
 console.log(typeof ball)
 // => object
+console.log(ball instanceof Ball)
+// => true
 
 ball.draw();
 </code></pre>
@@ -157,7 +159,7 @@ ball.draw();
   <p>Prototype-based inheritance</p>
 <pre><code class="javascript" contenteditable>function MovingBall(config) {
   // Invoke super constructor
-  Ball.call(this, config);
+  MovingBall.Ball.call(this, config);
 
   this.acceleration = config.acceleration;
 }
