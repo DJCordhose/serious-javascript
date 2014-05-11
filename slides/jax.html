@@ -65,7 +65,7 @@
     <h3>Aus der Perspektive eines Java-Entwicklers</h3>
 
     <p>
-        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        <small><a target="_blank" href="http://zeigermann.eu">Oliver Zeigermann</a> / <a target="_blank" href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
     </p>
     <p>Online version at: <a href="http://djcordhose.github.io/serious-javascript/slides/jax.html">http://djcordhose.github.io/serious-javascript/slides/jax.html</a></p>
@@ -144,7 +144,7 @@
         <ul>
             <!-- Jeden einzelnen Punkt am Projekt zeigen -->
             <li class="fragment"><code>yo webapp</code>
-            <li class="fragment">HTML5 Boilerplate: Grundstruktur
+            <li class="fragment">IDE: WebStorm
             <li class="fragment">Grunt.js: Build-Tool
             <li class="fragment">Bower: Abhängigkeitsmanagement
             <li class="fragment">jQuery: Standard Web-Framework
@@ -156,18 +156,18 @@
         </ul>
     </section>
 
-    <section>
-        <h3>Live-Demo: Eine komplette AngularJS-Anwendung</h3>
-        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-        <ul>
-            <li class="fragment"><code>yo angular</code>
-            <li class="fragment">Angular
-            <li class="fragment">Karma: Test-Runner mit WebStorm-Integration
-            <li class="fragment">PhantomJS
-            <li class="fragment">Jasmine: BDD-/Unit-Test-Framework
-            <li class="fragment">Angular-Scenario: E2E-Test-Framework
-        </ul>
-    </section>
+    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+    <!--<section>-->
+        <!--<h3>Live-Demo: Eine komplette AngularJS-Anwendung</h3>-->
+        <!--<ul>-->
+            <!--<li class="fragment"><code>yo angular</code>-->
+            <!--<li class="fragment">Angular-->
+            <!--<li class="fragment">Karma: Test-Runner mit WebStorm-Integration-->
+            <!--<li class="fragment">PhantomJS-->
+            <!--<li class="fragment">Jasmine: BDD-/Unit-Test-Framework-->
+            <!--<li class="fragment">Angular-Scenario: E2E-Test-Framework-->
+        <!--</ul>-->
+    <!--</section>-->
 
 </section>
 
@@ -239,9 +239,7 @@ function handleRequest (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Hello World\n');
 }
-http.createServer(handleRequest).listen(1337, '127.0.0.1');
-
-console.log('Server running at http://127.0.0.1:1337/');</code></pre>
+http.createServer(handleRequest).listen(1337, '127.0.0.1');</code></pre>
         <p class="fragment">Starten</p>
         <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
     </section>
@@ -264,23 +262,11 @@ console.log('Server running at http://127.0.0.1:1337/');</code></pre>
             <li class="fragment">ECMAScript 5.1-Kompatibel
             <li class="fragment">Übersetzt JavaScript in Java Bytecode
             <li class="fragment">Deutlich schneller als Rhino bei länger laufenden Tasks (Server)
-            <li class="fragment">Zugriff auf Java-Klassen und SAM types sehr einfach
-        </ul>
-    </section>
-
-    <section>
-        <h3>Avatar.js</h3>
-        <ul>
-            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
-            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
-            <li class="fragment">Start aus Java heraus möglich
-            <li class="fragment">Threading für JavaScript möglich
-            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
-            <li class="fragment">Nutzung aller Java-Klassen (BigDecimal!)
+            <li class="fragment">Zugriff auf Java-Klassen (BigDecimal!) und SAM types von JavaScript sehr einfach
         </ul>
     </section>
     <section>
-        <h3>Beispiel-Code Avatar</h3>
+        <h3>Beispiel-Code Nashorn mit Java-Integration</h3>
 <pre><code class="javascript" contenteditable>var BigDecimal = Java.type('java.math.BigDecimal');
 
 function calculatePercentage(amount, percentage) {
@@ -293,6 +279,18 @@ function calculatePercentage(amount, percentage) {
         <p class="fragment">Ja, das ist JavaScript-Code</p>
     </section>
 
+
+    <section>
+        <h3>Avatar.js</h3>
+        <ul>
+            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
+            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
+            <li class="fragment">Start aus Java heraus möglich
+            <li class="fragment">Threading für JavaScript möglich
+            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
+        </ul>
+    </section>
+
     <section>
         <h3>Wer nutzt Node.js in Produktion?</h3>
         <ul>
@@ -302,7 +300,7 @@ function calculatePercentage(amount, percentage) {
                                     href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
             <li class="fragment"><a target="_blank"
                                     href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
-            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linedin</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linkedin</a>
             <li class="fragment"><a target="_blank"
                                     href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
                 weitere</a>
@@ -360,7 +358,8 @@ function calculatePercentage(amount, percentage) {
 
     <section>
         <h2>Muster für größere Projekte</h2>
-        <h3>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h3>
+        <h3 class="fragment">JavaScript erlaubt das erzeugen von adhoc-Objekten ohne Typen</h3>
+        <h3 class="fragment">Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h3>
     </section>
                 <!--<section>-->
                     <!--<h3>this in Objekten</h3>-->
@@ -412,8 +411,8 @@ Person.prototype.getName = function() {
 
 var olli = new Person('Olli');
 olli.getName() === 'Olli';</code></pre>
-    <pre class="fragment"><code class="javascript" contenteditable>olli.__proto__ === Person.prototype;
-olli.constructor === Person;</code></pre>
+    <!--<pre class="fragment"><code class="javascript" contenteditable>olli.__proto__ === Person.prototype;-->
+<!--olli.constructor === Person;</code></pre>-->
     <pre class="fragment"><code class="javascript" contenteditable>olli instanceof Object;
 olli instanceof Person;</code></pre>
             </section>
@@ -422,16 +421,15 @@ olli instanceof Person;</code></pre>
         <h3>Modularisierung</h3>
         <ul>
             <li class="fragment">Revealing Module Pattern: Sichtbarkeit
-            <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten asynchron
-            <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten synchron
+            <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron
+            <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron
         </ul>
     </section>
     <section>
         <h3>Revealing Module Pattern</h3>
-<pre><code class="javascript" contenteditable>var eu = eu || {};
-eu.zeigermann = eu.zeigermann || {};
-eu.zeigermann.person = eu.zeigermann.person || {};
-(function (person) {
+<pre class="fragment"><code class="javascript" contenteditable>var person = {};
+</code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>(function () {
     // Constructor
     function Person(name) {
         this.name = name;
@@ -444,8 +442,11 @@ eu.zeigermann.person = eu.zeigermann.person || {};
 
     // Export der Factory-Methode
     person.createPerson = create;
-})(eu.zeigermann.person);
+})();
 </code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>var olli = person.createPerson('Olli');</code></pre>
+        </code></pre>
+
     </section>
 
     <section>
@@ -457,6 +458,7 @@ eu.zeigermann.person = eu.zeigermann.person || {};
                     <li class="fragment">Module werden über bower oder manuell installiert
                     <li class="fragment">Verwendung nur auf Client-Seite
                     <li class="fragment">Default-Implementierung: RequireJS
+                    <li class="fragment">Für blockierendes Laden auf Server-Seite: r.js
                 </ul>
             </li>
             <li class="fragment">CommonJS
@@ -464,32 +466,42 @@ eu.zeigermann.person = eu.zeigermann.person || {};
                     <li class="fragment">Module werden blockierend und synchron geladen
                     <li class="fragment">Module werden über npm installiert
                     <li class="fragment">Verwendung nur auf Server-Seite
-                    <li class="fragment">Für nicht blockierendes Laden auf Client-Seite kann Browserify genutzt werden
+                    <li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify
                 </ul>
             </li>
         </ul>
     </section>
-    <section>
-        <h3>Live-Demo: Eine komplette Browserify-Anwendung</h3>
-        <p class="fragment">Anwendung für den Client mit CommonJS</p>
-        <p class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen</p>
-        <p class="fragment">Diese werden dann zwar immer noch synchron geladen, aber ohne merklich Verzögerung</p>
-        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-        <ul>
-            <li class="fragment"><code>yo browserify</code>
-            <li class="fragment">Gulp.js: Build-Tool mit Stream-Support
-            <li class="fragment">Uglify: Minifiy / Obfuscate
-            <li class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen
+    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+    <!--<section>-->
+        <!--<h3>Live-Demo: Eine komplette Browserify-Anwendung</h3>-->
+        <!--<p class="fragment">Anwendung für den Client mit CommonJS</p>-->
+        <!--<p class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen</p>-->
+        <!--<p class="fragment">Diese werden dann zwar immer noch synchron geladen, aber ohne merklich Verzögerung</p>-->
+        <!--<ul>-->
+            <!--<li class="fragment"><code>yo browserify</code>-->
+            <!--<li class="fragment">Gulp.js: Build-Tool mit Stream-Support-->
+            <!--<li class="fragment">Uglify: Minifiy / Obfuscate-->
+            <!--<li class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen-->
             <!--<li class="fragment"><a target="_blank" href="http://foundation.zurb.com/">Foundation</a>: Responsive Layout-->
             <!--<li class="fragment">Jade: Serverseitige Templates-->
-        </ul>
-    </section>
+        <!--</ul>-->
+    <!--</section>-->
     <section>
         <h3>Statische Analyse und Refactoring</h3>
         <ul>
-            <li class="fragment">Google Closure Compiler
-            <li class="fragment">TypeScript
-            <!--<li class="fragment">Esprima-->
+        <li class="fragment">Grundlage der Überlegung
+            <ul>
+                <li class="fragment">Verlässliche Toolunterstützung für Analyse und Refactoring sind ohne statische Typ-Information nicht möglich
+                <li class="fragment">Ohne verlässliche Analyse- und Refactoring-Möglichkeiten wird Enterprise-Code schnell untwartbar
+            </ul>
+        </li>
+            <li class="fragment">Mögliche Techniken
+                <ul>
+                    <li class="fragment">Google Closure Compiler
+                    <li class="fragment">TypeScript
+                        <!--<li class="fragment">Esprima-->
+                </ul>
+            </li>
         </ul>
     </section>
     <section>
@@ -593,7 +605,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment">Vorteile
                 <ul>
                     <li class="fragment">Lesbarkeit für Menschen verbessert
-                    <li class="fragment">Start Verbesserter IDE-Support durch deklarierte Typen
+                    <li class="fragment">Stark verbesserter IDE-Support durch deklarierte Typen
                     <li class="fragment">Typinformation sogar für JSON-Objekte
                 </ul>
             </li>
@@ -657,11 +669,11 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
     <section>
         <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
         <ul>
-            <li class="fragment">Es gibt immer noch eine Reihe von Unterschieden bzgl. DOM und JavaScript (insbesondere
+            <li class="fragment">Es gibt immer noch eine Reihe von Browser-Unterschieden bzgl. DOM und JavaScript (insbesondere
                 pre IE9)
-            <li class="fragment">Das DOM ist eine etwas "umständliche" API
+            <li class="fragment">Das DOM ist kein "ideales" API
             <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
-            <li class="fragment">Angemessenes UX
+            <!--<li class="fragment">Angemessenes UX-->
             <li class="fragment">Unterstützung unterschiedlicher Gerätekonzepte und Gerätegrößen
         </ul>
     </section>
@@ -692,7 +704,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
                     <li class="fragment">npm und bower mit anarchischer Organisationsstruktur
                     <li class="fragment">Wenn überhaupt dann Defacto-Standards
                     <li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen
-                    <li class="fragment">u.a. yeoman und Bootstrap-Pakete versuchen dagegen zu wirken
+                    <li class="fragment">u.a. yeoman und Bootstrap-Pakete geben zumindest etwas Richtung
                 </ul>
             </li>
             <li class="fragment">Java kommt mit komplettem JDK und JEE-Standard
@@ -704,12 +716,43 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             </li>
         </ul>
     </section>
+        <section>
+        <h3>Frameworks: Optionen, die sich als Enterprise-würdig erwiesen haben</h3>
+        <ul>
+            <li class="fragment">jQuery
+            <li class="fragment">AngularJS
+            <!--<li class="fragment">React-->
+            <li class="fragment">Ext.js
+            <li class="fragment">Kein Framework
+        </ul>
+    </section>
+
+    <section>
+        <h2>Zum Vergleich: Hello World ohne Framework</h2>
+        <pre><code class="xml" contenteditable>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div id="log">&lt;/div>
+      &lt;script&gt;
+          var element = document.getElementById("log");
+          element.innerHTML = "&lt;h1>Hello World&lt;/h1>";
+      &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                        <a href="../HelloWorld/helloworld2.html" target="_blank">Run</a>
+                    </section>
+
     <section>
         <h3>Option: jQuery</h3>
         <ul>
             <li class="fragment">Standard-JavaScript-Bibliothek
             <li class="fragment">Fast überall zu finden
             <li class="fragment">Adressiert Probleme bei der Programmierung des DOMs
+            <li class="fragment">Abstrahiert nicht von der Ebene der DOM-Manipulation
             <li class="fragment">Flexible Trennung von View und Logik
             <li class="fragment">Funktionalität unterteilbar in "Auswahl" und "Manipulation"
             <li class="fragment">Core, UI und Mobile Bibliothek vorhanden
@@ -717,10 +760,9 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
                 z.B. <a target="_blank" href="http://sorgalla.com/jcarousel/">jcarousel</a>
         </ul>
     </section>
-                    <section>
-                        <h2>Hello World jQuery</h2>
-                        <pre><code class="xml" contenteditable>
-&lt;!DOCTYPE html&gt;
+    <section>
+        <h2>Hello World jQuery</h2>
+        <pre><code class="xml" contenteditable>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Hello World jQuery!&lt;/title&gt;
@@ -767,67 +809,66 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
     &lt;script src="controller.js">&lt;/script>
 &lt;/head>
 &lt;body ng-controller="HelloController">
-    &lt;input ng-model="greeting.text">
-    &lt;p>{{greeting.text}}, World!&lt;/p>
+    &lt;input ng-model="greeting">
+    &lt;p>{{greeting}}, World!&lt;/p>
 &lt;/body>
 &lt;/html></code></pre>
 <pre><code class="javascript" contenteditable>function HelloController($scope) {
-    $scope.greeting = {
-        text: 'Hello'
-    };
+    $scope.greeting = 'Hello';
 }</code></pre>
         <a href="../HelloWorld/helloWorldAngular2.html" target="_blank">Run</a>
                 </section>
 
-    <section>
-        <h3>Option: React.js</h3>
-            <ul>
-                <li class="fragment">Nur das V in MVC
-                <li class="fragment">Templates können in reinem JavaScript oder mit der Template-Sprache JSX geschrieben werden
-                    <ul>
-                        <li class="fragment">JSX kann "on the fly" gerendert oder
-                        <li class="fragment">für Produktion nach JavaScript vorkompiliert werden
-                    </ul>
-                </li>
-                <li class="fragment">Basiert auf Komponenten
-                <li class="fragment">der View wird als "virtuelles DOM" repräsentiert
-                <li class="fragment">Änderungen des Modells führen automatisch zum Neurendern von Komponenten
-                <li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell
-                <li class="fragment">React läuft im Browser und auf dem Server
-            </ul>
-        </section>
+    <!--<section>-->
+        <!--<h3>Option: React</h3>-->
+            <!--<ul>-->
+                <!--<li class="fragment">Framework von Facebook und Instagram-->
+                <!--<li class="fragment">Nur das V in MVC-->
+                <!--<li class="fragment">Templates können in reinem JavaScript oder mit der Template-Sprache JSX geschrieben werden-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">JSX kann "on the fly" gerendert oder-->
+                        <!--<li class="fragment">für Produktion nach JavaScript vorkompiliert werden-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="fragment">Basiert auf Komponenten-->
+                <!--<li class="fragment">der View wird als "virtuelles DOM" repräsentiert-->
+                <!--<li class="fragment">Änderungen des Modells führen automatisch zum Neurendern von Komponenten-->
+                <!--<li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell-->
+                <!--<li class="fragment">React läuft im Browser und auf dem Server-->
+            <!--</ul>-->
+        <!--</section>-->
 
-            <section>
-            <h3>Hello World React</h3>
-<pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>
-&lt;script type="text/jsx">
-/** @jsx React.DOM */
-var mountNode = document.getElementById('example');
-var HelloMessage = React.createClass({
-  render: function() {
-    return &lt;div>Hello {this.props.name}&lt;/div>;
-  }
-});
+            <!--<section>-->
+            <!--<h3>Hello World React</h3>-->
+<!--<pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>-->
+<!--&lt;script type="text/jsx">-->
+<!--/** @jsx React.DOM */-->
+<!--var mountNode = document.getElementById('example');-->
+<!--var HelloMessage = React.createClass({-->
+  <!--render: function() {-->
+    <!--return &lt;div>Hello {this.props.name}&lt;/div>;-->
+  <!--}-->
+<!--});-->
 
-React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
-&lt;/script></code></pre>
-                <a href="../HelloWorld/helloWorldReact.html" target="_blank">Run</a>
-            <ul>
-                <li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse
-                <li class="fragment"><code>render</code>: erzeugt das virtuelle DOM
-                <li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz
-            </ul>
-        </section>
+<!--React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);-->
+<!--&lt;/script></code></pre>-->
+                <!--<a href="../HelloWorld/helloWorldReact.html" target="_blank">Run</a>-->
+            <!--<ul>-->
+                <!--<li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse-->
+                <!--<li class="fragment"><code>render</code>: erzeugt das virtuelle DOM-->
+                <!--<li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz-->
+            <!--</ul>-->
+        <!--</section>-->
 
-    <section>
-        <h3>Live-Demo: React.js mit RequireJS</h3>
-        <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-        <ul>
-            <li class="fragment"><code>yo react</code>
-            <li class="fragment">Modul-Definition und Abhängigkeitsauflösung mit requireJs
-            <li class="fragment">Einfache JSX basierte React-Anwendung
-        </ul>
-    </section>
+    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
+    <!--<section>-->
+        <!--<h3>Live-Demo: React.js mit RequireJS</h3>-->
+        <!--<ul>-->
+            <!--<li class="fragment"><code>yo react</code>-->
+            <!--<li class="fragment">Modul-Definition und Abhängigkeitsauflösung mit requireJs-->
+            <!--<li class="fragment">Einfache JSX basierte React-Anwendung-->
+        <!--</ul>-->
+    <!--</section>-->
 
     <section>
         <h3>Option: ExtJs</h3>
@@ -902,6 +943,10 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         <li class="fragment">Langlebigkeit von Bibliotheken teilweise fraglich
         <li class="fragment">Einstieg daher oft mit Angst und Unsicherheit verbunden
     </ul>
+</section>
+
+<section>
+    <img src="Signierstunde_Oliver_Zeigermann_JAX.png">
 </section>
 
 <section>
