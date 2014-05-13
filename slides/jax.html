@@ -14,15 +14,15 @@
     <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
-    <!--<style>-->
-        <!--pre code {-->
-            <!--display: block;-->
-            <!--padding: 0.5em;-->
-            <!--background: #FFFFFF;-->
-            <!--color: #000000;-->
-        <!--}-->
-    <!--</style>-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    </style>
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <!--<script>-->
@@ -400,21 +400,16 @@ function calculatePercentage(amount, percentage) {
     </section>
             <section>
                 <h2>Setzen des Prototypen aka das Typen-System</h2>
-                <p class="fragment">Typen werden über Konstruktor-Funktionen definiert</p>
+                <p>Typen werden über Konstruktor-Funktionen definiert</p>
     <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
 function Person(name) {
     this.name = name;
 }
 Person.prototype.getName = function() {
     return this.name;
-};
-
-var olli = new Person('Olli');
+};</code></pre>
+    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
 olli.getName() === 'Olli';</code></pre>
-    <!--<pre class="fragment"><code class="javascript" contenteditable>olli.__proto__ === Person.prototype;-->
-<!--olli.constructor === Person;</code></pre>-->
-    <pre class="fragment"><code class="javascript" contenteditable>olli instanceof Object;
-olli instanceof Person;</code></pre>
             </section>
 
     <section>
