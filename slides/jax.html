@@ -129,14 +129,11 @@
     <section>
         <h2>Aufbau moderner Webanwendungen</h2>
 
+        <p>So sieht eine moderne 08/15 Webanwendung aus</p>
+
         <p>Erzeugt mit <a target="_blank" href="http://yeoman.io/">http://yeoman.io/</a></p>
 
         <p class="fragment">Untersuchung der Frage: Haben JavaScript-Projekte keine Struktur und sind Chaos?</p>
-        <!--<p class="fragment">Wie automatisiere ich?</p>-->
-        <!--<p class="fragment">Wie teste ich meinen Code?</p>-->
-
-        <!--<br>-->
-        <!--<h4 class="fragment">Wir beginnen mit Live-Demos für etwas Leben in der Bude</h4>-->
     </section>
 
     <section>
@@ -147,10 +144,7 @@
             <li class="fragment">IDE: WebStorm
             <li class="fragment">Grunt.js: Build-Tool
             <li class="fragment">Bower: Abhängigkeitsmanagement
-            <li class="fragment">jQuery: Standard Web-Framework
-            <li class="fragment"><a target="_blank" href="http://getbootstrap.com/">Bootstrap</a>: Responsive Layout
             <li class="fragment">Comapss und SASS: Abstraktion von CSS
-            <li class="fragment">Modernizr: Check für Browser-Features
             <li class="fragment">Mocha / Chai: BDD-/Unit-Test-Framework
             <li class="fragment">JsHint: Linter
         </ul>
@@ -227,8 +221,8 @@
             <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung
                 über viele Maschinen</a> möglich
             <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
-            <li class="fragment">Express als Modul für klassische Webanwendungen
-            <li class="fragment">Auch ideal als API-Server
+            <!--<li class="fragment">Express als Modul für klassische Webanwendungen-->
+            <!--<li class="fragment">Auch ideal als API-Server-->
         </ul>
     </section>
     <section>
@@ -239,9 +233,26 @@ function handleRequest (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Hello World\n');
 }
-http.createServer(handleRequest).listen(1337, '127.0.0.1');</code></pre>
+http.createServer(handleRequest).listen(1337);</code></pre>
         <p class="fragment">Starten</p>
         <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
+    </section>
+
+    <section>
+        <h3>Wer nutzt Node.js in Produktion?</h3>
+        <ul>
+            <li class="fragment"><a target="_blank"
+                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linkedin</a>
+            <li class="fragment"><a target="_blank"
+                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
+                weitere</a>
+            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
+        </ul>
     </section>
 
     <section>
@@ -290,24 +301,6 @@ function calculatePercentage(amount, percentage) {
             <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
         </ul>
     </section>
-
-    <section>
-        <h3>Wer nutzt Node.js in Produktion?</h3>
-        <ul>
-            <li class="fragment"><a target="_blank"
-                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
-            <li class="fragment"><a target="_blank"
-                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
-            <li class="fragment"><a target="_blank"
-                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
-            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linkedin</a>
-            <li class="fragment"><a target="_blank"
-                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
-                weitere</a>
-            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
-        </ul>
-    </section>
-
 </section>
 
 <section>
@@ -358,8 +351,9 @@ function calculatePercentage(amount, percentage) {
 
     <section>
         <h2>Muster für größere Projekte</h2>
-        <h3 class="fragment">JavaScript erlaubt das erzeugen von adhoc-Objekten ohne Typen</h3>
-        <h3 class="fragment">Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h3>
+    </section>
+    <section>
+        <h2>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h2>
     </section>
                 <!--<section>-->
                     <!--<h3>this in Objekten</h3>-->
@@ -413,12 +407,12 @@ olli.getName() === 'Olli';</code></pre>
             </section>
 
     <section>
-        <h3>Modularisierung</h3>
-        <ul>
-            <li class="fragment">Revealing Module Pattern: Sichtbarkeit
-            <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron
-            <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron
-        </ul>
+        <h2>Modularisierung</h2>
+        <!--<ul>-->
+            <!--<li class="fragment">Revealing Module Pattern: Sichtbarkeit-->
+            <!--<li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron-->
+            <!--<li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron-->
+        <!--</ul>-->
     </section>
     <section>
         <h3>Revealing Module Pattern</h3>
@@ -451,19 +445,20 @@ olli.getName() === 'Olli';</code></pre>
                 <ul>
                     <li class="fragment">Module werden nicht blockierend und potentiell asynchron geladen
                     <li class="fragment">Module werden über bower oder manuell installiert
-                    <li class="fragment">Verwendung nur auf Client-Seite
+                    <li class="fragment">Verwendung auf Client-Seite
                     <li class="fragment">Default-Implementierung: RequireJS
-                    <li class="fragment">Für blockierendes Laden auf Server-Seite: r.js
+                    <!--<li class="fragment">Für blockierendes Laden auf Server-Seite: r.js-->
                 </ul>
             </li>
             <li class="fragment">CommonJS
                 <ul>
                     <li class="fragment">Module werden blockierend und synchron geladen
                     <li class="fragment">Module werden über npm installiert
-                    <li class="fragment">Verwendung nur auf Server-Seite
-                    <li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify
+                    <li class="fragment">Verwendung auf Server-Seite
+                    <!--<li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify-->
                 </ul>
             </li>
+            <li class="fragment">Beide Modul-Systeme können über r.js / Browserify auch auf Server / Client benutzt werden
         </ul>
     </section>
     <!-- Jeden einzelnen Punkt am Projekt zeigen -->
@@ -482,7 +477,7 @@ olli.getName() === 'Olli';</code></pre>
         <!--</ul>-->
     <!--</section>-->
     <section>
-        <h3>Statische Analyse und Refactoring</h3>
+        <h3>Deklarierte Typen</h3>
         <ul>
         <li class="fragment">Grundlage der Überlegung
             <ul>
@@ -584,7 +579,7 @@ function Person(name, alter, geschlecht) {
 
 class Person implements HasName {
     constructor(private name: string, private alter: number,
-    private geschlecht: string = 'M') {
+    private geschlecht: string = 'F') {
     }
     getName() {
         return this.name;
@@ -687,10 +682,10 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment">Es muss leicht erlernbar sein
         </ul>
     </section>
-    <section>
-        <img src="Twitter_Lang_Community.jpg" height="600">
-        <p><a target="_blank" href="https://twitter.com/kilaulena/status/463317989648248832">https://twitter.com/kilaulena/status/463317989648248832</a></p>
-    </section>
+    <!--<section>-->
+        <!--<img src="Twitter_Lang_Community.jpg" height="600">-->
+        <!--<p><a target="_blank" href="https://twitter.com/kilaulena/status/463317989648248832">https://twitter.com/kilaulena/status/463317989648248832</a></p>-->
+    <!--</section>-->
     <section>
         <h3>Kultur-Clash Java- / JavaScript-Frameworks</h3>
         <ul>
@@ -712,7 +707,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         </ul>
     </section>
         <section>
-        <h3>Frameworks: Optionen, die sich als Enterprise-würdig erwiesen haben</h3>
+        <h3>Auswahl von Frameworks, die sich als Enterprise-würdig erwiesen haben</h3>
         <ul>
             <li class="fragment">jQuery
             <li class="fragment">AngularJS
@@ -748,11 +743,11 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment">Fast überall zu finden
             <li class="fragment">Adressiert Probleme bei der Programmierung des DOMs
             <li class="fragment">Abstrahiert nicht von der Ebene der DOM-Manipulation
-            <li class="fragment">Flexible Trennung von View und Logik
+            <!--<li class="fragment">Flexible Trennung von View und Logik-->
             <li class="fragment">Funktionalität unterteilbar in "Auswahl" und "Manipulation"
-            <li class="fragment">Core, UI und Mobile Bibliothek vorhanden
-            <li class="fragment">Viele Plugins vorhanden,
-                z.B. <a target="_blank" href="http://sorgalla.com/jcarousel/">jcarousel</a>
+            <!--<li class="fragment">Core, UI und Mobile Bibliothek vorhanden-->
+            <!--<li class="fragment">Viele Plugins vorhanden,-->
+                <!--z.B. <a target="_blank" href="http://sorgalla.com/jcarousel/">jcarousel</a>-->
         </ul>
     </section>
     <section>
@@ -912,11 +907,32 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
         </ul>
     </section>
+
+    <section>
+        <h3>Wrapup</h3>
+        <ul>
+            <li class="fragment">Kein Framework: Gängige Frameworks passen nicht oder Anwendung ist sehr einfach
+            <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
+            <li class="fragment">Angular.js: Sehr praktisch für SPAs und größere Projekte
+            <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
+        </ul>
+    </section>
 </section>
 
 <section>
     <h1>Fragen?</h1>
 </section>
+
+<!--<section>-->
+    <!--<h2>Weitere Fragestellungen</h2>-->
+    <!--<p class="fragment">Mit JavaScript ...</p>-->
+    <!--<ul>-->
+        <!--<li class="fragment">... reactive MicroServices als Big Data im elastischen Hadoop Cluster als IoT-->
+        <!--<li class="fragment">Mit DevOps mobil deployen-->
+
+
+    <!--</ul>-->
+<!--</section>-->
 
 <section>
     <h2>Was haben wir gesehen?</h2>

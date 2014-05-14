@@ -1,7 +1,13 @@
+Intro
+=====
+
+5 Minuten
+---------
+
 Teil #1: Aufbau moderner Webanwendungen
 =======================================
 
-15 Minuten
+10 Minuten
 ----------
 
 Live-Demo #1: webapp
@@ -24,13 +30,13 @@ Teil #2: Polyglotte Programmierung notwendig?
 Teil #3: CODE QUALITÄT, MODULE, STATISCHE ANALYSE
 =================================================
 
-20 Minuten
+25 Minuten
 ----------
 
 Teil #4: Browser-Frameworks
 ===========================
 
-20 Minuten
+15 Minuten
 ----------
 
 Abschluss
