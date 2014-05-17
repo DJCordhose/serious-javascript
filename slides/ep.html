@@ -14,15 +14,15 @@
     <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
-    <!--<style>-->
-    <!--pre code {-->
-    <!--display: block;-->
-    <!--padding: 0.5em;-->
-    <!--background: #FFFFFF;-->
-    <!--color: #000000;-->
-    <!--}-->
-    <!--</style>-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+    <style>
+    pre code {
+    display: block;
+    padding: 0.5em;
+    background: #FFFFFF;
+    color: #000000;
+    }
+    </style>
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <!--<script>-->
@@ -538,7 +538,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         <ul>
             <li class="fragment">jQuery
             <li class="fragment">AngularJS
-            <!--<li class="fragment">React-->
+            <li class="fragment">React
             <li class="fragment">Ext.js
             <li class="fragment">Kein Framework
         </ul>
@@ -636,46 +636,46 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         <a href="../HelloWorld/helloWorldAngular2.html" target="_blank">Run</a>
                 </section>
 
-    <!--<section>-->
-        <!--<h3>Option: React</h3>-->
-            <!--<ul>-->
-                <!--<li class="fragment">Framework von Facebook und Instagram-->
-                <!--<li class="fragment">Nur das V in MVC-->
-                <!--<li class="fragment">Templates können in reinem JavaScript oder mit der Template-Sprache JSX geschrieben werden-->
-                    <!--<ul>-->
-                        <!--<li class="fragment">JSX kann "on the fly" gerendert oder-->
-                        <!--<li class="fragment">für Produktion nach JavaScript vorkompiliert werden-->
-                    <!--</ul>-->
-                <!--</li>-->
-                <!--<li class="fragment">Basiert auf Komponenten-->
-                <!--<li class="fragment">der View wird als "virtuelles DOM" repräsentiert-->
-                <!--<li class="fragment">Änderungen des Modells führen automatisch zum Neurendern von Komponenten-->
-                <!--<li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell-->
-                <!--<li class="fragment">React läuft im Browser und auf dem Server-->
-            <!--</ul>-->
-        <!--</section>-->
+    <section>
+        <h3>Option: React</h3>
+            <ul>
+                <li class="fragment">Framework von Facebook und Instagram
+                <li class="fragment">Nur das V in MVC
+                <li class="fragment">Templates können in reinem JavaScript oder mit der Template-Sprache JSX geschrieben werden
+                    <ul>
+                        <li class="fragment">JSX kann "on the fly" gerendert oder
+                        <li class="fragment">für Produktion nach JavaScript vorkompiliert werden
+                    </ul>
+                </li>
+                <li class="fragment">Basiert auf Komponenten
+                <li class="fragment">der View wird als "virtuelles DOM" repräsentiert
+                <li class="fragment">Änderungen des Modells führen automatisch zum Neurendern von Komponenten
+                <li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell
+                <li class="fragment">React läuft im Browser und auf dem Server
+            </ul>
+        </section>
 
-            <!--<section>-->
-            <!--<h3>Hello World React</h3>-->
-<!--<pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>-->
-<!--&lt;script type="text/jsx">-->
-<!--/** @jsx React.DOM */-->
-<!--var mountNode = document.getElementById('example');-->
-<!--var HelloMessage = React.createClass({-->
-  <!--render: function() {-->
-    <!--return &lt;div>Hello {this.props.name}&lt;/div>;-->
-  <!--}-->
-<!--});-->
+            <section>
+            <h3>Hello World React</h3>
+<pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>
+&lt;script type="text/jsx">
+/** @jsx React.DOM */
+var mountNode = document.getElementById('example');
+var HelloMessage = React.createClass({
+  render: function() {
+    return &lt;div>Hello {this.props.name}&lt;/div>;
+  }
+});
 
-<!--React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);-->
-<!--&lt;/script></code></pre>-->
-                <!--<a href="../HelloWorld/helloWorldReact.html" target="_blank">Run</a>-->
-            <!--<ul>-->
-                <!--<li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse-->
-                <!--<li class="fragment"><code>render</code>: erzeugt das virtuelle DOM-->
-                <!--<li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz-->
-            <!--</ul>-->
-        <!--</section>-->
+React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
+&lt;/script></code></pre>
+                <a href="../HelloWorld/helloWorldReact.html" target="_blank">Run</a>
+            <ul>
+                <li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse
+                <li class="fragment"><code>render</code>: erzeugt das virtuelle DOM
+                <li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz
+            </ul>
+        </section>
 
     <!-- Jeden einzelnen Punkt am Projekt zeigen -->
     <!--<section>-->
@@ -741,6 +741,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment">Kein Framework: Gängige Frameworks passen nicht oder Anwendung ist sehr einfach
             <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
             <li class="fragment">Angular.js: Sehr praktisch für SPAs und größere Projekte
+            <li class="fragment">React: Höchste Anforderungen an Performanz, server-seitiges Rendering möglich
             <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
         </ul>
     </section>
