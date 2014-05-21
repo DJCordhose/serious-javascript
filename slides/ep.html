@@ -137,9 +137,9 @@
     <section>
         <h3>Wie integriere ich Legacy-Code (Java)?</h3>
     </section>
-    <section>
-        <h3>Was braucht mein Team, um JavaScript entwickeln zu können?</h3>
-    </section>
+    <!--<section>-->
+        <!--<h3>Was braucht mein Team, um JavaScript entwickeln zu können?</h3>-->
+    <!--</section>-->
 </section>
 
 <section>
@@ -185,9 +185,9 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Muster für größere Projekte</h2>
-    </section>
+    <!--<section>-->
+        <!--<h2>Muster für größere Projekte</h2>-->
+    <!--</section>-->
     <section>
         <h2>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h2>
     </section>
@@ -228,51 +228,51 @@
             <li class="fragment">Grundlage ist die prototypische Vererbung
         </ul>
     </section>
-            <section>
-                <h2>Setzen des Prototypen aka das Typen-System</h2>
-                <p>Typen werden über Konstruktor-Funktionen definiert</p>
-    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
-function Person(name) {
-    this.name = name;
-}
-Person.prototype.getName = function() {
-    return this.name;
-};</code></pre>
-    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
-olli.getName() === 'Olli';</code></pre>
-            </section>
+            <!--<section>-->
+                <!--<h2>Setzen des Prototypen aka das Typen-System</h2>-->
+                <!--<p>Typen werden über Konstruktor-Funktionen definiert</p>-->
+    <!--<pre class="fragment"><code class="javascript" contenteditable>/** @constructor */-->
+<!--function Person(name) {-->
+    <!--this.name = name;-->
+<!--}-->
+<!--Person.prototype.getName = function() {-->
+    <!--return this.name;-->
+<!--};</code></pre>-->
+    <!--<pre><code class="javascript" contenteditable>var olli = new Person('Olli');-->
+<!--olli.getName() === 'Olli';</code></pre>-->
+            <!--</section>-->
 
     <section>
         <h2>Modularisierung</h2>
-        <!--<ul>-->
-            <!--<li class="fragment">Revealing Module Pattern: Sichtbarkeit-->
-            <!--<li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron-->
-            <!--<li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron-->
-        <!--</ul>-->
+        <ul>
+            <li class="fragment">Revealing Module Pattern: Sichtbarkeit
+            <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron
+            <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron
+        </ul>
     </section>
-    <section>
-        <h3>Revealing Module Pattern</h3>
-<pre class="fragment"><code class="javascript" contenteditable>var person = {};
-</code></pre>
-<pre class="fragment"><code class="javascript" contenteditable>(function () {
-    // Constructor
-    function Person(name) {
-        this.name = name;
-    }
+    <!--<section>-->
+        <!--<h3>Revealing Module Pattern</h3>-->
+<!--<pre class="fragment"><code class="javascript" contenteditable>var person = {};-->
+<!--</code></pre>-->
+<!--<pre class="fragment"><code class="javascript" contenteditable>(function () {-->
+    <!--// Constructor-->
+    <!--function Person(name) {-->
+        <!--this.name = name;-->
+    <!--}-->
 
-    // Factory
-    function create(name) {
-        return new Person(name);
-    }
+    <!--// Factory-->
+    <!--function create(name) {-->
+        <!--return new Person(name);-->
+    <!--}-->
 
-    // Export der Factory-Methode
-    person.createPerson = create;
-})();
-</code></pre>
-<pre class="fragment"><code class="javascript" contenteditable>var olli = person.createPerson('Olli');</code></pre>
-        </code></pre>
+    <!--// Export der Factory-Methode-->
+    <!--person.createPerson = create;-->
+<!--})();-->
+<!--</code></pre>-->
+<!--<pre class="fragment"><code class="javascript" contenteditable>var olli = person.createPerson('Olli');</code></pre>-->
+        <!--</code></pre>-->
 
-    </section>
+    <!--</section>-->
 
     <section>
         <h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>
@@ -340,38 +340,38 @@ olli.getName() === 'Olli';</code></pre>
             <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/library/">Module funktionieren über die Closure Library</a>
         </ul>
     </section>
-        <section>
-        <h3>Beispiel-Code: Interface</h3>
-<pre><code class="javascript" contenteditable>/**
- *
- * @interface
- */
-function HasName() { }
+        <!--<section>-->
+        <!--<h3>Beispiel-Code: Interface</h3>-->
+<!--<pre><code class="javascript" contenteditable>/**-->
+ <!--*-->
+ <!--* @interface-->
+ <!--*/-->
+<!--function HasName() { }-->
 
-/**
- * @returns {string}
- */
-HasName.prototype.getName = function() {};
-</code></pre>
-    </section>
+<!--/**-->
+ <!--* @returns {string}-->
+ <!--*/-->
+<!--HasName.prototype.getName = function() {};-->
+<!--</code></pre>-->
+    <!--</section>-->
 
-        <section>
-        <h3>Beispiel-Code: Class</h3>
-<pre><code class="javascript" contenteditable>/**
- *
- * @param name {string}
- * @param alter {number}
- * @param geschlecht {string=}
- * @constructor
- * @implements {HasName}
- */
-function Person(name, alter, geschlecht) {
-    this.name = name;
-    this.alter = alter;
-    this.geschlecht = geschlecht;
-}
-</code></pre>
-    </section>
+        <!--<section>-->
+        <!--<h3>Beispiel-Code: Class</h3>-->
+<!--<pre><code class="javascript" contenteditable>/**-->
+ <!--*-->
+ <!--* @param name {string}-->
+ <!--* @param alter {number}-->
+ <!--* @param geschlecht {string=}-->
+ <!--* @constructor-->
+ <!--* @implements {HasName}-->
+ <!--*/-->
+<!--function Person(name, alter, geschlecht) {-->
+    <!--this.name = name;-->
+    <!--this.alter = alter;-->
+    <!--this.geschlecht = geschlecht;-->
+<!--}-->
+<!--</code></pre>-->
+    <!--</section>-->
 
     <section>
         <h3>Google Closure Compiler: Bewertung</h3>
@@ -407,23 +407,23 @@ function Person(name, alter, geschlecht) {
                 Release von Anders Hejlsberg</a>
         </ul>
     </section>
-            <section>
-        <h3>Beispiel-Code</h3>
-<pre><code class="java javascript" contenteditable>interface HasName {
-    getName(): string;
-}
+            <!--<section>-->
+        <!--<h3>Beispiel-Code</h3>-->
+<!--<pre><code class="java javascript" contenteditable>interface HasName {-->
+    <!--getName(): string;-->
+<!--}-->
 
-class Person implements HasName {
-    constructor(private name: string, private alter: number,
-    private geschlecht: string = 'F') {
-    }
-    getName() {
-        return this.name;
-    }
-}
+<!--class Person implements HasName {-->
+    <!--constructor(private name: string, private alter: number,-->
+    <!--private geschlecht: string = 'F') {-->
+    <!--}-->
+    <!--getName() {-->
+        <!--return this.name;-->
+    <!--}-->
+<!--}-->
 
-var olli: HasName = new Person('Olli', 43);</code></pre>
-    </section>
+<!--var olli: HasName = new Person('Olli', 43);</code></pre>-->
+    <!--</section>-->
 
     <section>
         <h3>TypeScript: Bewertung</h3>
@@ -453,25 +453,28 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
             <li class="fragment"><a target="_blank" href="http://www.jshint.com/about//">http://www.jshint.com/</a>
             <li class="fragment">Deckt potentielle Fehler auf
             <li class="fragment">Kann die Code-Conventions des Teams unterstützen
-        </ul>
-    </section>
-    <section>
-        <h3>Was könnten hier die Probleme sein?</h3>
-<pre class="fragment"><code class="javascript" contenteditable>function olli() {
-    console.log("aha")
-    func();
-    variable = 10;
- var myVar;
-    10 == "10";
-    if (true) console.log('Yo');
-}</code></pre>
-        <ul>
             <li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration
             <li class="fragment">Anhand eine Konfigurationsfiles können <em>alle</em> Optionen an oder ausgeschaltet bzw. konfiguriert werden
             <li class="fragment">In jeder JavaScript-Datei können zudem Warnungen ausgeschaltet werden (vgl. @SuppressWarnings in Java)
         </ul>
-
     </section>
+    <!--<section>-->
+        <!--<h3>Was könnten hier die Probleme sein?</h3>-->
+<!--<pre class="fragment"><code class="javascript" contenteditable>function olli() {-->
+    <!--console.log("aha")-->
+    <!--func();-->
+    <!--variable = 10;-->
+ <!--var myVar;-->
+    <!--10 == "10";-->
+    <!--if (true) console.log('Yo');-->
+<!--}</code></pre>-->
+        <!--<ul>-->
+            <!--<li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration-->
+            <!--<li class="fragment">Anhand eine Konfigurationsfiles können <em>alle</em> Optionen an oder ausgeschaltet bzw. konfiguriert werden-->
+            <!--<li class="fragment">In jeder JavaScript-Datei können zudem Warnungen ausgeschaltet werden (vgl. @SuppressWarnings in Java)-->
+        <!--</ul>-->
+
+    <!--</section>-->
 </section>
 
 <section>
@@ -740,7 +743,7 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         <ul>
             <li class="fragment">Kein Framework: Gängige Frameworks passen nicht oder Anwendung ist sehr einfach
             <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
-            <li class="fragment">Angular.js: Sehr praktisch für SPAs und größere Projekte
+            <li class="fragment">Angular.js / Ember / Knockout: Sehr praktisch für SPAs und größere Projekte
             <li class="fragment">React: Höchste Anforderungen an Performanz, server-seitiges Rendering möglich
             <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
         </ul>
@@ -874,16 +877,16 @@ function calculatePercentage(amount, percentage) {
         <p class="fragment">Ja, das ist JavaScript-Code</p>
     </section>
 
-    <!--<section>-->
-        <!--<h3>Avatar.js</h3>-->
-        <!--<ul>-->
-            <!--<li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn-->
-            <!--<li class="fragment">Core-Pakete und alle wichtigen Module laufen-->
-            <!--<li class="fragment">Start aus Java heraus möglich-->
-            <!--<li class="fragment">Threading für JavaScript möglich-->
-            <!--<li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript-->
-        <!--</ul>-->
-    <!--</section>-->
+    <section>
+        <h3>Avatar.js</h3>
+        <ul>
+            <li class="fragment">Bietet das Node.js Programmiermodell für Java und Nashorn
+            <li class="fragment">Core-Pakete und alle wichtigen Module laufen
+            <li class="fragment">Start aus Java heraus möglich
+            <li class="fragment">Threading für JavaScript möglich
+            <li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript
+        </ul>
+    </section>
 
 </section>
 
