@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Serious JavaScript</title>
+    <title>Unternehmenskritische Anwendungen mit JavaScript</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
     <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
     <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
-    <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
 
     <!-- For syntax highlighting -->
     <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
@@ -26,9 +33,8 @@
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <!--<script>-->
-        <!--document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css">');-->
+    <!--document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');-->
     <!--</script>-->
-    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
 
     <!--[if lt IE 9]>
     <script src="../reveal.js/lib/js/html5shiv.js"></script>
@@ -38,131 +44,311 @@
 <body>
 
 <div class="reveal">
-<!-- JAX -->
-<!--Sind ernsthafte JavaScript-Projekte möglich?-->
-
-<!--Unabhängig von der steigenden Verbreitung von JavaScript, werden JavaScript-Projekten immer noch von manchen die-->
-<!--Professionalität abgesprochen. Um das zu widerlegen, zeige ich in diesem Talk alle Werkzeuge, Techniken und-->
-<!--Spracheigenschaften, die man braucht, um auch große und langlebige Projekte in JavaScript umzusetzen. Dazu gehören-->
-<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse und-->
-<!--Tests.-->
-
-<!-- enterJS -->
-<!--Unabhängig von der steigenden Verbreitung von JavaScript wird JavaScript-Projekten häufig immer noch die-->
-<!--Professionalität abgesprochen. Dieser Vortrag stellt alle Werkzeuge, Techniken und Spracheigenschaften vor, die man-->
-<!--braucht, um auch große und langlebige Projekte in JavaScript umzusetzen und die Spötter so zu widerlegen. Methoden zur-->
-<!--Modularisierung und Kapselung, Refactoring, Code-Analyse, statische Code-Checker und automatisierte Build-Prozesse-->
-<!--sollen genauso Thema sein wie Tests.-->
 
 <div class="slides">
 <section>
-    <h1>Ernsthaftes JavaScript</h1>
-    <br>
-
-    <h2>in Enterprise-Projekten</h2>
-    <br>
-
-    <h3>Aus der Perspektive eines Java-Entwicklers</h3>
+    <h2>Unternehmenskritische Anwendungen mit JavaScript</h2>
 
     <p>
-        <small><a target="_blank" href="http://zeigermann.eu">Oliver Zeigermann</a> / <a target="_blank" href="http://twitter.com/djcordhose">@DJCordhose</a>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
     </p>
-    <p>Online version: <a href="http://djcordhose.github.io/serious-javascript/slides/enterJS.html">http://djcordhose.github.io/serious-javascript/slides/enterJS.html</a></p>
+    <p>Online-Version: <a href="http://djcordhose.github.io/serious-javascript/slides/enterJS.html">http://djcordhose.github.io/serious-javascript/slides/enterJS.html</a></p>
 
 </section>
 
 <section>
-    <img src="Twitter_2017_JavaScript.png">
+    <img src="Twitter_2017_JavaScript.png" height="700">
 </section>
 
 <section>
-    <h3>Was ist ein ernsthaftes Enterprise-Projekt?</h3>
+    <section>
+        <h2>Was ist eine Unternehmenskritische Anwendungen?</h2>
+    </section>
+    <section>
+        <h2>der Erfolg des Unternehmens ist von der Anwendung abhängig</h2>
+    </section>
+    <section>
+        <h2>die Anwendung lebt für viele Jahre</h2>
+    </section>
+    <section>
+        <h2>Halbwertszeit von Code oft ebenfalls mehrere Jahre</h2>
+    </section>
+    <section>
+        <h2>die Anwendung ist ein unendliches Spiel (im Gegensatz zu einem endlichen Spiel in der Spieltheorie)</h2>
+    </section>
+    <section>
+        <h2>die Anwendung wird von einem Team entwickelt (mehr als ein Mitglied)</h2>
+    </section>
+    <section>
+        <h2>es gibt kein konstantes Team, Mitglieder kommen und gehen</h2>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>Fragen wir uns erst einmal selbst...</h2>
+    </section>
+    <section>
+        <h3>Warum nehmen wir JavaScript für unternehmenskritische Anwendungen?</h3>
+        <ul>
+            <li class="fragment">JavaScript macht doch jetzt jeder!
+            <li class="fragment">Ich möchte schnellere Entwicklung
+            <li class="fragment">Die Turn-Around-Zeiten von JavaScript machen das Entwickeln zur Freude
+            <li class="fragment">Java / C# langweilen uns und wir wollen mal etwas neues ausprobieren
+            <li class="fragment">JavaScript ist echt eine tolle und aufregende Sprache
+        </ul>
+    </section>
+    <section>
+        <h3>Oder eher ...</h3>
+
+        <h3 class="fragment">... JavaScript ist die einzige Sprache, die in jedem Browser läuft</h3>
+    </section>
+<section>
+    <h2>Egal ob wir wollen oder nicht, wir kommen nicht an JavaScript vorbei...</h2>
+</section>
+<section>
+    <h2>... wenn wir moderne Single Page-Applikationen für den Browser haben wollen</h2>
+</section>
+</section>
+<section>
+    <h2>Single Page Applications (SPA)</h2>
     <ul>
-        <li class="fragment">es ist unternehmenskritisch, d.h. der Erfolg des Unternehmens ist davon abhängig
-        <li class="fragment">lebt für viele Jahre
-        <li class="fragment">Halbwertszeit von Code oft ebenfalls mehrere Jahre
-        <li class="fragment">ist ein unendliches Spiel (im Gegensatz zu einem endlichen Spiel in der Spieltheorie)
-        <li class="fragment">es gibt ein Team (mehr als ein Mitglied)
-        <li class="fragment">es gibt kein konstantes Team, Mitglieder kommen und gehen
+        <li class="fragment">Web-Anwendungen, laufen im Browser
+        <li class="fragment">Nur eine einzige Seite wird an den Browser vom Server ausgeliefert
+        <li class="fragment">Alle weiteren Aktionen werden von dem JavaScript kontrolliert, das mit der Seite ausgeliefert wurde
+        <li class="fragment">Zugriffe auf den Server nicht zur Darstellungen, sondern zur Übertragung von Daten
+        <li class="fragment">Erlaubt höchste Interaktivität und beste Reaktion auf Benutzereingaben
+        <li class="fragment">Komfort vergleichbar mit Desktop-Anwendungen
+        <li class="fragment">Offline-Fähigkeit
     </ul>
 </section>
 
-<!-- Aufbau -->
-<!-- Wartbarkeit -->
-<!-- Skalierbarkeit -->
-<!-- Frameworks -->
-<!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
 <section>
-    <h2>JavaScript-Projekte</h2>
-    <ol>
-        <!-- Frischer Anfang gleich mit viel Code -->
-        <li class="fragment">haben keine Struktur und sind Chaos <!-- Aufbau -->
-            <!-- Lockere Übersicht über Frameworks  -->
-        <li class="fragment">sind allein schon wegen der Ablaufumgebung (Browser) der Horror <!-- Frameworks -->
-            <!-- Der Fleißteil -->
-        <li class="fragment">sind von Anfang an unwartbar ... <!-- Wartbarkeit -->
-        <li class="fragment" value="3">... und können nur im kleinen Rahmen funktionieren
-            <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
-            <!-- Der spannende und wohl neue Teil -->
-        <li class="fragment">erfordern in jedem Fall eine polyglotte Programmierung <!-- Node.js, Nashorn, Avatar.js -->
-    </ol>
-    <p></p>
-
-    <h3 class="fragment">Stimmt das? Oder sind das Vorurteile?</h3>
-
-    <p class="fragment">Die Untersuchung ist Gegenstand dieser Session</p>
+    <section>
+        <h2>Welche Problemstellungen ergeben sich daraus?</h2>
+    </section>
+    <section>
+        <h3>Wie halte ich meine Code-Basis wartbar?</h3>
+    </section>
+    <section>
+        <h3>Was mache ich auf der Server-Seite?</h3>
+    </section>
+    <section>
+        <h3>Wie gehe ich mit den Komplexitäten der Browser-Entwicklung um?</h3>
+    </section>
+    <!--<section>-->
+    <!--<h3>Was braucht mein Team, um JavaScript entwickeln zu können?</h3>-->
+    <!--</section>-->
 </section>
 
-<!--<section>-->
-    <!--<h2>Oliver Zeigermann</h2>-->
-    <!--<img src="olli.jpg" height="200">-->
-    <!--<ul>-->
-        <!--<li><a target="_blank" href="http://zeigermann.eu">http://zeigermann.eu</a>-->
-        <!--<li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>-->
-        <!--<li><a target="_blank" href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>-->
-        <!--<li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>-->
-        <!--<li><a target="_blank" href="http://entwickler.de/press/JavaScript-fuer-Java-Entwickler">JavaScript für-->
-            <!--Java-Entwickler</a>-->
-    <!--</ul>-->
-<!--</section>-->
 <section>
-    <section>
-        <h2>Aufbau moderner Webanwendungen</h2>
+<section>
+    <h2>Problemstellung #1: Wie halte ich meine Code-Basis wartbar?</h2>
+</section>
+<section>
+    <h2>Code Qualität, Module, statische Analyse</h2>
 
-        <p>So sieht eine moderne 08/15 Webanwendung aus</p>
+    <p class="fragment">Untersuchung der Fragen: Sind JavaScript-Projekte von Anfang an unwartbar und können nur im
+        kleinen Rahmen funktionieren?</p>
 
-        <p>Erzeugt mit <a target="_blank" href="http://yeoman.io/">http://yeoman.io/</a></p>
+    <h3 class="fragment">Provokantere Frage: Selbst wenn ich schnell in JavaScript entwickeln kann, wird mein Code
+        in einem Jahr noch wartbar sein?</h3>
+    <h4 class="fragment">Und in 5 Jahren?</h4>
+    <h5 class="fragment">Und in 10 Jahren?</h5>
+</section>
 
-        <p class="fragment">Untersuchung der Frage: Haben JavaScript-Projekte keine Struktur und sind Chaos?</p>
+<!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
+<!--Test-Frameworks-->
+<!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
+<section>
+    <h3>Fragestellungen der Wartbarkeit</h3>
+    <ul>
+        <li class="fragment">Wie modularisiere ich meinen Code, um
+            <ul>
+                <li class="fragment">ihn handhabbar zu halten
+                <li class="fragment">mit mehreren Entwicklern daran arbeiten zu können
+            </ul>
+        </li>
+        <li class="fragment">Wie halte ich meinen Code einfach lesbar?
+        <li class="fragment">Wie definiere ich ein Maß für Code-Qualität und wie erreiche ich diese?
+        <li class="fragment">Wie ermögliche ich eine statische Analyse?
+        <li class="fragment">Wie teste ich meinen Code?
+        <li class="fragment">Wie automatisiere ich Analyse und Test?
+    </ul>
+</section>
+
+<section>
+    <h2>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h2>
+</section>
+<section>
+    <h2>Modularisierung</h2>
+    <ul>
+        <li class="fragment">Revealing Module Pattern: Sichtbarkeit
+        <li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron
+        <li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron
+        <li class="fragment">Module in ECMAScript 6
+    </ul>
+</section>
+
+<section>
+    <h2>Klassische Typen und Vererbung mit JavaScript</h2>
+    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
+function Person(name) {
+    this.name = name;
+}
+// Methode
+Person.prototype.getName = function() {
+    return this.name;
+};</code></pre>
+    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
+olli.getName() === 'Olli';</code></pre>
+            </section>
+
+<section>
+    <h3>Deklarierte Typen</h3>
+    <ul>
+        <li class="fragment">Grundlage der Überlegung
+            <ul>
+                <li class="fragment">Verlässliche Toolunterstützung für Analyse und Refactoring sind ohne statische Typ-Information nicht möglich
+                <li class="fragment">Ohne verlässliche Analyse- und Refactoring-Möglichkeiten wird Enterprise-Code schnell untwartbar
+            </ul>
+        </li>
+        <li class="fragment">Mögliche Techniken
+            <ul>
+                <li class="fragment">Google Closure Compiler
+                <li class="fragment">TypeScript
+                    <!--<li class="fragment">Esprima-->
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>Google Closure Compiler</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @param name {string}
+ * @param alter {number}
+ * @param geschlecht {string=}
+ * @constructor
+ * @implements {HasName}
+ */
+function Person(name, alter, geschlecht) {
+    this.name = name;
+    this.alter = alter;
+    this.geschlecht = geschlecht;
+}
+</code></pre>
+</section>
+
+<section>
+    <h3>Google Closure Compiler: Bewertung</h3>
+    <ul>
+        <li class="fragment">Vorteile
+            <ul>
+                <li class="fragment">Lesbarkeit für Menschen verbessert
+                <li class="fragment">Verbesserter IDE-Support durch deklarierte Typen
+                <li class="fragment">Kein Compilierungsschritt zur Ausführung notwendig
+                <li class="fragment">Compiler nutzt Typ-Informationen auch zur Optimierung
+            </ul>
+        </li>
+        <li class="fragment">Nachteile
+            <ul>
+                <li class="fragment">Technologie-Stack wächst
+                <li class="fragment">Es sieht nicht sonderlich schön aus
+                <li class="fragment">Abhängigkeit von Google-Technologie (Rückkehr zu einfach JavaScript möglich)
+                <li class="fragment">JavaScript-Konstrukte (z.B. für Interfaces oder Varargs) teilweise etwas überraschend
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h3>TypeScript</h3>
+    <ul>
+        <li class="fragment">Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
+        <li class="fragment">Compiliert zu JavaScript, das man so auch von Hand schreiben würde
+        <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
+        <li class="fragment">Externe Deklarationen erlauben nachträgliche Typisierung von existierendem JavaScript-Code
+        <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">Externe
+            Deklarationen für sehr viele JavaScript-Biblitotheken</a>
+        <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk zum 1.0
+            Release von Anders Hejlsberg</a>
+    </ul>
+</section>
+            <section>
+        <h3>Beispiel-Code</h3>
+<pre><code class="java javascript" contenteditable>interface HasName {
+    getName(): string;
+}
+
+class Person implements HasName {
+    constructor(private name: string, private alter: number,
+    private geschlecht: string = 'F') {
+    }
+    getName() {
+        return this.name;
+    }
+}
+
+var olli: HasName = new Person('Olli', 43);</code></pre>
     </section>
 
+<section>
+    <h3>TypeScript: Bewertung</h3>
+    <ul>
+        <li class="fragment">Vorteile
+            <ul>
+                <li class="fragment">Lesbarkeit für Menschen verbessert
+                <li class="fragment">Stark verbesserter IDE-Support durch deklarierte Typen
+                <li class="fragment">Typinformation sogar für JSON-Objekte
+            </ul>
+        </li>
+        <li class="fragment">Nachteile
+            <ul>
+                <li class="fragment">Technologie-Stack wächst
+                <li class="fragment">Compilierungsschritt immer notwendig
+                <li class="fragment">Abhängigkeit von MicroSoft-Technologie (Rückkehr zu JavaScript möglich)
+                <li class="fragment">Optionale Typen erfordern viel Eigenverantwortung der Entwickler
+            </ul>
+        </li>
+    </ul>
+</section>
+
     <section>
-        <h3>Live-Demo: Eine komplette Webanwendung</h3>
+        <h2>Code Qualität mit JSHint</h2>
         <ul>
-            <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-            <li class="fragment"><code>yo webapp</code>
-            <li class="fragment">IDE: WebStorm
-            <li class="fragment">Grunt.js: Build-Tool
-            <li class="fragment">Bower: Abhängigkeitsmanagement
-            <li class="fragment">Comapss und SASS: Abstraktion von CSS
-            <li class="fragment">Mocha / Chai: BDD-/Unit-Test-Framework
-            <li class="fragment">JsHint: Linter
+            <li class="fragment">Analysiert JavaScript-Files und macht konfigurierbare Prüfungen
+            <li class="fragment"><a target="_blank" href="http://www.jshint.com/about//">http://www.jshint.com/</a>
+            <li class="fragment">Deckt potentielle Fehler auf
+            <li class="fragment">Kann die Code-Conventions des Teams unterstützen
+            <li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration
         </ul>
     </section>
+    <section>
+        <h3>Was könnten hier die Probleme sein?</h3>
+<pre class="fragment"><code class="javascript" contenteditable>function olli() {
+    console.log("aha")
+    func();
+    variable = 10;
+ var myVar;
+    10 == "10";
+    if (true) console.log('Yo');
+}</code></pre>
+        <ul>
+            <li class="fragment">Anhand eine Konfigurationsfiles können <em>alle</em> Optionen an oder ausgeschaltet bzw. konfiguriert werden
+            <li class="fragment">In jeder JavaScript-Datei können zudem Warnungen ausgeschaltet werden (vgl. @SuppressWarnings in Java)
+        </ul>
 
-    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-    <!--<section>-->
-        <!--<h3>Live-Demo: Eine komplette AngularJS-Anwendung</h3>-->
-        <!--<ul>-->
-            <!--<li class="fragment"><code>yo angular</code>-->
-            <!--<li class="fragment">Angular-->
-            <!--<li class="fragment">Karma: Test-Runner mit WebStorm-Integration-->
-            <!--<li class="fragment">PhantomJS-->
-            <!--<li class="fragment">Jasmine: BDD-/Unit-Test-Framework-->
-            <!--<li class="fragment">Angular-Scenario: E2E-Test-Framework-->
-        <!--</ul>-->
-    <!--</section>-->
+    </section>
+<section>
+    <h2>Weitere Tools</h2>
+    <ul>
+        <li class="fragment">Yo: Scaffolding
+        <li class="fragment">WebStorm / IntelliJ / Visual Studio: IDE
+        <li class="fragment">Grunt.js: Build-Tool
+        <li class="fragment">Bower: Abhängigkeitsmanagement
+        <li class="fragment">Jasmine: BDD-/Unit-Test-Framework
+    </ul>
+</section>
 
 </section>
 
@@ -172,16 +358,8 @@
 
 <section>
     <section>
-        <h2>Node.js</h2>
-
-        <p class="fragment">Untersuchung der Frage: Erfordern JavaScript-Projekte in jedem Fall eine polyglotte
-            Programmierung?</p>
+        <h2>Problemstellung #2: Was mache ich auf der Server-Seite?</h2>
     </section>
-
-    <!-- Node.js, Nashorn, Avatar.js -->
-
-    <!--Letzter Punkt:,wie weit gehen? Polyglott vs. node / Avatar.js-->
-
     <section>
         <h3>Fragestellung</h3>
         <ul>
@@ -194,7 +372,17 @@
     </section>
 
     <section>
-        <h3>JavaScript auch auf dem Server?</h3>
+        <h3>Option #1: Server in klassicher Server-Technik (JEE/Spring/.NET/Rails/Python)</h3>
+        <h3 class="fragment">bzw. existierender Server bleibt wie er ist</h3>
+        <ul>
+            <li class="fragment">Naheliegende Lösung
+            <li class="fragment">Kommunikation über REST/JSON
+            <li class="fragment">Mapping von Objekten auf JSON
+            <li class="fragment">Polyglotte Programmierung
+        </ul>
+    </section>
+    <section>
+        <h3>Option #2: JavaScript auch auf dem Server?</h3>
         <ul>
             <li class="fragment">Code kann wieder verwendet werden
             <li class="fragment">Dieselben Tools für Frontend und Backend
@@ -215,7 +403,8 @@
                 </ul>
             </li>
             <li class="fragment">Asynchrones Programmiermodell, kein Multithreading
-            <li class="fragment">Forken für Auslastung alles Kerne mit <a target="_blank"
+            <li class="fragment">Kommt mit Abhängigkeits-Manager <code>npm</code>
+            <li class="fragment">Forken für Auslastung aller Kerne mit <a target="_blank"
                                                                           href="http://nodejs.org/api/cluster.html">"Clustering"
                 als Kernmodul</a>
 
@@ -252,7 +441,7 @@ http.createServer(handleRequest).listen(1337);</code></pre>
             <li class="fragment"><a target="_blank"
                                     href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
                 weitere</a>
-            <li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>
+            <!--<li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>-->
         </ul>
     </section>
 
@@ -291,7 +480,6 @@ http.createServer(handleRequest).listen(1337);</code></pre>
         <!--<p class="fragment">Ja, das ist JavaScript-Code</p>-->
     <!--</section>-->
 
-
     <!--<section>-->
         <!--<h3>Avatar.js</h3>-->
         <!--<ul>-->
@@ -302,421 +490,70 @@ http.createServer(handleRequest).listen(1337);</code></pre>
             <!--<li class="fragment">Aufruf beliebiger Java-Services (Legacy) aus JavaScript-->
         <!--</ul>-->
     <!--</section>-->
+
 </section>
 
 <section>
     <h1>Fragen?</h1>
 </section>
 
-<!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
 
 <section>
-    <section>
-        <h2>Code Qualität, Module, statische Analyse</h2>
+<section>
+    <h2>Problemstellung #3: Wie gehe ich mit den Komplexitäten der Browser-Entwicklung um?</h2>
+</section>
 
-        <p class="fragment">Untersuchung der Fragen: Sind JavaScript-Projekte von Anfang an unwartbar und können nur im
-            kleinen Rahmen funktionieren?</p>
-
-        <h3 class="fragment">Provokantere Frage: Selbst wenn ich schnell in JavaScript entwickeln kann, wird mein Code
-            in einem Jahr noch wartbar sein?</h3>
-        <h4 class="fragment">Und in 5 Jahren?</h4>
-        <h5 class="fragment">Und in 10 Jahren?</h5>
-    </section>
-
-    <!--Code Qualität / Refactorbarkeit / Wartbarkeit: JsHint, TypeScript, Closure-->
-    <!--Test-Frameworks-->
-    <!-- Module, Klassen, Abhängigkeitsmanagement, AMD, CommonJS -->
-    <section>
-        <h3>Fragestellungen der Wartbarkeit</h3>
-        <ul>
-            <li class="fragment">Wie modularisiere ich meinen Code, um
-                <ul>
-                    <li class="fragment">ihn handhabbar zu halten
-                    <li class="fragment">mit mehreren Entwicklern daran arbeiten zu können
-                </ul>
-            </li>
-            <li class="fragment">Wie halte ich meinen Code einfach lesbar?
-            <li class="fragment">Wie definiere ich ein Maß für Code-Qualität und wie erreiche ich diese?
-            <li class="fragment">Wie ermögliche ich eine statische Analyse?
-            <!--<li class="fragment">Wie teste ich meinen Code?-->
-            <!-- Ist schon im ersten Teil beantwortet -->
-            <!--<li class="fragment">Wie automatisiere ich Analyse und Test?-->
-                <!--
-
-                Paypal and Walmart use node and are really fast. But, will it be
-                maintainable in 1 year and in 5 years?
-                 -->
-
-        </ul>
-    </section>
-
-    <section>
-        <h2>Muster für größere Projekte</h2>
-    </section>
-    <section>
-        <h2>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h2>
-    </section>
-                <!--<section>-->
-                    <!--<h3>this in Objekten</h3>-->
-                    <!--<ul>-->
-                        <!--<li class="fragment">Objekte können auch Funktionen als Properties haben-->
-                        <!--<li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden-->
-    <!--<li class="fragment"><pre><code class="javascript" contenteditable>var obj = {-->
-    <!--field: 10,-->
-    <!--log: function() {-->
-        <!--console.log(this.field);-->
-    <!--}-->
-<!--};-->
-
-<!--obj.log(); // 10-->
-    <!--</code></pre>-->
-                    <!--</ul>-->
-                <!--</section>-->
-                <!--<section>-->
-                    <!--<h3>Singleton</h3>-->
-                    <!--<ul>-->
-                        <!--<li class="fragment">Wie gesehen, kann man in JavaScript Objekte auch ohne einen Typ erzeugen-->
-                        <!--<li class="fragment">In klassenbasierten Sprachen muss man auch dafür einen Typ erzeugen und darauf achten, dass man nur eine Instanz erzeugen kann-->
-                        <!--<li class="fragment">Das Pattern dazu heißt <code>Singleton</code>-->
-                        <!--<li class="fragment">In JavaScript braucht man dieses Pattern nicht-->
-                        <!--<li class="fragment">Manchmal möchte man allerdings auch mehrere Objekte mit dergleichen oder ähnlichen Struktur erzeugen-->
-                    <!--</ul>-->
-                <!--</section>-->
-    <section>
-        <h2>Klassische Typen und Vererbung mit JavaScript</h2>
-        <ul>
-            <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
-            <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
-            <li class="fragment">Einfachvererbung ist ebenso möglich
-            <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
-            <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
-            <li class="fragment">Grundlage ist die prototypische Vererbung
-        </ul>
-    </section>
-            <section>
-                <h2>Setzen des Prototypen aka das Typen-System</h2>
-                <p>Typen werden über Konstruktor-Funktionen definiert</p>
-    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
-function Person(name) {
-    this.name = name;
-}
-Person.prototype.getName = function() {
-    return this.name;
-};</code></pre>
-    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
-olli.getName() === 'Olli';</code></pre>
-            </section>
-
-    <section>
-        <h2>Modularisierung</h2>
-        <!--<ul>-->
-            <!--<li class="fragment">Revealing Module Pattern: Sichtbarkeit-->
-            <!--<li class="fragment">AMD und RequireJS: Externe Abhängigkeiten, asynchron-->
-            <!--<li class="fragment">CommonJS und Browserify: Externe Abhängigkeiten, synchron-->
-        <!--</ul>-->
-    </section>
-    <section>
-        <h3>Revealing Module Pattern</h3>
-<pre class="fragment"><code class="javascript" contenteditable>var person = {};
-</code></pre>
-<pre class="fragment"><code class="javascript" contenteditable>(function () {
-    // Constructor
-    function Person(name) {
-        this.name = name;
-    }
-
-    // Factory
-    function create(name) {
-        return new Person(name);
-    }
-
-    // Export der Factory-Methode
-    person.createPerson = create;
-})();
-</code></pre>
-<pre class="fragment"><code class="javascript" contenteditable>var olli = person.createPerson('Olli');</code></pre>
-        </code></pre>
-
-    </section>
-
-    <section>
-        <h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>
-        <ul>
-            <li class="fragment">AMD
-                <ul>
-                    <li class="fragment">Module werden nicht blockierend und potentiell asynchron geladen
-                    <li class="fragment">Module werden über bower oder manuell installiert
-                    <li class="fragment">Verwendung auf Client-Seite
-                    <li class="fragment">Default-Implementierung: RequireJS
-                    <!--<li class="fragment">Für blockierendes Laden auf Server-Seite: r.js-->
-                </ul>
-            </li>
-            <li class="fragment">CommonJS
-                <ul>
-                    <li class="fragment">Module werden blockierend und synchron geladen
-                    <li class="fragment">Module werden über npm installiert
-                    <li class="fragment">Verwendung auf Server-Seite
-                    <!--<li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify-->
-                </ul>
-            </li>
-            <li class="fragment">Beide Modul-Systeme können über r.js / Browserify auch auf Server / Client benutzt werden
-        </ul>
-    </section>
-    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-    <!--<section>-->
-        <!--<h3>Live-Demo: Eine komplette Browserify-Anwendung</h3>-->
-        <!--<p class="fragment">Anwendung für den Client mit CommonJS</p>-->
-        <!--<p class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen</p>-->
-        <!--<p class="fragment">Diese werden dann zwar immer noch synchron geladen, aber ohne merklich Verzögerung</p>-->
-        <!--<ul>-->
-            <!--<li class="fragment"><code>yo browserify</code>-->
-            <!--<li class="fragment">Gulp.js: Build-Tool mit Stream-Support-->
-            <!--<li class="fragment">Uglify: Minifiy / Obfuscate-->
-            <!--<li class="fragment">Browserify erzeugt eine einzige Datei aus allen Modulen-->
-            <!--<li class="fragment"><a target="_blank" href="http://foundation.zurb.com/">Foundation</a>: Responsive Layout-->
-            <!--<li class="fragment">Jade: Serverseitige Templates-->
-        <!--</ul>-->
-    <!--</section>-->
-    <section>
-        <h3>Deklarierte Typen</h3>
-        <ul>
-        <li class="fragment">Grundlage der Überlegung
+<section>
+    <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
+    <ul>
+        <li class="fragment">Es gibt immer noch eine Reihe von Browser-Unterschieden bzgl. DOM und JavaScript (insbesondere
+            pre IE9)
+        <li class="fragment">Das DOM ist kein "ideales" API
+        <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
+    </ul>
+</section>
+<section>
+    <h3>Anforderungen an ein Browser-Framework für Enterprise-Projekte</h3>
+    <ul>
+        <li class="fragment">Es muss zu meiner Anwendung passen
+        <li class="fragment">Es muss über viele Jahre gewartet bleiben
+        <li class="fragment">Rückwärtskompatibilität
+    </ul>
+</section>
+<section>
+    <img src="Twitter_Lang_Community.jpg" height="600">
+    <p><a target="_blank" href="https://twitter.com/kilaulena/status/463317989648248832">https://twitter.com/kilaulena/status/463317989648248832</a></p>
+</section>
+<section>
+    <h3>Kultur-Clash Java-/C# vs JavaScript-Frameworks</h3>
+    <ul>
+        <li class="fragment">kleinere Module dominieren die JavaScript-Framework-Welt
             <ul>
-                <li class="fragment">Verlässliche Toolunterstützung für Analyse und Refactoring sind ohne statische Typ-Information nicht möglich
-                <li class="fragment">Ohne verlässliche Analyse- und Refactoring-Möglichkeiten wird Enterprise-Code schnell untwartbar
+                <li class="fragment">npm und bower mit anarchischer Organisationsstruktur
+                <li class="fragment">Wenn überhaupt dann Defacto-Standards
+                <li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen
+                <li class="fragment">u.a. yeoman und Bootstrap-Pakete geben zumindest etwas Richtung
             </ul>
         </li>
-            <li class="fragment">Mögliche Techniken
-                <ul>
-                    <li class="fragment">Google Closure Compiler
-                    <li class="fragment">TypeScript
-                        <!--<li class="fragment">Esprima-->
-                </ul>
-            </li>
-        </ul>
-    </section>
-    <section>
-        <h3>Google Closure Compiler</h3>
-        <ul>
-            <li class="fragment">Statisch deklarierte Typ-Information werden in Kommentaren angegeben
-            <li class="fragment">Erweiterung von JSDoc
-            <li class="fragment">Compiler nutzt Typ-Information für statische Checks und optimierten Code
-            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Hauptseite des Compilers</a>
-            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/library/">Module funktionieren über die Closure Library</a>
-        </ul>
-    </section>
-        <section>
-        <h3>Beispiel-Code: Interface</h3>
-<pre><code class="javascript" contenteditable>/**
- *
- * @interface
- */
-function HasName() { }
-
-/**
- * @returns {string}
- */
-HasName.prototype.getName = function() {};
-</code></pre>
-    </section>
-
-        <section>
-        <h3>Beispiel-Code: Class</h3>
-<pre><code class="javascript" contenteditable>/**
- *
- * @param name {string}
- * @param alter {number}
- * @param geschlecht {string=}
- * @constructor
- * @implements {HasName}
- */
-function Person(name, alter, geschlecht) {
-    this.name = name;
-    this.alter = alter;
-    this.geschlecht = geschlecht;
-}
-</code></pre>
-    </section>
-
-    <section>
-        <h3>Google Closure Compiler: Bewertung</h3>
-        <ul>
-            <li class="fragment">Vorteile
-                <ul>
-                    <li class="fragment">Lesbarkeit für Menschen verbessert
-                    <li class="fragment">Verbesserter IDE-Support durch deklarierte Typen
-                    <li class="fragment">Kein Compilierungsschritt zur Ausführung notwendig
-                    <li class="fragment">Compiler nutzt Typ-Informationen auch zur Optimierung
-                </ul>
-            </li>
-            <li class="fragment">Nachteile
-                <ul>
-                    <li class="fragment">Technologie-Stack wächst
-                    <li class="fragment">Es sieht nicht sonderlich schön aus
-                    <li class="fragment">Abhängigkeit von Google-Technologie (Rückkehr zu einfach JavaScript möglich)
-                    <li class="fragment">JavaScript-Konstrukte (z.B. für Interfaces oder Varargs) teilweise etwas überraschend
-                </ul>
-            </li>
-        </ul>
-    </section>
-    <section>
-        <h3>TypeScript</h3>
-        <ul>
-            <li class="fragment">Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
-            <li class="fragment">Compiliert zu JavaScript, das man so auch von Hand schreiben würde
-            <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
-            <li class="fragment">Externe Deklarationen erlauben nachträgliche Typisierung von existierendem JavaScript-Code
-            <li class="fragment"><a target="_blank" href="https://github.com/borisyankov/DefinitelyTyped">Externe
-                Deklarationen für sehr viele JavaScript-Biblitotheken</a>
-            <li class="fragment"><a target="_blank" href="http://channel9.msdn.com/Events/Build/2014/3-576">Talk zum 1.0
-                Release von Anders Hejlsberg</a>
-        </ul>
-    </section>
-            <section>
-        <h3>Beispiel-Code</h3>
-<pre><code class="java javascript" contenteditable>interface HasName {
-    getName(): string;
-}
-
-class Person implements HasName {
-    constructor(private name: string, private alter: number,
-    private geschlecht: string = 'F') {
-    }
-    getName() {
-        return this.name;
-    }
-}
-
-var olli: HasName = new Person('Olli', 43);</code></pre>
-    </section>
-
-    <section>
-        <h3>TypeScript: Bewertung</h3>
-        <ul>
-            <li class="fragment">Vorteile
-                <ul>
-                    <li class="fragment">Lesbarkeit für Menschen verbessert
-                    <li class="fragment">Stark verbesserter IDE-Support durch deklarierte Typen
-                    <li class="fragment">Typinformation sogar für JSON-Objekte
-                </ul>
-            </li>
-            <li class="fragment">Nachteile
-                <ul>
-                    <li class="fragment">Technologie-Stack wächst
-                    <li class="fragment">Compilierungsschritt immer notwendig
-                    <li class="fragment">Abhängigkeit von MicroSoft-Technologie (Rückkehr zu JavaScript möglich)
-                    <li class="fragment">Optionale Typen erfordern viel Eigenverantwortung der Entwickler
-                </ul>
-            </li>
-        </ul>
-    </section>
-
-    <!--<section>-->
-        <!--<h3>Esprima: TODO</h3>-->
-        <!--<ul>-->
-            <!--<li class="fragment">-->
-        <!--</ul>-->
-    <!--</section>-->
-
-    <!--<section>-->
-        <!--<h2>Code Qualität mit JSHint</h2>-->
-        <!--<ul>-->
-            <!--<li class="fragment">Analysiert JavaScript-Files und macht konfigurierbare Prüfungen-->
-            <!--<li class="fragment"><a target="_blank" href="http://www.jshint.com/about//">http://www.jshint.com/</a>-->
-            <!--<li class="fragment">Deckt potentielle Fehler auf-->
-            <!--<li class="fragment">Kann die Code-Conventions des Teams unterstützen-->
-        <!--</ul>-->
-    <!--</section>-->
-    <!--<section>-->
-        <!--<h3>Was könnten hier die Probleme sein?</h3>-->
-<!--<pre class="fragment"><code class="javascript" contenteditable>function olli() {-->
-    <!--console.log("aha")-->
-    <!--func();-->
-    <!--variable = 10;-->
- <!--var myVar;-->
-    <!--10 == "10";-->
-    <!--if (true) console.log('Yo');-->
-<!--}</code></pre>-->
-        <!--<ul>-->
-            <!--<li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration-->
-            <!--<li class="fragment">Anhand eine Konfigurationsfiles können <em>alle</em> Optionen an oder ausgeschaltet bzw. konfiguriert werden-->
-            <!--<li class="fragment">In jeder JavaScript-Datei können zudem Warnungen ausgeschaltet werden (vgl. @SuppressWarnings in Java)-->
-        <!--</ul>-->
-
-    <!--</section>-->
+        <li class="fragment">Java und C# kommen mit kompletten Bibliotheken und Standards
+            <ul>
+                <li class="fragment">bietet Orientierung
+                <li class="fragment">allerdings auch weniger Freiheit (bzw. andere Auswahl muss auch vertreten
+                    werden)
+            </ul>
+        </li>
+    </ul>
 </section>
-
 <section>
-    <h1>Fragen?</h1>
+    <h3>Auswahl von Frameworks, die sich als Enterprise-würdig erwiesen haben</h3>
+    <ul>
+        <li class="fragment">jQuery
+        <li class="fragment">AngularJS
+        <li class="fragment">React
+        <li class="fragment">Ext.js
+        <li class="fragment">Kein Framework
+    </ul>
 </section>
-
-<section>
-    <section>
-        <h2>Browser-Frameworks</h2>
-
-        <p class="fragment">Untersuchung der Frage: Sind JavaScript-Projekte allein schon wegen der Ablaufumgebung
-            (Browser) der Horror?</p>
-    </section>
-    <section>
-        <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
-        <ul>
-            <li class="fragment">Es gibt immer noch eine Reihe von Browser-Unterschieden bzgl. DOM und JavaScript (insbesondere
-                pre IE9)
-            <li class="fragment">Das DOM ist kein "ideales" API
-            <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
-            <!--<li class="fragment">Angemessenes UX-->
-            <li class="fragment">Unterstützung unterschiedlicher Gerätekonzepte und Gerätegrößen
-        </ul>
-    </section>
-    <section>
-        <h3>Anforderungen an ein Browser-Framework für Enterprise-Projekte</h3>
-        <ul>
-            <li class="fragment">Es muss zu meiner Anwendung passen
-                <!--<ul>-->
-                    <!--<li class="fragment">Business-Anwendung?-->
-                    <!--<li class="fragment">Soll auf mobilen Geräten laufen?-->
-                    <!--<li class="fragment">Grafisch sehr ansprechend?-->
-                    <!--<li class="fragment">Leichte Bedienung? (Business-User vs. Casual)-->
-                <!--</ul>-->
-            <li class="fragment">Es muss über viele Jahre gewartet bleiben
-            <li class="fragment">Rückwärtskompatibilität
-            <li class="fragment">Es muss leicht erlernbar sein
-        </ul>
-    </section>
-    <!--<section>-->
-        <!--<img src="Twitter_Lang_Community.jpg" height="600">-->
-        <!--<p><a target="_blank" href="https://twitter.com/kilaulena/status/463317989648248832">https://twitter.com/kilaulena/status/463317989648248832</a></p>-->
-    <!--</section>-->
-    <!--<section>-->
-        <!--<h3>Kultur-Clash Java- / JavaScript-Frameworks</h3>-->
-        <!--<ul>-->
-            <!--<li class="fragment">kleinere Module dominieren die JavaScript-Framework-Welt-->
-                <!--<ul>-->
-                    <!--<li class="fragment">npm und bower mit anarchischer Organisationsstruktur-->
-                    <!--<li class="fragment">Wenn überhaupt dann Defacto-Standards-->
-                    <!--<li class="fragment">Jeder muss sich seinen eigenen Satz an Komponenten auswählen-->
-                    <!--<li class="fragment">u.a. yeoman und Bootstrap-Pakete geben zumindest etwas Richtung-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li class="fragment">Java kommt mit komplettem JDK und JEE-Standard-->
-                <!--<ul>-->
-                    <!--<li class="fragment">bietet Orientierung-->
-                    <!--<li class="fragment">allerdings auch weniger Freiheit (bzw. andere Auswahl muss auch vertreten-->
-                        <!--werden)-->
-                <!--</ul>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</section>-->
-        <section>
-        <h3>Auswahl von Frameworks, die sich als Enterprise-würdig erwiesen haben</h3>
-        <ul>
-            <li class="fragment">jQuery
-            <li class="fragment">AngularJS
-            <li class="fragment">React
-            <li class="fragment">Ext.js
-            <li class="fragment">Kein Framework
-        </ul>
-    </section>
 
     <section>
         <h2>Zum Vergleich: Hello World ohne Framework</h2>
@@ -734,7 +571,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
     &lt;/body&gt;
 &lt;/html&gt;
                         </code></pre>
-                        <a href="../HelloWorld/helloworld2.html" target="_blank">Run</a>
+                        <a href="../HelloWorld/helloworld2.html">Run</a>
                     </section>
 
     <section>
@@ -769,7 +606,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
     &lt;/body&gt;
 &lt;/html&gt;
                         </code></pre>
-                        <a href="../HelloWorld/helloworld-jQuery.html" target="_blank">Run</a>
+                        <a href="../HelloWorld/helloworld-jQuery.html">Run</a>
                     </section>
 
     <section>
@@ -792,22 +629,29 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
         </ul>
     </section>
 
-    <section>
+                <section>
                     <h3>Hello World AngularJS</h3>
 <pre><code class="xml" contenteditable>&lt;html ng-app>
 &lt;head>
     &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js">&lt;/script>
     &lt;script src="controller.js">&lt;/script>
 &lt;/head>
-&lt;body ng-controller="HelloController">
-    &lt;input ng-model="greeting">
-    &lt;p>{{greeting}}, World!&lt;/p>
-&lt;/body>
+&lt;body ng-controller="HelloController as helloController">
+    &lt;input ng-model="helloController.greeting.text">
+    &lt;p>{{helloController.greeting.text}}, World!&lt;/p>
+    &lt;input type="button" value="Clear" ng-click="helloController.clear()">
+    &lt;/body>
 &lt;/html></code></pre>
-<pre><code class="javascript" contenteditable>function HelloController($scope) {
-    $scope.greeting = 'Hello';
-}</code></pre>
-        <a href="../HelloWorld/helloWorldAngular2.html" target="_blank">Run</a>
+<pre><code class="javascript" contenteditable>function HelloController() {
+    this.greeting = {
+        text: 'Hello'
+    };
+}
+HelloController.prototype.clear = function() {
+    this.greeting.text = '';
+};
+</code></pre>
+        <a href="../HelloWorld/helloWorldAngular3.html">Run</a>
                 </section>
 
     <section>
@@ -831,6 +675,7 @@ var olli: HasName = new Person('Olli', 43);</code></pre>
 
             <section>
             <h3>Hello World React</h3>
+                <div>
 <pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>
 &lt;script type="text/jsx">
 /** @jsx React.DOM */
@@ -843,23 +688,14 @@ var HelloMessage = React.createClass({
 
 React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
 &lt;/script></code></pre>
-                <a href="../HelloWorld/helloWorldReact.html" target="_blank">Run</a>
+                <a href="../HelloWorld/helloWorldReact.html">Run</a>
+                </div>
             <ul>
                 <li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse
                 <li class="fragment"><code>render</code>: erzeugt das virtuelle DOM
                 <li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz
             </ul>
         </section>
-
-    <!-- Jeden einzelnen Punkt am Projekt zeigen -->
-    <!--<section>-->
-        <!--<h3>Live-Demo: React.js mit RequireJS</h3>-->
-        <!--<ul>-->
-            <!--<li class="fragment"><code>yo react</code>-->
-            <!--<li class="fragment">Modul-Definition und Abhängigkeitsauflösung mit requireJs-->
-            <!--<li class="fragment">Einfache JSX basierte React-Anwendung-->
-        <!--</ul>-->
-    <!--</section>-->
 
     <section>
         <h3>Option: ExtJs</h3>
@@ -892,49 +728,38 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         });
     }
 });</code></pre>
-    <a href="../HelloWorld/helloWorldExtjs.html" target="_blank">Run</a>
+    <a href="../HelloWorld/helloWorldExtjs.html">Run</a>
 
                     </section>
 
+<section>
+    <h3>Letzte Option: Kein Framework</h3>
+    <ul>
+        <li class="fragment">Selbstbetrug ausschließen: Was ist die Motivation?
+        <li class="fragment">Passt wirklich keines der Frameworks zu den Anforderungen?
+        <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
+            Standard-Framework?
+        <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
+        <li class="fragment">Wer wird das Framework warten?
+        <li class="fragment">Wird es ein Framework- und ein Applikations-Team geben?
+    </ul>
+</section>
 
-    <section>
-        <h3>Letzte Option: Kein Framework</h3>
-        <ul>
-            <li class="fragment">Was ist die Motivation?
-            <li class="fragment">Passt keines der Frameworks zu den Anforderungen?
-            <li class="fragment">Selbstbetrug ausschließen: Bauen wir uns nicht unser eigenes Framework?
-            <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
-                Standard-Framework?
-            <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
-        </ul>
-    </section>
-
-    <section>
-        <h3>Wrapup</h3>
-        <ul>
-            <li class="fragment">Kein Framework: Gängige Frameworks passen nicht oder Anwendung ist sehr einfach
-            <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
-            <li class="fragment">Angular.js / Ember / Knockout: Sehr praktisch für SPAs und größere Projekte
-            <li class="fragment">React: Höchste Anforderungen an Performanz, server-seitiges Rendering möglich
-            <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
-        </ul>
-    </section>
+<section>
+    <h3>Wrapup</h3>
+    <ul>
+        <li class="fragment">Kein Framework: Hybris, gängige Frameworks passen nicht oder Anwendung ist sehr einfach
+        <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
+        <li class="fragment">Angular.js / Ember / Knockout: Sehr praktisch für SPAs und größere Projekte
+        <li class="fragment">React: Höchste Anforderungen an Performanz, server-seitiges Rendering möglich, fehlende Teile evtl. über Backbone
+        <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
+    </ul>
+</section>
 </section>
 
 <section>
     <h1>Fragen?</h1>
 </section>
-
-<!--<section>-->
-    <!--<h2>Weitere Fragestellungen</h2>-->
-    <!--<p class="fragment">Mit JavaScript ...</p>-->
-    <!--<ul>-->
-        <!--<li class="fragment">... reactive MicroServices als Big Data im elastischen Hadoop Cluster als IoT-->
-        <!--<li class="fragment">Mit DevOps mobil deployen-->
-
-
-    <!--</ul>-->
-<!--</section>-->
 
 <section>
     <h2>Was haben wir gesehen?</h2>
@@ -957,6 +782,34 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         <li class="fragment">Einstieg daher oft mit Angst und Unsicherheit verbunden
     </ul>
 </section>
+
+<!--
+<section>
+    <section>
+        <h2>Problemstellung #4: Was braucht mein Team, um JavaScript entwickeln zu können?</h2>
+    </section>
+    <section>
+        <h2>Offene Problemstellung</h2>
+        <ul>
+            <li class="fragment">Wie kann ich Vertrauen in JavaScript entwickeln?
+            <li class="fragment">Glaubenssätze
+                <ul>
+                    <li class="fragment">JavaScript ist für Dinge, die man mit CSS nicht hinbekommt
+                    <li class="fragment">Für Business-Code muss man Java nehmen
+                    <li class="fragment">Der Begriff JavaScript-Anwendungsentwickler ist genau so sonderbar wie CSS-Anwendungsentwickler
+                </ul>
+            </li>
+            <li class="fragment">Große Änderungen führen zu großer Unsicherheit
+            <li class="fragment">Welche meiner Best-Practices kann ich von Java nach JavaScript transportieren?
+        </ul>
+    </section>
+    <section>
+        <h3>Welche weiteren Fragestellungen fallen euch ein?</h3>
+        <h3 class="fragment">Meine Antworten habe ich bereits gegeben...</h3>
+        <h3 class="fragment">... was sind eure?</h3>
+    </section>
+</section>
+-->
 
 <section>
     <h1>Vielen Dank</h1>
