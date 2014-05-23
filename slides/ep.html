@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
     <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
-    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
-    <link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">
+    <link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
 
     <!-- For syntax highlighting -->
     <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
@@ -355,23 +355,23 @@
 <!--</code></pre>-->
     <!--</section>-->
 
-        <!--<section>-->
-        <!--<h3>Beispiel-Code: Class</h3>-->
-<!--<pre><code class="javascript" contenteditable>/**-->
- <!--*-->
- <!--* @param name {string}-->
- <!--* @param alter {number}-->
- <!--* @param geschlecht {string=}-->
- <!--* @constructor-->
- <!--* @implements {HasName}-->
- <!--*/-->
-<!--function Person(name, alter, geschlecht) {-->
-    <!--this.name = name;-->
-    <!--this.alter = alter;-->
-    <!--this.geschlecht = geschlecht;-->
-<!--}-->
-<!--</code></pre>-->
-    <!--</section>-->
+        <section>
+        <h3>Beispiel-Code: Class</h3>
+<pre><code class="javascript" contenteditable>/**
+ *
+ * @param name {string}
+ * @param alter {number}
+ * @param geschlecht {string=}
+ * @constructor
+ * @implements {HasName}
+ */
+function Person(name, alter, geschlecht) {
+    this.name = name;
+    this.alter = alter;
+    this.geschlecht = geschlecht;
+}
+</code></pre>
+    </section>
 
     <section>
         <h3>Google Closure Compiler: Bewertung</h3>
@@ -407,23 +407,23 @@
                 Release von Anders Hejlsberg</a>
         </ul>
     </section>
-            <!--<section>-->
-        <!--<h3>Beispiel-Code</h3>-->
-<!--<pre><code class="java javascript" contenteditable>interface HasName {-->
-    <!--getName(): string;-->
-<!--}-->
+            <section>
+        <h3>Beispiel-Code</h3>
+<pre><code class="java javascript" contenteditable>interface HasName {
+    getName(): string;
+}
 
-<!--class Person implements HasName {-->
-    <!--constructor(private name: string, private alter: number,-->
-    <!--private geschlecht: string = 'F') {-->
-    <!--}-->
-    <!--getName() {-->
-        <!--return this.name;-->
-    <!--}-->
-<!--}-->
+class Person implements HasName {
+    constructor(private name: string, private alter: number,
+    private geschlecht: string = 'F') {
+    }
+    getName() {
+        return this.name;
+    }
+}
 
-<!--var olli: HasName = new Person('Olli', 43);</code></pre>-->
-    <!--</section>-->
+var olli: HasName = new Person('Olli', 43);</code></pre>
+    </section>
 
     <section>
         <h3>TypeScript: Bewertung</h3>
