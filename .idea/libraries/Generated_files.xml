@@ -4,6 +4,7 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/code/typescript/9-typescript-eater.js" />
         <item url="file://$PROJECT_DIR$/code/typescript/4-typescript-declared-type.js" />
+        <item url="file://$PROJECT_DIR$/code/angularapp/test/e2e/test-angular2.js" />
         <item url="file://$PROJECT_DIR$/slides/ts-examples/types.js" />
         <item url="file://$PROJECT_DIR$/slides/ts-examples/io2.js" />
         <item url="file://$PROJECT_DIR$/code/typescript/9-typescript-modules.js" />
@@ -12,6 +13,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/code/typescript/9-typescript-eater.js" />
       <root url="file://$PROJECT_DIR$/code/typescript/4-typescript-declared-type.js" />
+      <root url="file://$PROJECT_DIR$/code/angularapp/test/e2e/test-angular2.js" />
       <root url="file://$PROJECT_DIR$/slides/ts-examples/types.js" />
       <root url="file://$PROJECT_DIR$/slides/ts-examples/io2.js" />
       <root url="file://$PROJECT_DIR$/code/typescript/9-typescript-modules.js" />

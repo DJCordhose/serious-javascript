@@ -4,7 +4,8 @@ exports.config = {
 //  allScriptsTimeout: 11000,
 
   specs: [
-    'test/e2e/test-demo.js'
+    'test/e2e/test-demo.js',
+//      'test/e2e/test-angular.js'
   ],
 
   capabilities: {
