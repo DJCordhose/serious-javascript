@@ -1,10 +1,10 @@
 <!doctype html>
-<html ng-app>
+<html>
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="controllerAs.js"></script>
 </head>
-<body>
+<body ng-app>
     <div ng-controller="HelloController as helloController">
         <input ng-model='helloController.greeting.text'>
         <p>{{helloController.greeting.text}}, World!</p>

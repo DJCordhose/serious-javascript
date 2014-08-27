@@ -9,6 +9,10 @@ describe('demo', function() {
 
     it('should contain title', function() {
         var el = element(by.id("titleOfApp"));
+        browser.debugger('');
+//        browser.takeScreenshot().then(function() {
+//
+//        });
         expect(el.isPresent()).toBeTruthy();
     });
 

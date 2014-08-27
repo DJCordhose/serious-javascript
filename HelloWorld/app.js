@@ -10,7 +10,7 @@ Ext.application({
                 {
                     xtype: 'panel',
                     title: 'Hello World',
-                    html : 'Hello!'
+                    html : '<h1>Hello</h1>'
                 }
             ]
         });
