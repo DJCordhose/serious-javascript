@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>document.write example</title>
+    <script>
+
+        function newContent() {
+            alert("load new content");
+//            document.open();
+            document.write("<h1>Out with the old - in with the new!</h1>");
+//            document.close();
+        }
+
+    </script>
+</head>
+<body onload="newContent()">
+<p>Some original document content.</p>
+
+<div>
+    <script>
+        document.write("<h3>Writing inline</h3>");
+    </script>
+</div>
+<p>More content</p>
+</body>
+</html>

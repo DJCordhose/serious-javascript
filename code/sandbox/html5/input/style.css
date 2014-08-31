@@ -1,0 +1,8 @@
+[required] {
+    border-color: #88a;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 255, .5);
+}
+:invalid {
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 10px rgba(255, 0, 0, .8);
+}

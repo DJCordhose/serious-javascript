@@ -1,0 +1,8 @@
+{
+  "name": "gulp-sandbox",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-uglify": "latest"
+
+  }
+}
