@@ -88,6 +88,20 @@
         <li class="fragment">Kommunikation mit mehreren API-Servern über CORS möglich
     </ul>
 </section>
+
+<section>
+    <h2>Technische Anforderungen an den Browser</h2>
+    <ul>
+        <li class="fragment">SPAs laufen länger (teilweise viel länger) als eine klassiche Webseite
+        <li class="fragment">Manche SPAs schließt man fast nie
+        <li class="fragment">Bei mir sind das Gmail, Facebook und Twitter
+        <li class="fragment">Die Anforderungen für Speicher-Management vergleichbar wie bei einer Desktop-Applikation
+        <li class="fragment">Reaktionszeiten der Anwendungen sind ebenso wichtig
+        <li class="fragment">Moderne Browser bieten Mittel des Profilings und der Analyse
+        <li class="fragment">Chrome sticht hervor, aber auch Firefox und die neuesten IE (ab 11) erlauben Profiling
+        <li class="fragment">Mehr dazu: <a target="_blank" href="https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass">https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass</a></li>
+    </ul>
+</section>
 <section>
     <h2>RESTFul Web Services</h2>
     <p>REST = Representational State Transfer</p>
@@ -156,7 +170,7 @@
     &lt;/body&gt;
 &lt;/html&gt;
                         </code></pre>
-                        <a href="../HelloWorld/helloworld2.html">Run</a>
+                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
                     </section>
 
     <section>
@@ -191,7 +205,7 @@
     &lt;/body&gt;
 &lt;/html&gt;
                         </code></pre>
-                        <a href="../HelloWorld/helloworld-jQuery.html">Run</a>
+                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
                     </section>
 
     <section>
@@ -236,7 +250,7 @@ HelloController.prototype.clear = function() {
     this.greeting.text = '';
 };
 </code></pre>
-        <a href="../HelloWorld/helloWorldAngular3.html">Run</a>
+        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
                 </section>
 
     <section>
@@ -273,7 +287,7 @@ var HelloMessage = React.createClass({
 
 React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
 &lt;/script></code></pre>
-                <a href="../HelloWorld/helloWorldReact.html">Run</a>
+                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
                 </div>
             <ul>
                 <li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse
@@ -314,7 +328,7 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         });
     }
 });</code></pre>
-    <a href="../HelloWorld/helloWorldExtjs.html">Run</a>
+    <a target="_blank" href="../HelloWorld2/helloWorldExtjs.html">Run</a>
 
                     </section>
 
@@ -327,7 +341,6 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
             Standard-Framework?
         <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
         <li class="fragment">Wer wird das Framework warten?
-        <li class="fragment">Wird es ein Framework- und ein Applikations-Team geben?
     </ul>
 </section>
 
@@ -335,8 +348,8 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
     <h3>Wrapup</h3>
     <ul>
         <li class="fragment">Kein Framework: Hybris, gängige Frameworks passen nicht oder Anwendung ist sehr einfach
-        <li class="fragment">jQuery: DOM als Abstraktion ist ausreichend, Projekt evtl. nicht sehr komplex
-        <li class="fragment">Angular.js / Ember / Knockout: Sehr praktisch für SPAs und größere Projekte
+        <li class="fragment">jQuery: keine Abstraktion vom DOM, bei vielen Ausdrücken wird es unübersichtlich
+        <li class="fragment">Angular.js: Trifft viele Entscheidungen für uns, viele davon gut, Java-Programmierer fühlen sich abgeholt
         <li class="fragment">React: Höchste Anforderungen an Performanz, server-seitiges Rendering möglich, fehlende Teile evtl. über Backbone oder Flux
         <li class="fragment">Ext.js: Für Business-Anwendungen, wie man sie auch mit JSF oder JavaFX bauen würde
     </ul>
@@ -438,9 +451,9 @@ http.createServer(handleRequest).listen(1337);</code></pre>
 <section>
     <h2>Wrap Up</h2>
     <ul>
-        <li class="fragment">Es gibt wenige echte Standards
-        <li class="fragment">Gute Frameworks machen das DOM und die Browser-Vielfalt erträglich
-        <li class="fragment">Langlebigkeit von Bibliotheken teilweise fraglich
+        <li class="fragment">SPAs erlauben einen Bedienkomfort, der Desktop-Anwendungen in nichts nachstehen muss
+        <li class="fragment">JavaScript und der Browser sind reif für SPAs
+        <li class="fragment">Die Auswahl des richtigen Frameworks ist essentiell
         <li class="fragment">JavaScript ist auf Client und auf Server möglich
     </ul>
 </section>
