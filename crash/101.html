@@ -1,0 +1,363 @@
+<!--http://localhost:63342/JavaScript%20Training/#/-->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>101 JavaScript-Grundlagen für Java-Entwickler</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+        <style>
+            pre code {
+                display: block;
+                padding: 0.5em;
+                background: #FFFFFF;
+                color: #000000;
+            }
+        </style>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>JavaScript 101: Grundlagen</h1>
+				</section>
+
+                <section>
+                    <h2>Object</h2>
+                        <pre><code class="javascript" contenteditable>var map = {
+    feld1: 'Huhu',
+    zweites$Feld: "Auch sowas geht!"
+};
+console.log(typeof map === "object"); // true
+console.log(map.feld1); // Huhu
+console.log(map["zweites$Feld"]); // Auch sowas geht!
+
+map.hund = "Ganz neu geht auch";
+map.f = function() { return "Aha!" };
+
+delete map.hund; // löschen
+console.log(map.hund); // undefined</code></pre>
+                </section>
+
+                <section>
+                    <h2>Array</h2>
+                        <pre><code class="javascript" contenteditable>
+var array = ["a", "b", "c"];
+var el = array[2];
+array[1] = 20;
+typeof array === "object";
+// fügt die 4 am Ende hinzu
+array.push(4);
+// An Position 1 werden 2 Elemente entfernt und zurück gegeben
+array.splice(1, 2);
+// An Position 1 werden 0 Elemente entfernt und zurück gegeben
+// Zudem wird an Position 1 "x" hinzugefügt
+array.splice(1, 0, "x");
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Typen</h2>
+                        <pre><code class="javascript" contenteditable>var string = "String";
+typeof string === "string";
+
+var int = 1;
+typeof int === "number";
+
+var float = 1.0;
+typeof float === "number";
+
+var bool = true;
+typeof bool === "boolean";
+
+var func = function() {};
+typeof func === "function";
+
+typeof michGibtEsNicht === "undefined";</code></pre>
+                </section>
+
+                <section>
+                    <h2>string</h2>
+<pre><code class="javascript" contenteditable>var s1 = 'Hallo, ';
+var s2 = "Olli's Oma";
+
+var s3 = s1 + s2;
+s3 === "Hallo, Olli's Oma";
+
+s3[1] === "a";
+s3.charAt(1) === s3[1];
+
+// kann viel schneller sein als +
+var builder = ["a", "b", "c"];
+var s4 = builder.join("");
+s4 === 'abc';
+</code></pre>
+                </section>
+
+                <section>
+                <section>
+                    <h2>Kontrollstrukturen</h2>
+                </section>
+                <section>
+                    <h2>Iterieren über Array-Elemente</h2>
+                        <pre><code class="javascript" contenteditable>
+for (var i=0; i &lt; array.length; i++) {
+    console.log(i + ": " + array[i]);
+}
+
+// Achtung: Iteriert über Indizes, nicht über die Elemente!
+for (var i in array) {
+    console.log(i + ": " + array[i]);
+}
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Kontrollstrukturen ansonsten wie in Java</h2>
+                    <ul>
+                        <li>if / else
+                        <li>while / do
+                        <li>switch
+                        <li>break / continue
+                        <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Statements">Referenz</a></li>
+                    </ul>
+                </section>
+            </section>
+                <section id="grundlagen">
+                    <section>
+                        <h2>Übung 1: Basiswissen</h2>
+                        <ul>
+                            <li>Erzeuge ein Array mit Personen-Objekten mit mindestens den Eigenschaften
+                                <ul>
+                                    <li>Name
+                                    <li>Alter
+                                    <li>Geschlecht
+                                </ul>
+                            </li>
+                            <li>Gib alle Personen nacheinander aus
+                                <ul>
+                                    <li>Erzeuge aus den Daten einen string, der dann mit <code>console.log</code> ausgegeben wird
+                                    <li>Benutze dafür beide Varianten der <code>for</code>-Schleife
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                <section>
+                    <h2>Funktionen</h2>
+                        <pre><code class="javascript" contenteditable>
+var f1 = function(p1, p2) {
+    return p1 + p2;
+};
+var result1 = f1(1,2);
+result1 === 3;
+
+function f2() {
+    console.log("Called!");
+}
+var result2 = f2();
+result2 === undefined;
+                        </code></pre>
+                </section>
+                                    <section>
+                    <h2>Arrays revisited</h2>
+    <pre><code class="javascript" contenteditable>var array = [1,2,3];
+
+array.forEach(function(e) { console.log(e); });
+
+array.filter(function(e) { return e > 2; });
+
+array.map(function(e) { return e + 100; });
+
+array.reduce(function(reduced, current) {
+    return reduced + current;
+}, 100);</code></pre>
+                </section>
+
+                <section>
+                    <h2>Optionale Parameter</h2>
+                        <pre><code class="javascript" contenteditable>function f1(p1) {
+    if (typeof p1 === 'undefined') {
+        return null;
+    } else {
+        return p1;
+    }
+}
+
+var result1 = f1(1);
+console.log(result1 === 1);
+
+var result2 = f1();
+console.log(result2 === null);</code></pre>
+                </section>
+                <section>
+                    <h2>Varargs #1</h2>
+                    <pre><code class="javascript" contenteditable>function f2() {
+    // "arguments" enthält immer alle Argumente der Funktion
+    if (typeof arguments[0] === 'undefined') {
+        return null;
+    } else {
+        return arguments[0];
+    }
+}
+
+var result3 = f2(1);
+console.log(result3 === 1);
+
+var result4 = f2();
+console.log(result4 === null);</code></pre>
+                </section>
+                    <section>
+                        <h2>Varargs #2</h2>
+                    <pre><code class="javascript" contenteditable>function summe() {
+    var sum = 0;
+    for (var a in arguments) {
+        sum += arguments[a];
+    }
+    return sum;
+}
+
+var result5 = summe(1,2,3);
+console.log(result5 === 6);</code></pre>
+                    </section>
+            </section>
+
+                <section>
+                    <section>
+                    <h1>Scopes</h1>
+                    </section>
+                    <section>
+                        <h2>So nicht!</h2>
+    <pre><code class="javascript" contenteditable>
+{
+    var huch = "Ich bin noch da";
+}
+
+console.log(huch); // Ich bin noch da
+    </code></pre>
+
+                    </section>
+                    <section>
+                        <h2>So!</h2>
+    <pre><code class="javascript" contenteditable>
+(function () {
+    var achso = "Ich bin weg";
+}());
+
+console.log(achso); // ReferenceError
+    </code></pre>
+                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
+
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                    <h2>Exception Handling</h2>
+    <pre><code class="javascript" contenteditable>
+try {
+    throw "Error";
+    // or
+    throw new Error("Error");
+} catch (e) {
+    console.log("Caught: " + e)
+} finally {
+    console.log("Always")
+}
+    </code></pre>
+                    </section>
+
+                </section>
+
+                <section id="grundlagen2">
+                    <section>
+                        <h2>Übung 2: Mehr JavaScript Grundlagen</h2>
+                        <h4>Funktionen und Exceptions kennen lernen</h4>
+                        <p>Schreibe den Code der vorherigen Übung auf die Verwendung von Funktionen und Exceptions um</p>
+                    </section>
+                    <section>
+                        <h4>Schritt 1: Funktionen</h4>
+                        <ol>
+                            <li>Erstelle eine Funktion, die eine Person formatiert auf der Console ausgibt
+                            <li>Benutze <code>forEach</code> auf dem Array der Personen um dieselben Aufgaben wie in Übung 1 zu lösen
+                            <li>Du solltest hier keine for-Schleife mehr haben
+
+                        </ol>
+                    </section>
+                    <section>
+                        <h4>Optionaler Schritt 2: Exceptions</h4>
+                        <ol>
+                            <li>Erweitere das Programm um eine Funktion zum überprüfen von Personen. Kann jemand über 200 Jahre alt sein?
+                            <li>Die Funktion soll im Fehlerfall eine Exception schmeißen
+                            <li>Erweitere dein Array um Methusalem oder eine andere geeignete Person
+                            <li>Rufe deine Check-Funktion nacheinander auf allen Elementen des Arrays auf
+                            <li>Umschließe den Aufruf mit <code>try...catch...finally</code> und gib eine gefangene Exception aus
+                        </ol>
+                    </section>
+                    <section>
+                        <h4>Optionaler Schritt 3: Map/Reduce</h4>
+                        <ol>
+                            <li>Bilde das Array von Personen mittels <code>map</code> auf ihr Alter ab
+                            <li>Nutze <code>reduce</code>, um daraus das Durchschnittsalter aller Personen zu berechnen
+                        </ol>
+                    </section>
+                </section>
+            </div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/../reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on ../reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

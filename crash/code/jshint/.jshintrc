@@ -1,0 +1,13 @@
+{
+	"curly": true,
+	"eqeqeq": true,
+	"quotmark": "single",
+	"unused": true,
+	"strict": true,
+	"onevar": false,
+    "asi": false,
+
+	"predef": [
+		"declaredAsGlobal"
+	]
+}
