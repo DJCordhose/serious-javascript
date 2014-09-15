@@ -1,9 +1,9 @@
 /*
 Content:
 * var
+* object
 * console.log
 * environments: node und chrome
-* object
 * array
 * for
 * function
