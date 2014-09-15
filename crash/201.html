@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>201 Advanced JavaScript</title>
+		<title>201 JavaScript Patterns</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -88,9 +88,9 @@ obj.log.call(global);
             </section>
             <section>
                 <section>
-                    <h2>Klassische Typen und Vererbung mit JavaScript</h2>
+                    <h2>Klassen mit JavaScript</h2>
                     <ul>
-                        <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+                        <li class="fragment">Klassen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
                         <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
                         <li class="fragment">Einfachvererbung ist ebenso möglich
                         <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
@@ -154,9 +154,9 @@ olli instanceof Person;
 
         </section>
         <section>
-            <h2>Übung 3: Typen</h2>
+            <h2>Übung 3: Klassen</h2>
             <ol>
-                <li>Schreibe einen Typen für Person
+                <li>Schreibe eine Klasse für Person
                     <ul>
                         <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
                             <code>alter</code> und <code>geschlecht</code> zu
@@ -166,115 +166,94 @@ olli instanceof Person;
                 <li>Erzeuge ein Objekt vom Typ Person und rufe Methoden darauf auf
             </ol>
         </section>
-
-                <section>
-                    <section>
-                        <h3>Vererbung</h3>
-                        <ol>
-                            <li class="fragment">Typen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
-                            <li class="fragment">Typen-Hierarchien werden einmal aufgebaut und als Prototypen der Instanzen verwendet
-                            <li class="fragment">Typen-Hierarchien werden ebenso über Prototypen erstellt
-                            <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
-                        </ol>
-                    </section>
-                    <section>
-                        <h3>Vererbung #1</h3>
-    <pre><code class="javascript" contenteditable>function Person(name, gender) {
-    this.name = name;
-    this.gender = gender;
-}
-Person.prototype.getName = function() {
-    return this.name;
-};
-
-function Male(name) {
-    Person.call(this, name, "Male"); // super call
-}
-_extends(Male, Person);</code></pre>
-                    </section>
-                    <section>
-                        <h3>Vererbung #2</h3>
-    <pre><code class="javascript" contenteditable>Male.prototype.getName = function() {
-    // super call
-    return "Mr " + Person.prototype.getName.call(this);
-};
-
-var olli = new Male('Olli');
-olli.getName() === 'Mr Olli';
-olli.gender === 'Male';
-olli instanceof Male;
-olli instanceof Person;
-olli instanceof Object;</code></pre>
-                    </section>
-                    <!--<section>-->
-                        <!--<h3>Übung 4a: Wie kann man die Vererbungsbeziehung ausdrücken?</h3>-->
-                        <!--<ol>-->
-                            <!--<li class="fragment">Tut euch in 2er oder 3er-Gruppen zusammen-->
-                            <!--<li class="fragment">Diskutiert, welche Beziehung die _extends-Funktion zwischen Super- und-->
-                            <!--Sub-Klasse aufbauen müsste-->
-                            <!--<li class="fragment">Überlegt euch eine mögliche Implementierung-->
-                            <!--<li class="fragment">Schaut nicht auf die nachfolgenden Folien-->
-                            <!--<li class="fragment">Wenn ihr bereits jetzt eine Lösung kennt, tut euch mit Leuten zusammen,-->
-                            <!--die ebenfalls eine Lösung haben und disktuiert diese zusammen-->
-                            <!--<li class="fragment">Ihr habt 15 Minuten Zeit-->
-                        <!--</ol>-->
-                    <!--</section>-->
-                    <section>
-                        <h3>Vererbung #3</h3>
-                        <p>Die einfache Version</p>
-    <pre><code class="javascript" contenteditable>function _extends(_sub, _super) {
-    _sub.prototype = new _super();
-}</code></pre>
-                        <p class="fragment">Offene Punkte</p>
-                        <ol>
-                            <li class="fragment">Störende Effekte des Konstruktors
-                            <ul>
-                                <li class="fragment">zusätzlich erzeugte Felder
-                                <li class="fragment">evtl. nicht ohne Parameter aufrufbar (Exception)
-                            </ul>
-                            <li class="fragment">Konstruktor-Property nicht richtig gesetzt</li>
-                        </ol>
-                    </section>
-
-                    <section>
-                        <h3>Vererbung #4</h3>
-                        <p>Das Prototype-Property der Konstruktor-Funktion dient als Vorlage für die Vererbungskette</p>
-    <pre><code class="javascript" contenteditable>function _extends(_sub, _super) {
-    var IntermediateConstructor = function () {};
-        IntermediateConstructor.prototype = _super.prototype;
-    _sub.prototype = new IntermediateConstructor();
-    // Weil auch sonst:
-    // function Ctor() {}
-    // Ctor.prototype.constructor === Ctor
-    _sub.prototype.constructor = _sub;
-} </code></pre>
-                    </section>
-                    <section>
-                        <h3>Vererbung #5</h3>
-                        <p>Direktes Erzeugen des Prototypen-Properties</p>
-    <pre><code class="javascript" contenteditable>function _extends(_sub, _super) {
-    _sub.prototype = Object.create(_super.prototype);
-    _sub.prototype.constructor = _sub;
-} </code></pre>
-<p class="fragment">Erzeugt ein neues Objekt mit dem angegeben Objekt als Prototypen</p>
-<p class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create">Referenz auf MDN</a></p>
-                    </section>
-                </section>
+        <section>
             <section>
-                <h2>Übung 4: Vererbung</h2>
-                <ol>
-                    <li>Schreibe den Typen Customer
-                        <ul>
-                            <li>Customer soll von Person erben
-                            <li>Berechne im Konstruktor aus den Parametern zumindest ein zusätzliches Feld, das den vermuteten bevorzugten Kaufgegenstand angibt
-                            <li>Rufe aus dem Customer-Konstruktor den Person-Konstruktor auf
-                            <li>Überschreibe die Methode <code>getName</code>
-                            <li>Füge die Methode <code>shop</code> hinzu, die den bevorzugten Gegenstand ausgibt
-                        </ul>
-                    </li>
-                    <li>Erzeuge mindestens ein Objekt vom Typ Customer und rufe Methoden darauf auf
-                </ol>
+                <h2>Vererbungshierarchien</h2>
+                <ul>
+                    <li class="fragment">Das verwirrendste Thema in JavaScript
+                    <li class="fragment">Klassen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
+                    <li class="fragment">Klassen-Hierarchien werden einmal aufgebaut und als Prototypen der
+                        Instanzen verwendet
+                    <li class="fragment">Klassen-Hierarchien werden ebenso über Prototypen erstellt
+                    <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
+                    <li class="fragment">Alternative zu Klassen-Hierarchien sind Mixins
+                </ul>
             </section>
+                <section>
+                    <h3>Mixins</h3>
+                    <pre><code class="javascript" contenteditable>function Logable(name) {
+    this.name = name;
+}
+Logable.prototype.log = function(msg) {
+    console.log(this.name + ": " + msg);
+}
+
+function Person(name, age) {
+    Logable.call(this, name);
+    this.age = age;
+}
+_mixin(Person, Logable);
+
+var olli = new Person('Olli');
+console.log(olli instanceof Person); // true
+console.log(olli instanceof Logable); // false
+olli.log('Hi');</code></pre>
+                </section>
+                <section>
+                    <h3>Implementierung von _mixin</h3>
+                    <pre><code class="javascript" contenteditable>function _mixin(_sub, _super) {
+    for (var p in _super.prototype) {
+        if (p === 'constructor') {
+            continue;
+        }
+        _sub.prototype[p] = _super.prototype[p];
+    }
+}</code></pre>
+                </section>
+                <section>
+                    <h3>Klassen-Hierarchien über Prototypen</h3>
+                    <pre><code class="javascript" contenteditable>function Logable(name) {
+    this.name = name;
+}
+Logable.prototype.log = function(msg) {
+    console.log(this.name + ": " + msg);
+}
+
+function Person(name, age) {
+    Logable.call(this, name);
+    this.age = age;
+}
+_extends(Person, Logable);
+
+var olli = new Person('Olli');
+console.log(olli instanceof Person); // true
+console.log(olli instanceof Logable); // true
+olli.log('Hi');</code></pre>
+                </section>
+                <section>
+                    <h3>Implementierung von _extends</h3>
+                    <pre><code class="javascript" contenteditable>function _extends(_sub, _super) {
+    _sub.prototype = new _super();
+}
+</code></pre>
+                <p class="fragment">Achtung: Vereinfachte Version mit Schwächen</p>
+                </section>
+
+        </section>
+                <section>
+                <h3>Static</h3>
+    <pre><code class="javascript" contenteditable>// Statisches Feld
+Person.lieblingsName = "Olli";
+
+// Statische Funktion, greift nicht auf this zu
+Person.getLieblingsName = function() {
+    return Person.lieblingsName;
+};
+
+Person.lieblingsName === "Olli";
+Person.getLieblingsName() === "Olli";</code></pre>
+                </section>
+
                 <section>
                     <section>
                         <h2>Module</h2>
