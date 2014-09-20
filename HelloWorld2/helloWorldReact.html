@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="http://fb.me/react-0.10.0.js"></script>
-    <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
+    <script src="http://fb.me/react-0.11.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.11.2.js"></script>
 </head>
 <body>
 <div id="example"></div>
 <script type="text/jsx">
-/** @jsx React.DOM */
-var mountNode = document.getElementById('example');
+/** @jsx React.DOM **/
 var HelloMessage = React.createClass({
+  getInitialState: function() {
+    return { model: this.props.greeting};
+  },
+  updateModel: function(event) {
+    this.setState({model: event.target.value});
+  },
+  reset: function() {
+    this.setState({model: ""});
+  },
   render: function() {
-    return <div>Hello {this.props.name}</div>;
+    return (<div>
+        <input onChange={this.updateModel} value={this.state.model} />
+        <p>{this.state.model}, World</p>
+        <input type="button" value="Clear" onClick={this.reset} />
+     </div>);
   }
 });
+var mountNode = document.getElementById('example');
+React.renderComponent(<HelloMessage greeting="Hello" />, mountNode);
 
-React.renderComponent(<HelloMessage name="Olli" />, mountNode);
 </script>
 </body>
 </html>

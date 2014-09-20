@@ -4,13 +4,33 @@
     <title>Hello World jQuery!</title>
 </head>
 <body>
-    <div id="log"></div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#log").html("<h1>Hello World</h1>");
+<input id="in">
+<p><span id="log"></span>, World</p>
+<input id="btn" type="button" value="Clear">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+    var model;
+    // binding model => view
+    function setModel(value) {
+        model = value;
+        $("#log").html(model);
+        $("#in").val(model);
+    }
+    $(document).ready(function () {
+        // binding view => model
+        $("#in").on("keyup", function (event) {
+//        $("#in").on("change", function () {
+            setModel($("#in").val());
         });
-    </script>
+        $("#btn").on("click", function () {
+            setModel("");
+        });
+
+        // init
+        setModel("Hello");
+    });
+</script>
 </body>
 </html>
                         

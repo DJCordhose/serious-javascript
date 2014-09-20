@@ -4,10 +4,9 @@
     <title>Hello World Vanilla</title>
 </head>
 <body>
-<!--binding view => model-->
-<input id="in" onkeyup="setModel(this.value)">
+<input id="in">
 <p><span id="log"></span>, World</p>
-<input type="button" value="Clear" onclick="reset()">
+<input id="btn" type="button" value="Clear">
 <script>
     var model;
     // binding model => view
@@ -16,10 +15,15 @@
         document.getElementById("log").innerHTML = model;
         document.getElementById("in").value = model;
     }
-    function reset() {
-        setModel("");
-    }
     window.onload = function() {
+        // binding view => model
+        document.getElementById("in").addEventListener("change", function (event) {
+//        document.getElementById("in").addEventListener("keyup", function (event) {
+            setModel(document.getElementById("in").value);
+        });
+        document.getElementById("btn").addEventListener("click", function (event) {
+            setModel("");
+        });
         // init
         setModel("Hello");
     };

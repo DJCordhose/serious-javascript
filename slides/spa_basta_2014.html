@@ -73,7 +73,6 @@
     <img src="Schilder_Signierstunde_Zeigermann.png" height="700">
 </section>
 
-
 <section>
     <h2>Single Page Applications (SPA)</h2>
     <ul>
@@ -84,6 +83,18 @@
         <li class="fragment">Erlaubt höchste Interaktivität und beste Reaktion auf Benutzereingaben
         <li class="fragment">Komfort vergleichbar mit Desktop-Anwendungen
         <li class="fragment">Offline-Fähigkeit
+    </ul>
+</section>
+
+<section>
+    <h2>Inhalt</h2>
+    <ul>
+        <li class="fragment">Architektur
+        <li class="fragment">Server-Seite und Client-/Server-Kommunikation
+        <!-- 25 Minuten -->
+        <li class="fragment">Frameworks
+        <!-- 15 Minuten -->
+        <li class="fragment">Fragen und Diskussion
     </ul>
 </section>
 
@@ -134,6 +145,31 @@
         <li class="fragment">Mehr dazu: <a target="_blank" href="https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass">https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass</a></li>
     </ul>
 </section>
+
+    <section>
+        <h2>Was mache ich auf der Server-Seite?</h2>
+    </section>
+    <section>
+        <h3>Fragestellung</h3>
+        <ul>
+            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
+            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
+            <li class="fragment">Wie setzt man diesen um?
+            <li class="fragment">JEE/Spring/.NET/Rails/Python?
+            <li class="fragment">Oder ebenfalls in JavaScript?
+        </ul>
+    </section>
+
+    <section>
+        <h3>Option #1: Server in klassicher Server-Technik (JEE/Spring/.NET/Rails/Python)</h3>
+        <h3 class="fragment">bzw. existierender Server bleibt wie er ist</h3>
+        <ul>
+            <li class="fragment">Naheliegende Lösung
+            <li class="fragment">Kommunikation über REST/JSON
+            <li class="fragment">Mapping von Objekten auf JSON
+            <li class="fragment">Polyglotte Programmierung
+        </ul>
+    </section>
 <section>
     <h2>RESTFul Web Services</h2>
     <p>REST = Representational State Transfer</p>
@@ -157,266 +193,15 @@
     <h2>Beispiel</h2>
     <p class="fragment">RESTFul Aufruf mit <code>GET</code>, z.B.</p>
     <pre class="fragment"><code class="html" contenteditable>https://mortgage-demo.appspot.com/mortgage_calculator/rs/200000/10/7.5/30</code></pre>
-    <p class="fragment">Aufrufparameter sind in die URL codiert, daher gut cachebar, Service zustandslos.</p>
+    <p class="fragment">Aufrufparameter sind in die URL codiert, Service zustandslos.</p>
+    <p class="fragment">Antwort als JSON</p>
+    <pre class="fragment"><code class="html" contenteditable>{"principle": "199990.00", "total": "503409.60", "payments": "360", "monthly": "1398.36"}</code></pre>
     <p class="fragment">Aufruf mit Pfad auf Ressource, z.B. <code>DELETE</code></p>
     <pre class="fragment"><code class="html" contenteditable>https://accounting.com/user/4711</code></pre>
+    <p class="fragment">Antwort Status Code 204 (No content)</p>
 </section>
 
 
-<section>
-    <h2>Problemstellung: Wie gehe ich mit den Komplexitäten der Browser-Entwicklung um?</h2>
-</section>
-
-<section>
-    <h3>Wozu ein Framework für die Browser-Entwicklung?</h3>
-    <ul>
-        <li class="fragment">Es gibt immer noch eine Reihe von Browser-Unterschieden bzgl. DOM und JavaScript (insbesondere
-            pre IE9)
-        <li class="fragment">Das DOM ist kein "ideales" API
-        <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
-    </ul>
-</section>
-<section>
-    <h3>Auswahl von Frameworks, die sich als Enterprise-würdig erwiesen haben</h3>
-    <ul>
-        <li class="fragment">jQuery
-        <li class="fragment">AngularJS
-        <li class="fragment">React
-        <li class="fragment">Ext.js
-        <li class="fragment">Kein Framework
-    </ul>
-</section>
-
-    <section>
-        <h2>Zum Vergleich: Hello World ohne Framework</h2>
-        <pre><code class="xml" contenteditable>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Hello World!&lt;/title&gt;
-  &lt;/head&gt;
-    &lt;body&gt;
-      &lt;div id="log">&lt;/div>
-      &lt;script&gt;
-          var element = document.getElementById("log");
-          element.innerHTML = "&lt;h1>Hello World&lt;/h1>";
-      &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                        </code></pre>
-                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
-                    </section>
-
-    <section>
-        <h3>Option: jQuery</h3>
-        <ul>
-            <li class="fragment">Standard-JavaScript-Bibliothek
-            <li class="fragment">Fast überall zu finden
-            <li class="fragment">Adressiert Probleme bei der Programmierung des DOMs
-            <li class="fragment">Abstrahiert nicht von der Ebene der DOM-Manipulation
-            <!--<li class="fragment">Flexible Trennung von View und Logik-->
-            <li class="fragment">Funktionalität unterteilbar in "Auswahl" und "Manipulation"
-            <!--<li class="fragment">Core, UI und Mobile Bibliothek vorhanden-->
-            <!--<li class="fragment">Viele Plugins vorhanden,-->
-                <!--z.B. <a target="_blank" href="http://sorgalla.com/jcarousel/">jcarousel</a>-->
-        </ul>
-    </section>
-    <section>
-        <h2>Hello World jQuery</h2>
-        <pre><code class="xml" contenteditable>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Hello World jQuery!&lt;/title&gt;
-    &lt;body&gt;
-      &lt;div id="log">&lt;/div>
-      &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">&lt;/script>
-
-      &lt;script&gt;
-        $(document).ready(function(){
-            $("#log").html("&lt;h1>Hello World&lt;/h1>");
-        });
-      &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                        </code></pre>
-                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
-                    </section>
-
-    <section>
-        <h3>Option: AngularJS</h3>
-        <h4>HTML enhanced for web apps!</h4>
-        <img src="angular.png">
-        <p><a target="_blank" href="http://angularjs.org/">http://angularjs.org</a></p>
-    </section>
-    <section>
-        <h3>Konzepte</h3>
-        <ul>
-            <li class="fragment">Client-Seitige Templates
-            <li class="fragment">MVC (Modell ist eher ViewModel)
-            <li class="fragment">Die drei Ds
-                <ul>
-                    <li class="fragment">Data Binding
-                    <li class="fragment">Dependency Injection
-                    <li class="fragment">Directives
-                </ul>
-        </ul>
-    </section>
-
-                <section>
-                    <h3>Hello World AngularJS</h3>
-<pre><code class="xml" contenteditable>&lt;html ng-app>
-&lt;head>
-    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js">&lt;/script>
-    &lt;script src="controller.js">&lt;/script>
-&lt;/head>
-&lt;body ng-controller="HelloController as helloController">
-    &lt;input ng-model="helloController.greeting.text">
-    &lt;p>{{helloController.greeting.text}}, World!&lt;/p>
-    &lt;input type="button" value="Clear" ng-click="helloController.clear()">
-    &lt;/body>
-&lt;/html></code></pre>
-<pre><code class="javascript" contenteditable>function HelloController() {
-    this.greeting = {
-        text: 'Hello'
-    };
-}
-HelloController.prototype.clear = function() {
-    this.greeting.text = '';
-};
-</code></pre>
-        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
-                </section>
-
-    <section>
-        <h3>Option: React</h3>
-            <ul>
-                <li class="fragment">Framework von Facebook und Instagram
-                <li class="fragment">Nur das V in MVC
-                <li class="fragment">Templates können in reinem JavaScript oder mit der Template-Sprache JSX geschrieben werden
-                    <ul>
-                        <li class="fragment">JSX kann "on the fly" gerendert oder
-                        <li class="fragment">für Produktion nach JavaScript vorkompiliert werden
-                    </ul>
-                </li>
-                <li class="fragment">Basiert auf Komponenten
-                <li class="fragment">der View wird als "virtuelles DOM" repräsentiert
-                <li class="fragment">Änderungen des Modells führen automatisch zum Neurendern von Komponenten
-                <li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell
-                <li class="fragment">React läuft im Browser und auf dem Server
-            </ul>
-        </section>
-
-            <section>
-            <h3>Hello World React</h3>
-                <div>
-<pre><code class="html" contenteditable>&lt;div id="example">&lt;/div>
-&lt;script type="text/jsx">
-/** @jsx React.DOM */
-var mountNode = document.getElementById('example');
-var HelloMessage = React.createClass({
-  render: function() {
-    return &lt;div>Hello {this.props.name}&lt;/div>;
-  }
-});
-
-React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
-&lt;/script></code></pre>
-                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
-                </div>
-            <ul>
-                <li class="fragment"><code>React.createClass</code>: Erzeugt eine neue Komponenten-Klasse
-                <li class="fragment"><code>render</code>: erzeugt das virtuelle DOM
-                <li class="fragment"><code>this.props</code> / input: Parameter für die Komponentnen-Instanz
-            </ul>
-        </section>
-
-    <section>
-        <h3>Option: ExtJs</h3>
-        <ul>
-            <li class="fragment">hat alle Komponenten für eine Business-Anwendung
-            <li class="fragment">folgt weniger der Web-Philosophy als der Desktop-Metapher
-            <li class="fragment"><a target="_blank"
-                                    href="http://www.sencha.com/blog/announcing-public-beta-of-ext-js-5/">ExtJS 5</a>
-                unterstützt alle Devices
-            <li class="fragment">Unterstützt weiterhin IE8
-            <li class="fragment">Unterschiedliche Themes durch austauschen von CSS
-            <li class="fragment">existiert seit vielen Jahren, Einsatz kommerziell
-            <li class="fragment"><a target="_blank" href="http://try.sencha.com/extjs/4.1.1/community/extjs4-mvc-portal/viewer.html">Hier bekommt man einen Eindruck</a>
-        </ul>
-    </section>
-    <section>
-    <h3>Hello World ExtJS</h3>
-<pre><code class="javascript" contenteditable>Ext.application({
-    name: 'Hello World',
-
-    launch: function() {
-        Ext.create('Ext.container.Viewport', {
-            layout: 'fit',
-            items: [
-                {
-                    xtype: 'panel',
-                    title: 'Hello World',
-                    html : 'Hello!'
-                }
-            ]
-        });
-    }
-});</code></pre>
-    <a target="_blank" href="../HelloWorld2/helloWorldExtjs.html">Run</a>
-
-                    </section>
-
-<section>
-    <h3>Letzte Option: Kein Framework</h3>
-    <ul>
-        <li class="fragment">Selbstbetrug ausschließen: Was ist die Motivation?
-        <li class="fragment">Passt wirklich keines der Frameworks zu den Anforderungen?
-        <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
-            Standard-Framework?
-        <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
-        <li class="fragment">Wer wird das Framework warten?
-    </ul>
-</section>
-
-<section>
-    <h3>Wrapup</h3>
-    <ul>
-        <li class="fragment">Kein Framework: Hybris, gängige Frameworks passen nicht oder Anwendung ist sehr einfach
-        <li class="fragment">jQuery: Der Standard, keine Abstraktion vom DOM, bei vielen Ausdrücken wird es unübersichtlich, andere Frameworks basieren darauf
-        <li class="fragment">Angular.js: Trifft viele Entscheidungen für uns, viele davon gut, Java-Programmierer fühlen sich abgeholt, Zusammenarbeit mit Designern möglich
-        <li class="fragment">React: minimales, einfaches API bei bester Performanz, server-seitiges Rendering möglich, fehlende Teile evtl. über Backbone oder Flux
-        <li class="fragment">Ext.js: Desktop-artige Anwendungen im Browser
-    </ul>
-</section>
-
-<section>
-    <h1>Fragen?</h1>
-</section>
-
-
-    <section>
-        <h2>Problemstellung: Was mache ich auf der Server-Seite?</h2>
-    </section>
-    <section>
-        <h3>Fragestellung</h3>
-        <ul>
-            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
-            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
-            <li class="fragment">Wie setzt man diesen um?
-            <li class="fragment">JEE/Spring/.NET/Rails/Python?
-            <li class="fragment">Oder ebenfalls in JavaScript?
-        </ul>
-    </section>
-
-    <section>
-        <h3>Option #1: Server in klassicher Server-Technik (JEE/Spring/.NET/Rails/Python)</h3>
-        <h3 class="fragment">bzw. existierender Server bleibt wie er ist</h3>
-        <ul>
-            <li class="fragment">Naheliegende Lösung
-            <li class="fragment">Kommunikation über REST/JSON
-            <li class="fragment">Mapping von Objekten auf JSON
-            <li class="fragment">Polyglotte Programmierung
-        </ul>
-    </section>
     <section>
         <h3>Option #2: JavaScript auch auf dem Server?</h3>
         <ul>
@@ -480,14 +265,151 @@ http.createServer(handleRequest).listen(1337);</code></pre>
             <!--<li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>-->
         </ul>
     </section>
+<section>
+    <h3>SPAs in vier Frameworks</h3>
+    <ul>
+        <li class="fragment">jQuery
+        <li class="fragment">AngularJS
+        <li class="fragment">React
+        <li class="fragment">Kein Framework (vanilla.js)
+    </ul>
+</section>
+
+    <section>
+        <h2>Zum Vergleich: Hello World ohne Framework</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in" onkeyup="setModel(this.value)">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input type="button" value="Clear" onclick="reset()">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        document.getElementById("log").innerHTML = model;
+        document.getElementById("in").value = model;
+    }
+    function reset() {
+        setModel("");
+    }
+    window.onload = function() {
+        setModel("Hello");
+    };
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
+                    </section>
+
+    <section>
+        <h3>Option: jQuery</h3>
+        <ul>
+            <li class="fragment">Standard-JavaScript-Bibliothek
+            <li class="fragment">Fast überall zu finden
+            <li class="fragment">Abstrahiert nicht von der Ebene der DOM-Manipulation
+            <li class="fragment">Typischerweise "unobtrusive", d.h. bestehendes HTML wird nicht verändert
+        </ul>
+    </section>
+    <section>
+        <h2>Hello World jQuery</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input id="btn" type="button" value="Clear">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        $("#log").html(model);
+        $("#in").val(model);
+    }
+    $(document).ready(function () {
+        $("#in").on("keyup", function (event) {
+            setModel($("#in").val());
+        });
+        $("#btn").on("click", function () {
+            setModel("");
+        });
+        setModel("Hello");
+    });
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
+                    </section>
+
+    <section>
+        <h3>Option: AngularJS</h3>
+        <ul>
+            <li class="fragment">HTML enhanced for web apps!
+            <li class="fragment">HTML wird erweitert (Directives)
+            <li class="fragment">Eigene Directives (== Komponenten) sind möglich
+            <li class="fragment">2-Wege-Databinding
+        </ul>
+    </section>
+
+                <section>
+                    <h3>Hello World AngularJS</h3>
+<pre><code class="xml" contenteditable>&lt;body np-app ng-controller="HelloController as helloController">
+&lt;input ng-model="helloController.greeting.text">
+&lt;p>{{helloController.greeting.text}}, World!&lt;/p>
+&lt;input type="button" value="Clear" ng-click="helloController.clear()">
+&lt;/body></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>function HelloController() {
+    this.greeting = {
+        text: 'Hello'
+    };
+}
+HelloController.prototype.clear = function() {
+    this.greeting.text = '';
+};
+</code></pre>
+        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
+                </section>
+
+    <section>
+        <h3>Option: React</h3>
+            <ul>
+                <li class="fragment">Framework von Facebook und Instagram
+                <li class="fragment">Nur das V in MVC
+                <li class="fragment">Basiert auf Komponenten
+                <li class="fragment">1-Wege-Databinding: Änderungen des Modells führen automatisch zum Neurendern von Komponenten
+                <li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell
+                <li class="fragment">React läuft im Browser und auf dem Server
+            </ul>
+        </section>
+
+            <section>
+            <h3>Hello World React</h3>
+<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
+  getInitialState: function() {
+    return { model: this.props.greeting};
+  },
+  updateModel: function(event) {
+    this.setState({model: event.target.value});
+  },
+  reset: function() {
+    this.setState({model: ""});
+  },
+  render: function() {
+    return (&lt;div>
+        &lt;input onChange={this.updateModel} value={this.state.model} />
+        &lt;p>{this.state.model}, World&lt;/p>
+        &lt;input type="button" value="Clear" onClick={this.reset} />
+     &lt;/div>);
+  }
+});
+var mountNode = document.getElementById('example');
+React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
+        </section>
 
 <section>
-    <h2>Wrap Up</h2>
+    <h2>Wrapup</h2>
     <ul>
         <li class="fragment">SPAs erlauben einen Bedienkomfort, der Desktop-Anwendungen in nichts nachstehen muss
-        <li class="fragment">JavaScript und der Browser sind reif für SPAs
-        <li class="fragment">Die Auswahl des richtigen Frameworks ist essentiell
         <li class="fragment">JavaScript ist auf Client und auf Server möglich
+        <li class="fragment">Die Auswahl des Frameworks ist essentiell
+        <ul>
+            <li class="fragment">Kein Framework: Hybris, gängige Frameworks passen nicht oder Anwendung ist sehr einfach
+            <li class="fragment">jQuery: Der Standard, keine Abstraktion vom DOM, bei vielen Ausdrücken wird es unübersichtlich, andere Frameworks basieren darauf
+            <li class="fragment">Angular.js: Trifft viele Entscheidungen für uns, viele davon gut, Java-/C#-Programmierer fühlen sich abgeholt
+            <li class="fragment">React: minimales, einfaches API bei bester Performanz, server-seitiges Rendering möglich, fehlende Teile evtl. über Backbone oder Flux
+        </ul>
+        </li>
     </ul>
 </section>
 <section>
