@@ -7,9 +7,9 @@ Content:
 * array
 * for
 * function
-* iife
 * foreach
 * class pattern
+ * iife
 * module pattern
 * CommonJS
 * TypeScript
