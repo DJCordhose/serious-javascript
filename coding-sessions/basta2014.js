@@ -17,21 +17,14 @@
  */
 // Cmd-K to commit changes
 'use strict';
-
-var print = function (person) {
-    console.log("Name: " + person.name);
-    console.log("Age: " + person.age);
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.print = function () {
+    console.log("Name: " + this.name);
+    console.log("Age: " + this.age);
 };
 
-var olli = {
-    name: "Olli",
-    age: 68
-};
-
-var array = [olli, {name: "Oma", age: 88}];
-
-var hasSeniorAge = function (person) {
-    return person.age > 67;
-};
-array.filter(hasSeniorAge).forEach(print);
-
+var olli = new Person("Olli", 43);
+exports.person = olli;
