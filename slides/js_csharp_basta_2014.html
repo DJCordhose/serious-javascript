@@ -535,6 +535,10 @@ eu.zeigermann.person = eu.zeigermann.person || {};
 
 eu.zeigermann.main.run();</code></pre>
                     </section>
+</section>
+
+<section>
+    <section><h2>Modul-Systeme</h2></section>
                     <section>
         <h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>
         <ul>
@@ -598,7 +602,64 @@ require(['js/modules/accounting'], function (Accounting) {
                     </section>
 
 </section>
+<section>
+    <section>
+        <h2>TypeScript</h2>
+    </section>
+    <section>
+        <h3>Konzepte TypeScript</h3>
+        <ul>
+            <li class="fragment">Obermenge von ECMAScript 5
+            <li class="fragment">Von Microsoft, Anders Hjelsberg
+            <li class="fragment">Einführung einer Compiler-Stufe
+            <li class="fragment">Fügt JavaScript die Dinge hinzu, die für große Projekte fehlen
+            <li class="fragment">Erweiterung kompatibel mit ECMAScript 6, soweit möglich
+        </ul>
+    </section>
+    <section>
+        <h3>Neue Sprach-Konzepte</h3>
+        <ul>
+            <li class="fragment">Statische Typen
+            <li class="fragment">Klassen
+            <li class="fragment">Module
+            <li class="fragment">Externe Deklarationen
+        </ul>
+    </section>
+                    <section>
+                    <h4>Klassen</h4>
+                        <pre><code class="java" contenteditable>class Person {
+    name: string; // public is the default visibility
+    private age: number; // either public or private
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    toString(): string {
+        return "Name: " + this.name;
+    }
+}
+var olli: Person = new Person("Olli", 42);
+console.log(olli.name); // => "Olli"
+// olli.age; => Error: The property 'age' does not exist on value of type 'Person'</code></pre>
 
+                </section>
+                <section>
+                    <h4>Module</h4>
+                        <pre><code class="java" contenteditable>module CustomerModule {
+    class Person {
+        // ...
+    }
+
+    export class Customer extends Person {
+        // ...
+    }
+}
+
+// new CustomerModule.Person(...); // => undefined
+new CustomerModule.Customer(...); // => cool</code></pre>
+                </section>
+
+</section>
     <section>
         <h3>Ausblick</h3>
         <h4>ECMAScript 6 / Projekt Harmony</h4>
@@ -606,9 +667,9 @@ require(['js/modules/accounting'], function (Accounting) {
             <li class="fragment">Projekt Harmony ist ECMAScript >=6
             <li class="fragment">Ab IE9 sind wir bei ECMAScript 5
             <li class="fragment">Spec für ES6 beinahe final
-            <li class="fragment">i18n API
             <li class="fragment">Module
             <li class="fragment">Klassen
+            <li class="fragment">Destructuring (Pattern Matching)
             <li class="fragment">let, const
             <li class="fragment">Fat arrow <b>=></b> für besseres Binding von <b>this</b>
             <li class="fragment">vararg, optional, spread operator

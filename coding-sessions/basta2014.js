@@ -2,6 +2,7 @@
 Content:
 * var
 * object
+* 'use strict'
 * console.log
 * environments: node und chrome
 * array
@@ -15,7 +16,7 @@ Content:
 * TypeScript
 */
 // Cmd-K to commit changes
-' use strict';
+'use strict';
 
 var olli = {
     name: 'Olli',
