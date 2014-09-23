@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript für Java- und C#-Entwickler</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
+
+    <!-- Uncomment for presentation -->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    </style>
+
+    <!-- Uncomment for PDF generation -->
+    <!-- and add ?print-pdf to url -->
+    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<div class="slides">
+<section>
+    <h2>JavaScript für Java- und C#-Entwickler</h2>
+    <h3>Eine Einführung</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <p>Online-Version der Slides: <a href="http://djcordhose.github.io/serious-javascript/slides/js_code_talks_2014.html">http://djcordhose.github.io/serious-javascript/slides/js_code_talks_2014.html</a></p>
+    <p>Code dieser Session: <a href="http://djcordhose.github.io/serious-javascript/coding-sessions/codetalks2014.html">http://djcordhose.github.io/serious-javascript/coding-sessions/codetalks2014.html</a></p>
+</section>
+
+<section>
+    <img src="Twitter_2017_JavaScript.png" height="700">
+</section>
+<section>
+    <img src="Twitter-Github-Repos-JS.png" height="500">
+    <p><a target="_blank" href="http://redmonk.com/dberkholz/2014/05/02/github-language-trends-and-the-fragmenting-landscape">http://redmonk.com/dberkholz/2014/05/02/github-language-trends-and-the-fragmenting-landscape</a></p>
+</section>
+<section>
+    <h2>Oliver Zeigermann</h2>
+    <img src="graylog2.png" height="100" align="left">
+    <img src="SF-Olli.jpg" height="100" align="right">
+    <ul>
+        <li>Entwickler bei <a target="_blank" href="http://graylog2.org/">http://graylog2.org/</a>
+        <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+        <li><a target="_blank" href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>
+        <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+        <li><a target="_blank" href="http://entwickler.de/press/JavaScript-und-TypeScript-fuer-C-Entwickler-174972">JavaScript und TypeScript für
+            C#-Entwickler</a>
+    </ul>
+</section>
+
+<section>
+    <h3>Themen Live-Coding</h3>
+    <ul>
+        <li>'use strict'
+        <li>var
+        <li>object
+        <li>console.log
+        <li>environments: node und chrome
+        <li>array
+        <li>for
+        <li>function
+        <li>class pattern (keine Vererbung)
+        <li>iife
+        <li>module pattern
+    </ul>
+</section>
+    <section>
+    <h1>Vielen Dank</h1>
+
+    <h3>Fragen / Diskussion</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <img src="graylog2.png" height="200">
+</section>
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

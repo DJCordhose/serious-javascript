@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectTasksOptions" suppressed-tasks="Traceur compiler">
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="--module commonjs --sourcemap $FileName$" />
+      <option name="arguments" value="--sourcemap $FileName$" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" value="Compiles .ts files into .js files" />
       <option name="exitCodeBehavior" value="ERROR" />
@@ -21,7 +21,7 @@
       </option>
       <option name="outputFromStdout" value="false" />
       <option name="passParentEnvs" value="true" />
-      <option name="program" value="$PATH$/tsc" />
+      <option name="program" value="$USER_HOME$/Development/TypeScript/bin/tsc" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="false" />
       <option name="workingDir" value="$FileDir$" />
