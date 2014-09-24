@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>React</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    </style>
+
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>Introduction to React</h1>
+
+            <h3>A Javascript Library For Building User Interfaces</h3>
+
+            <p>
+                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+                </small>
+            </p>
+            <p>Online version at: <a href="http://djcordhose.github.io/react-intro/slides/react-short.html">http://djcordhose.github.io/react-intro/slides/react-short.html</a></p>
+
+        </section>
+            <section>
+        <h3>Who uses React?</h3>
+        <img src="react_users.png">
+        <p><a target="_blank" href="http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html">http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html</a></p>
+    </section>
+
+        <section>
+            <h2>React</h2>
+            <img src="http://facebook.github.io/react/img/logo_small.png">
+
+            <p><a target="_blank" href="http://facebook.github.io/react/">http://facebook.github.io/react/</a></p>
+
+            <p><a target="_blank" href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
+        </section>
+        <section>
+            <h3>Concepts</h3>
+            <ul>
+                <li class="fragment">Just the V in MVC
+                <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
+                    <ul>
+                        <li class="fragment">JSX can be rendered on the fly or
+                        <li class="fragment">precompiled into JS for production
+                    </ul>
+                </li>
+                <li class="fragment">Uses a virtual DOM (tree structure) as view representation
+                <li class="fragment">One-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
+                <li class="fragment">Browser DOM experiences minimal amount of updates
+                <li class="fragment">Runs both on server and on client side
+            </ul>
+        </section>
+
+        <section>
+            <h3>Hello World</h3>
+<pre><code class="html" contenteditable>&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+    &lt;script src="http://fb.me/react-0.10.0.js">&lt;/script>
+    &lt;script src="http://fb.me/JSXTransformer-0.10.0.js">&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;div id="example">&lt;/div>
+&lt;script type="text/jsx">
+      /** @jsx React.DOM */
+      React.renderComponent(
+        &lt;h1>Hello, world!&lt;/h1>,
+        document.getElementById('example')
+      );
+    &lt;/script>
+&lt;/body>
+&lt;/html>
+</code></pre>
+            <a href="../code/react/helloWorld.html" target="_blank">Run</a>
+
+        </section>
+        <section>
+            <h3>A Simple Component</h3>
+<pre><code class="html" contenteditable>/** @jsx React.DOM */
+var mountNode = document.getElementById('example');
+var HelloMessage = React.createClass({
+  render: function() {
+    return &lt;div>Hello {this.props.name}&lt;/div>;
+  }
+});
+
+React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
+</code></pre>
+            <p><a href="../code/react/helloWorld2.html" target="_blank">Run</a></p>
+            <ul>
+                <li class="fragment"><code>React.createClass</code>: creates a component class
+                <li class="fragment"><code>render</code>: creates a virtual DOM tree (maybe using JSX)
+                <li class="fragment"><code>this.props</code> / input: something passed into component instance as input
+            </ul>
+        </section>
+        <section>
+            <h3>A Simple Component - Compiled</h3>
+<pre><code class="html" contenteditable>var mountNode = document.getElementById('example');
+
+var HelloMessage = React.createClass({displayName: 'HelloMessage',
+    render: function() {
+        return React.DOM.div(null, "Hello ", this.props.name);
+    }
+});
+
+React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
+</code></pre>
+            <p><a href="../code/react/helloWorld2Compiled.html" target="_blank">Run</a></p>
+            <ul>
+                <li class="fragment"><code>React.renderComponent(ReactComponent component, DOMElement container)</code>: renders a component into a DOM element
+                <li class="fragment"><code>React.renderComponentToString</code>: for server side rendering
+                <li class="fragment"><a href="http://facebook.github.io/react/docs/top-level-api.html" target="_blank">React: Top-Level API</a>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Rendering a list</h3>
+<pre><code class="javascript" contenteditable>var TodoList = React.createClass({
+  render: function() {
+    var createItem = function(itemText) {
+      return &lt;li>{itemText}&lt;/li>;
+    };
+    return &lt;ul>{this.props.items.map(createItem)}&lt;/ul>;
+  }
+});
+&lt;TodoList items={['Stuff', 'More Stuff']} />
+</code></pre>
+        </section>
+        <section>
+            <h3>Embedding a component</h3>
+<pre><code class="html" contenteditable>var TodoApp = React.createClass({
+  getInitialState: function() {
+    return {items: ['Do stuff', 'Do more stuff']};
+    },
+  render: function() {
+    return (
+      &lt;div>
+        &lt;h3>TODO&lt;/h3>
+        &lt;TodoList items={this.state.items} />
+      &lt;/div>
+    );
+  }
+});
+React.renderComponent(&lt;TodoApp />, mountNode);
+
+</code></pre>
+            <p><a href="../code/react/embedding.html" target="_blank">Run</a></p>
+        </section>
+        <section>
+            <h3>Update to state</h3>
+<pre class="fragment"><code class="html" contenteditable>var TodoApp = React.createClass({</code></pre>
+<pre class="fragment"><code class="html" contenteditable>  render: function() {
+    return (
+      &lt;div>
+        &lt;h3>TODO&lt;/h3>
+        &lt;TodoList items={this.state.items} />
+        &lt;form onSubmit={this.handleSubmit}>
+          &lt;input onChange={this.onChange} value={this.state.text} />
+          &lt;button>{'Add #' + (this.state.items.length + 1)}&lt;/button>
+        &lt;/form>
+      &lt;/div>
+    );
+  }
+</code></pre>
+<pre class="fragment"><code class="html" contenteditable>  onChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var nextItems = this.state.items.concat([this.state.text]);
+    this.setState({items: nextItems, text: ''});
+  }
+});
+</code></pre>
+            <p><a href="../code/react/todo.html" target="_blank">Run</a></p>
+        </section>
+            <section>
+                <h3>State Change and Rendering</h3>
+            <ul>
+                <li class="fragment">component data can be read using <code>this.state</code> and set using <code>this.setState</code>
+                <li class="fragment">when state changes
+                    <ul>
+                        <li class="fragment">render will be called again
+                        <li class="fragment">diff for virtual DOM is calculated and applied
+                        <li class="fragment">other parts of the DOM remain unchanged
+                        <li class="fragment">updates might be batched, add a callback when you want to execute code when setState has done its work
+                    </ul>
+                </li>
+                <li class="fragment">Experiment
+                    <ul>
+                        <li class="fragment">use todo list app and add DOM breakpoints (modify, add, remove) to div containing list in dev tools
+                        <li class="fragment">add another item and make sure there are just a single addition for the item and a single update for the text of the button
+                    </ul>
+                </li>
+            </ul>
+            </section>
+<section>
+    <h3>Comparing to other SPA Frameworks</h3>
+    <ul>
+        <li class="fragment">jQuery
+        <li class="fragment">AngularJS
+        <li class="fragment">React
+        <li class="fragment">Kein Framework (vanilla.js)
+    </ul>
+</section>
+
+    <section>
+        <h2>Hello World vanilla.js</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in" onkeyup="setModel(this.value)">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input type="button" value="Clear" onclick="reset()">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        document.getElementById("log").innerHTML = model;
+        document.getElementById("in").value = model;
+    }
+    function reset() {
+        setModel("");
+    }
+    window.onload = function() {
+        setModel("Hello");
+    };
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
+                    </section>
+
+    <section>
+        <h2>Hello World jQuery</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input id="btn" type="button" value="Clear">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        $("#log").html(model);
+        $("#in").val(model);
+    }
+    $(document).ready(function () {
+        $("#in").on("keyup", function (event) {
+            setModel($("#in").val());
+        });
+        $("#btn").on("click", function () {
+            setModel("");
+        });
+        setModel("Hello");
+    });
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
+                    </section>
+
+    <section>
+        <h3>Option: AngularJS</h3>
+        <ul>
+            <li class="fragment">HTML enhanced for web apps!
+            <li class="fragment">HTML extended by <em>directives</em> (=== components)
+            <li class="fragment">You can write your directives
+            <li class="fragment">2-way data binding
+        </ul>
+    </section>
+
+                <section>
+                    <h3>Hello World AngularJS</h3>
+<pre><code class="xml" contenteditable>&lt;body np-app ng-controller="HelloController as helloController">
+&lt;input ng-model="helloController.greeting.text">
+&lt;p>{{helloController.greeting.text}}, World!&lt;/p>
+&lt;input type="button" value="Clear" ng-click="helloController.clear()">
+&lt;/body></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>function HelloController() {
+    this.greeting = {
+        text: 'Hello'
+    };
+}
+HelloController.prototype.clear = function() {
+    this.greeting.text = '';
+};
+</code></pre>
+        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
+                </section>
+
+    <section>
+        <h3>Option: React</h3>
+            <ul>
+                <li class="fragment">Framework for Facebook und Instagram
+                <li class="fragment">Only V in MVC
+                <li class="fragment">Everything is a component
+                <li class="fragment">1-way data binding: changes in model automatically rerenders component
+                <li class="fragment">Smart algorithm performance minimal changes to DOM => fast
+                <li class="fragment">Runs in browser and on server
+            </ul>
+        </section>
+
+            <section>
+            <h3>Hello World React</h3>
+<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
+  getInitialState: function() {
+    return { model: this.props.greeting};
+  },
+  updateModel: function(event) {
+    this.setState({model: event.target.value});
+  },
+  reset: function() {
+    this.setState({model: ""});
+  },
+  render: function() {
+    return (&lt;div>
+        &lt;input onChange={this.updateModel} value={this.state.model} />
+        &lt;p>{this.state.model}, World&lt;/p>
+        &lt;input type="button" value="Clear" onClick={this.reset} />
+     &lt;/div>);
+  }
+});
+var mountNode = document.getElementById('example');
+React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
+        </section>
+
+        <section>
+            <h3>Wrap-Up</h3>
+            <ul>
+                <li class="fragment">Just the V in MVC
+                <li class="fragment">One-Way-Binding
+                <li class="fragment">Minimal API for simplicity
+                <li class="fragment">Explicit code to avoid magic
+                <li class="fragment">React is heavily used in Facebook and Instagram
+                <li class="fragment">Changes to model will be rendered automatically
+                <li class="fragment">Browser DOM experiences minimal amount of updates
+                <li class="fragment">Can render both on server and on client side
+                <li class="fragment">Server side rendering for SEO or quick first page impression
+            </ul>
+        </section>
+            <section>
+                <h3>Links</h3>
+            <ul>
+                <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/blog/2014/01/02/react-chrome-developer-tools.html">
+                    Chrome Dev Tools Extension</a>
+                <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/blog/">
+                    React Blog</a>
+                <li class="fragment"><a target="_blank" href="http://facebook.github.io/flux/docs/overview.html">
+                    Application architecture at Facebook with Flux</a>
+            </ul>
+            </section>
+        <section>
+            <h1>Thank you!</h1>
+
+            <h3>Questions / Discussion</h3>
+
+            <p>
+                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+                </small>
+            </p>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

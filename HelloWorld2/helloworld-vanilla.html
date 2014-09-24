@@ -12,9 +12,11 @@
     var model;
     // binding model => view
     function setModel(value) {
+        var oldValue = document.getElementById("in").value;
         model = value;
+
         document.getElementById("log").innerHTML = model;
-        document.getElementById("in").value = model;
+        if (oldValue !== value) document.getElementById("in").value = model;
     }
     function reset() {
         setModel("");

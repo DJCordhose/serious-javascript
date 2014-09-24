@@ -15,7 +15,7 @@
     function setModel(value) {
         model = value;
         $("#log").html(model);
-        $("#in").val(model);
+        if ($("#in").val() !== value) $("#in").val(model);
     }
     $(document).ready(function () {
         // binding view => model
@@ -25,6 +25,7 @@
         });
         $("#btn").on("click", function () {
             setModel("");
+            $("#in").focus();
         });
 
         // init
