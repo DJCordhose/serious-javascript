@@ -117,7 +117,7 @@
 &lt;/body>
 &lt;/html>
 </code></pre>
-            <a href="../code/react/helloWorld.html" target="_blank">Run</a>
+            <a href="../code/react/helloWorld.html">Run</a>
 
         </section>
         <section>
@@ -132,7 +132,7 @@ var HelloMessage = React.createClass({
 
 React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
 </code></pre>
-            <p><a href="../code/react/helloWorld2.html" target="_blank">Run</a></p>
+            <p><a href="../code/react/helloWorld2.html">Run</a></p>
             <ul>
                 <li class="fragment"><code>React.createClass</code>: creates a component class
                 <li class="fragment"><code>render</code>: creates a virtual DOM tree (maybe using JSX)
@@ -151,7 +151,7 @@ var HelloMessage = React.createClass({displayName: 'HelloMessage',
 
 React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
 </code></pre>
-            <p><a href="../code/react/helloWorld2Compiled.html" target="_blank">Run</a></p>
+            <p><a href="../code/react/helloWorld2Compiled.html">Run</a></p>
             <ul>
                 <li class="fragment"><code>React.renderComponent(ReactComponent component, DOMElement container)</code>: renders a component into a DOM element
                 <li class="fragment"><code>React.renderComponentToString</code>: for server side rendering
@@ -190,7 +190,7 @@ React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
 React.renderComponent(&lt;TodoApp />, mountNode);
 
 </code></pre>
-            <p><a href="../code/react/embedding.html" target="_blank">Run</a></p>
+            <p><a href="../code/react/embedding.html">Run</a></p>
         </section>
         <section>
             <h3>Update to state</h3>
@@ -218,50 +218,50 @@ React.renderComponent(&lt;TodoApp />, mountNode);
   }
 });
 </code></pre>
-            <p><a href="../code/react/todo.html" target="_blank">Run</a></p>
+            <p><a href="../code/react/todo.html">Run</a></p>
         </section>
-            <section>
-                <h3>State Change and Rendering</h3>
-            <ul>
-                <li class="fragment">component data can be read using <code>this.state</code> and set using <code>this.setState</code>
-                <li class="fragment">when state changes
-                    <ul>
-                        <li class="fragment">render will be called again
-                        <li class="fragment">diff for virtual DOM is calculated and applied
-                        <li class="fragment">other parts of the DOM remain unchanged
-                        <li class="fragment">updates might be batched, add a callback when you want to execute code when setState has done its work
-                    </ul>
-                </li>
-                <li class="fragment">Experiment
-                    <ul>
-                        <li class="fragment">use todo list app and add DOM breakpoints (modify, add, remove) to div containing list in dev tools
-                        <li class="fragment">add another item and make sure there are just a single addition for the item and a single update for the text of the button
-                    </ul>
-                </li>
-            </ul>
-            </section>
-        <section>
-            <h2>React’s architecture looks a lot like the Doom 3 engine</h2>
-            <p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>
-        </section>
+            <!--<section>-->
+                <!--<h3>State Change and Rendering</h3>-->
+            <!--<ul>-->
+                <!--<li class="fragment">component data can be read using <code>this.state</code> and set using <code>this.setState</code>-->
+                <!--<li class="fragment">when state changes-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">render will be called again-->
+                        <!--<li class="fragment">diff for virtual DOM is calculated and applied-->
+                        <!--<li class="fragment">other parts of the DOM remain unchanged-->
+                        <!--<li class="fragment">updates might be batched, add a callback when you want to execute code when setState has done its work-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="fragment">Experiment-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">use todo list app and add DOM breakpoints (modify, add, remove) to div containing list in dev tools-->
+                        <!--<li class="fragment">add another item and make sure there are just a single addition for the item and a single update for the text of the button-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--</section>-->
+        <!--<section>-->
+            <!--<h2>React’s architecture looks a lot like the Doom 3 engine</h2>-->
+            <!--<p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>-->
+        <!--</section>-->
 
-<section>
-    <img src="doom-rendering.png">
-    <p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>
-    <p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>
-</section>
+<!--<section>-->
+    <!--<img src="doom-rendering.png">-->
+    <!--<p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>-->
+    <!--<p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>-->
+<!--</section>-->
 
-        <section>
-            <img src="doom-rendering-doom.png">
-            <p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>
-            <p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>
-        </section>
+        <!--<section>-->
+            <!--<img src="doom-rendering-doom.png">-->
+            <!--<p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>-->
+            <!--<p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>-->
+        <!--</section>-->
 
-        <section>
-            <img src="doom-rendering-react.png">
-            <p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>
-            <p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>
-        </section>
+        <!--<section>-->
+            <!--<img src="doom-rendering-react.png">-->
+            <!--<p><a target="_blank" href="http://fabiensanglard.net/doom3/renderer.php">http://fabiensanglard.net/doom3/renderer.php</a></p>-->
+            <!--<p><a target="_blank" href="http://de.slideshare.net/floydophone/react-preso-v2">@floydophone: http://de.slideshare.net/floydophone/react-preso-v2</a></p>-->
+        <!--</section>-->
 
 <section>
     <h3>Comparing to other SPA Frameworks</h3>
@@ -291,7 +291,7 @@ React.renderComponent(&lt;TodoApp />, mountNode);
         setModel("Hello");
     };
 &lt;/script></code></pre>
-                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
+                        <a href="../HelloWorld2/helloworld-vanilla.html">Run</a>
                     </section>
 
     <section>
@@ -316,7 +316,7 @@ React.renderComponent(&lt;TodoApp />, mountNode);
         setModel("Hello");
     });
 &lt;/script></code></pre>
-                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
+                        <a href="../HelloWorld2/helloworld-jQuery.html">Run</a>
                     </section>
 
     <section>
@@ -345,7 +345,7 @@ HelloController.prototype.clear = function() {
     this.greeting.text = '';
 };
 </code></pre>
-        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
+        <a href="../HelloWorld2/helloWorldAngular3.html">Run</a>
                 </section>
 
     <!--<section>-->
@@ -382,7 +382,7 @@ HelloController.prototype.clear = function() {
 });
 var mountNode = document.getElementById('example');
 React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
-                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
+                <a href="../HelloWorld2/helloWorldReact.html">Run</a>
         </section>
 
         <section>
