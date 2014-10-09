@@ -194,8 +194,8 @@ React.renderComponent(&lt;TodoApp />, mountNode);
         </section>
         <section>
             <h3>Update to state</h3>
-<pre class="fragment"><code class="html" contenteditable>var TodoApp = React.createClass({</code></pre>
-<pre class="fragment"><code class="html" contenteditable>  render: function() {
+<pre class="fragment"><code class="html" contenteditable>var TodoApp = React.createClass({
+  render: function() {
     return (
       &lt;div>
         &lt;h3>TODO&lt;/h3>
@@ -213,8 +213,8 @@ React.renderComponent(&lt;TodoApp />, mountNode);
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    this.setState({items: nextItems, text: ''});
+    this.state.items.push(this.state.text);
+    this.setState({items: this.state.items, text: ''});
   }
 });
 </code></pre>
@@ -396,7 +396,7 @@ React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></
                 <li class="fragment">Changes to model will be rendered automatically
                 <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Can render both on server and on client side
-                <li class="fragment">Server side rendering for SEO or quick first page impression
+                <li class="fragment">Server side rendering (also for SEO or quick first page impression)
             </ul>
         </section>
             <section>
