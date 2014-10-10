@@ -83,6 +83,7 @@
             <h3>Concepts</h3>
             <ul>
                 <li class="fragment">Just the V in MVC
+                <li class="fragment">Based on components
                 <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
                     <ul>
                         <li class="fragment">JSX can be rendered on the fly or
@@ -90,7 +91,7 @@
                     </ul>
                 </li>
                 <li class="fragment">Uses a virtual DOM (tree structure) as view representation
-                <li class="fragment">One-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
                 <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
                 <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Runs both on server and on client side
@@ -122,6 +123,7 @@
         </section>
         <section>
             <h3>A Simple Component</h3>
+            <div class="fragment">
 <pre><code class="html" contenteditable>/** @jsx React.DOM */
 var mountNode = document.getElementById('example');
 var HelloMessage = React.createClass({
@@ -133,6 +135,7 @@ var HelloMessage = React.createClass({
 React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
 </code></pre>
             <p><a href="../code/react/helloWorld2.html">Run</a></p>
+            </div>
             <ul>
                 <li class="fragment"><code>React.createClass</code>: creates a component class
                 <li class="fragment"><code>render</code>: creates a virtual DOM tree (maybe using JSX)
@@ -141,6 +144,7 @@ React.renderComponent(&lt;HelloMessage name="Olli" />, mountNode);
         </section>
         <section>
             <h3>A Simple Component - Compiled</h3>
+            <div class="fragment">
 <pre><code class="html" contenteditable>var mountNode = document.getElementById('example');
 
 var HelloMessage = React.createClass({displayName: 'HelloMessage',
@@ -152,6 +156,7 @@ var HelloMessage = React.createClass({displayName: 'HelloMessage',
 React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
 </code></pre>
             <p><a href="../code/react/helloWorld2Compiled.html">Run</a></p>
+</div>
             <ul>
                 <li class="fragment"><code>React.renderComponent(ReactComponent component, DOMElement container)</code>: renders a component into a DOM element
                 <li class="fragment"><code>React.renderComponentToString</code>: for server side rendering
@@ -161,6 +166,8 @@ React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
 
         <section>
             <h3>Rendering a list</h3>
+            <div class="fragment">
+
 <pre><code class="javascript" contenteditable>var TodoList = React.createClass({
   render: function() {
     var createItem = function(itemText) {
@@ -171,9 +178,12 @@ React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
 });
 &lt;TodoList items={['Stuff', 'More Stuff']} />
 </code></pre>
+                </div>
         </section>
         <section>
-            <h3>Embedding a component</h3>
+            <h3>State and passing it</h3>
+            <div class="fragment">
+
 <pre><code class="html" contenteditable>var TodoApp = React.createClass({
   getInitialState: function() {
     return {items: ['Do stuff', 'Do more stuff']};
@@ -191,6 +201,7 @@ React.renderComponent(&lt;TodoApp />, mountNode);
 
 </code></pre>
             <p><a href="../code/react/embedding.html">Run</a></p>
+                </div>
         </section>
         <section>
             <h3>Update to state</h3>
@@ -396,7 +407,7 @@ React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></
                 <li class="fragment">Changes to model will be rendered automatically
                 <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Can render both on server and on client side
-                <li class="fragment">Server side rendering (also for SEO or quick first page impression)
+                <li class="fragment">Server side rendering also for SEO or quick first page impression
             </ul>
         </section>
             <section>
