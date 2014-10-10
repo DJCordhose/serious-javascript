@@ -282,6 +282,31 @@ React.renderComponent(&lt;TodoApp />, mountNode);
         <li class="fragment">AngularJS
     </ul>
 </section>
+            <section>
+            <h3>The App: Hello World React</h3>
+<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
+  getInitialState: function() {
+    return { model: this.props.greeting};
+  },
+  updateModel: function(event) {
+    this.setState({model: event.target.value});
+  },
+  reset: function() {
+    this.setState({model: ""});
+  },
+  render: function() {
+    return (&lt;div>
+        &lt;input onChange={this.updateModel} value={this.state.model} />
+        &lt;p>{this.state.model}, World&lt;/p>
+        &lt;input type="button" value="Clear" onClick={this.reset} />
+     &lt;/div>);
+  }
+});
+var mountNode = document.getElementById('example');
+React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+                <a href="../HelloWorld2/helloWorldReact.html">Run</a>
+        </section>
+
 
     <section>
         <h2>Hello World vanilla.js</h2>
@@ -370,31 +395,6 @@ HelloController.prototype.clear = function() {
                 <!--<li class="fragment">Runs in browser and on server-->
             <!--</ul>-->
         <!--</section>-->
-
-            <section>
-            <h3>To compare: Hello World React</h3>
-<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
-  getInitialState: function() {
-    return { model: this.props.greeting};
-  },
-  updateModel: function(event) {
-    this.setState({model: event.target.value});
-  },
-  reset: function() {
-    this.setState({model: ""});
-  },
-  render: function() {
-    return (&lt;div>
-        &lt;input onChange={this.updateModel} value={this.state.model} />
-        &lt;p>{this.state.model}, World&lt;/p>
-        &lt;input type="button" value="Clear" onClick={this.reset} />
-     &lt;/div>);
-  }
-});
-var mountNode = document.getElementById('example');
-React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
-                <a href="../HelloWorld2/helloWorldReact.html">Run</a>
-        </section>
 
         <section>
             <h3>Wrap-Up</h3>
