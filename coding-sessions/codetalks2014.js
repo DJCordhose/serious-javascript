@@ -13,12 +13,14 @@
  * module pattern
  * CommonJS modules
  */
-// Cmd-K to commit changes
-'use strict';
+"use strict";
 
-var person = {
-    name: "Oma",
-    age: 88
-};
+var personal = require('./personal');
 
-console.log(person);
+console.log(personal.companyName);
+
+var olli = new personal.Person('Olli', 37);
+olli.log();
+
+var oma = new personal.Person('Oma', 88);
+oma.log();
