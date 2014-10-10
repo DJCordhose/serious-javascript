@@ -8,9 +8,11 @@
  * array
  * for
  * function
- * class pattern (keine Vererbung)
  * iife
+ * class pattern (keine Vererbung)
  * module pattern
+ * CommonJS modules
+ * Bonus: Closures, try-catch-finally
  */
 // Cmd-K to commit changes
 'use strict';
