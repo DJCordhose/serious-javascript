@@ -3,6 +3,8 @@ angular-introduction
 
 HTML enhanced for web apps - Introduction to AngularJS
 
+http://djcordhose.github.io/serious-javascript/angular-yeoman/angular.html
+
 Preparation
 -----------
 * If there is an emphasis on Yeoman: Open a console and switch to code folder
