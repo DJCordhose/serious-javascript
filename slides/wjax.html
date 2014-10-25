@@ -74,16 +74,13 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         <h3>Wohl, weil das nicht mit CSS geht</h3>
     </section>
     <section>
-        <h3>Fürchterliche Sprache!</h3>
-    </section>
-    <section>
         <h3>Und nächstes Jahr schreiben die das noch mal neu - in richtig</h3>
     </section>
     <section>
         <h3>Wir machen das nicht mit JavaScript, sondern mit Angular.js</h3>
     </section>
     <section>
-        <h3>Browser als Zielplattform schlimm</h3>
+        <h3>Browser als Zielplattform? Schlimm!</h3>
     </section>
     <section>
         <h3>Mit JavaScript kann man nichts richtiges entwickeln</h3>
@@ -115,27 +112,19 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
 </section>
 
 <section>
-    <section>
-        <h2>Herausforderungen beim Einsatz von JavaScript</h2>
-    </section>
-    <section>
-        <h3>Wo soll ich JavaScript denn überhaupt einsetzen?</h3>
-    </section>
-    <section>
-        <h3>Wie realisiere ich einen professionellen Entwicklungszyklus?</h3>
-    </section>
-    <section>
-        <h3>Wie gehe ich mit den Komplexitäten der Browser-Entwicklung um?</h3>
-    </section>
-    <section>
-        <h3>Was mache ich auf der Server-Seite?</h3>
-    </section>
+    <h2>Herausforderungen beim Einsatz von JavaScript</h2>
+    <ul>
+        <li>Wo kann ich JavaScript einsetzen?
+        <li>Wie realisiere ich einen professionellen Entwicklungszyklus?
+        <li>Wie gehe ich mit den Komplexitäten der Browser-Entwicklung um?
+        <li>Was mache ich auf der Server-Seite?
+    </ul>
 </section>
 
 <section>
 <section>
     <h2>Problemstellung #0: Einsatzgebiet von JavaScript</h2>
-    <h3 class="fragment">Aka: Wie weit soll ich gehen?</h3>
+    <h3 class="fragment">Aka: Wie weit kann ich gehen?</h3>
 </section>
     <section>
         <h3>Anforderungen an Dynamik und Stabilität</h3>
@@ -143,13 +132,13 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         <p><small>Copyright 2014, Oliver Zeigermann</small></p>
     </section>
     <section>
-        <h3>Monolithische Anwendung: Alles in Java</h3>
+        <h3>Monolithische Anwendung: Alles in Java or JavaScript</h3>
         <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
         <p><small>Copyright 2014, Oliver Zeigermann</small></p>
     </section>
 
     <section>
-        <h3>Klassische Webanwendung</h3>
+        <h3>Klassische Webanwendung (Blau: Server, Lila: Browser)</h3>
         <img src="Classic%20Web%20Application.png" height="500">
         <p><small>Copyright 2014, Oliver Zeigermann</small></p>
     </section>
@@ -185,9 +174,6 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
     <h5 class="fragment">Und in 10 Jahren?</h5>
 </section>
 
-    <section>
-    <h2>Erfahrung: Module und Typen-Hierarchien fördern strukturiertes Arbeiten</h2>
-</section>
 <section>
     <h2>Modularisierung</h2>
     <ul>
@@ -203,8 +189,8 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         <li class="fragment">Ebenfalls möglich über Patterns
         <li class="fragment">Mehrfachvererbung über Mixins
         <li class="fragment">ECMAScript 6 bietet lesbarere Syntax über diesen Patterns
-        <li class="fragment">Keine Sichtbarkeitskontrolle
-        <li class="fragment">Keine statisch deklarierten Typen
+        <li class="fragment">Immer noch: Keine Sichtbarkeitskontrolle
+        <li class="fragment">Immer noch: Keine statisch deklarierten Typen
     </ul>
 </section>
 
@@ -224,12 +210,12 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         </ul>
 </section>
     <section>
-        <h3>Mögliche Techniken für deklarierte Typen</h3>
+        <h3>Mögliche Techniken für deklarierte Typen in JavaScript</h3>
         <ul>
             <li class="fragment">Google Closure Compiler: Typen in Kommentaren, kein Kompilierungsschritt
             <li class="fragment">TypeScript: Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
             <li class="fragment">Es kommen mehr: Facebook Flow und <a href="https://docs.google.com/a/torch.sh/document/d/11YUzC-1d0V1-Q3V0fQ7KSit97HnZoKVygDxpWzEYW0U/preview?sle=true">Google AtScript</a>
-            <li class="fragment">Alternative: Übersetzen von getypter Sprache nach JavaScript
+            <li class="fragment">Alternative: Übersetzen von anderer getypter Sprache nach JavaScript
             <ul>
                 <li class="fragment">Google Dart
                 <li class="fragment">GWT
@@ -239,26 +225,15 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         </ul>
     </section>
     <section>
-        <h3>Semantische Lücke zu JavaScript</h3>
-        <img src="Flow_Talk_Typed_JavaScript.png" height="500">
+        <h3>Aber: Semantische Lücke zu JavaScript beachten</h3>
+        <img src="Flow_Talk_Typed_JavaScript.png" height="450">
         <p><small>Copyright 2014, Avik Chaudhuri, Facebook</small></p>
-    </section>
-
-    <section>
-        <h2>Code Qualität mit JSHint</h2>
-        <ul>
-            <li class="fragment">Analysiert JavaScript-Files und macht konfigurierbare Prüfungen
-            <li class="fragment"><a target="_blank" href="http://www.jshint.com/about//">http://www.jshint.com/</a>
-            <li class="fragment">Deckt potentielle Fehler auf
-            <li class="fragment">Kann die Code-Conventions des Teams unterstützen
-            <li class="fragment">Aufruf von der Kommandozeile oder IDE-Integration
-        </ul>
     </section>
 <section>
     <h2>Weitere Tools</h2>
     <ul>
-        <li class="fragment">Yo: Scaffolding
         <li class="fragment">WebStorm / IntelliJ / Visual Studio: IDE
+        <li class="fragment">JSHint / JSLint / ESLint: Linter für JavaScript (decken potentielle Fehler auf)
         <li class="fragment">grunt.js / gulp.js: Build-Tool
         <li class="fragment">npm / bower: Abhängigkeitsmanagement
         <li class="fragment">Mocka / Jasmine / QUnit: Unit-Test-Frameworks
@@ -296,6 +271,7 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
             pre IE9)
         <li class="fragment">Das DOM ist kein "ideales" API
         <li class="fragment">Selbst idealerweise ist das DOM immer noch sehr low-level
+        <li class="fragment">Aber: Seit IE9 wird der JavaScript-Sprachstandard überall eingehalten
     </ul>
 </section>
 
@@ -363,17 +339,6 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
             <li class="fragment">existiert seit vielen Jahren, Einsatz kommerziell
         </ul>
     </section>
-<section>
-    <h3>Letzte Option: Kein Framework</h3>
-    <ul>
-        <li class="fragment">Selbstbetrug ausschließen: Was ist die Motivation?
-        <li class="fragment">Passt wirklich keines der Frameworks zu den Anforderungen?
-        <li class="fragment">Glauben wir wirklich, dass unser eigenes Framework besser sein wird als ein
-            Standard-Framework?
-        <li class="fragment">Wenn ja, wer in dem Team hat schon einmal ein vergleichbares Framework gebaut?
-        <li class="fragment">Wer wird das Framework warten?
-    </ul>
-</section>
 
 <section>
     <h3>Wrapup</h3>
@@ -393,31 +358,10 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
 
 <section>
     <section>
-        <h2>Problemstellung #3: Was mache ich auf der Server-Seite?</h2>
+        <h2>Problemstellung #3: JavaScript auch auf dem Server?</h2>
     </section>
     <section>
-        <h3>Fragestellung</h3>
-        <ul>
-            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
-            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
-            <li class="fragment">Wie setzt man diesen um?
-            <li class="fragment">JEE/Spring/.NET/Rails/Python?
-            <li class="fragment">Oder ebenfalls in JavaScript?
-        </ul>
-    </section>
-
-    <section>
-        <h3>Option #1: Server in klassicher Server-Technik (JEE/Spring/.NET/Rails/Python)</h3>
-        <h3 class="fragment">bzw. existierender Server bleibt wie er ist</h3>
-        <ul>
-            <li class="fragment">Naheliegende Lösung
-            <li class="fragment">Kommunikation über REST/JSON
-            <li class="fragment">Mapping von Objekten auf JSON
-            <li class="fragment">Polyglotte Programmierung
-        </ul>
-    </section>
-    <section>
-        <h3>Option #2: JavaScript auch auf dem Server?</h3>
+        <h3>Vorteile von JavaScript auf dem Server</h3>
         <ul>
             <li class="fragment">Code kann wieder verwendet werden
             <li class="fragment">Dieselben Tools für Frontend und Backend
