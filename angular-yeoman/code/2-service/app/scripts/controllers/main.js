@@ -16,6 +16,6 @@
     };
 
     angular.module('baseApp')
-        .controller('MainCtrl', MainCtrl);
+      .controller('MainCtrl', ['calculatorService', MainCtrl]);
 
 })();

@@ -6,7 +6,7 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('baseApp'));
 
   var MainCtrl,
-    scope, _calculatorService, $httpBackend;
+    scope, $httpBackend;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, calculatorService, $injector) {
@@ -15,8 +15,6 @@ describe('Controller: MainCtrl', function () {
     $httpBackend = $injector.get('$httpBackend');
     $httpBackend.when('GET', /http:\/\/mortgage-demo\.appspot\.com\/mortgage_calculator.*/)
       .respond({"principle": "199990.00", "total": "503409.60", "payments": "360", "monthly": "1398.36"});
-
-    //_calculatorService = spyOn(calculatorService, 'calculateMortgage').andReturn({principle: '199990.00', total: '478994.40', payments: '360', monthly: '1330.54'});
 
       MainCtrl = $controller('MainCtrl as ctrl', {
       $scope: scope,
