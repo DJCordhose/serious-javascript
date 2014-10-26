@@ -159,10 +159,6 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         <p><small>Copyright 2014, Oliver Zeigermann</small></p>
     </section>
 </section>
-<section>
-    <h1>Fragen?</h1>
-</section>
-
 
 <section>
 <section>
@@ -171,7 +167,14 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
     <h3 class="fragment">Je weiter nach unten ich mich auf der Stabilitätspyramide bewege, desto mehr muss ich hier investieren</h3>
 </section>
 
-<section>
+    <section>
+        <h1>Wichtigste Erkenntnis</h1>
+        <h3 class="fragment">JavaScript ist kein Java mit vereinfachter Syntax</h3>
+        <h3 class="fragment">JavaScript ist nicht auf derselben Ebene wie HTML oder CSS</h3>
+        <h3 class="fragment">JavaScript ist eine Sprache für sich und muss wie eine solche erlernt werden</h3>
+    </section>
+
+    <section>
     <h2>Modularisierung</h2>
     <ul>
         <li class="fragment">Revealing Module Pattern: Sichtbarkeit
@@ -181,7 +184,7 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
     </ul>
 </section>
 <section>
-    <h2>Klassische Typen und Vererbung mit JavaScript</h2>
+    <h2>Klassen und Vererbung mit JavaScript</h2>
     <ul>
         <li class="fragment">Ebenfalls möglich über Patterns
         <li class="fragment">Mehrfachvererbung über Mixins
@@ -209,8 +212,8 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
     <section>
         <h3>Mögliche Techniken für deklarierte Typen in JavaScript</h3>
         <ul>
-            <li class="fragment">Google Closure Compiler: Typen in Kommentaren, kein Kompilierungsschritt
-            <li class="fragment">TypeScript: Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen
+            <li class="fragment">Google Closure Compiler: Typen in Kommentaren, kein Kompilierungsschritt (Refactoring über Refaster)
+            <li class="fragment">MicroSoft TypeScript: Mehr oder weniger ECMAScript 6 mit optionalen deklarierten Typen und Sichtbarkeitskontrolle
             <li class="fragment">Es kommen mehr: Facebook Flow und <a href="https://docs.google.com/a/torch.sh/document/d/11YUzC-1d0V1-Q3V0fQ7KSit97HnZoKVygDxpWzEYW0U/preview?sle=true">Google AtScript</a>
             <li class="fragment">Alternative: Übersetzen von anderer getypter Sprache nach JavaScript
             <ul>
@@ -239,21 +242,7 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
         <li class="fragment">Webdriver.js: Tests direkt im Browser-Fenster
     </ul>
 </section>
-    <section>
-        <h3>Auswahl von Bibiliotheken</h3>
-        <ul>
-            <li class="fragment">Lodash: Funktionale Spracherweiterungen
-            <li class="fragment">Moment.js: Zeit und Datum
-            <li class="fragment">D3: Visualisierungen
-            <li class="fragment">joi: Validierung
-        </ul>
-    </section>
 
-
-</section>
-
-<section>
-    <h1>Fragen?</h1>
 </section>
 
 <section>
@@ -350,10 +339,6 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
 </section>
 
 <section>
-    <h1>Fragen?</h1>
-</section>
-
-<section>
     <section>
         <h2>Problemstellung #3: JavaScript auch auf dem Server?</h2>
     </section>
@@ -391,18 +376,18 @@ Nur wie weit sollte man dabei gehen? Welche Problemstellungen ergeben sich für 
             <li class="fragment">Auch ideal als API-Server
         </ul>
     </section>
-    <section>
-        <h3>Beispiel-Server für node</h3>
-<pre><code class="javascript" contenteditable>var http = require('http');
+    <!--<section>-->
+        <!--<h3>Beispiel-Server für node</h3>-->
+<!--<pre><code class="javascript" contenteditable>var http = require('http');-->
 
-function handleRequest (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello World\n');
-}
-http.createServer(handleRequest).listen(1337);</code></pre>
-        <p class="fragment">Starten</p>
-        <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
-    </section>
+<!--function handleRequest (req, res) {-->
+    <!--res.writeHead(200, {'Content-Type': 'text/plain'});-->
+    <!--res.end('Hello World\n');-->
+<!--}-->
+<!--http.createServer(handleRequest).listen(1337);</code></pre>-->
+        <!--<p class="fragment">Starten</p>-->
+        <!--<pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>-->
+    <!--</section>-->
 
     <section>
         <h3>Wer nutzt Node.js in Produktion?</h3>
@@ -508,6 +493,23 @@ function calculatePercentage(amount, percentage) {
     <img src="graylog2.png" height="200">
 
 </section>
+<section>
+    <section>
+        <h1>Zugabge</h1>
+    </section>
+
+    <section>
+        <h3>Auswahl von Bibliotheken</h3>
+        <ul>
+            <li class="fragment">Lodash: Funktionale Spracherweiterungen
+            <li class="fragment">Moment.js: Zeit und Datum
+            <li class="fragment">D3: Visualisierungen
+            <li class="fragment">joi: Validierung
+            <li class="fragment">Modernizr: Checkt, ob ein Feature im Browser verfügbar ist
+        </ul>
+    </section>
+</section>
+
 
 </div>
 
