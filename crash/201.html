@@ -253,6 +253,35 @@ Person.getLieblingsName = function() {
 Person.lieblingsName === "Olli";
 Person.getLieblingsName() === "Olli";</code></pre>
                 </section>
+               <section>
+                    <section>
+                    <h1>Scopes</h1>
+                    </section>
+                    <section>
+                        <h2>So nicht!</h2>
+    <pre><code class="javascript" contenteditable>
+{
+    var huch = "Ich bin noch da";
+}
+
+console.log(huch); // Ich bin noch da
+    </code></pre>
+
+                    </section>
+                    <section>
+                        <h2>So!</h2>
+    <pre><code class="javascript" contenteditable>
+(function () {
+    var achso = "Ich bin weg";
+}());
+
+console.log(achso); // ReferenceError
+    </code></pre>
+                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
+
+                    </section>
+                </section>
+
 
                 <section>
                     <section>

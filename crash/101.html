@@ -247,35 +247,6 @@ console.log(result5 === 6);</code></pre>
 
                 <section>
                     <section>
-                    <h1>Scopes</h1>
-                    </section>
-                    <section>
-                        <h2>So nicht!</h2>
-    <pre><code class="javascript" contenteditable>
-{
-    var huch = "Ich bin noch da";
-}
-
-console.log(huch); // Ich bin noch da
-    </code></pre>
-
-                    </section>
-                    <section>
-                        <h2>So!</h2>
-    <pre><code class="javascript" contenteditable>
-(function () {
-    var achso = "Ich bin weg";
-}());
-
-console.log(achso); // ReferenceError
-    </code></pre>
-                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
-
-                    </section>
-                </section>
-
-                <section>
-                    <section>
                     <h2>Exception Handling</h2>
     <pre><code class="javascript" contenteditable>
 try {
@@ -311,7 +282,7 @@ try {
                         <h4>Optionaler Schritt 2: Exceptions</h4>
                         <ol>
                             <li>Erweitere das Programm um eine Funktion zum überprüfen von Personen. Kann jemand über 200 Jahre alt sein?
-                            <li>Die Funktion soll im Fehlerfall eine Exception schmeißen
+                            <li>Die Funktion soll im Fehlerfall einen Error schmeißen
                             <li>Erweitere dein Array um Methusalem oder eine andere geeignete Person
                             <li>Rufe deine Check-Funktion nacheinander auf allen Elementen des Arrays auf
                             <li>Umschließe den Aufruf mit <code>try...catch...finally</code> und gib eine gefangene Exception aus
