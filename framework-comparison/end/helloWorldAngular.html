@@ -5,21 +5,19 @@
     <script src="../lib/angular.js"></script>
     <script>
         function HelloController() {
-            this.greeting = {
-                text: 'Hello'
-            };
+            this.model = 'Hello';
         }
 
         HelloController.prototype.clear = function() {
-            this.greeting.text = '';
+            this.model = '';
             // setting the focus on the input field seems to require a self made directive??? WTF?
         };
     </script>
 </head>
 <body ng-app>
     <div ng-controller="HelloController as helloController">
-        <input ng-model='helloController.greeting.text'>
-        <p>{{helloController.greeting.text}}, World!</p>
+        <input ng-model='helloController.model'>
+        <p>{{helloController.model}}, World!</p>
         <input type="button" value="Clear" ng-click="helloController.clear()">
     </div>
 </body>

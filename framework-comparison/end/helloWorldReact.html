@@ -8,31 +8,32 @@
 <body>
 <div id="example"></div>
 <script type="text/jsx">
-    /** @jsx React.DOM **/
-    (function () {
+/** @jsx React.DOM **/
+(function () {
 
-        var HelloMessage = React.createClass({
-            getInitialState: function () {
-                return {model: this.props.greeting};
-            },
-            updateModel: function (event) {
-                this.setState({model: event.target.value});
-            },
-            reset: function () {
-                this.setState({model: ""});
-                this.refs.in.getDOMNode().focus();
-            },
-            render: function () {
-                return (<div>
-                    <input ref="in" onChange={this.updateModel} value={this.state.model} />
-                    <p>{this.state.model}, World</p>
-                    <input type="button" value="Clear" onClick={this.reset} />
-                </div>);
-            }
-        });
-        var mountNode = document.getElementById('example');
-        React.renderComponent(<HelloMessage greeting="Hello" />, mountNode);
-    })();
+    var HelloMessage = React.createClass({
+        getInitialState: function () {
+            return {model: this.props.greeting};
+        },
+        updateModel: function (event) {
+            this.setState({model: event.target.value});
+        },
+        reset: function () {
+            this.setState({model: ""});
+            this.refs.in.getDOMNode().focus();
+        },
+        render: function () {
+            return (
+            <div>
+                <input ref="in" onChange={this.updateModel} value={this.state.model} />
+                <p>{this.state.model}, World</p>
+                <input type="button" value="Clear" onClick={this.reset} />
+            </div>);
+        }
+    });
+    var mountNode = document.getElementById('example');
+    React.renderComponent(<HelloMessage greeting="Hello" />, mountNode);
+})();
 </script>
 </body>
 </html>
