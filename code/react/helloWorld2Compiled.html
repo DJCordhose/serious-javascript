@@ -2,19 +2,10 @@
 <html>
 <head>
     <script src="lib/react.js"></script>
+    <script src="lib/JSXTransformer.js"></script>
 </head>
 <body>
 <div id="example"></div>
-<script>
-var mountNode = document.getElementById('example');
-
-var HelloMessage = React.createClass({displayName: 'HelloMessage',
-    render: function() {
-        return React.DOM.div(null, "Hello ", this.props.name);
-    }
-});
-
-React.renderComponent(HelloMessage( {name:"Olli"} ), mountNode);
-</script>
+<script type="text/jsx" src="build/helloWorld2.js"></script>
 </body>
 </html>

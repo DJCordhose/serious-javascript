@@ -6,16 +6,6 @@
 </head>
 <body>
 <div id="example"></div>
-<script type="text/jsx">
-/** @jsx React.DOM */
-var mountNode = document.getElementById('example');
-var HelloMessage = React.createClass({
-  render: function() {
-    return <div>Hello {this.props.name}</div>;
-  }
-});
-
-React.renderComponent(<HelloMessage name="Olli" />, mountNode);
-</script>
+<script type="text/jsx" src="helloWorld2.js"></script>
 </body>
 </html>
