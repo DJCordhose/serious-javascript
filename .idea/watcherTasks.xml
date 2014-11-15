@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectTasksOptions" suppressed-tasks="Traceur compiler">
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="--sourcemap $FileName$" />
+      <option name="arguments" value="--sourcemap $FileName$ --module commonjs" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" value="Compiles .ts files into .js files" />
       <option name="exitCodeBehavior" value="ERROR" />
@@ -29,4 +29,3 @@
     </TaskOptions>
   </component>
 </project>
-
