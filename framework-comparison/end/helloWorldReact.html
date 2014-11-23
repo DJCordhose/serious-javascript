@@ -10,7 +10,6 @@
 <script type="text/jsx">
 /** @jsx React.DOM **/
 (function () {
-
     var HelloMessage = React.createClass({
         getInitialState: function () {
             return {model: this.props.greeting};
@@ -25,9 +24,11 @@
         render: function () {
             return (
             <div>
-                <input ref="in" onChange={this.updateModel} value={this.state.model} />
+                <input ref="in" onChange={this.updateModel}
+                        value={this.state.model} />
                 <p>{this.state.model}, World</p>
-                <input type="button" value="Clear" onClick={this.reset} />
+                <input type="button" value="Clear"
+                        onClick={this.reset} />
             </div>);
         }
     });
