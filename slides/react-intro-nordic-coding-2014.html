@@ -61,61 +61,7 @@
 
             <p><a target="_blank" href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
         </section>
-        <section>
-            <h3>Concepts</h3>
-            <ul>
-                <li class="fragment">The V in MVC
-                <li class="fragment">Code is organized in components
-                <li class="fragment">Templates are also code
-                <li class="fragment">Minimal API
-                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
-                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
-                <li class="fragment">Browser DOM experiences minimal amount of updates
-                <li class="fragment">Runs both on server and on client side
-            </ul>
-        </section>
-
-
-<section>
-<section>
-    <h2>Why a web framework like this?</h2>
-    <h3 class="fragment">Aka: Why not just use jQuery?</h3>
-</section>
-    <section>
-        <h3>Dynamic vs Stability</h3>
-        <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h3>Classic Web Application (Blue: Server, Purple: Browser)</h3>
-        <img src="Classic%20Web%20Application.png" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>Classic Web Application: No need for abstraction from DOM or deeper knowledge of JavaScript</h2>
-        <h3 class="fragment">jQuery or no UI framework ok</h3>
-    </section>
-    <section>
-        <h3>SPA Lean: Rendering and UI in Browser</h3>
-        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>SPA Lean: Abstraction from DOM beneficial</h2>
-        <h3 class="fragment">Use of a higher level framework like EmberJS, AngularJS or React</h3>
-    </section>
-    <section>
-        <h3>SPA Fat: Business Logic in Browser</h3>
-        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>SPA Fat: Abstraction from DOM required, maintainability a demand</h2>
-        <h3 class="fragment">Modules, Classes and Types become more interesting</h3>
-    </section>
-</section>
-
-    <section>
+            <section>
         <h3>Who uses React?</h3>
         <img src="react_users.png">
         <p><a target="_blank" href="http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html">http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html</a></p>
@@ -144,6 +90,26 @@
             <a target="_blank" href="../code/react/helloWorld.html">Run</a>
 
         </section>
+        <section>
+            <h3>Concepts</h3>
+            <ul>
+                <li class="fragment">The V in MVC
+                <li class="fragment">Code is organized in components
+                <li class="fragment">Templates are also code
+                <li class="fragment">Minimal API
+                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
+                <li class="fragment">Browser DOM experiences minimal amount of updates
+                <li class="fragment">Runs both on server and on client side
+            </ul>
+        </section>
+        <section>
+            <p>Simply express how your app should look at any given point in time, and React will automatically manage
+                all UI updates</p>
+            <a target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>
+        </section>
+
+
         <section>
             <h3>A Simple Component</h3>
             <div class="fragment">
@@ -185,6 +151,47 @@ React.render(React.createElement(HelloMessage, {name: "Olli"}), mountNode);
                 <li class="fragment"><a href="http://facebook.github.io/react/docs/top-level-api.html" target="_blank">React: Top-Level API</a>
             </ul>
         </section>
+
+
+
+        <section>
+<section>
+    <h2>Why a web framework like this?</h2>
+    <h3 class="fragment">Aka: Why not just use jQuery?</h3>
+</section>
+    <section>
+        <h3>Dynamic vs Stability</h3>
+        <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h3>Classic Web Application (Blue: Server, Purple: Browser)</h3>
+        <img src="Classic%20Web%20Application.png" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>Classic Web Application: No need for abstraction from DOM or deeper knowledge of JavaScript</h2>
+        <h3 class="fragment">jQuery or no UI framework ok</h3>
+    </section>
+    <section>
+        <h3>SPA Lean: Rendering and UI in Browser</h3>
+        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>SPA Lean: Abstraction from DOM beneficial</h2>
+        <h3 class="fragment">Use of a higher level framework like EmberJS, AngularJS or React</h3>
+    </section>
+    <section>
+        <h3>SPA Fat: Business Logic in Browser</h3>
+        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>SPA Fat: Abstraction from DOM required, maintainability a demand</h2>
+        <h3 class="fragment">Modules, Classes and Types become more interesting</h3>
+    </section>
+</section>
 
         <section>
             <h3>Rendering a list</h3>
@@ -288,7 +295,7 @@ React.render(&lt;TodoApp />, mountNode);
         <section>
             <h3>Wrap-Up</h3>
             <ul>
-                <li class="fragment">React is heavily used in Facebook and Instagram
+                <li class="fragment">React is heavily used in Facebook and Instagram and many other companies
                 <li class="fragment">Just the V in MVC
                 <li class="fragment">Minimal API for simplicity
                 <li class="fragment">Explicit code to avoid magic
@@ -296,6 +303,7 @@ React.render(&lt;TodoApp />, mountNode);
                 <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Plays very well with other frameworks also working on the DOM
                 <li class="fragment">Server side rendering for SEO or quick first page impression
+                <li class="fragment">Probably the next hype
             </ul>
         </section>
             <section>
@@ -307,6 +315,8 @@ React.render(&lt;TodoApp />, mountNode);
                     React Blog</a>
                 <li class="fragment"><a target="_blank" href="http://facebook.github.io/flux/docs/overview.html">
                     Application architecture at Facebook with Flux</a>
+                <li class="fragment"><a target="_blank" href="https://github.com/yahoo/flux-router-component">Flux @Yahoo</a>
+
             </ul>
             </section>
         <section>
