@@ -61,6 +61,14 @@
 
             <p><a target="_blank" href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
         </section>
+        <section>
+            <h2>Why React?</h2>
+            <p class="fragment">We built React to solve one problem: building large applications with data that changes over time.</p>
+            <p class="fragment">Simply express how your app should look at any given point in time, and React will automatically manage
+                all UI updates</p>
+            <p class="fragment">When the data changes, React conceptually hits the "refresh" button, and knows to only update the changed parts.</p>
+            <a class="fragment" target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>
+        </section>
             <section>
         <h3>Who uses React?</h3>
         <img src="react_users.png">
@@ -93,20 +101,13 @@
         <section>
             <h3>Concepts</h3>
             <ul>
-                <li class="fragment">The V in MVC
+                <li class="fragment">The V in MVC (or whatever else)
                 <li class="fragment">Code is organized in components
                 <li class="fragment">Templates are also code
                 <li class="fragment">Minimal API
                 <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
-                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
-                <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Runs both on server and on client side
             </ul>
-        </section>
-        <section>
-            <p>Simply express how your app should look at any given point in time, and React will automatically manage
-                all UI updates</p>
-            <a target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>
         </section>
 
 
@@ -151,47 +152,15 @@ React.render(React.createElement(HelloMessage, {name: "Olli"}), mountNode);
                 <li class="fragment"><a href="http://facebook.github.io/react/docs/top-level-api.html" target="_blank">React: Top-Level API</a>
             </ul>
         </section>
-
-
-
         <section>
-<section>
-    <h2>Why a web framework like this?</h2>
-    <h3 class="fragment">Aka: Why not just use jQuery?</h3>
-</section>
-    <section>
-        <h3>Dynamic vs Stability</h3>
-        <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h3>Classic Web Application (Blue: Server, Purple: Browser)</h3>
-        <img src="Classic%20Web%20Application.png" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>Classic Web Application: No need for abstraction from DOM or deeper knowledge of JavaScript</h2>
-        <h3 class="fragment">jQuery or no UI framework ok</h3>
-    </section>
-    <section>
-        <h3>SPA Lean: Rendering and UI in Browser</h3>
-        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>SPA Lean: Abstraction from DOM beneficial</h2>
-        <h3 class="fragment">Use of a higher level framework like EmberJS, AngularJS or React</h3>
-    </section>
-    <section>
-        <h3>SPA Fat: Business Logic in Browser</h3>
-        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" height="500">
-        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h2>SPA Fat: Abstraction from DOM required, maintainability a demand</h2>
-        <h3 class="fragment">Modules, Classes and Types become more interesting</h3>
-    </section>
-</section>
+            <h2>Control Structures</h2>
+            <ul>
+                <li class="fragment">Philosophy of minimal API leads to no special concept for flow control
+                <li class="fragment">Instead you just write JavaScript
+                <li class="fragment">React's JSX compiler largely supports ES6 syntax
+            </ul>
+
+        </section>
 
         <section>
             <h3>Rendering a list</h3>
@@ -199,16 +168,27 @@ React.render(React.createElement(HelloMessage, {name: "Olli"}), mountNode);
 
 <pre><code class="javascript" contenteditable>var TodoList = React.createClass({
   render: function() {
-    var createItem = function(itemText) {
-      return &lt;li>{itemText}&lt;/li>;
-    };
-    return &lt;ul>{this.props.items.map(createItem)}&lt;/ul>;
+    return &lt;ul>{this.props.items.map((itemText) => &lt;li>{itemText}&lt;/li>)}&lt;/ul>;
   }
 });
 &lt;TodoList items={['Stuff', 'More Stuff']} />
 </code></pre>
                 </div>
         </section>
+        <section>
+                <h3>State and state changes</h3>
+            <ul>
+                <li class="fragment">component state can be read using <code>this.state</code> and set using <code>this.setState()</code>
+                <li class="fragment">when state changes
+                    <ul>
+                        <li class="fragment">render method of component will be called again
+                        <li class="fragment">diff for virtual DOM is calculated and applied
+                        <li class="fragment">other parts of the DOM remain unchanged
+                    </ul>
+                </li>
+            </ul>
+            </section>
+
         <section>
             <h3>State and passing it</h3>
             <div class="fragment">
@@ -262,34 +242,13 @@ React.render(&lt;TodoApp />, mountNode);
         </section>
             <section>
                 <h3>Minimal updates to the browsers DOM</h3>
-            <ul>
-                <li class="fragment">component state can be read using <code>this.state</code> and set using <code>this.setState()</code>
-                <li class="fragment">when state changes
-                    <ul>
-                        <li class="fragment">render method of component will be called again
-                        <li class="fragment">diff for virtual DOM is calculated and applied
-                        <li class="fragment">other parts of the DOM remain unchanged
-                    </ul>
-                </li>
-                <li class="fragment">Why is this good?
-                    <ul>
-                        <li class="fragment">changes to DOM are costly => react is fast
-                        <li class="fragment">updated to DOM can be batched => even faster
-                        <li class="fragment">best compatibility with other libraries working on the DOM (e.g. jQuery, D3)
-                    </ul>
-                </li>
-            </ul>
-            </section>
-            <section>
-                <h3>State Change and Rendering: An Experiment</h3>
-            <ul>
-                <li class="fragment">use todo list app
-                <li class="fragment">create an element
-                <li class="fragment">change color of element in browser dev tools
-                <li class="fragment">add another item
-                <li class="fragment">make sure changed color remains unchanged
-                <li class="fragment">only parts updated in the count in the button and the newly created element
-            </ul>
+                <p class="fragment">Only the parts of the DOM that are actually changed are touched by React</p>
+                <p class="fragment">Why is this good?</p>
+                <ul>
+                    <li class="fragment">changes to DOM are costly => react is fast
+                    <li class="fragment">updates to DOM can be batched => even faster
+                    <li class="fragment">best compatibility with other libraries working on the DOM (e.g. jQuery, D3)
+                </ul>
             </section>
 
         <section>
@@ -307,7 +266,7 @@ React.render(&lt;TodoApp />, mountNode);
             </ul>
         </section>
             <section>
-                <h3>Links</h3>
+                <h3>Links / Where to go from there</h3>
             <ul>
                 <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/blog/2014/01/02/react-chrome-developer-tools.html">
                     Chrome Dev Tools Extension</a>
@@ -330,6 +289,59 @@ React.render(&lt;TodoApp />, mountNode);
             </p>
 
         </section>
+        <section>
+            <h1>Bonus Content</h1>
+        </section>
+        <section>
+<section>
+    <h2>Why a web framework like this?</h2>
+    <h3 class="fragment">Aka: Why not just use jQuery?</h3>
+</section>
+    <section>
+        <h3>Dynamic vs Stability</h3>
+        <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h3>Classic Web Application (Blue: Server, Purple: Browser)</h3>
+        <img src="Classic%20Web%20Application.png" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>Classic Web Application: No need for abstraction from DOM or deeper knowledge of JavaScript</h2>
+        <h3 class="fragment">jQuery or no UI framework ok</h3>
+    </section>
+    <section>
+        <h3>SPA Lean: Rendering and UI in Browser</h3>
+        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>SPA Lean: Abstraction from DOM beneficial</h2>
+        <h3 class="fragment">Use of a higher level framework like EmberJS, AngularJS or React</h3>
+    </section>
+    <section>
+        <h3>SPA Fat: Business Logic in Browser</h3>
+        <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" height="500">
+        <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+    </section>
+    <section>
+        <h2>SPA Fat: Abstraction from DOM required, maintainability a demand</h2>
+        <h3 class="fragment">Modules, Classes and Types become more interesting</h3>
+    </section>
+</section>
+            <section>
+                <h3>State Change and Rendering: An Experiment</h3>
+            <ul>
+                <li class="fragment">use todo list app
+                <li class="fragment">create an element
+                <li class="fragment">change color of element in browser dev tools
+                <li class="fragment">add another item
+                <li class="fragment">make sure changed color remains unchanged
+                <li class="fragment">only parts updated in the count in the button and the newly created element
+            </ul>
+            </section>
+
 
     </div>
 
