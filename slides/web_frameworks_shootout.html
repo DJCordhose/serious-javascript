@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript Web Framework Shootout</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
+
+    <!-- Uncomment for presentation -->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    </style>
+
+    <!-- Uncomment for PDF generation -->
+    <!-- and add ?print-pdf to url -->
+    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<div class="slides">
+<section>
+    <h2>JavaScript Web Framework Shootout</h2>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/slides/web_frameworks_shootout.html">http://djcordhose.github.io/serious-javascript/slides/web_frameworks_shootout.html</a></p>
+    <p>Or: http://bit.ly/1ud7GxA</p>
+
+</section>
+
+<!--
+JavaScript ist die einzige Sprache, die in jedem Browser ohne Plugins läuft.
+Wer für den Nutzer komfortable Single Page  Anwendungen (SPA) auf allen Web-Plattformen ausliefern möchte,
+kommt daher nicht um die Sprache JavaScript herum.
+In dieser Session werden wir die Architektur einer solchen SPA, die existierenden Frameworks und die notwendigen Programmiertechniken,
+Werkzeuge und Schwierigkeiten beleuchten.
+-->
+
+<section>
+    <h2>Oliver Zeigermann</h2>
+    <img src="graylog2.png" height="100" align="left">
+    <img src="SF-Olli.jpg" height="100" align="right">
+    <ul>
+        <li>Entwickler bei <a target="_blank" href="http://graylog2.org/">http://graylog2.org/</a>
+        <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+        <li><a target="_blank" href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>
+        <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+        <li><a target="_blank" href="http://entwickler.de/press/JavaScript-und-TypeScript-fuer-C-Entwickler-174972">JavaScript und TypeScript für
+            C#-Entwickler</a>
+    </ul>
+</section>
+<section>
+    <img src="Schilder_Signierstunde_Zeigermann.png" height="700">
+</section>
+
+<section>
+    <h2>Single Page Applications (SPA)</h2>
+    <ul>
+        <li class="fragment">Web-Anwendungen, laufen im Browser
+        <li class="fragment">Nur eine einzige Seite wird an den Browser vom Server ausgeliefert
+        <li class="fragment">Alle weiteren Aktionen werden von dem JavaScript kontrolliert, das mit der Seite ausgeliefert wurde
+        <li class="fragment">Zugriffe auf den Server nicht zur Darstellungen, sondern zur Übertragung von Daten
+        <li class="fragment">Erlaubt höchste Interaktivität und beste Reaktion auf Benutzereingaben
+        <li class="fragment">Komfort vergleichbar mit Desktop-Anwendungen
+        <li class="fragment">Offline-Fähigkeit
+    </ul>
+</section>
+
+<section>
+    <h2>Inhalt</h2>
+    <ul>
+        <!-- Intro 5 Minten -->
+        <!-- 10 Minuten -->
+        <li class="fragment">Architektur
+        <!-- 25 Minuten -->
+        <li class="fragment">Server-Seite und Client-/Server-Kommunikation
+        <!-- 10 Minuten -->
+        <li class="fragment">Frameworks
+        <!-- 15 Minuten -->
+        <li class="fragment">Fragen und Diskussion
+    </ul>
+</section>
+
+<section>
+    <h2>Architektur einer (SPA)</h2>
+    <ul>
+        <li class="fragment">Server wird nur noch zur Kommunikation mit dem Client benötigt
+        <li class="fragment">Client macht REST/JSON calls zum Server
+        <li class="fragment">Client wird entweder komplett geladen oder in Modulen nachgeladen
+        <li class="fragment">Reload, Links, Bookmarks, Forward-/Backward-Navigation über Deep-Links (#)
+        <li class="fragment">Lokale und Offline-Speicherung über LocalStorage oder IndexedDB
+        <li class="fragment">Kommunikation mit mehreren API-Servern über CORS möglich
+    </ul>
+</section>
+
+<section>
+    <h2>Architektur-Varianten</h2>
+</section>
+
+<section>
+    <h3>Anforderungen an Dynamik und Stabilität</h3>
+    <img src="Application%20Stability%20BASTA%202014.jpg" height="500">
+    <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+</section>
+
+<section>
+    <h3>SPA Variante #1: Lean</h3>
+    <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" height="500">
+    <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+</section>
+
+<section>
+    <h3>SPA Variante #2: Fat</h3>
+    <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" height="500">
+    <p><small>Copyright 2014, Oliver Zeigermann</small></p>
+</section>
+
+<section>
+    <h2>Technische Anforderungen an den Browser</h2>
+    <ul>
+        <li class="fragment">SPAs laufen länger (teilweise viel länger) als eine klassiche Webseite
+        <li class="fragment">Manche SPAs schließt man fast nie
+        <li class="fragment">Bei mir sind das Gmail, Facebook und Twitter
+        <li class="fragment">Die Anforderungen für Speicher-Management vergleichbar wie bei einer Desktop-Applikation
+        <li class="fragment">Reaktionszeiten der Anwendungen sind ebenso wichtig
+        <li class="fragment">Moderne Browser bieten Mittel des Profilings und der Analyse
+        <li class="fragment">Chrome sticht hervor, aber auch Firefox und die neuesten IE (ab 11) erlauben Profiling
+        <li class="fragment">Mehr dazu: <a target="_blank" href="https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass">https://speakerdeck.com/addyosmani/javascript-memory-management-masterclass</a></li>
+    </ul>
+</section>
+
+    <section>
+        <h2>Was mache ich auf der Server-Seite?</h2>
+    </section>
+    <section>
+        <h3>Fragestellung</h3>
+        <ul>
+            <li class="fragment">JavaScript im Browser ist als Zielsprache gesetzt
+            <li class="fragment">Meist braucht man auch Code, der auf dem Server läuft
+            <li class="fragment">Wie setzt man diesen um?
+            <li class="fragment">JEE/Spring/.NET/Rails/Python?
+            <li class="fragment">Oder ebenfalls in JavaScript?
+        </ul>
+    </section>
+
+    <section>
+        <h3>Option #1: Server in klassicher Server-Technik (JEE/Spring/.NET/Rails/Python)</h3>
+        <h3 class="fragment">bzw. existierender Server bleibt wie er ist</h3>
+        <ul>
+            <li class="fragment">Naheliegende Lösung
+            <li class="fragment">Kommunikation über REST/JSON
+            <li class="fragment">Mapping von Objekten auf JSON
+            <li class="fragment">Polyglotte Programmierung
+        </ul>
+    </section>
+<section>
+    <h2>RESTFul Web Services</h2>
+    <p>REST = Representational State Transfer</p>
+
+</section>
+<section>
+    <h3>Eigenschaften</h3>
+    <p class="fragment">Es gibt keine klare Definition, aber dies sind Eigenschaften, die die meisten darunter subsumieren</p>
+    <ul>
+        <li class="fragment">basiert auf HTTP / HTTPS
+        <li class="fragment">Stateless
+        <li class="fragment">Cachebar
+        <li class="fragment">HTTP-Methoden PUT / GET / POST / DELETE werden für CRUD genommen
+        <li class="fragment">Wenn möglich werden Aufrufparameter in der URL kodiert
+        <li class="fragment">Oft URL Pfad auf eine bestimmte Ressource
+        <li class="fragment">JSON bevorzugtes Format für komplexe Daten, XML geht auch
+    </ul>
+
+</section>
+<section>
+    <h2>Beispiel</h2>
+    <p class="fragment">RESTFul Aufruf mit <code>GET</code>, z.B.</p>
+    <pre class="fragment"><code class="html" contenteditable>https://mortgage-demo.appspot.com/mortgage_calculator/rs/200000/10/7.5/30</code></pre>
+    <p class="fragment">Aufrufparameter sind in die URL codiert, Service zustandslos.</p>
+    <p class="fragment">Antwort als JSON</p>
+    <pre class="fragment"><code class="html" contenteditable>{"principle": "199990.00", "total": "503409.60", "payments": "360", "monthly": "1398.36"}</code></pre>
+    <p class="fragment">Aufruf mit Pfad auf Ressource, z.B. <code>DELETE</code></p>
+    <pre class="fragment"><code class="html" contenteditable>https://accounting.com/user/4711</code></pre>
+    <p class="fragment">Antwort Status Code 204 (No content)</p>
+</section>
+
+
+    <section>
+        <h3>Option #2: JavaScript auch auf dem Server?</h3>
+        <ul>
+            <li class="fragment">Code kann wieder verwendet werden
+            <li class="fragment">Dieselben Tools für Frontend und Backend
+            <li class="fragment">Kleinerer Technologiestack
+            <li class="fragment">Vertikale Teams einfacher zu realisieren
+            <li class="fragment">Einheitliche Entwicklungsphilosophie
+            <li class="fragment">JSON als natürliches Datenformat
+        </ul>
+    </section>
+    <section>
+        <h3>Node.js</h3>
+        <ul>
+            <li class="fragment">Erlaubt die Ausführung von JavaScript auch auf dem Server
+            <li class="fragment">Bestandteile
+                <ul>
+                    <li class="fragment">Chrome V8 JavaScript-Engine
+                    <li class="fragment">Asynchrone IO-Bibliothek (libuv), die auf allen Plattformen läuft
+                </ul>
+            </li>
+            <li class="fragment">Asynchrones Programmiermodell, kein Multithreading
+            <li class="fragment">Kommt mit Abhängigkeits-Manager <code>npm</code>
+            <li class="fragment">Forken für Auslastung aller Kerne mit <a target="_blank"
+                                                                          href="http://nodejs.org/api/cluster.html">"Clustering"
+                als Kernmodul</a>
+
+            <li class="fragment"><a target="_blank" href="http://cjihrig.com/blog/scaling-node-js-applications/">Skalierung
+                über viele Maschinen</a> möglich
+            <li class="fragment">Skaliert sehr gut bei hoher Last (non-blocking)
+            <li class="fragment">Express als Modul für klassische Webanwendungen
+            <li class="fragment">Auch ideal als API-Server
+        </ul>
+    </section>
+    <section>
+        <h3>Beispiel-Server für node</h3>
+<pre><code class="javascript" contenteditable>var http = require('http');
+
+function handleRequest (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+}
+http.createServer(handleRequest).listen(1337);</code></pre>
+        <p class="fragment">Starten</p>
+        <pre class="fragment"><code class="javascript" contenteditable>node server.js</code></pre>
+    </section>
+
+    <section>
+        <h3>Wer nutzt Node.js in Produktion?</h3>
+        <ul>
+            <li class="fragment"><a target="_blank"
+                                    href="https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/">Paypal</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">Walmart</a>
+            <li class="fragment"><a target="_blank"
+                                    href="http://www.ebaytechblog.com/2013/05/17/how-we-built-ebays-first-node-js-application/#.U0ZFXK2Sxwg">Ebay</a>
+            <li class="fragment"><a target="_blank" href="http://venturebeat.com/2011/08/16/linkedin-node/">Linkedin</a>
+            <li class="fragment"><a target="_blank"
+                                    href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">Viele
+                weitere</a>
+            <!--<li class="fragment"><a target="_blank" href="http://nodejs.org/industry/">Node.js-Unterstützer</a>-->
+        </ul>
+    </section>
+<section>
+    <h3>SPAs in vier Frameworks</h3>
+    <ul>
+        <li class="fragment">jQuery
+        <li class="fragment">AngularJS
+        <li class="fragment">React
+        <li class="fragment">Kein Framework (vanilla.js)
+    </ul>
+</section>
+
+    <section>
+        <h2>Zum Vergleich: Hello World ohne Framework</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in" onkeyup="setModel(this.value)">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input type="button" value="Clear" onclick="reset()">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        document.getElementById("log").innerHTML = model;
+        document.getElementById("in").value = model;
+    }
+    function reset() {
+        setModel("");
+    }
+    window.onload = function() {
+        setModel("Hello");
+    };
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-vanilla.html">Run</a>
+                    </section>
+
+    <section>
+        <h3>Option: jQuery</h3>
+        <ul>
+            <li class="fragment">Standard-JavaScript-Bibliothek
+            <li class="fragment">Fast überall zu finden
+            <li class="fragment">Abstrahiert nicht von der Ebene der DOM-Manipulation
+            <li class="fragment">Typischerweise "unobtrusive", d.h. bestehendes HTML wird nicht verändert
+        </ul>
+    </section>
+    <section>
+        <h2>Hello World jQuery</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input id="btn" type="button" value="Clear">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        $("#log").html(model);
+        $("#in").val(model);
+    }
+    $(document).ready(function () {
+        $("#in").on("keyup", function (event) {
+            setModel($("#in").val());
+        });
+        $("#btn").on("click", function () {
+            setModel("");
+        });
+        setModel("Hello");
+    });
+&lt;/script></code></pre>
+                        <a target="_blank" href="../HelloWorld2/helloworld-jQuery.html">Run</a>
+                    </section>
+
+    <section>
+        <h3>Option: AngularJS</h3>
+        <ul>
+            <li class="fragment">HTML enhanced for web apps!
+            <li class="fragment">HTML wird erweitert (Directives)
+            <li class="fragment">Eigene Directives (== Komponenten) sind möglich
+            <li class="fragment">2-Wege-Databinding
+        </ul>
+    </section>
+
+                <section>
+                    <h3>Hello World AngularJS</h3>
+<pre><code class="xml" contenteditable>&lt;body np-app ng-controller="HelloController as helloController">
+&lt;input ng-model="helloController.greeting.text">
+&lt;p>{{helloController.greeting.text}}, World!&lt;/p>
+&lt;input type="button" value="Clear" ng-click="helloController.clear()">
+&lt;/body></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>function HelloController() {
+    this.greeting = {
+        text: 'Hello'
+    };
+}
+HelloController.prototype.clear = function() {
+    this.greeting.text = '';
+};
+</code></pre>
+        <a target="_blank" href="../HelloWorld2/helloWorldAngular3.html">Run</a>
+                </section>
+
+    <section>
+        <h3>Option: React</h3>
+            <ul>
+                <li class="fragment">Framework von Facebook und Instagram
+                <li class="fragment">Nur das V in MVC
+                <li class="fragment">Basiert auf Komponenten
+                <li class="fragment">1-Wege-Databinding: Änderungen des Modells führen automatisch zum Neurendern von Komponenten
+                <li class="fragment">Ein schlauer Algorithmus macht minimale Änderungen am eigentlich DOM => schnell
+                <li class="fragment">React läuft im Browser und auf dem Server
+            </ul>
+        </section>
+
+            <section>
+            <h3>Hello World React</h3>
+<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
+  getInitialState: function() {
+    return { model: this.props.greeting};
+  },
+  updateModel: function(event) {
+    this.setState({model: event.target.value});
+  },
+  reset: function() {
+    this.setState({model: ""});
+  },
+  render: function() {
+    return (&lt;div>
+        &lt;input onChange={this.updateModel} value={this.state.model} />
+        &lt;p>{this.state.model}, World&lt;/p>
+        &lt;input type="button" value="Clear" onClick={this.reset} />
+     &lt;/div>);
+  }
+});
+var mountNode = document.getElementById('example');
+React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+                <a target="_blank" href="../HelloWorld2/helloWorldReact.html">Run</a>
+        </section>
+
+<section>
+    <h2>Wrapup</h2>
+    <ul>
+        <li class="fragment">SPAs erlauben einen Bedienkomfort, der Desktop-Anwendungen in nichts nachstehen muss
+        <li class="fragment">JavaScript ist auf Client und auf Server möglich
+        <li class="fragment">Die Auswahl des Frameworks ist essentiell
+        <ul>
+            <li class="fragment">Kein Framework: Hybris, gängige Frameworks passen nicht oder Anwendung ist sehr einfach
+            <li class="fragment">jQuery: Der Standard, keine Abstraktion vom DOM, bei vielen Ausdrücken wird es unübersichtlich, andere Frameworks basieren darauf
+            <li class="fragment">Angular.js: Trifft viele Entscheidungen für uns, viele davon gut, Java-/C#-Programmierer fühlen sich abgeholt
+            <li class="fragment">React: minimales, einfaches API bei bester Performanz, server-seitiges Rendering möglich, fehlende Teile evtl. über Backbone oder Flux
+        </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <img src="Schilder_Signierstunde_Zeigermann.png" height="700">
+</section>
+
+
+<section>
+    <h1>Vielen Dank</h1>
+
+    <h3>Fragen / Diskussion</h3>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <img src="graylog2.png" height="200">
+
+</section>
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
