@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript Type Systems</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
+
+    <!-- Uncomment for presentation -->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+    </style>
+
+
+
+    <!-- Uncomment for PDF generation -->
+    <!-- and add ?print-pdf to url -->
+    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<div class="slides">
+<section>
+    <h1>JavaScript Type Systems</h1>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/slides/typesystems.html">http://djcordhose.github.io/serious-javascript/slides/typesystems.html</a></p>
+    <p>Or: TODO http://bit.ly/1LplvlE</p>
+
+</section>
+
+    <!--
+    Title: Typensysteme für JavaScript
+
+    Abstract:
+    JavaScript unterstützt keine statische Typisierung und wird es auch in absehbarer Zeit nicht tun. Dennoch sind deklarierte Typen die Voraussetzung für zuverlässige Analyse und Refactoring von Enterprise-Codebasen und damit für deren Wartbarkeit. Firmen wie Google, Facebook und Microsoft haben und/oder entwickeln daher für ihre großen Codebasen jeweils eigene Lösungen.
+
+In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werkzeuge und warum sie sich insbesondere für große und über lange Zeit wartbare Projekte empfehlen.
+    -->
+
+<section>
+    <!-- 60 minutes -->
+
+    <h2>Contents</h2>
+    <ol>
+        <!-- 5 minutes -->
+        <li class="fragment">Motivation: Why a type system in the first place?
+        <!-- 10 minutes -->
+        <li class="fragment">The classic: JsDoc and Google Closure Compiler
+        <!-- 10 minutes -->
+        <li class="fragment">Mainstream: Microsoft's TypeScript
+        <!-- 10 minutes -->
+        <li class="fragment">Fancy pancy: Facebook's Flow
+        <li class="fragment">Abundance: Google's SoundScript and AtScript
+        <!-- 10 minutes -->
+        <!-- Scala, Java, Dart -->
+        <!-- Use Avic's image -->
+        <li class="fragment">The dark side: Compiling from completely other languages to JavaScript
+        <!-- 5 minutes -->
+        <li class="fragment">Questions and discussion
+    </ol>
+</section>
+
+<section>
+<section>
+    <h2>Motivation: Why a type system in the first place?</h2>
+</section>
+    <section>
+        <h3>Does a type system make you more productive?</h3>
+        <h4 class="fragment">Or less?</h4>
+        <ul>
+            <li class="fragment">some poeple claim<a target="_blank" href="https://www.youtube.com/watch?v=SWTWkYbcWU0/">not using types is even unethical</a> in this Strangeloop talk
+            <li class="fragment"><a target="_blank" href="http://danluu.com/empirical-pl/">http://danluu.com/empirical-pl/</a> elaborates that there is little or no impact
+        </ul>
+    </section>
+
+    </section>
+
+
+
+        <section>
+            <h1>Thank you!</h1>
+
+            <h3>Questions / Discussion</h3>
+
+            <p>
+                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+                </small>
+            </p>
+
+        </section>
+
+
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
