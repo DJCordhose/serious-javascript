@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript-Sprachgrundlagen für Java-Entwickler</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
+
+    <!-- Uncomment for presentation -->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    </style>
+
+    <!-- Uncomment for PDF generation -->
+    <!-- and add ?print-pdf to url -->
+    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<div class="slides">
+<section>
+    <h2>JavaScript-Sprachgrundlagen für Java-Entwickler</h2>
+    <h3>Eine Einführung</h3>
+
+    <p>
+        <small>Oliver Zeigermann / <a href="http://zeigermann.eu">http://zeigermann.eu</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <p>Online-Version: <a href="http://djcordhose.github.io/serious-javascript/slides/2015_jax_javascript4java.html">http://djcordhose.github.io/serious-javascript/slides/2015_jax_javascript4java.html</a></p>
+    <p>Or: TODO</p>
+
+</section>
+
+<section>
+    <img src="Twitter_2017_JavaScript.png" height="700">
+</section>
+<section>
+    <img src="Twitter-Github-Repos-JS.png" height="500">
+    <p><a target="_blank" href="http://redmonk.com/dberkholz/2014/05/02/github-language-trends-and-the-fragmenting-landscape">http://redmonk.com/dberkholz/2014/05/02/github-language-trends-and-the-fragmenting-landscape</a></p>
+</section>
+
+<section>
+    <img src="JS_Book_size_twitter.png" height="700">
+</section>
+<section>
+    <h2>Themen</h2>
+
+    <!-- 75 Minuten -->
+    <ol>
+        <li class="fragment">Grundlagen
+        <li class="fragment">Objekte und Klassen
+        <!-- 10 minutes -->
+        <!--<li class="fragment">Module-->
+            <!-- 10 minutes -->
+        <li class="fragment">Die Zukunft von JavaScript
+        <li class="fragment">Fragen und Diskussion
+    </ol>
+</section>
+
+<section>
+    <section>
+        <h2>Grundlagen</h2>
+    </section>
+    <section>
+                    <h2>Object</h2>
+                        <pre><code class="javascript" contenteditable>var map = {
+    feld1: 'Huhu',
+    zweites$Feld: "Auch sowas geht!"
+};
+console.log(typeof map === "object"); // true
+console.log(map.feld1); // Huhu
+console.log(map["zweites$Feld"]); // Auch sowas geht!
+
+map.hund = "Ganz neu geht auch";
+map.f = function() { return "Aha!" };
+
+delete map.hund; // löschen
+console.log(map.hund); // undefined</code></pre>
+                </section>
+
+                <section>
+                    <h2>Array</h2>
+                        <pre><code class="javascript" contenteditable>
+var array = ["a", "b", "c"];
+var el = array[2];
+array[1] = 20;
+typeof array === "object";
+// fügt die 4 am Ende hinzu
+array.push(4);
+// An Position 1 werden 2 Elemente entfernt und zurück gegeben
+array.splice(1, 2);
+// An Position 1 werden 0 Elemente entfernt und zurück gegeben
+// Zudem wird an Position 1 "x" hinzugefügt
+array.splice(1, 0, "x");
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Typen</h2>
+                        <pre><code class="javascript" contenteditable>var string = "String";
+typeof string === "string";
+
+var int = 1;
+typeof int === "number";
+
+var float = 1.0;
+typeof float === "number";
+
+var bool = true;
+typeof bool === "boolean";
+
+var func = function() {};
+typeof func === "function";
+
+typeof michGibtEsNicht === "undefined";</code></pre>
+                </section>
+                <section>
+                    <h2>Funktionen</h2>
+                        <pre><code class="javascript" contenteditable>
+var f1 = function(p1, p2) {
+    return p1 + p2;
+};
+var result1 = f1(1,2);
+result1 === 3;
+
+function f2() {
+    console.log("Called!");
+}
+var result2 = f2();
+result2 === undefined;
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Optionale Parameter</h2>
+                        <pre><code class="javascript" contenteditable>function f1(p1) {
+    if (typeof p1 === 'undefined') {
+        return null;
+    } else {
+        return p1;
+    }
+}
+
+var result1 = f1(1);
+console.log(result1 === 1);
+
+var result2 = f1();
+console.log(result2 === null);</code></pre>
+                </section>
+                    <section>
+                        <h2>So nicht!</h2>
+    <pre><code class="javascript" contenteditable>
+{
+    var huch = "Ich bin noch da";
+}
+
+console.log(huch); // Ich bin noch da
+    </code></pre>
+
+                    </section>
+                    <section>
+                        <h2>So!</h2>
+    <pre><code class="javascript" contenteditable>
+(function () {
+    var achso = "Ich bin weg";
+}());
+
+console.log(achso); // ReferenceError
+    </code></pre>
+                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
+
+                    </section>
+</section>
+
+    <section>
+        <section>
+            <h2>Objekte und Klassen</h2>
+        </section>
+
+        <section>
+                    <h2>Objekte, die Zweite</h2>
+                    <ul>
+                        <li class="fragment">Objekte können auch Funktionen als Properties haben
+                        <li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden
+    <li class="fragment"><pre><code class="javascript" contenteditable>var obj = {
+    field: 10,
+    log: function() {
+        console.log(this.field);
+    }
+};
+
+obj.log(); // 10
+    </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Call / Apply</h2>
+                    <ul>
+                    <li class="fragment">call und apply sind Methoden auf Funktionen
+                    <li class="fragment">Erlauben das Binden einer Funktion an ein beliebiges <em>this</em>-Objekt
+    <li class="fragment"><pre><code class="javascript" contenteditable>var global = {
+    field: "Reingelegt"
+};
+obj.log.call(global);
+// => ???
+</code></pre>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Klassen mit JavaScript</h2>
+                    <ul>
+                        <li class="fragment">Klassen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+                        <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
+                        <li class="fragment">Einfachvererbung ist ebenso möglich
+                        <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
+                        <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
+                        <li class="fragment">Grundlage ist die prototypische Vererbung
+                    </ul>
+                </section>
+            <section>
+                <h2>Prototypen</h2>
+                <ul>
+                    <li class="fragment">Jedes Objekt hat zusätzlich eine Referenz auf seinen Prototyp
+                        <ul>
+                            <li><code>__proto__</code> oder <code>Object.getPrototypeOf()   </code> in neueren Browsern</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><code>Object</code> hat keinen Prototypen, ist aber Prototyp aller anderen Objekte
+                    <li class="fragment">Lesende Property-Zugriffe können transitiv an Prototypen delegiert werden
+                    <li class="fragment">Dies heißt prototypische Vererbung
+                </ul>
+            </section>
+            <section>
+                <h2>Setzen des Prototypen</h2>
+                <p >Der Prototyp kann nicht direkt, aber durch Aufruf von <code>new</code> gesetzt werden
+                </p>
+    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
+function Person(name) {
+    this.name = name;
+}</code></pre>
+    <pre class="fragment"><code class="javascript" contenteditable>// Methode
+Person.prototype.getName = function() {
+    return this.name;
+};</code></pre>
+    <pre ><code class="javascript" contenteditable>
+var olli = new Person('Olli');
+olli.getName() === 'Olli';
+    </code></pre>
+            </section>
+
+            <section>
+                <h2>"Typsystem"</h2>
+                <p>Ein Objekt ist <code>instanceof</code> aller seiner Prototypen
+                </p>
+    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
+olli.constructor === Person;
+olli instanceof Object;
+olli instanceof Person;
+    </code></pre>
+            </section>
+        <section>
+            <h1>Warnung</h1>
+            <h3 class="fragment">Douglas Crockford findet Klassen und <em>this</em> doof</h3>
+            <h3 class="fragment">Douglas Crockford hatte vor einigen Jahren großen Einfluss auf die Entwicklung von JavaScript</h3>
+            <h3 class="fragment">Douglas Crockford schrieb das Buch "JavaScript the good parts"</h3>
+            <h3 class="fragment">Die Zukunft von JavaScript gibt ihm allerdings nicht Recht (später mehr)</h3>
+        </section>
+            <section>
+                <h2>Vererbungshierarchien</h2>
+                <ul>
+                    <li class="fragment">Das verwirrendste Thema in JavaScript
+                    <li class="fragment">Klassen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
+                    <li class="fragment">Klassen-Hierarchien werden einmal aufgebaut und als Prototypen der
+                        Instanzen verwendet
+                    <li class="fragment">Klassen-Hierarchien werden ebenso über Prototypen erstellt
+                    <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
+                    <li class="fragment">Alternative zu Klassen-Hierarchien sind Mixins
+                    <li class="fragment">Viele Bibliotheken nehmen sich dieses Themas an
+                </ul>
+            </section>
+        <section>
+            <h2>Underscore</h2>
+            <ul>
+                <li class="fragment">TODO: Link
+                <li class="fragment">Lodash
+                <li class="fragment">_.extends
+            </ul>
+        </section>
+        </section>
+
+    <!--<section>-->
+    <!--<section><h2>Modul-Systeme</h2></section>-->
+                        <!--<section>-->
+                        <!--<h2>Module</h2>-->
+                        <!--<p class="fragment">Module in JavaScript werden über <code>Closures</code> realisiert</p>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<h2>Closure in einem Satz</h2>-->
+                        <!--<p>Eine innere Funktion hat immer Zugriff auf alle Variablen und Parameter ihrer äußeren Funktion, <em>auch wenn diese äußere Funktion bereits beendet ist</em>.</p>-->
+                        <!--<p><small>Frei nach <em>Douglas Crockford</em></small></p>-->
+                    <!--</section>-->
+
+                <!--<section>-->
+                    <!--<h3>Beispiel Closure</h3>-->
+                        <!--<pre><code class="javascript" contenteditable>function outer() {-->
+    <!--var used = "Olli";-->
+    <!--var unused = "Weg";-->
+    <!--return (function() {-->
+        <!--return "Text: " + used;-->
+    <!--});-->
+<!--}-->
+
+<!--var inner = outer();-->
+<!--console.log(inner());</code></pre>-->
+                <!--</section>-->
+                    <!--<section>-->
+                        <!--<h2>Closure Definition</h2>-->
+                        <!--<p class="fragment">Eine Closure ist eine spezielle Art von Objekt, welche zwei Dinge kombiniert</p>-->
+                        <!--<ol>-->
+                            <!--<li class="fragment">Eine Funktion</li>-->
+                            <!--<li class="fragment">die Umgebung in welcher diese Funktion erzeugt wurde-->
+                                <!--- diese Umgebung besteht aus allen lokalen Variablen und Parametern, die sichtbar waren als die Closure erzeugt wurde</li>-->
+                        <!--</ol>-->
+                        <!--<p class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures">Aus der Definition auf MDN</a></p>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<h3>Revealing Module Pattern</h3>-->
+<!--<pre><code class="javascript" contenteditable>var humanresources = {};-->
+<!--(function () {-->
+    <!--function InternalStuff() {-->
+    <!--}-->
+
+    <!--function Person(name) {-->
+        <!--this.name = name;-->
+        <!--this.inner = new InnerStuff();-->
+    <!--}-->
+
+    <!--humanresources.Person = Person;-->
+<!--})();-->
+<!--</code></pre>-->
+                    <!--</section>-->
+                    <!--<section>-->
+        <!--<h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>-->
+        <!--<ul>-->
+            <!--<li class="fragment">AMD-->
+                <!--<ul>-->
+                    <!--<li class="fragment">Module werden nicht blockierend und potentiell asynchron geladen-->
+                    <!--<li class="fragment">Module werden über bower oder manuell installiert-->
+                    <!--<li class="fragment">Verwendung auf Client-Seite-->
+                    <!--<li class="fragment">Default-Implementierung: RequireJS-->
+                    <!--&lt;!&ndash;<li class="fragment">Für blockierendes Laden auf Server-Seite: r.js&ndash;&gt;-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li class="fragment">CommonJS-->
+                <!--<ul>-->
+                    <!--<li class="fragment">Module werden blockierend und synchron geladen-->
+                    <!--<li class="fragment">Module werden über npm installiert-->
+                    <!--<li class="fragment">Verwendung auf Server-Seite-->
+                    <!--&lt;!&ndash;<li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify&ndash;&gt;-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li class="fragment">Beide Modul-Systeme können über r.js / Browserify auch auf Server / Client benutzt werden-->
+        <!--</ul>-->
+    <!--</section>-->
+                    <!--<section>-->
+        <!--<h3>Definieren eines commonJS Moduls bei node</h3>-->
+<!--<pre><code class="javascript" contenteditable>// in der Datei "eater.js"-->
+<!--var eatThis = function (name) {-->
+    <!--console.log(name);-->
+<!--};-->
+<!--exports.eatThis = eatThis;</code></pre>-->
+    <!--</section>-->
+                    <!--<section>-->
+                        <!--<h3>Benutzen eines commonJS Moduls bei node</h3>-->
+<!--<pre><code class="javascript" contenteditable>var eaterModule = require("eater");-->
+
+<!--eaterModule.eatThis(name);-->
+<!--</code></pre>-->
+                    <!--</section>-->
+                                    <!--<section>-->
+                        <!--<h4>Definieren eines AMD Moduls mit requireJS</h4>-->
+<!--<pre><code class="javascript" contenteditable>// Ein Modul pro Datei:-->
+<!--// js/modules/accounting.js-->
+<!--define(function () {-->
+    <!--return {-->
+        <!--getIdNumberForName: function(name) {-->
+            <!--// ...-->
+        <!--}-->
+    <!--};-->
+<!--});-->
+<!--</code></pre>-->
+                    <!--</section>-->
+                    <!--<section>-->
+                        <!--<h4>Benutzen eines AMD Moduls mit requireJS</h4>-->
+<!--<pre><code class="javascript" contenteditable>-->
+<!--require(['js/modules/accounting'], function (Accounting) {-->
+    <!--var name = // ...-->
+    <!--var id = Accounting.getIdNumberForName(name);-->
+    <!--// ...-->
+<!--});-->
+<!--</code></pre>-->
+                    <!--</section>-->
+
+<!--</section>-->
+
+    <section>
+        <section>
+            <h2>Die Zukunft von JavaScript</h2>
+        </section>
+        <section>
+            <h3>JavaScript / ECMAScript 6 / ECMAScript 2015 / Projekt Harmony</h3>
+            <ul>
+                <li class="fragment">ECMAScript ist der Standard und JavaScript ist die Implementierung
+                <li class="fragment">Ab IE9 sind wir bei ECMAScript 5 (2009)
+                <li class="fragment">ECMAScript 2015 ist der neue Name für ECMAScript 6
+                <li class="fragment">Projekt Harmony ist ECMAScript >=6
+                <li class="fragment">Spec für ES6 beinahe final
+                <li class="fragment">In 5 Jahren breit verfügbar (lauf Wirfs-Brock, Editor der Spec)
+                <li class="fragment">Vieles bereits heute nutzbar über diverse Transpiler
+            </ul>
+        </section>
+    <section>
+        <h3>Neue Spracheigenschaften</h3>
+        <ul>
+            <li class="fragment">Module
+            <li class="fragment">Klassen
+            <li class="fragment">Destructuring (Pattern Matching)
+            <li class="fragment">let, const
+            <li class="fragment">Fat arrow <b>=></b> für besseres Binding von <b>this</b>
+            <li class="fragment">vararg, optional, spread operator
+            <li class="fragment"><em>keine</em> statischen Typen
+            <li class="fragment">Collection Types
+        </ul>
+    </section>
+    </section>
+
+    <section>
+    <h1>Vielen Dank</h1>
+
+    <h3>Fragen / Diskussion</h3>
+
+    <p>
+        <small>Oliver Zeigermann / <a href="http://zeigermann.eu">http://zeigermann.eu</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+</section>
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
