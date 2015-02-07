@@ -54,7 +54,7 @@
         </small>
     </p>
     <p>Online-Version: <a href="http://djcordhose.github.io/serious-javascript/slides/2015_jax_javascript4java.html">http://djcordhose.github.io/serious-javascript/slides/2015_jax_javascript4java.html</a></p>
-    <p>Or: TODO</p>
+    <p>Or: http://bit.ly/1un0brv</p>
 
 </section>
 
@@ -76,9 +76,6 @@
     <ol>
         <li class="fragment">Grundlagen
         <li class="fragment">Objekte und Klassen
-        <!-- 10 minutes -->
-        <!--<li class="fragment">Module-->
-            <!-- 10 minutes -->
         <li class="fragment">Die Zukunft von JavaScript
         <li class="fragment">Fragen und Diskussion
     </ol>
@@ -305,14 +302,39 @@ olli instanceof Person;
                 </ul>
             </section>
         <section>
+            <h3>Beispiel</h3>
+                <pre><code class="javascript" contenteditable>function Programmer(name, language) {
+    Person.call(this, name);
+    this.language = language;
+}
+_.extend(Programmer.prototype, Person.prototype);
+// or
+//Programmer.prototype = Object.create(Person.prototype);
+
+Programmer.prototype.code = function() {
+    return this.getName() + " codes in " + this.language;
+};
+
+var programmer = new Programmer('Erna', 'JavaScript');
+console.log(programmer.getName());
+console.log(programmer.code());
+console.log(programmer instanceof Programmer); // true
+console.log(programmer instanceof Person); // true for Object.create, false for _.extend</code></pre>
+        </section>
+        <section>
             <h2>Underscore</h2>
             <ul>
-                <li class="fragment">TODO: Link
-                <li class="fragment">Lodash
-                <li class="fragment">_.extends
+                <li class="fragment"><em>_.extend</em> eine von vielen Hilfsfunktionen der Bibliothek <em>Underscore</em>
+                <li class="fragment"><a target="_blank" href="http://underscorejs.org/">http://underscorejs.org/</a>
+                <li class="fragment">Versucht Unzulänglichkeiten der Sprache als Bibliothek auszugleichen
+                <li class="fragment">Ein Klassiker unter den JavaScript-Bibliotheken
+                <li class="fragment">wird typischerweise als <em>_</em> importiert (daher der Name)
+                <li class="fragment"><a target="_blank" href="https://lodash.com/">https://lodash.com/</a> ist die moderne Variante
+                <li class="fragment">Nutzen beider Bibliotheken in modernen JavaScript-Applikationen zumindest fraglich
             </ul>
         </section>
-        </section>
+
+    </section>
 
     <!--<section>-->
     <!--<section><h2>Modul-Systeme</h2></section>-->
@@ -432,6 +454,11 @@ olli instanceof Person;
     <section>
         <section>
             <h2>Die Zukunft von JavaScript</h2>
+            <h3 class="fragment">Man könnte behaupten, dass JavaScript keine tolle Sprache ist</h3>
+            <h3 class="fragment">Viele Klippen müssen umschifft werden</h3>
+            <h3 class="fragment">Viele mögen sie dennoch</h3>
+            <h4 class="fragment">aber: Wie entwickelt sich die Sprache?</h4>
+
         </section>
         <section>
             <h3>JavaScript / ECMAScript 6 / ECMAScript 2015 / Projekt Harmony</h3>
@@ -442,22 +469,90 @@ olli instanceof Person;
                 <li class="fragment">Projekt Harmony ist ECMAScript >=6
                 <li class="fragment">Spec für ES6 beinahe final
                 <li class="fragment">In 5 Jahren breit verfügbar (lauf Wirfs-Brock, Editor der Spec)
-                <li class="fragment">Vieles bereits heute nutzbar über diverse Transpiler
+                <li class="fragment">Vieles bereits heute nutzbar
             </ul>
         </section>
     <section>
         <h3>Neue Spracheigenschaften</h3>
-        <ul>
+            <h4 class="fragment"><em>keine</em> statischen Typen</h4>
+
+            <ul>
             <li class="fragment">Module
             <li class="fragment">Klassen
             <li class="fragment">Destructuring (Pattern Matching)
             <li class="fragment">let, const
             <li class="fragment">Fat arrow <b>=></b> für besseres Binding von <b>this</b>
             <li class="fragment">vararg, optional, spread operator
-            <li class="fragment"><em>keine</em> statischen Typen
-            <li class="fragment">Collection Types
+            <li class="fragment">Collection Types (Map, Set, WeakMap, WeakSet)
         </ul>
     </section>
+        <section>
+            <h3>Gesprengte Klippe #1: Lexikalisches Scoping</h3>
+            <pre><code class="javascript" contenteditable>{
+  let a = 10;
+  // or
+  const a = 10;
+  a = 20;
+  // when a is const:
+  // => TypeError: Assignment to constant variable.
+}
+
+console.log(a);
+// => ReferenceError: a is not defined</code></pre>
+        </section>
+        <section>
+            <h3>Gesprengte Klippe #2: Klassen</h3>
+                <pre><code class="javascript" contenteditable>class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    getName() {
+        return this.name;
+    }
+}
+class Programmer extends Person {
+    constructor(name, language) {
+        super(name);
+        this.language = language;
+    }
+    code() {
+        return this.getName() + " codes in " + this.language;
+    }
+}
+var programmer = new Programmer('Erna', 'JavaScript');
+console.log(programmer.code());
+console.log(programmer instanceof Programmer); // true
+console.log(programmer instanceof Person); // true</code></pre>
+        </section>
+        <section>
+            <h3>Weitere gesprengte Klippen</h3>
+            <ul>
+                <li class="fragment">Binden von this für Callbacks etc. mit <em>=></em>
+                <li class="fragment">Module
+                <li class="fragment">Unicode support
+                <li class="fragment">Reflection API
+                <li class="fragment">Tail Recursion
+            </ul>
+        </section>
+
+        <section>
+            <h3>Wo läuft ES 2015 schon jetzt?</h3>
+            <ul>
+                <li class="fragment">Chrome
+                <li class="fragment">Firefox
+                <li class="fragment"><em>node --harmony --use-strict</em>
+                <li class="fragment">io.js
+                <li class="fragment">Transpiler
+                    <ul>
+                        <li class="fragment"><a target="_blank" href="https://6to5.org/">https://6to5.org/</a>
+                        <li class="fragment"><a target="_blank" href="https://github.com/google/traceur-compiler">https://github.com/google/traceur-compiler</a>
+                        <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a> (plus statische Typen)
+                        <li class="fragment">Liste weiterer Transpiler <a target="_blank" href="https://github.com/addyosmani/es6-tools">https://github.com/addyosmani/es6-tools</a>
+                    </ul>
+                </li>
+                <li class="fragment">Wie viel läuft?: <a target="_blank" href="http://kangax.github.io/es5-compat-table/es6">http://kangax.github.io/es5-compat-table/es6</a></li>
+            </ul>
+        </section>
     </section>
 
     <section>
