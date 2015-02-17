@@ -5,6 +5,10 @@ Either use node 0.11 or later using
 
 node --harmony --use-strict
 
+or
+
+io.js
+
 or firefox for each example that has some associated html
 
 Compatibility
