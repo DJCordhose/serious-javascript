@@ -1,4 +1,6 @@
-// mocha test.js
+// > mocha test.js
+// to generate JUnit XML
+// > mocha --reporter xunit test.js
 var assert = require('assert'), // node core
     test = require('selenium-webdriver/testing'),
     webdriver = require('selenium-webdriver');
