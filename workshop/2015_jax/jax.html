@@ -1,0 +1,654 @@
+<!--http://localhost:63342/JavaScript%20Training/#/-->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Einführung in JavaScript für Java-Entwickler</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">
+
+
+        <!-- Uncomment for presentation -->
+        <style>
+            pre code {
+                display: block;
+                padding: 0.5em;
+                background: #FFFFFF;
+                color: #000000;
+            }
+        </style>
+
+        <!-- Uncomment for PDF generation -->
+        <!-- and add ?print-pdf to url -->
+        <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+        <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+		<!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+
+    <!-- https://jax.de/2015/sessions/einfuehrung-javascript-fuer-java-entwickler
+
+    In diesem ganztägigen Workshop führe ich Euch in alle für Java-Entwickler wesentlichen Spracheigenschaften von JavaScript ein. Wir werden die Themen Objekte, Arrays, Funktionen, prototypische Vererbung und Module besprechen. Der Workshop enthält Übungen am eigenen Rechner.
+
+    -->
+    <!--
+        Plan:
+        Intro:
+        Programmierparadigmen
+
+- Anders als in Java gibt es in JavaScript nicht einen akzeptierten Stil zu programmieren, sondern eine ganze Reihe.
+-  der Stil hängt oft mit dem eingesetzten Framework zusammen
+- anderer Faktor, wann ist der Code geschrieben worden?
+
+1. OO ohne Klassen, Wiederverwendung durch kopieren von Methoden, Underscore, Backbone
+2. Douglas 2.0: kein this
+3. Mainstream: klassisch OO, ES6
+4. funktional
+5. Kraut und Rüben: D3
+6. jQuery ist besser als JavaScript
+
+- Wir machen hier aber nur einen Stil, nämlich Mainstream
+
+        Vormittags:
+         - JavaScript-Sprachgrundlagen
+         - Zwischenspiel Programmierparadigmen
+         - OO
+        Nachmittags: Frameworks und libs, Tests, Build Tools etc.
+        - Alles aus Schulungen nehmen
+        - Muss aber jsbin auch unterstützen.
+        - Minimum
+        - JQuery und Underscore
+        -  Was kann man noch zeigen?
+        - D3 zeigen mit unterschiedlichem Codestil? Wegen Performance?
+        - Zeigen, dass die Patterns und der Stil mit unterschiedlichen Bibliotheken anders sind.
+          - jQuery
+          - Underscore
+          - D3
+          - Angular
+          - React?
+
+        TODO: Workshop
+        - Im Workshop mit Modulen und ES6-Teil
+        - Übungen wieder mit JSBin, gibt es auch ES6-Übersetzer? Dann machen und selbst besser lernen.
+        - Ideen aus Talk-Foliensatz hier aufnehmen
+        TODO:
+        - Talk-Live-Coding wieder weitesgehend ohne Folien
+
+        Links:
+        - Next Big Language JavaScript: https://twitter.com/peterc/status/569336759936532480?s=03
+
+    -->
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+            <section>
+                <h2>Einführung in JavaScript für Java-Entwickler</h2>
+                <p>
+                    <a href="mailto:oliver.zeigermann@gmail.com">Oliver Zeigermann</a> | <a href="http://zeigermann.eu">http://zeigermann.eu</a>
+                </p>
+                <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/workshop/2015_jax/jax.html">
+                    http://djcordhose.github.io/serious-javascript/workshop/2015_jax/jax.html</a></p>
+                <p>Or: TODO</p>
+            </section>
+
+            <section>
+                <h2>Oliver Zeigermann</h2>
+                <img src="olli.jpg" height="200">
+                <ul>
+                    <li><a href="http://zeigermann.eu">http://zeigermann.eu</a>
+                    <li><a href="https://twitter.com/DJCordhose">@DJCordhose</a>
+                    <li><a href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>
+                    <li><a href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+                </ul>
+            </section>
+                <section>
+                    <section>
+                        <h1>Hello World</h1>
+                    </section>
+                    <section>
+                        <h2>Hello World #1</h2>
+                        <pre><code class="xml" contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;script&gt;
+      alert("Hello World");
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                    <a href="helloworld.html" target="_blank">Run</a>
+                    </section>
+                    <section>
+                        <h2>Hello World #2</h2>
+                        <pre><code class="xml" contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div id="log">&lt;/div>
+      &lt;script&gt;
+          var element = document.getElementById("log");
+          element.innerHTML = "&lt;h1>Hello World&lt;/h1>";
+      &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                        <a href="helloworld2.html" target="_blank">Run</a>
+                    </section>
+                    <section>
+                        <h2>Hello World #3</h2>
+                        <pre><code class="javascript" contenteditable>
+node -e "console.log('Hello World');"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Hello World #4</h2>
+                        <img src="Devtools-Screenshot.png">
+                    </section>
+                    <section>
+                        <h2>Hello World #5</h2>
+                        <img src="JS_Bin.png">
+                        <br>
+                        <a href="http://jsbin.com/sagub/1/edit?js,console" target="_blank">JS Bin Öffnen</a>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2>Object</h2>
+                        <pre><code class="javascript" contenteditable>var map = {
+    feld1: 'Huhu',
+    zweites$Feld: "Auch sowas geht!"
+};
+console.log(typeof map === "object"); // true
+console.log(map.feld1); // Huhu
+console.log(map["zweites$Feld"]); // Auch sowas geht!
+
+map.hund = "Ganz neu geht auch";
+</code></pre>
+                </section>
+                <section>
+                    <h2>Typen</h2>
+                        <pre><code class="javascript" contenteditable>var string = "String";
+typeof string === "string";
+
+var int = 1;
+typeof int === "number";
+
+var float = 1.0;
+typeof float === "number";
+
+var bool = true;
+typeof bool === "boolean";
+
+var func = function() {};
+typeof func === "function";
+
+typeof michGibtEsNicht === "undefined";</code></pre>
+                </section>
+
+                <section>
+                    <h2>Array</h2>
+                        <pre><code class="javascript" contenteditable>
+var array = ["a", "b", "c"];
+var el = array[2];
+array[1] = 20;
+typeof array === "object";
+// fügt die 4 am Ende hinzu
+array.push(4);
+                        </code></pre>
+                </section>
+
+                <section>
+                <section>
+                    <h2>Kontrollstrukturen</h2>
+                </section>
+                <section>
+                    <h2>for</h2>
+                        <pre><code class="javascript" contenteditable>
+for (var i=0; i &lt; array.length; i++) {
+    console.log(i + ": " + array[i]);
+}
+
+// Durch alle Feld-Namen iterieren
+// Geht für Map / Object und für Array!
+for (var i in map) {
+    console.log(i + ": " + map[i]);
+}
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Kontrollstrukturen ansonsten wie in Java / C#</h2>
+                    <ul>
+                        <li>if / else
+                        <li>while / do
+                        <li>switch
+                        <li>break / continue
+                        <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Statements">Referenz</a></li>
+                    </ul>
+                </section>
+            </section>
+                <section>
+                <section>
+                    <h2>Funktionen</h2>
+                        <pre><code class="javascript" contenteditable>
+function f2() {
+    console.log("Called!");
+}
+var result2 = f2();
+result2 === undefined;
+
+var f1 = function(p1, p2) {
+    return p1 + p2;
+};
+var result1 = f1(1,2);
+result1 === 3;
+                        </code></pre>
+                </section>
+
+                    <section>
+                        <h2>Varargs</h2>
+                    <pre><code class="javascript" contenteditable>function summe() {
+    var sum = 0;
+    for (var a in arguments) {
+        sum += arguments[a];
+    }
+    return sum;
+}
+
+var result5 = summe(1,2,3);
+console.log(result5 === 6);</code></pre>
+                    </section>
+            </section>
+
+                <section>
+                    <section>
+                    <h1>Scopes</h1>
+                    </section>
+                    <section>
+                        <h2>So nicht!</h2>
+    <pre><code class="javascript" contenteditable>
+{
+    var huch = "Ich bin noch da";
+}
+
+console.log(huch); // Ich bin noch da
+    </code></pre>
+
+                    </section>
+                    <section>
+                        <h2>So!</h2>
+    <pre><code class="javascript" contenteditable>
+(function () {
+    var achso = "Ich bin weg";
+}());
+
+console.log(achso); // ReferenceError
+    </code></pre>
+                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
+
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                    <h2>Exception Handling</h2>
+    <pre><code class="javascript" contenteditable>
+try {
+    throw "Error";
+    // or
+    throw new Error("Error");
+} catch (e) {
+    console.log("Caught: " + e)
+} finally {
+    console.log("Always")
+}
+    </code></pre>
+                    </section>
+
+                </section>
+                    <section>
+                        <h2>Übung: Basiswissen</h2>
+                        <ul>
+                            <li>Erzeuge ein Array mit Personen-Objekten mit mindestens den Eigenschaften
+                                <ul>
+                                    <li>Name
+                                    <li>Alter
+                                    <li>Geschlecht
+                                </ul>
+                            </li>
+                            <li>Gib alle Personen nacheinander aus
+                                <ul>
+                                    <li>Erstelle eine Funktion, die eine Person auf der Console ausgibt
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </section>
+                        <section>
+                <section>
+                    <h2>Objekte, die Zweite</h2>
+                    <ul>
+                        <li class="fragment">Objekte können auch Funktionen als Properties haben
+                        <li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden
+    <li class="fragment"><pre><code class="javascript" contenteditable>var obj = {
+    field: 10,
+    log: function() {
+        console.log(this.field);
+    }
+};
+
+obj.log(); // 10
+    </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Call / Apply</h2>
+                    <ul>
+                    <li class="fragment">call und apply sind Methoden auf Funktionen
+                    <li class="fragment">Erlauben das freie Binden an einen anderen Kontext
+    <li class="fragment"><pre><code class="javascript" contenteditable>var field = "Reingelegt";
+obj.log.call(this);
+// => ???
+</code></pre>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Typen mit JavaScript</h2>
+                    <ul>
+                        <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+                        <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
+                        <li class="fragment">Einfachvererbung ist ebenso möglich
+                        <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
+                        <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
+                        <li class="fragment">Grundlage ist die prototypische Vererbung
+                    </ul>
+                </section>
+                <section>
+                <h2>Prototypen</h2>
+                <ul>
+                    <li class="fragment">Jedes Objekt hat zusätzlich eine Referenz auf seinen Prototyp
+                        <ul>
+                            <li><code>Object.getPrototypeOf()</code> in neueren Browsern</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><code>Object</code> hat keinen Prototypen, ist aber Prototyp aller anderen Objekte
+                    <li class="fragment">Lesende Property-Zugriffe können transitiv an Prototypen delegiert werden
+                    <li class="fragment">Dies heißt prototypische Vererbung
+                </ul>
+            </section>
+            <section>
+                <h2>Setzen des Prototypen aka das Typen-System</h2>
+                <p >Der Prototyp kann nicht direkt, aber durch Aufruf von <code>new</code> gesetzt werden
+                </p>
+    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
+function Person(name) {
+    this.name = name;
+}</code></pre>
+    <pre class="fragment"><code class="javascript" contenteditable>// Methode
+Person.prototype.getName = function() {
+    return this.name;
+};</code></pre>
+    <pre ><code class="javascript" contenteditable>
+var olli = new Person('Olli');
+olli.getName() === 'Olli';
+    </code></pre>
+            </section>
+
+            <section>
+                <h4>Ablauf eines Konstruktoraufrufs mit <code>new</code></h4>
+                <ol>
+                    <li class="fragment">ein leeres, neues Objekt wird erzeugt
+                    <li class="fragment">die Konstruktor-Funktion hat ein Property <code>prototype</code>, dies wird als Prototyp des neuen Objekts verwendet
+                    <li class="fragment"><code>this</code> wird an dieses neue Objekte gebunden
+                    <li class="fragment">die Konstruktor-Funktion wird aufgerufen (mit <code>this</code> gebunden)
+                    <li class="fragment">das neue Objekt wird implizit zurückgegeben (wenn die Funktion kein explizites <code>return</code> hat)
+                </ol>
+            </section>
+
+            <section>
+                <h2>"Typsystem"</h2>
+                <p>Ein Objekt ist <code>instanceof</code> aller seiner Prototypen
+                </p>
+    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
+Object.getPrototypeOf(olli) === Person.prototype;
+olli instanceof Object;
+olli instanceof Person;
+    </code></pre>
+            </section>
+                <section>
+                <h3>Iterieren über Map / Objekt</h3>
+<pre><code class="javascript" contenteditable>function MyType() {
+    this.item1 = 'key1';
+    this.item2 = 'key2';
+}
+MyType.prototype.method1 = function () { }
+
+var map = new MyType();
+for (var key in map) {
+    if (map.hasOwnProperty(key)) {
+        console.log("Own property: " + key + ": " + map[key]);
+    } else {
+        console.log("Inherited property: " + key + ": " + map[key]);
+    }
+}
+// => Own property: item1: key1
+// => Own property: item2: key2
+// => Inherited property: method1: function () {}
+</code></pre>
+                </section>
+        </section>
+                <section>
+                    <section>
+                        <h3>Vererbung</h3>
+                        <ol>
+                            <li class="fragment">Typen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
+                            <li class="fragment">Typen-Hierarchien werden einmal aufgebaut und als Prototypen der Instanzen verwendet
+                            <li class="fragment">Typen-Hierarchien werden ebenso über Prototypen erstellt
+                            <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>Vererbung #1</h3>
+    <pre><code class="javascript" contenteditable>function Person(name, gender) {
+    this.name = name;
+    this.gender = gender;
+}
+Person.prototype.getName = function() {
+    return this.name;
+};
+
+function Male(name) {
+    Person.call(this, name, "Male"); // super call
+}
+Male.prototype = Object.create(Person.prototype);</code></pre>
+                    </section>
+                    <section>
+                        <h3>Vererbung #2</h3>
+    <pre><code class="javascript" contenteditable>Male.prototype.getName = function() {
+    // super call
+    return "Mr " + Person.prototype.getName.call(this);
+};
+
+var olli = new Male('Olli');
+olli.getName() === 'Mr Olli';
+olli.gender === 'Male';
+olli instanceof Male;
+olli instanceof Person;
+olli instanceof Object;</code></pre>
+                    </section>
+                </section>
+                                <section>
+                    <h3>Static</h3>
+    <pre><code class="javascript" contenteditable>// Statisches Feld
+Person.lieblingsName = "Olli";
+
+// Statische Funktion, greift nicht auf this zu
+Person.getLieblingsName = function() {
+    return Person.lieblingsName;
+};
+
+Person.lieblingsName === "Olli";
+Person.getLieblingsName() === "Olli";</code></pre>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>Übung: Typen</h2>
+                        <ol>
+                            <li>Schreibe einen Typen für Person
+                                <ul>
+                                    <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
+                                        <code>alter</code> und <code>geschlecht</code> zu
+                                    <li>Mache aus allen Funktionen, die auf Personen arbeiten, Methoden
+                                </ul>
+                            </li>
+                            <li>Erzeuge ein Objekt vom Typ Person und rufe Methoden darauf auf
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3>Optionaler Zusatzübung: Vererbung</h3>
+                        <ol>
+                            <li>Schreibe den Typen Customer
+                                <ul>
+                                    <li>Customer soll von Person erben
+                                    <li>Berechne im Konstruktor aus den Parametern zumindest ein zusätzliches Feld, das
+                                        den vermuteten bevorzugten Kaufgegenstand angibt
+                                    <li>Rufe aus dem Customer-Konstruktor den Person-Konstruktor auf
+                                    <li>Überschreibe die Methode <code>getName</code>
+                                    <li>Füge die Methode <code>shop</code> hinzu, die den bevorzugten Gegenstand ausgibt
+                                </ul>
+                            </li>
+                            <li>Erzeuge mindestens ein Objekt vom Typ Customer und rufe Methoden darauf auf
+                        </ol>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Module</h2>
+                        <p class="fragment">Module in JavaScript werden über <code>Closures</code> realisiert</p>
+                    </section>
+                    <section>
+                        <h2>Closure in einem Satz</h2>
+                        <p>Eine innere Funktion hat immer Zugriff auf alle Variablen und Parameter ihrer äußeren Funktion, <em>auch wenn diese äußere Funktion bereits beendet ist</em>.</p>
+                        <p><small>Frei nach <em>Douglas Crockford</em></small></p>
+                    </section>
+
+                <section>
+                    <h3>Beispiel Closure</h3>
+                        <pre><code class="javascript" contenteditable>function outer() {
+    var used = "Olli";
+    var unused = "Weg";
+    return (function() {
+        return "Text: " + used;
+    });
+}
+
+var inner = outer();
+console.log(inner());</code></pre>
+                </section>
+                    <section>
+                        <h2>Closure Definition</h2>
+                        <p class="fragment">Eine Closure ist eine spezielle Art von Objekt, welche zwei Dinge kombiniert</p>
+                        <ol>
+                            <li class="fragment">Eine Funktion</li>
+                            <li class="fragment">die Umgebung in welcher diese Funktion erzeugt wurde
+                                - diese Umgebung besteht aus allen lokalen Variablen und Parametern, die sichtbar waren als die Closure erzeugt wurde</li>
+                        </ol>
+                        <p class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures">Aus der Definition auf MDN</a></p>
+                    </section>
+                    <section>
+                        <h3>Revealing Module Pattern</h3>
+<pre><code class="javascript" contenteditable>var humanresources = (function () {
+    function InternalStuff() {
+    }
+
+    function Person(name) {
+        this.name = name;
+        // uses internal stuff
+    }
+
+    return {
+        Person: Person
+    };
+})();
+</code></pre>
+                    </section>
+                    <section>
+                    <h3>Sichtbarkeit bei Revealing Module Pattern</h3>
+<pre><code class="javascript" contenteditable>var olli = new humanresources.Person('Olli');
+olli.name === 'Olli';
+// TypeError: undefined is not a function
+new humanresources.InternalStuff();</code></pre>
+                </section>
+                <section>
+                    <h2>Übung: Module</h2>
+                    <ol>
+                        <li>Schreibe ein Modul, in das du die vorhandenen Typendefinitionen verschiebst. Dieses Modul soll
+                            <ul>
+                                <li>nach außen nur den <code>Customer</code>-Typen exportieren
+                            </ul>
+                        </li>
+                        <li>Schreibe den aufrufenden Code so um, dass er mit den neuen Modulen arbeitet
+                    </ol>
+                </section>
+
+
+            </div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/../reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on ../reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
