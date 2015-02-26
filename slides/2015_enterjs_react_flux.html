@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>React</title>
+    <title>Flux - React</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -39,23 +39,45 @@
 
 <!--
 Plan
-- React native (http://jlongster.com/First-Impressions-using-React-Native)?
+- React native?
 - Yahoos Flux-Implementierung mit Router als Beispiel nehmen
 - Yahoos Flux Auf Server: http://fluxible.io/guides/bringing-flux-to-the-server.html
+- React Beispiele auf 13 umstellen: http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html
 
 Links:
 - http://kevinold.com/2015/01/31/takeaways-from-reactjs-conf-2015.html?utm_content=bufferff07f&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
 - Immutable.ls and Flux: https://twitter.com/fisherwebdev/status/568837214412517376?s=03
+- Concise intro into flux: http://ryanclark.me/getting-started-with-flux/
+- http://ryanclark.me/getting-started-with-flux/
+
+Native Links
+- https://twitter.com/Vjeux/status/570247867014598657?s=03 (https://www.facebook.com/business/news/ads-manager-app)
+- http://jlongster.com/First-Impressions-using-React-Native
+
 -->
 
 <div class="reveal">
 
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
-        <section>
-            <h1>Introduction to React</h1>
 
-            <h3>A Javascript Library For Building User Interfaces</h3>
+        <!--
+        Title: Flux - Architektur für React
+Abstract: Mit React hat Facebook eine großartige View-Technologie
+entwickelt. Sie ist simpel, schnell und universell einsetzbar. Es
+stellt sich dabei allerdings die Frage, wie man den Rest seiner
+Anwendung um diese View-Technologie herum implementiert. Facebook hat
+dafür das Flux-Architekturkonzept entwickelt. Yahoo ist auf diesen Zug
+aufgesprungen und hat daraus mit Fluxible gleich ein kleines Framework
+gebaut. In diesem Vortrag möchte ich die Ideen dieser Architektur
+anhand von praktischen Beispielen erläutern. Der Vortrag basiert unter
+anderem auf praktischen Erfahrungen aus unterschiedlichen Projekten
+und Diskussionen mit React-Kernentwicklern.
+-->
+        <section>
+            <h1>Flux</h1>
+
+            <h3>An Architecture for React</h3>
 
             <p>
                 <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
@@ -64,7 +86,43 @@ Links:
             <p>Online version at: <a href="http://djcordhose.github.io/serious-javascript/slides/react-intro-nordic-coding-2014.html">http://djcordhose.github.io/serious-javascript/slides/react-intro-nordic-coding-2014.html</a></p>
             <p>Or: http://bit.ly/1ud7GxA</p>
         </section>
+
         <section>
+            <h2>Contents</h2>
+            <ol>
+                <!-- 5 minutes -->
+                <li>Frontend Architecture
+                    <!-- 10 minutes -->
+                <!-- Short intro -->
+                <li>React in a nut shell
+                    <!-- 5 minutes -->
+                <li>Questions and discussion
+            </ol>
+        </section>
+
+        <section>
+            <h2>Why Frontend Architecture?</h2>
+        <ul>
+            <li class="fragment">Applications have moved to the frontend
+            <li class="fragment">Esp. with offline mode you have business logic on
+        </ul>
+        </section>
+
+        <section>
+            <h2>Why is Frontend Architecture hard to get right?</h2>
+            <ul>
+                <li class="fragment">- Interaktiv
+                    - noch nicht lange studiert
+                    - Umfeld (Frontend) nicht traditionell mit Nachhaltigkeit betrieben
+            </ul>
+        </section>
+
+<section>
+    <section>
+    <h2>React in a nushell</h2>
+    </section>
+
+    <section>
             <h2>React</h2>
             <img src="http://facebook.github.io/react/img/logo_small.png">
 
@@ -85,6 +143,8 @@ Links:
         <img src="react_users.png">
         <p><a target="_blank" href="http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html">http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html</a></p>
     </section>
+
+
 
         <section>
             <h3>Hello World</h3>
@@ -120,7 +180,7 @@ Links:
                 <li class="fragment">Runs both on server and on client side
             </ul>
         </section>
-
+</section>
 
         <section>
             <h3>A Simple Component</h3>

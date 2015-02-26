@@ -1,0 +1,171 @@
+<!--http://localhost:63342/JavaScript%20Training/#/-->
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Einführung in JavaScript für Java-Entwickler</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">
+
+
+        <!-- Uncomment for presentation -->
+        <style>
+            pre code {
+                display: block;
+                padding: 0.5em;
+                background: #FFFFFF;
+                color: #000000;
+            }
+        </style>
+
+        <!-- Uncomment for PDF generation -->
+        <!-- and add ?print-pdf to url -->
+        <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+        <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+		<!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+
+    <!-- https://jax.de/2015/sessions/einfuehrung-javascript-fuer-java-entwickler
+
+    In diesem ganztägigen Workshop führe ich Euch in alle für Java-Entwickler wesentlichen Spracheigenschaften von JavaScript ein. Wir werden die Themen Objekte, Arrays, Funktionen, prototypische Vererbung und Module besprechen. Der Workshop enthält Übungen am eigenen Rechner.
+
+    -->
+    <!--
+
+Ablauf:
+- Vormittags: JavaScript Grundlagen inklusive OO und Closures
+- Nachmittags:
+  - Ausblick auf ES6 (nächste Version von JavaScript)
+  - Anwendungen mit verschiedenen Bibliotheken
+
+
+        Plan:
+        Intro:
+        Programmierparadigmen
+
+- Anders als in Java gibt es in JavaScript nicht einen akzeptierten Stil zu programmieren, sondern eine ganze Reihe.
+-  der Stil hängt oft mit dem eingesetzten Framework zusammen
+- anderer Faktor, wann ist der Code geschrieben worden?
+
+1. OO ohne Klassen, Wiederverwendung durch kopieren von Methoden, Underscore, Backbone
+2. Douglas 2.0: kein this
+3. Mainstream: klassisch OO, ES6
+4. funktional
+5. Kraut und Rüben: D3
+6. jQuery ist besser als JavaScript
+
+- Wir machen hier aber nur einen Stil, nämlich Mainstream
+
+        Vormittags:
+         - JavaScript-Sprachgrundlagen
+         - Zwischenspiel Programmierparadigmen
+         - OO
+        Nachmittags: Frameworks und libs, Tests, Build Tools etc.
+        - Alles aus Schulungen nehmen
+        - Muss aber jsbin auch unterstützen.
+        - Minimum
+        - JQuery und Underscore
+        -  Was kann man noch zeigen?
+        - D3 zeigen mit unterschiedlichem Codestil? Wegen Performance?
+        - Zeigen, dass die Patterns und der Stil mit unterschiedlichen Bibliotheken anders sind.
+          - jQuery
+          - Underscore
+          - D3
+          - Angular
+          - React?
+
+        TODO: Workshop
+        - Im Workshop mit Modulen und ES6-Teil
+        - Übungen wieder mit JSBin, gibt es auch ES6-Übersetzer? Dann machen und selbst besser lernen.
+        - Ideen aus Talk-Foliensatz hier aufnehmen
+        TODO:
+        - Talk-Live-Coding wieder weitesgehend ohne Folien
+
+        Links:
+        - Next Big Language JavaScript: https://twitter.com/peterc/status/569336759936532480?s=03
+
+        JSBin-Playground:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then
+        - 6to5: http://jsbin.com/kowitifuko/2/edit?js,console
+        - jQuery: http://jsbin.com/rutede/2/edit?html,js,output
+
+    -->
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+            <section>
+                <h2>Einführung in JavaScript für Java-Entwickler</h2>
+                <p>
+                    <a href="mailto:oliver.zeigermann@gmail.com">Oliver Zeigermann</a> | <a href="http://zeigermann.eu">http://zeigermann.eu</a>
+                </p>
+                <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/workshop/2015_jax/jax.html">
+                    http://djcordhose.github.io/serious-javascript/workshop/2015_jax/jax.html</a></p>
+                <p>Or: TODO</p>
+            </section>
+
+            <section>
+                <h2>Oliver Zeigermann</h2>
+                <img src="olli.jpg" height="200">
+                <ul>
+                    <li><a href="http://zeigermann.eu">http://zeigermann.eu</a>
+                    <li><a href="https://twitter.com/DJCordhose">@DJCordhose</a>
+                    <li><a href="https://github.com/DJCordhose">https://github.com/DJCordhose</a>
+                    <li><a href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+                </ul>
+            </section>
+
+                <section>
+                    <h2>Inhalte</h2>
+                    <ul>
+                        <li><a href="intro.html">Teil 1: Intro</a>
+                        <li><a href="libs.html">Teil 2: Praxis mit Bibilotheken</a>
+                    </ul>
+                </section>
+            </div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/../reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on ../reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

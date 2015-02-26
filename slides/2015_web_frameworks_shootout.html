@@ -59,36 +59,85 @@
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         </small>
     </p>
-    <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/slides/2015_jsunconf_web_frameworks_shootout.html">http://djcordhose.github.io/serious-javascript/slides/2015_jsunconf_web_frameworks_shootout.html</a></p>
+    <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/slides/2015_web_frameworks_shootout.html">http://djcordhose.github.io/serious-javascript/slides/2015_web_frameworks_shootout.html</a></p>
     <p>Or: TODO</p>
 
 </section>
+    <section>
+        <h2>Oliver Zeigermann</h2>
+        <img src="SF-Olli.jpg" height="200" align="right">
+        <ul>
+            <!--<li>Freelancer: Projekte, Architektur, Coaching, Workshops-->
+            <li><a target="_blank" href="http://zeigermann.eu">http://zeigermann.eu</a>
+            <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+            <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+            <li><a target="_blank" href="https://entwickler.de/press/buecher/javascript-fuer-java-entwickler-2-119804.html">JavaScript für
+            Java-Entwickler</a>
+
+        </ul>
+    </section>
 
 <section>
     <!-- 60 minutes -->
+<!--
+Teil 1: Intro
+- Tech Radar
+- Wieso überhaupt
 
+Teil 2: Frameworks Vorstellung
+- Features
+- Hello World
+
+Teil 3: Bewertung anhand von Aspekten / Anforderungen
+
+- Wer soll damit Entwickeln?
+- Was soll entwickelt werden?
+- Wie lange lebt das Projekt?
+- Wie komplex sind die Interaktion von Teilen der App?
+- Wie dynamisch ist die App?
+
+-->
     <h2>Contents</h2>
     <ol>
         <!-- 5 minutes -->
-        <li class="fragment">Motivation: Why client side rendering in the first place?
-        <!-- 10 minutes -->
-        <li class="fragment">The beginning: jQuery
-        <!-- 10 minutes -->
-        <li class="fragment">Adding structure: Backbone
-        <!-- 10 minutes -->
-        <li class="fragment">Introducing Magic: Angular
-        <!-- 10 minutes -->
-        <li class="fragment">Back to simplicity: React
-        <!-- 10 minutes -->
-        <li class="fragment">Closing the circle: hapi
+        <li class="fragment">Part I: Motivation
+            <!-- 20 minutes -->
+        <li class="fragment">Part II: Introduction to the Framework Candidates
+            <!-- 20 minutes -->
+        <li class="fragment">Part III: Evaluation
+            <!-- 5 minutes -->
+        <li class="fragment">Part IV: (Executive) Summary
         <!-- 5 minutes -->
         <li class="fragment">Questions and discussion
     </ol>
+
+    <!--<h2>Contents</h2>-->
+    <!--<ol>-->
+        <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Motivation: Why client side rendering in the first place?-->
+        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
+        <!--<li class="fragment">The beginning: jQuery-->
+        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Adding structure: Backbone-->
+        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Introducing Magic: Angular-->
+        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Back to simplicity: React-->
+        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Closing the circle: hapi-->
+        <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
+        <!--<li class="fragment">Questions and discussion-->
+    <!--</ol>-->
 </section>
 
+    <section>
+        <section>
+            <h2>Part I: Motivation</h2>
+        </section>
+
+
 <section>
-<section>
-    <h2>Motivation: Why client side (browser) rendering in the first place?</h2>
+    <h2>Why client side (browser) rendering in the first place?</h2>
 </section>
     <section>
         <h3>Classic Server Side Rendering (Blue: Server, Violett: Browser)</h3>
@@ -122,9 +171,34 @@
         <p><small>Copyright 2015, Oliver Zeigermann</small></p>
     </section>
 
+    <section>
+        <h2>My JavaScript framework technology radar</h2>
+        <img src="techradar/tech-radar.jpg" height="500px" width="1000px">
+
+        <!-- Four ring image where all the frameworks are in adapt :'( -->
+        <!--
+- Hold:
+- Asses:
+- Trial:
+- Adopt: all
+
+Unterscheiden jQuery als Basistechnologie bzw. Library, Ergänzung zu anderen Frameworks und als echte Framework-Alternative ohne anderes Framework
+
+Zitieren aus
+http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
+
+"We firmly believe that you can't really fully assess technology unless you've used it to solve real problems, to help understand both its weaknesses and strengths"
+
+-->
+    </section>
+
+
 </section>
 
     <section>
+        <section>
+            <h2>Part II: Introduction to the Framework Candidates</h2>
+        </section>
         <section>
             <h2>The beginning: jQuery</h2>
         </section>
@@ -160,38 +234,11 @@
                         <a href="../framework-comparison/end/helloworld-jQuery.html">Run</a>
                     </section>
         <section>
-            <h3>Architectural considerations</h3>
-            <ul>
-                <li class="fragment">
-            </ul>
-        </section>
-        <section>
-            <!-- jquery: Best when you have an existing DOM -->
-            <!--
-            - locate something (find a button or an input field and submit a click
-            or data - e.g. for E2E Tests)
-            - modify something (make something visible depending on a click)
-            - extract data (get data from input fields and do validation, fill
-            other areas etc.)
-
-            It is possible to create new nodes or clone sections but then you are
-            probably already lost.
-            -->
-            <h3>Use Cases</h3>
-            <ul>
-                <li class="fragment">
-            </ul>
-        </section>
-
-    </section>
-    <section>
-        <section>
             <h2>Adding structure: Backbone</h2>
         </section>
-    </section>
-    <section>
         <section>
             <h2>Introducing Magic: Angular</h2>
+            <h3>aka the Visual Basic of JavaScript</h3>
         </section>
         <section>
                 <h3>Key Features</h3>
@@ -223,9 +270,6 @@ HelloController.prototype.clear = function() {
                 </section>
 
 
-    </section>
-
-    <section>
         <section>
             <h2>Back to simplicity: React</h2>
         </section>
@@ -268,17 +312,108 @@ var mountNode = document.getElementById('example');
 React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a href="../framework-comparison/end/helloWorldReact.html">Run</a>
         </section>
+
+    <!--<section>-->
+        <!--<section>-->
+            <!--<h2>Closing the circle: hapi</h2>-->
+        <!--</section>-->
+        <!--&lt;!&ndash; https://frederic-hemberger.de/talks/hapi/#/cover &ndash;&gt;-->
+    <!--</section>-->
     </section>
+
 
     <section>
         <section>
-            <h2>Closing the circle: hapi</h2>
+            <h2>Part III: Evaluation</h2>
+            <h3 class="fragment">General requirement: Create a well structured JavaScript Application</h3>
         </section>
-        <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
-    </section>
-
 
         <section>
+            <h3>Categories and Aspects of Evaluation / Requirements</h3>
+            <!--
+            Teil 3: Bewertung anhand von Aspekten / Anforderungen
+
+            - Wer soll damit Entwickeln?
+            - Was soll entwickelt werden?
+            - Wie lange lebt das Projekt?
+            - Wie komplex sind die Interaktion von Teilen der App?
+            - Wie dynamisch ist die App?
+    -->
+
+            <ul>
+                <li class="fragment">What is history of your programmers?
+                <li class="fragment">What is the live cycle of the application?
+                <li class="fragment">How dynamic is the application?
+                <li class="fragment">How complex are interactions between parts of the application?
+            </ul>
+        </section>
+        <section>
+            <!--
+            Backbone: Struktur für klassische Frontend-Entwickler
+
+Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-App nähert
+- CSS/HTML jQuery => Backbone
+- Java/C# => Angular
+- Ruby => EmberJS
+- Andere js - frameworks => React
+
+-->
+            <h3>What is history of your programmers?</h3>
+            <ul>
+                <li class="fragment">CSS/HTML without jQuery
+                    <ul>
+                        <li class="fragment">=> jQuery
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">CSS/HTML with jQuery
+                    <ul>
+                        <li class="fragment">=> Backbone/Marionette
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">Java, C# or C++
+                    <ul>
+                        <li class="fragment">=> Angular
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">JavaScript (maybe with other frameworks)
+                    <ul>
+                        <li class="fragment">=> React
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Part IV: (Executive) Summary</h2>
+            <h3 class="fragment">Presented as Use Cases</h3>
+        </section>
+        <section>
+            <h3>jQuery</h3>
+            <ul>
+                <li class="fragment">almost no abstraction from DOM, thus universally applicable
+                <li class="fragment">application is not highly dynamic
+                <li class="fragment">best when you have an existing DOM
+                    <ul>
+                        <li class="fragment">modify something (make something visible depending on a click)
+                        <li class="fragment">extract data (get data from input fields and do validation, fill
+                            other areas etc.)
+                        <li class="fragment">It is possible to create new nodes or clone sections but then you are
+                            probably already lost.
+                        <li class="fragment">locate something (find a button or an input field and submit a click
+                            or data - e.g. for E2E Tests)
+                    </ul>
+                </li>
+                <li class="fragment">basis for other libraries
+            </ul>
+        </section>
+    </section>
+
+    <section>
             <h1>Thank you!</h1>
 
             <h3>Questions / Discussion</h3>
