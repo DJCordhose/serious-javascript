@@ -60,7 +60,7 @@
         </small>
     </p>
     <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/slides/2015_web_frameworks_shootout.html">http://djcordhose.github.io/serious-javascript/slides/2015_web_frameworks_shootout.html</a></p>
-    <p>Or: TODO</p>
+    <p>Or: http://bit.ly/1AxgSRY</p>
 
 </section>
     <section>
@@ -76,6 +76,10 @@
 
         </ul>
     </section>
+
+    <!--
+- http://www.quora.com/I-am-Java-developer-who-wants-to-learn-JavaScript-Which-technology-Angular-jQuery-or-Node-js-is-better-to-learn-nowadays
+    -->
 
 <section>
     <!-- 60 minutes -->
@@ -111,23 +115,6 @@ Teil 3: Bewertung anhand von Aspekten / Anforderungen
         <li class="fragment">Questions and discussion
     </ol>
 
-    <!--<h2>Contents</h2>-->
-    <!--<ol>-->
-        <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Motivation: Why client side rendering in the first place?-->
-        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-        <!--<li class="fragment">The beginning: jQuery-->
-        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Adding structure: Backbone-->
-        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Introducing Magic: Angular-->
-        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Back to simplicity: React-->
-        <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Closing the circle: hapi-->
-        <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-        <!--<li class="fragment">Questions and discussion-->
-    <!--</ol>-->
 </section>
 
     <section>
@@ -135,6 +122,13 @@ Teil 3: Bewertung anhand von Aspekten / Anforderungen
             <h2>Part I: Motivation</h2>
         </section>
 
+        <section>
+            <h2>We are not alone</h2>
+            <a target="_blank" href="http://www.quora.com/I-am-Java-developer-who-wants-to-learn-JavaScript-Which-technology-Angular-jQuery-or-Node-js-is-better-to-learn-nowadays">
+                http://www.quora.com/I-am-Java-developer-who-wants-to-learn-JavaScript-Which-technology-Angular-jQuery-or-Node-js-is-better-to-learn-nowadays
+            </a>
+
+        </section>
 
 <section>
     <h2>Why client side (browser) rendering in the first place?</h2>
@@ -172,10 +166,24 @@ Teil 3: Bewertung anhand von Aspekten / Anforderungen
     </section>
 
     <section>
-        <h2>My JavaScript framework technology radar</h2>
-        <img src="techradar/tech-radar.jpg" height="500px" width="1000px">
+        <h2>Technology radar</h2>
+        <div>
+            <img src="techradar/tech-radar.jpg" class="right-img" style="height: 350px">
+            <ol>
+                <li class="fragment">Four rings
+                <li class="fragment">expressing maturity of technology
+                <li class="fragment">requirements have to match
+                <li class="fragment">Adopt: use it
+                <li class="fragment">Trial: try it out in a small project
+                <li class="fragment">Asses: play with it
+                <li class="fragment">Hold: no new project with it
+            </ol>
+        </div>
+        <p style="clear: both">
+            <small>http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar</small>
+        </p>
 
-        <!-- Four ring image where all the frameworks are in adapt :'( -->
+        <!--
         <!--
 - Hold:
 - Asses:
@@ -191,9 +199,31 @@ http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
 
 -->
     </section>
+        <section data-state="radar">
+            <h2>My JavaScript framework technology radar</h2>
 
+            <div>
+                <ol>
+                    <li>jQuery
+                    <li>Backbone/Marionette
+                    <li>Angular.js
+                    <li>React
+                    <li>Hapi
+                </ol>
+                <img src="techradar/framework-radar.png" class="fragment right-img">
+            </div>
+            <p style="clear: both">
+                <small>Done by code forked from https://github.com/bdargan/techradar</small>
+            </p>
+        </section>
 
-</section>
+        <section>
+            <h2>All frameworks should be adopted!</h2>
+            <h3 class="fragment">Provided your requirements/context matches the framework</h3>
+            <h4 class="fragment">What requirement/context matches which framework is the topic of this talk</h4>
+        </section>
+
+    </section>
 
     <section>
         <section>
@@ -290,35 +320,36 @@ HelloController.prototype.clear = function() {
 
                 <section>
             <h3>Hello World React</h3>
-<pre><code class="html" contenteditable>var HelloMessage = React.createClass({
-  getInitialState: function() {
-    return { model: this.props.greeting};
-  },
-  updateModel: function(event) {
-    this.setState({model: event.target.value});
-  },
-  reset: function() {
-    this.setState({model: ""});
-  },
-  render: function() {
-    return (&lt;div>
-        &lt;input onChange={this.updateModel} value={this.state.model} />
-        &lt;p>{this.state.model}, World&lt;/p>
-        &lt;input type="button" value="Clear" onClick={this.reset} />
-     &lt;/div>);
-  }
-});
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {model: this.props.greeting};
+    }
+    updateModel(event) {
+        this.setState({model: event.target.value});
+    }
+    reset() {
+        this.setState({model: ""});
+    }
+    render() {
+        return (<div>
+            <input value={this.state.model} onChange={this.updateModel.bind(this)} />
+            <p>{this.state.model}, World</p>
+            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
+        </div>);
+    }
+}
 var mountNode = document.getElementById('example');
-React.renderComponent(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a href="../framework-comparison/end/helloWorldReact.html">Run</a>
         </section>
 
-    <!--<section>-->
-        <!--<section>-->
-            <!--<h2>Closing the circle: hapi</h2>-->
-        <!--</section>-->
-        <!--&lt;!&ndash; https://frederic-hemberger.de/talks/hapi/#/cover &ndash;&gt;-->
-    <!--</section>-->
+    <section>
+        <section>
+            <h2>Closing the circle: hapi</h2>
+        </section>
+        <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
+    </section>
     </section>
 
 
@@ -471,6 +502,14 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
     });
 
 </script>
+<script>
+    Reveal.addEventListener( 'radar', function() {
+        console.log( '"radar" has fired' );
+    } );
+</script>
+
+</script>
+
 
 </body>
 </html>
