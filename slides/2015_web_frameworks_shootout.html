@@ -160,69 +160,10 @@ Teil 3: Bewertung anhand von Aspekten / Anforderungen
         <ul>
             <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">
             <li class="fragment">Business logic in browser allows for offline support
-            <li class="fragment">Brought to an extreme no or only occasional online connectivity required
+            <li class="fragment">Brought to an extreme no (or only occasional) online connectivity required
         </ul>
         <p><small>Copyright 2015, Oliver Zeigermann</small></p>
     </section>
-
-    <section>
-        <h2>Technology radar</h2>
-        <div>
-            <img src="techradar/tech-radar.jpg" class="right-img" style="height: 350px">
-            <ol>
-                <li class="fragment">Four rings
-                <li class="fragment">expressing maturity of technology
-                <li class="fragment">requirements have to match
-                <li class="fragment">Adopt: use it
-                <li class="fragment">Trial: try it out in a small project
-                <li class="fragment">Asses: play with it
-                <li class="fragment">Hold: no new project with it
-            </ol>
-        </div>
-        <p style="clear: both">
-            <small>http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar</small>
-        </p>
-
-        <!--
-        <!--
-- Hold:
-- Asses:
-- Trial:
-- Adopt: all
-
-Unterscheiden jQuery als Basistechnologie bzw. Library, Ergänzung zu anderen Frameworks und als echte Framework-Alternative ohne anderes Framework
-
-Zitieren aus
-http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
-
-"We firmly believe that you can't really fully assess technology unless you've used it to solve real problems, to help understand both its weaknesses and strengths"
-
--->
-    </section>
-        <section data-state="radar">
-            <h2>My JavaScript framework technology radar</h2>
-
-            <div>
-                <ol>
-                    <li>jQuery
-                    <li>Backbone/Marionette
-                    <li>Angular.js
-                    <li>React
-                    <li>Hapi
-                </ol>
-                <img src="techradar/framework-radar.png" class="fragment right-img">
-            </div>
-            <p style="clear: both">
-                <small>Done by code forked from https://github.com/bdargan/techradar</small>
-            </p>
-        </section>
-
-        <section>
-            <h2>All frameworks should be adopted!</h2>
-            <h3 class="fragment">Provided your requirements/context matches the framework</h3>
-            <h4 class="fragment">What requirement/context matches which framework is the topic of this talk</h4>
-        </section>
-
     </section>
 
     <section>
@@ -230,7 +171,18 @@ http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
             <h2>Part II: Introduction to the Framework Candidates</h2>
         </section>
         <section>
-            <h2>The beginning: jQuery</h2>
+            <h2>Our candidates</h2>
+            <ol>
+                <li class="fragment">The classic: jQuery
+                <li class="fragment">Adding structure: Backbone
+                <li class="fragment">Introducing Magic: Angular
+                <li class="fragment">Back to simplicity: React
+                <!--<li class="fragment">Closing the circle: hapi-->
+            </ol>
+        </section>
+
+        <section>
+            <h2>The classic: jQuery</h2>
         </section>
         <section>
             <h3>Key features</h3>
@@ -344,12 +296,12 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a href="../framework-comparison/end/helloWorldReact.html">Run</a>
         </section>
 
-    <section>
-        <section>
-            <h2>Closing the circle: hapi</h2>
-        </section>
-        <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
-    </section>
+    <!--<section>-->
+        <!--<section>-->
+            <!--<h2>Closing the circle: hapi</h2>-->
+        <!--</section>-->
+        <!--&lt;!&ndash; https://frederic-hemberger.de/talks/hapi/#/cover &ndash;&gt;-->
+    <!--</section>-->
     </section>
 
 
@@ -358,6 +310,84 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
             <h2>Part III: Evaluation</h2>
             <h3 class="fragment">General requirement: Create a well structured JavaScript Application</h3>
         </section>
+
+    <section>
+        <h2>Technology radar</h2>
+        <div>
+            <img src="techradar/tech-radar.jpg" class="right-img" style="height: 350px">
+            <ol>
+                <li class="fragment">Four rings
+                <li class="fragment">expressing maturity of technology
+                <li class="fragment">requirements have to match
+                <li class="fragment">Adopt: use it
+                <li class="fragment">Trial: try it out in a small project
+                <li class="fragment">Asses: play with it
+                <li class="fragment">Hold: no new project with it
+            </ol>
+        </div>
+        <p style="clear: both">
+            <small>http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar</small>
+        </p>
+
+        <!--
+        <!--
+- Hold:
+- Asses:
+- Trial:
+- Adopt: all
+
+Unterscheiden jQuery als Basistechnologie bzw. Library, Ergänzung zu anderen Frameworks und als echte Framework-Alternative ohne anderes Framework
+
+Zitieren aus
+http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
+
+"We firmly believe that you can't really fully assess technology unless you've used it to solve real problems, to help understand both its weaknesses and strengths"
+
+-->
+    </section>
+        <section>
+            <h2>ThoughtWorks JavaScript framework technology radar</h2>
+            <div>
+                <img src="techradar/framework-radar-thoughtworks.png" class="right-img">
+                <ol>
+                    <li class="fragment">jQuery (implied)
+                    <li class="fragment">Backbone
+                    <li class="fragment">Angular.js
+                    <li class="fragment">React
+                </ol>
+            </div>
+            <p style="clear: both">
+                <small><a target="_blank" href="http://www.thoughtworks.com/radar/a-z">http://www.thoughtworks.com/radar/a-z</a></small>
+            </p>
+        </section>
+        <section>
+            <h2>If we took this seriously we would only use jQuery???</h2>
+        </section>
+
+        <section data-state="radar">
+            <h2>My JavaScript framework technology radar</h2>
+
+            <div>
+                <ol>
+                    <li>jQuery
+                    <li>Backbone/Marionette
+                    <li>Angular.js
+                    <li>React
+                    <li>Hapi
+                </ol>
+                <img src="techradar/framework-radar.png" class="fragment right-img">
+            </div>
+            <p style="clear: both">
+                <small>Done by code forked from https://github.com/bdargan/techradar</small>
+            </p>
+        </section>
+
+        <section>
+            <h2>All frameworks should be adopted!</h2>
+            <h3 class="fragment">Provided your requirements/context matches the framework</h3>
+            <h4 class="fragment">What requirement/context matches which framework is the topic of this section</h4>
+        </section>
+
 
         <section>
             <h3>Categories and Aspects of Evaluation / Requirements</h3>
@@ -371,8 +401,17 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
             - Wie dynamisch ist die App?
     -->
 
+            <!--
+                            Flux Architektur Kompatibel?
+                            Einsatzbereich
+                            Abstraktheit
+                            Complexity of use
+
+-->
+
             <ul>
-                <li class="fragment">What is history of your programmers?
+                <li class="fragment">What is the history of your programmers?
+                <li class="fragment">Trends and hype curves
                 <li class="fragment">What is the live cycle of the application?
                 <li class="fragment">How dynamic is the application?
                 <li class="fragment">How complex are interactions between parts of the application?
@@ -416,6 +455,39 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                     </ul>
                 </li>
             </ul>
+        </section>
+        <section>
+            <h3>Trends</h3>
+            <img src="techradar/framework-trend-jquery.png">
+            <p style="clear: both">
+                <small>https://www.google.com/trends/</small>
+            </p>
+        </section>
+        <section>
+            <h3>Trends (without jQuery)</h3>
+            <img src="techradar/framework-trend-no-jquery.png">
+            <p style="clear: both">
+                <small>https://www.google.com/trends/</small>
+            </p>
+        </section>
+
+        <section>
+            <h3>Hype curve</h3>
+            <div>
+                <img src="techradar/DiffusionOfInnovation-Frameworks.png" class="right-img" style="height: 450px">
+                <ol>
+                    <li>jQuery
+                    <li>Backbone
+                    <li>Angular
+                    <li>React
+                    <li>Hapi
+                </ol>
+            </div>
+
+            <p style="clear: both">
+                <small>Based on <a href="http://en.wikipedia.org/wiki/File:DiffusionOfInnovation.png#mediaviewer/File:DiffusionOfInnovation.png">DiffusionOfInnovation</a>". Licensed under <a href="http://creativecommons.org/licenses/by/2.5/" title="Creative Commons Attribution 2.5">CC BY 2.5</a> via <a href="//en.wikipedia.org/wiki/">Wikipedia</a>.
+                from <a target="_blank" href="http://en.wikipedia.org/wiki/Technology_adoption_lifecycle">http://en.wikipedia.org/wiki/Technology_adoption_lifecycle</a></small>
+            </p>
         </section>
     </section>
     <section>
