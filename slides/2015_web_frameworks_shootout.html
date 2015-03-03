@@ -213,6 +213,22 @@
             <h2>Adding structure: Backbone</h2>
         </section>
         <section>
+            <h3>Key Features</h3>
+            <ul>
+                <li class="fragment">Previous Hype
+                <li class="fragment">Builds on jQuery
+                <li class="fragment">Key component is a model that works well with REST servers
+                <li class="fragment">Works with all view technologies
+                <li class="fragment">Evolves together with Underscore
+                <li class="fragment">Marionette implements a lot of best practices, adds guidance
+            </ul>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette</h3>
+<pre><code class="xml" contenteditable>TODO</code></pre>
+            <a href="../framework-comparison/backbone/hello.html">Run</a>
+        </section>
+        <section>
             <h2>Introducing Magic: Angular</h2>
             <h3>aka the Visual Basic of JavaScript</h3>
         </section>
@@ -260,6 +276,7 @@ HelloController.prototype.clear = function() {
                 <li class="fragment">Everything is a component
                 <li class="fragment">Just the V in MVC
                 <li class="fragment">View component holds both view and logic
+                <li class="fragment">Flux architecture guides you for complete application
                 <li class="fragment">1-way data binding: changes in model automatically rerenders component
                 <li class="fragment">Smart algorithm performance minimal changes to DOM => fast
                 <li class="fragment">Minimal API for simplicity
@@ -508,7 +525,6 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
     <section>
         <section>
             <h2>Part IV: (Executive) Summary</h2>
-            <h3 class="fragment">Presented as Use Cases</h3>
         </section>
         <section>
             <h3>jQuery</h3>
@@ -516,7 +532,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                 <li class="fragment">basis for other libraries
                 <li class="fragment">almost no abstraction from DOM, thus universally applicable
                 <li class="fragment">application is not highly dynamic
-                <li class="fragment">best when you have an existing DOM
+                <li class="fragment">best when you have an existing DOM, e.g. a classic web application
                     <ul>
                         <li class="fragment">modify something (make something visible depending on a click)
                         <li class="fragment">extract data (get data from input fields and do validation, fill
@@ -533,11 +549,15 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
             <h3>Backbone/Marionette</h3>
             <ul>
                 <li class="fragment">Previous Hype
-                <li class="fragment">Builds on jQuery
-                <li class="fragment">Key component is a model that works well with REST servers
-                <li class="fragment">Works with all view technologies
-                <li class="fragment">Evolves together with Underscore
-                <li class="fragment">Marionette implements a lot of best practices, adds guidance
+                <li class="fragment">Opinionated about the way data models are handled
+                    <ul>
+                        <li class="fragment">flat data models are favored over nested
+                        <li class="fragment">natural function of server is to provide a CRUD API for those models
+                        <li class="fragment">a good resource explaining <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/</a>
+                        <li class="fragment">if your architecture evolves in a way not intended by Backbone you might be in trouble
+                    </ul>
+                </li>
+                <li class="fragment">Marionette makes some design decisions for you
             </ul>
         </section>
         <section>
@@ -546,7 +566,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                 <li class="fragment">Current Hype
                 <li class="fragment">By Google
                 <li class="fragment">Mildly used inside of Google
-                <li class="fragment">Recent anouncement of largely incompatible grand 2.0 developement caused mistrust
+                <li class="fragment">Recent announcement of largely incompatible grand 2.0 development caused mistrust
             </ul>
         </section>
         <section>
@@ -556,6 +576,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                 <li class="fragment">By Facebook
                 <li class="fragment">Facebook and Instagram based on it
                 <li class="fragment">Matches Flux architecture
+                <li class="fragment">Works on Client and on Server
             </ul>
         </section>
     </section>
