@@ -78,16 +78,6 @@
     </section>
 
 <section>
-    <!--
-    TODO:
-    - Finish summary
-      - Backbone
-      - Angular
-      - React
-
-     - Candidates
-      - backbone: key features + sample code
-    -->
     <h2>Contents</h2>
     <ol>
         <!-- 5 minutes -->
@@ -170,9 +160,6 @@
 
         <section>
             <h2>The classic: jQuery</h2>
-        </section>
-        <section>
-            <h3>Key features</h3>
             <ul>
                 <li class="fragment">Standard JavaScript library
                 <li class="fragment">Found almost everywhere
@@ -207,33 +194,59 @@
         setModel("Hello");
     });
 &lt;/script></code></pre>
-                        <a href="../framework-comparison/end/helloworld-jQuery.html">Run</a>
+                        <a target="_blank" href="../framework-comparison/end/helloworld-jQuery.html">Run</a>
                     </section>
         <section>
             <h2>Adding structure: Backbone</h2>
-        </section>
-        <section>
-            <h3>Key Features</h3>
             <ul>
                 <li class="fragment">Previous Hype
-                <li class="fragment">Builds on jQuery
+                <li class="fragment">Builds on jQuery and underscore
                 <li class="fragment">Key component is a model that works well with REST servers
-                <li class="fragment">Works with all view technologies
-                <li class="fragment">Evolves together with Underscore
+                <li class="fragment">View re-renders once model has changed
+                <li class="fragment">Not tied to a specific view technology
                 <li class="fragment">Marionette implements a lot of best practices, adds guidance
+                <li class="fragment">Using additional frameworks it becomes convenient (binding, eventbus, view management)
             </ul>
         </section>
         <section>
-            <h3>Hello World Backbone/Marionette</h3>
-<pre><code class="xml" contenteditable>TODO</code></pre>
-            <a href="../framework-comparison/backbone/hello.html">Run</a>
+            <h3>Hello World Backbone/Marionette: Model</h3>
+<pre><code class="xml" contenteditable>var Model = Backbone.Model.extend({
+    defaults: {
+        greeting: 'Hello'
+    }
+});</code></pre>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette: View</h3>
+<pre><code class="xml" contenteditable>var HelloView = Marionette.ItemView.extend({
+    events: {
+        'click #btn': 'onBtnClick'
+    },
+    bindings: {
+        '#in': 'greeting',
+        '#out': 'greeting'
+    },
+    onBtnClick: function () {
+        this.model.set('greeting', '');
+    },
+    onRender: function () {
+        this.stickit(); // sets 2-way bindings
+    },
+    template: _.template('<input id="in"><p><span id="out"></span>, World</p>' +
+                         '<input id="btn" type="button" value="Clear">')
+});</code></pre>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette: Putting it together</h3>
+<pre><code class="xml" contenteditable>(new HelloView({
+    model: new Model(),
+    el: '#example'
+})).render();</code></pre>
+            <a target="_blank" href="../framework-comparison/backbone/hello.html">Run</a>
         </section>
         <section>
             <h2>Introducing Magic: Angular</h2>
-            <h3>aka the Visual Basic of JavaScript</h3>
-        </section>
-        <section>
-                <h3>Key Features</h3>
+            <!--<h3>aka the Visual Basic of JavaScript</h3>-->
         <ul>
             <li class="fragment">HTML enhanced for web apps!
             <li class="fragment">HTML extended by <em>directives</em> (=== components)
@@ -262,15 +275,12 @@ HelloController.prototype.clear = function() {
     this.greeting.text = '';
 };
 </code></pre>
-        <a href="../framework-comparison/end/helloWorldAngular.html">Run</a>
+        <a target="_blank" href="../framework-comparison/end/helloWorldAngular.html">Run</a>
                 </section>
 
 
         <section>
             <h2>Back to simplicity: React</h2>
-        </section>
-        <section>
-            <h3>Key features</h3>
             <ul>
                 <li class="fragment">Framework for Facebook und Instagram
                 <li class="fragment">Everything is a component
@@ -309,7 +319,7 @@ HelloController.prototype.clear = function() {
 }
 var mountNode = document.getElementById('example');
 React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
-                <a href="../framework-comparison/end/helloWorldReact.html">Run</a>
+                <a target="_blank" href="../framework-comparison/react/index.html">Run</a>
         </section>
 
     <!--<section>-->
@@ -380,23 +390,23 @@ http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
             <!--<h2>If we took this seriously we would only use jQuery???</h2>-->
         <!--</section>-->
 
-        <section data-state="radar">
-            <h2>My JavaScript framework technology radar</h2>
+        <!--<section data-state="radar">-->
+            <!--<h2>My JavaScript framework technology radar</h2>-->
 
-            <div>
-                <ol>
-                    <li>jQuery
-                    <li>Backbone/Marionette
-                    <li>Angular.js
-                    <li>React
-                    <li>Hapi
-                </ol>
-                <img src="techradar/framework-radar.png" class="fragment right-img">
-            </div>
-            <p style="clear: both">
-                <small>Done by code forked from https://github.com/bdargan/techradar</small>
-            </p>
-        </section>
+            <!--<div>-->
+                <!--<ol>-->
+                    <!--<li>jQuery-->
+                    <!--<li>Backbone/Marionette-->
+                    <!--<li>Angular.js-->
+                    <!--<li>React-->
+                    <!--<li>Hapi-->
+                <!--</ol>-->
+                <!--<img src="techradar/framework-radar.png" class="fragment right-img">-->
+            <!--</div>-->
+            <!--<p style="clear: both">-->
+                <!--<small>Done by code forked from https://github.com/bdargan/techradar</small>-->
+            <!--</p>-->
+        <!--</section>-->
 
         <!--<section>-->
             <!--<h2>All frameworks should be adopted!</h2>-->
