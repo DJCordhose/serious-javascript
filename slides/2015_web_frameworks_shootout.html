@@ -150,16 +150,48 @@
         <section>
             <h2>Our candidates</h2>
             <ol>
-                <li class="fragment">The classic: jQuery
+                <li class="fragment">Classic Backend: hapi
+                <li class="fragment">Frontend Classic: jQuery
                 <li class="fragment">Adding structure: Backbone
                 <li class="fragment">Introducing Magic: Angular
                 <li class="fragment">Back to simplicity: React
-                <!--<li class="fragment">Closing the circle: hapi-->
             </ol>
         </section>
 
         <section>
-            <h2>The classic: jQuery</h2>
+            <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
+            <h2>Classic Backend: hapi</h2>
+            <h3>To start with something more familiar</h3>
+            <ul>
+                <li class="fragment">Server Side JavaScript framework
+                <li class="fragment">Driven by team at Walmart
+                <li class="fragment">runs on node.js / io.js
+                <li class="fragment">Request/Response based
+                <li class="fragment">Server side rendering using template language of your choice
+                <li class="fragment">Based on ideas of main stream framework "express"
+                <li class="fragment">Adds better error handling and better modularity
+            </ul>
+        </section>
+                <section>
+            <h3>Hello World Hapi / Handlebars Template</h3>
+<pre><code class="xml" contenteditable>&lt;form>
+    &lt;input name="greeting" value="{{greeting}}">
+    &lt;p>{{greeting}}, World&lt;/p>
+    &lt;a href="/?greeting=">Clear&lt;/a>
+    &lt;input type="submit" value="Send">
+&lt;/form></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>var server = new Hapi.Server();
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply.view('index', { greeting: request.query.greeting || 'Hello' });
+    }
+});</code></pre>
+                <a target="_blank" href="http://localhost:8080">Run: node index.js</a>
+        </section>
+        <section>
+            <h2>Frontend Classic: jQuery</h2>
             <ul>
                 <li class="fragment">Standard JavaScript library
                 <li class="fragment">Found almost everywhere
@@ -199,7 +231,6 @@
         <section>
             <h2>Adding structure: Backbone</h2>
             <ul>
-                <li class="fragment">Previous Hype
                 <li class="fragment">Builds on jQuery and underscore
                 <li class="fragment">Key component is a model that works well with REST servers
                 <li class="fragment">View re-renders once model has changed
@@ -246,7 +277,6 @@
         </section>
         <section>
             <h2>Introducing Magic: Angular</h2>
-            <!--<h3>aka the Visual Basic of JavaScript</h3>-->
         <ul>
             <li class="fragment">HTML enhanced for web apps!
             <li class="fragment">HTML extended by <em>directives</em> (=== components)
@@ -322,12 +352,6 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a target="_blank" href="../framework-comparison/react/index.html">Run</a>
         </section>
 
-    <!--<section>-->
-        <!--<section>-->
-            <!--<h2>Closing the circle: hapi</h2>-->
-        <!--</section>-->
-        <!--&lt;!&ndash; https://frederic-hemberger.de/talks/hapi/#/cover &ndash;&gt;-->
-    <!--</section>-->
     </section>
 
 
@@ -575,6 +599,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
             <ul>
                 <li class="fragment">Current Hype
                 <li class="fragment">By Google
+                <li class="fragment">the "Visual Basic" of JavaScript ;)
                 <li class="fragment">Mildly used inside of Google
                 <li class="fragment">Recent announcement of largely incompatible grand 2.0 development caused mistrust
                 <li class="fragment">Angular is opinionated about almost everything
@@ -591,6 +616,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
             <ul>
                 <li class="fragment">Next Hype
                 <li class="fragment">By Facebook
+                <li class="fragment">@sebmarkbage: @ReactJS is known for transforming anti-patterns into best practices.
                 <li class="fragment">Facebook and Instagram based on it
                 <li class="fragment">Works on Client and on Server
                 <li class="fragment">React is opinionated about almost nothing
