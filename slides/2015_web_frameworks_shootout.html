@@ -307,6 +307,25 @@ HelloController.prototype.clear = function() {
 </code></pre>
         <a target="_blank" href="../framework-comparison/end/helloWorldAngular.html">Run</a>
                 </section>
+                <section>
+                    <h3>Hello World AngularJS 2.x AtScript style</h3>
+<pre><code class="xml" contenteditable>
+@Template({
+inline: `&lt;input [value]="greeting">
+  &lt;p>{{greeting}}, World&lt;/p>
+  &lt;button (click)="clear()">Clear&lt;/button>`
+})</code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>class HelloCmp {
+  greeting: string;
+  constructor() {
+    this.greeting = 'Hello';
+  }
+  clear() {
+    this.greeting = '';
+  }
+}
+</code></pre>
+                </section>
 
 
         <section>
@@ -599,7 +618,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
             <ul>
                 <li class="fragment">Current Hype
                 <li class="fragment">By Google
-                <li class="fragment">the "Visual Basic" of JavaScript ;)
+                <!--<li class="fragment">the "Visual Basic" of JavaScript ;)-->
                 <li class="fragment">Mildly used inside of Google
                 <li class="fragment">Recent announcement of largely incompatible grand 2.0 development caused mistrust
                 <li class="fragment">Angular is opinionated about almost everything
