@@ -311,7 +311,8 @@ HelloController.prototype.clear = function() {
                     <h3>Hello World AngularJS 2.x AtScript style</h3>
 <pre><code class="xml" contenteditable>
 @Template({
-inline: `&lt;input [value]="greeting">
+// this way of describing two-way binding might not work any more ('bind-value' does)...
+inline: `&lt;input two-way-value="greeting">
   &lt;p>{{greeting}}, World&lt;/p>
   &lt;button (click)="clear()">Clear&lt;/button>`
 })</code></pre>
