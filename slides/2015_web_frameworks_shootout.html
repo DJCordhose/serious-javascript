@@ -311,26 +311,28 @@ HelloController.prototype.clear = function() {
         <a target="_blank" href="../framework-comparison/end/helloWorldAngular.html">Run</a>
                 </section>
                 <section>
-                    <h3>Hello World AngularJS 2.x AtScript style</h3>
+                    <h3>Hello World AngularJS 2.x</h3>
 <pre><code class="xml" contenteditable>@Component({
   selector: 'hello-app'
 })
 @Template({
-// this way of describing two-way binding might not work any more ('bind-value' does)...
-inline: `&lt;input two-way-value="greeting">
+inline: `&lt;input [value]="greeting" #in (keyup)="updateModel($event)">
   &lt;p>{{greeting}}, World&lt;/p>
-  &lt;button (click)="clear()">Clear&lt;/button>`
+  &lt;button (click)="reset(in)">Clear&lt;/button>`
 })</code></pre>
 <pre class="fragment"><code class="javascript" contenteditable>class HelloCmp {
   greeting: string;
   constructor() {
     this.greeting = 'Hello';
   }
-  clear() {
+  reset(input) {
     this.greeting = '';
+    input.focus();
   }
-}
-</code></pre>
+  updateModel($event) {
+    this.greeting = $event.target.value;
+  }
+}</code></pre>
                 </section>
 
 
@@ -356,18 +358,18 @@ inline: `&lt;input two-way-value="greeting">
 <pre><code class="html" contenteditable>class HelloMessage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {model: this.props.greeting};
+        this.state = {greeting: this.props.greeting};
     }
     updateModel(event) {
-        this.setState({model: event.target.value});
+        this.setState({greeting: event.target.value});
     }
     reset() {
-        this.setState({model: ""});
+        this.setState({greeting: ""});
     }
     render() {
         return (<div>
-            <input value={this.state.model} onChange={this.updateModel.bind(this)} />
-            <p>{this.state.model}, World</p>
+            <input value={this.state.greeting} onChange={this.updateModel.bind(this)} />
+            <p>{this.state.greeting}, World</p>
             <input type="button" value="Clear" onClick={this.reset.bind(this)} />
         </div>);
     }
