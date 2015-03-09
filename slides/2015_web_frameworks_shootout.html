@@ -52,6 +52,7 @@
 <div class="reveal">
 
 <div class="slides">
+
 <section>
     <h2>JavaScript Web Framework Shootout</h2>
 
@@ -77,6 +78,7 @@
         </ul>
     </section>
 
+<!-- TODO: JsUnconf Version only with Part II and IV) -->
 <section>
     <h2>Contents</h2>
     <ol>
@@ -232,7 +234,8 @@ server.route({
             <h2>Adding structure: Backbone</h2>
             <ul>
                 <li class="fragment">Builds on jQuery and underscore
-                <li class="fragment">Key component is a model that works well with REST servers
+                <li class="fragment">Key component is a model
+                <li class="fragment">Model interacts with RESTful servers using CRUD operations
                 <li class="fragment">View re-renders once model has changed
                 <li class="fragment">Not tied to a specific view technology
                 <li class="fragment">Marionette implements a lot of best practices, adds guidance
@@ -309,7 +312,9 @@ HelloController.prototype.clear = function() {
                 </section>
                 <section>
                     <h3>Hello World AngularJS 2.x AtScript style</h3>
-<pre><code class="xml" contenteditable>
+<pre><code class="xml" contenteditable>@Component({
+  selector: 'hello-app'
+})
 @Template({
 // this way of describing two-way binding might not work any more ('bind-value' does)...
 inline: `&lt;input two-way-value="greeting">
@@ -603,15 +608,18 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
             <h3>Backbone/Marionette</h3>
             <ul>
                 <li class="fragment">Previous Hype
+                <li class="fragment">Works well with data centric applications
                 <li class="fragment">Opinionated about the way data models are handled
                     <ul>
                         <li class="fragment">flat data models are favored over nested
+                        <li class="fragment">model almost feels like a database model
                         <li class="fragment">natural function of server is to provide a CRUD API for those models
-                        <li class="fragment">a good resource explaining <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/</a>
-                        <li class="fragment">if your architecture evolves in a way not intended by Backbone you might be in trouble
+                        <!--<li class="fragment">a good resource explaining <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/</a>-->
+                        <!--<li class="fragment">if your architecture evolves in a way not intended by Backbone you might be in trouble-->
                     </ul>
                 </li>
-                <li class="fragment">Marionette makes some design decisions for you
+                <li class="fragment">Marionette makes some additional design decisions for you
+                <li class="fragment">Otherwise you are pretty free to choose
             </ul>
         </section>
         <section>
