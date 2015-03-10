@@ -6,20 +6,24 @@ var ____Class0=React.Component;for(var ____Class0____Key in ____Class0){if(____C
         ____Class0.call(this,props);
         this.state = {greeting: this.props.greeting};
     }
-    HelloMessage.prototype.updateModel=function(event) {"use strict";
-        this.setState({greeting: event.target.value});
-    };
     HelloMessage.prototype.reset=function() {"use strict";
         this.setState({greeting: ""});
         this.refs.in.getDOMNode().focus();
     };
+    HelloMessage.prototype.updateModel=function(event) {"use strict";
+        this.setState({greeting: event.target.value});
+    };
     HelloMessage.prototype.render=function() {"use strict";
         return (
         React.createElement("div", null, 
-            React.createElement("input", {ref: "in", onChange: this.updateModel.bind(this), 
-                    value: this.state.greeting}), 
+            React.createElement("input", {ref: "in", 
+                   onChange: this.updateModel.bind(this), 
+                   value: this.state.greeting}), 
             React.createElement("p", null, this.state.greeting, ", World"), 
-            React.createElement("input", {type: "button", value: "Clear", 
-                    onClick: this.reset.bind(this)})
+            React.createElement("button", {
+                   onClick: this.reset.bind(this)}, "Clear")
         ));
     };
+
+var mountNode = document.getElementById('example');
+React.render(React.createElement(HelloMessage, {greeting: "Hello"}), mountNode);

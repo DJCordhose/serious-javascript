@@ -1,5 +1,9 @@
 /* @flow */
 
+///////
+// OPEN THIS APP IN BROWSER
+//////
+
 class HelloMessage extends React.Component {
     state: Object;
     constructor(props) {
@@ -16,11 +20,14 @@ class HelloMessage extends React.Component {
     render() {
         return (
         <div>
-            <input ref="in" onChange={this.updateModel.bind(this)}
-                    value={this.state.greeting} />
+            <input ref="in"
+                   onChange={this.updateModel.bind(this)}
+                   value={this.state.greeting} />
             <p>{this.state.greeting}, World</p>
-            <input type="button" value="Clear"
-                    onClick={this.reset.bind(this)} />
+            <button
+                   onClick={this.reset.bind(this)}>Clear</button>
         </div>);
     }
 }
+var mountNode = document.getElementById('example');
+React.render(<HelloMessage greeting="Hello" />, mountNode);
