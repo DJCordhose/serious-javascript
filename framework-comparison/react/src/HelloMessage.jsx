@@ -1,7 +1,5 @@
 /* @flow */
 
-// REACT with TypeScript style Flow types
-
 class HelloMessage extends React.Component {
     state: string;
     constructor(props) {
