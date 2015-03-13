@@ -87,6 +87,7 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
     <h2>Contents</h2>
     <ol>
         <!-- 5 minutes -->
+        <!-- Take over motivation from "Unternehmenskritische Anwendungen -->
         <li class="fragment">Motivation: Why a type system in the first place?
         <!-- 10 minutes -->
         <li class="fragment">The classic: JsDoc and Google Closure Compiler
@@ -108,6 +109,23 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
             <h2>Motivation: Why a type system in the first place?</h2>
         </section>
         <section>
+            <h3>Why pure JavaScript might not be enough for some projects</h3>
+            <ul>
+                <li class="fragment">JavaScript is great to create useable solutions quickly
+                <li class="fragment">However if your system
+                    <ul>
+                        <li class="fragment">is large
+                        <li class="fragment">is very important or even crucial for the success of your company
+                        <li class="fragment">contains substantial amounts of business logic
+                        <li class="fragment">lives for a long time
+                        <li class="fragment">has a lot of contributors
+                    </ul>
+                </li>
+                <li class="fragment">... long term maintainability might be more interesting than short term velocity
+                <li class="fragment">JavaScript is lacking a type system, which might impact this...
+            </ul>
+        </section>
+        <section>
             <h3>Does a type system make you more productive?</h3>
             <h4 class="fragment">Or less?</h4>
             <ul>
@@ -120,6 +138,35 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
                 </li>
                 <li class="fragment"><a target="_blank" href="http://danluu.com/empirical-pl/">http://danluu.com/empirical-pl/</a>
                     elaborates that there is little or no impact
+            </ul>
+        </section>
+        <section>
+            <h3>In any case, type systems make code easier to maintain</h3>
+            <ul>
+                <li class="fragment">large code and long living code bases are always hard to maintain
+                <li class="fragment">type annotations
+                    <ul>
+                        <li class="fragment">make code more readable
+                        <li class="fragment">make code easier to analyse
+                        <li class="fragment">allow for reliable refactoring
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Typed JavaScript in modern UI frameworks</h3>
+            <ul>
+                <li class="fragment">Google and Facebook have huge code bases
+                <li class="fragment">They offer the most modern JavaScript UI frameworks
+                    <ul>
+                        <li class="fragment">Angular 2.0
+                        <li class="fragment">React
+                    </ul>
+                </li>
+                <li class="fragment">both frameworks either use or heavily support type annotations in framework code
+                <li class="fragment">
+                    <a target="_blank" href="http://blogs.msdn.com/b/typescript/archive/2015/03/05/angular-2-0-built-on-typescript.aspx">
+                        Angular 2 build on TypeScript</a>
             </ul>
         </section>
     </section>
@@ -217,7 +264,7 @@ new CustomerModule.Customer(...); // => cool</code></pre>
         <section>
             <h3>Key Features</h3>
             <ul>
-                <li class="fragment">
+                <li class="fragment">http://flowtype.org/
             </ul>
         </section>
     </section>
@@ -229,7 +276,7 @@ new CustomerModule.Customer(...); // => cool</code></pre>
         <section>
             <h3>Key Features</h3>
             <ul>
-                <li class="fragment">
+                <li class="fragment">https://developers.google.com/v8/experiments
             </ul>
         </section>
     </section>
