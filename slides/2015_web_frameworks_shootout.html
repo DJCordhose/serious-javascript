@@ -159,6 +159,11 @@
                 <li class="fragment">Back to simplicity: React
             </ol>
         </section>
+        <section>
+            <h2>Overview</h2>
+            <img src="techradar/js-frameworks.jpg" height="500px">
+            <p><small>Copyright 2015, Mike North (@michaellnorth), https://twitter.com/ModernWebUI/status/575532649948790784/photo/1</small></p>
+        </section>
 
         <section>
             <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
@@ -236,10 +241,12 @@ server.route({
                 <li class="fragment">Builds on jQuery and underscore
                 <li class="fragment">Key component is a model
                 <li class="fragment">Model interacts with RESTful servers using CRUD operations
+                <li class="fragment">Views structure application
                 <li class="fragment">View re-renders once model has changed
+                <li class="fragment">Loose coupling using events
                 <li class="fragment">Not tied to a specific view technology
                 <li class="fragment">Marionette implements a lot of best practices, adds guidance
-                <li class="fragment">Using additional frameworks it becomes convenient (binding, eventbus, view management)
+                <li class="fragment">Using additional libraries makes it convenient (binding, eventbus, view management)
             </ul>
         </section>
         <section>
@@ -289,11 +296,15 @@ server.route({
                     <li class="fragment">Dependency Injection
                     <li class="fragment">Directives (you can write your own directives)
                 </ul>
+            </li>
+            <li class="fragment">designed for good testability
+            <li class="fragment">2.0 in the make
+            <li class="fragment">2.0 version based on TypeScript, needs a compiler
         </ul>
     </section>
 
                 <section>
-                    <h3>Hello World AngularJS</h3>
+                    <h3>Hello World AngularJS 1.x</h3>
 <pre><code class="xml" contenteditable>&lt;body np-app ng-controller="HelloController as helloController">
 &lt;input ng-model="helloController.greeting.text">
 &lt;p>{{helloController.greeting.text}}, World!&lt;/p>
@@ -340,16 +351,17 @@ inline: `&lt;input [value]="greeting" #in (keyup)="updateModel($event)">
             <h2>Back to simplicity: React</h2>
             <ul>
                 <li class="fragment">Framework for Facebook und Instagram
-                <li class="fragment">Everything is a component
-                <li class="fragment">Just the V in MVC
-                <li class="fragment">View component holds both view and logic
-                <li class="fragment">Flux architecture guides you for complete application
-                <li class="fragment">1-way data binding: changes in model automatically rerenders component
-                <li class="fragment">Smart algorithm performance minimal changes to DOM => fast
-                <li class="fragment">Minimal API for simplicity
-                <li class="fragment">Explicit code to avoid magic
+                <li class="fragment">Based on components, holding both view and logic
+                <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
+                <li class="fragment">Uses a virtual DOM (tree structure) as view representation
+                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
+                <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Can render both on server and on client side
                 <li class="fragment">Server side rendering also for SEO or quick first page impression
+                <li class="fragment">Uses ES6 (next JavaScript version) syntax
+                <li class="fragment">Needs tool to translate ES6 and JSX to standard ES5
+                <li class="fragment">Flux architecture guides you for complete application
             </ul>
         </section>
 
@@ -588,6 +600,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
         </section>
         <section>
             <h3>jQuery</h3>
+            <h4 class="fragment">Dynamic extensions of classic Web Applications</h4>
             <ul>
                 <li class="fragment">basis for other libraries
                 <li class="fragment">almost no abstraction from DOM, thus universally applicable
@@ -608,16 +621,16 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
         </section>
         <section>
             <h3>Backbone/Marionette</h3>
+            <h4 class="fragment">data only AJAX, client side rendering</h4>
             <ul>
                 <li class="fragment">Previous Hype
+                <li class="fragment">Easy do adopt for frontend developers
                 <li class="fragment">Works well with data centric applications
                 <li class="fragment">Opinionated about the way data models are handled
                     <ul>
                         <li class="fragment">flat data models are favored over nested
                         <li class="fragment">model almost feels like a database model
                         <li class="fragment">natural function of server is to provide a CRUD API for those models
-                        <!--<li class="fragment">a good resource explaining <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/</a>-->
-                        <!--<li class="fragment">if your architecture evolves in a way not intended by Backbone you might be in trouble-->
                     </ul>
                 </li>
                 <li class="fragment">Marionette makes some additional design decisions for you
@@ -626,6 +639,7 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
         </section>
         <section>
             <h3>Angular</h3>
+            <h4 class="fragment">All in one framework for Single Page Applications</h4>
             <ul>
                 <li class="fragment">Current Hype
                 <li class="fragment">By Google
@@ -639,13 +653,15 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                         <li class="fragment">you might have to relearn
                     </ul>
                 </li>
+                <li class="fragment">easy to adopt for Java developers
             </ul>
         </section>
         <section>
             <h3>React</h3>
+            <h4 class="fragment">Minimal API for Single Page Applications</h4>
             <ul>
                 <li class="fragment">Next Hype
-                <li class="fragment">By Facebook
+                <li class="fragment">Minimal API for simplicity
                 <li class="fragment">@sebmarkbage: @ReactJS is known for transforming anti-patterns into best practices.
                 <li class="fragment">Facebook and Instagram based on it
                 <li class="fragment">Works on Client and on Server
@@ -679,6 +695,26 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                 <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
                 </small>
             </p>
+
+        </section>
+    <section>
+            <h3>Links</h3>
+
+            <ul>
+                <li class="fragment">Backbone
+                    <ul>
+                        <li class="fragment">a good resource explaining
+                            <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/</a>
+                    </ul>
+                </li>
+                <li class="fragment">React
+                    <ul>
+                        <li class="fragment">
+                            <a target="_blank" href="https://www.pandastrike.com/posts/20150311-react-bad-idea">React Is A Terrible Idea</a>
+                    </ul>
+                </li>
+
+            </ul>
 
         </section>
 
