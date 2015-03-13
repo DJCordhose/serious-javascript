@@ -84,6 +84,20 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
     - SoundScript: https://developers.google.com/v8/experiments
     - Flow: http://flowtype.org/
     -->
+    <section>
+        <h2>Oliver Zeigermann</h2>
+        <img src="SF-Olli.jpg" height="200" align="right">
+        <ul>
+            <!--<li>Freelancer: Projekte, Architektur, Coaching, Workshops-->
+            <!--<li>Embarc-->
+            <li><a target="_blank" href="http://zeigermann.eu">http://zeigermann.eu</a>
+            <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+            <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+            <li><a target="_blank" href="https://entwickler.de/press/buecher/javascript-fuer-java-entwickler-2-119804.html">JavaScript für
+            Java-Entwickler</a>
+
+        </ul>
+    </section>
 
 <section>
     <!-- 60 minutes -->
@@ -99,12 +113,12 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
         <!-- 10 minutes -->
         <li class="fragment">Fancy pancy: Facebook's Flow
         <!-- 10 minutes -->
-        <li class="fragment">Abundance: Google's SoundScript and AtScript
-        <!-- 10 minutes -->
+        <li class="fragment">Experiments: Google's SoundScript and AtScript
+        <!-- 5 minutes -->
         <li class="fragment">The dark side: Compiling from completely other languages to JavaScript
         <!-- 5 minutes -->
         <li class="fragment">Summary
-            <!-- 5 minutes -->
+        <!-- 5 minutes -->
         <li class="fragment">Questions and discussion
     </ol>
 </section>
@@ -345,13 +359,62 @@ interface Function {
     <section>
         <section>
             <h2>Fancy Pancy: Facebook's Flow</h2>
-            <h1 style="color: red">TODO</h1>
         </section>
         <section>
             <h3>Key Features</h3>
             <ul>
                 <li class="fragment">
                     <a target="_blank" href="http://flowtype.org/">http://flowtype.org/</a>
+                <li class="fragment">Done and used by Facebook
+                <li class="fragment">Uses TypeScripts type annotations
+                <li class="fragment">Can infer types even without any type annotations
+                <li class="fragment">Also supports a larger set of type annotations (maybe types, intersection types, open methods, mixed type)
+                <li class="fragment">Special support for Facebook React's JSX
+            </ul>
+        </section>
+        <section>
+            <h3>Motivation: Make the Semantic Gap as small as possible</h3>
+            <img src="Flow_Talk_Typed_JavaScript.png" height="450">
+            <p><small>Copyright 2014, Avik Chaudhuri, Facebook</small></p>
+        </section>
+        <section>
+        <h3>Code Sample</h3>
+<pre><code class="java javascript" contenteditable>// type inference with zero type annotations:
+//  x must be string or number, function returns number
+function foo(x) {
+    if (typeof(x) === 'string') {
+        return x.length;
+    } else {
+        return x;
+    }
+}
+// fails as there is no support for boolean
+var res = foo("Hello") + foo(42) + foo(true);
+
+// tupple types
+var tup: [string, number, boolean, string] = ["1", 1, true, "positive"];
+var b = tup[0] + tup[1].toFixed();</code></pre>
+    </section>
+        <section>
+            <h3>Flow: Pros and Cons</h3>
+            <ul>
+                <li class="fragment">Pros
+                    <ul>
+                        <li class="fragment">Open Source
+                        <li class="fragment">Builds on TypeScript
+                        <li class="fragment">Very strong type inference
+                        <li class="fragment">Richer type annotations, matching most JavaScript use cases
+                        <li class="fragment">Forced TypeScript to add least add tupple types and unions
+                    </ul>
+                </li>
+                <li class="fragment">Cons
+                    <ul>
+                        <li class="fragment">Pretty new, not much adaption, yet
+                        <li class="fragment">No integration in IDEs, yet
+                        <li class="fragment">Written in OCaml (instead of JavaScript)
+                        <li class="fragment">How much is Facebook committed into it?
+                    </ul>
+                </li>
             </ul>
         </section>
     </section>
@@ -429,10 +492,10 @@ array[10] = 3;
             <ul>
                 <li class="fragment">Based on "Strong Mode"
                 <li class="fragment">Pretty much like TypeScript
-                <li class="fragment">However, Runs in the browser including type annotations
-                <li class="fragment">Also, soundness has a much higher priority than in TypeScript
-                <li class="fragment">That means that when there are static types you can be sure they wil not be incorrect at run time
-                <li class="fragment">It also means that JavaScript engines can optimize more agressively
+                <li class="fragment">Runs in the browser including type annotations
+                <li class="fragment">Soundness has a much higher priority than in TypeScript
+                <li class="fragment">static types gurantee they will not be incorrect at run time
+                <li class="fragment">JavaScript engines can optimize more agressively
                 <li class="fragment">Still in an early stage and lacks a PoC
             </ul>
         </section>
@@ -484,7 +547,7 @@ array[10] = 3;
             </ul>
         </section>
         <section>
-            <h3>BUT: Consider the Semantic Gap</h3>
+            <h3>BUT: Remember and Consider the Semantic Gap</h3>
             <img src="Flow_Talk_Typed_JavaScript.png" height="450">
             <p><small>Copyright 2014, Avik Chaudhuri, Facebook</small></p>
         </section>
