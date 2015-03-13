@@ -344,20 +344,21 @@ interface Function {
 
     <section>
         <section>
-            <h2>Fancy pancy: Facebook's Flow</h2>
+            <h2>Fancy Pancy: Facebook's Flow</h2>
             <h1 style="color: red">TODO</h1>
         </section>
         <section>
             <h3>Key Features</h3>
             <ul>
-                <li class="fragment">http://flowtype.org/
+                <li class="fragment">
+                    <a target="_blank" href="http://flowtype.org/">http://flowtype.org/</a>
             </ul>
         </section>
     </section>
 
     <section>
         <section>
-            <h2>Abundance: Google's SoundScript and AtScript</h2>
+            <h2>Experiments: Google's SoundScript and AtScript</h2>
         </section>
         <section>
             <h3>AtScript</h3>
@@ -369,9 +370,70 @@ interface Function {
         </section>
         <section>
             <h3>Strong mode and SoundScript</h3>
-            <h1 style="color: red">TODO</h1>
+        </section>
+        <section>
+            <h3>Key Features</h3>
             <ul>
-                <li class="fragment">https://developers.google.com/v8/experiments
+                <li class="fragment">Work as a special modes in Google Chrome's V8 engine
+                <li class="fragment">Based on ES6 and type annotations from TypeScript, Closure Compiler, and Flow
+                <li class="fragment">There are
+                <a target="_blank" href="https://developers.google.com/v8/experiments">two modes</a>
+                <ul>
+                    <li class="fragment">
+                        <a target="_blank" href="https://docs.google.com/document/d/1Qk0qC4s_XNCLemj42FqfsRLp49nDQMZ1y7fwf5YjaI4/view">"Strong Mode"</a>
+                    <li class="fragment">
+                    <a target="_blank" href="http://www.2ality.com/2015/02/soundscript.html">"SoundScript"</a>
+                </ul>
+                <li class="fragment">
+            </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Strong Mode</h3>
+            <ul>
+                <!--
+                "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary" --js-flags="--strong-mode"
+                -->
+                <li class="fragment">Special mode in Chrome
+                <li class="fragment"><code>Chrome --js-flags="--strong-mode"</code>
+                <li class="fragment">
+                    <a target="_blank" href="https://github.com/arv/traceur-compiler/tree/strong-mode">Traceur Compiler can also translate Strong Mode</a> to ordinary JavaScript
+                <li class="fragment">Next level of "strict mode"
+                <li class="fragment">Aim is retire some of the really "bad parts" of JavaScript
+                <li class="fragment">Still in an early stage, not fully implemented
+            </ul>
+        </section>
+        <section>
+        <h3>Code Sample (Chrome Canary 43.0.2331.3)</h3>
+<pre><code class="java javascript" contenteditable>"use strong";
+
+// fails, as strong mode implies strict mode
+doesNotExist = 1000;
+
+// fails, var is no longer supported
+var olli = {};
+
+let olli = {};
+// should fail, objects no longer work as maps
+olli.age = 44;
+
+let array = [1,2];
+// should fail, as this is no longer an array
+array[10] = 3;
+
+// fails, only === allowed
+100 == "100";</code></pre>
+    </section>
+        <section>
+            <h3>SoundScript</h3>
+            <ul>
+                <li class="fragment">Based on "Strong Mode"
+                <li class="fragment">Pretty much like TypeScript
+                <li class="fragment">However, Runs in the browser including type annotations
+                <li class="fragment">Also, soundness has a much higher priority than in TypeScript
+                <li class="fragment">That means that when there are static types you can be sure they wil not be incorrect at run time
+                <li class="fragment">It also means that JavaScript engines can optimize more agressively
+                <li class="fragment">Still in an early stage and lacks a PoC
             </ul>
         </section>
     </section>
