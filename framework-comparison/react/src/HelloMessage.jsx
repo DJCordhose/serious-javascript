@@ -1,11 +1,9 @@
 /* @flow */
 
-///////
-// OPEN THIS APP IN BROWSER
-//////
+// REACT with TypeScript style Flow types
 
 class HelloMessage extends React.Component {
-    state: Object;
+    state: string;
     constructor(props) {
         super(props);
         this.state = {greeting: this.props.greeting};

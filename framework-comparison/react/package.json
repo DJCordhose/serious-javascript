@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "react": "0.13.0-rc1",
-    "react-tools": "0.13.0-rc1"
+    "react": "^0.13.0",
+    "react-tools": "^0.13.0"
   },
   "devDependencies": {},
   "scripts": {
