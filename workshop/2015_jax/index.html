@@ -100,7 +100,34 @@ Ablauf:
         - jQuery: http://jsbin.com/rutede/2/edit?html,js,output
 
     -->
-		<div class="reveal">
+    <!--
+
+Nachmittags
+- use strict: 'use strict'; (aus 301)
+- jshint: Always on (einfach zeigen)
+- Tests mit Jasmine: http://jsbin.com/daceyi/1/edit?html,js,output (aus jasmine.html, auch Übung)
+- ES6: alles umschreiben auf ES6 und mit 6to5 übersetzen lassen
+- jQuery (anzeigen der Personen und ein und ausklappen), Abschlussübung
+- Browser tools
+
+Erwähnen:
+- React
+- Angular
+- lodash
+- D3
+
+
+        - jQuery:
+
+        - Aufgabe: http://jsbin.com/zofure/1/edit?html,js,console,output
+        - Lösung: http://jsbin.com/rutede/3/edit?html,js,console,output
+
+        Resourcen:
+        - http://api.jquery.com/
+
+    -->
+
+    <div class="reveal">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
@@ -110,9 +137,7 @@ Ablauf:
                 <p>
                     <a href="mailto:oliver.zeigermann@gmail.com">Oliver Zeigermann</a> | <a href="http://zeigermann.eu">http://zeigermann.eu</a>
                 </p>
-                <p>Online Version: <a href="http://djcordhose.github.io/serious-javascript/workshop/2015_jax/index.html">
-                    http://djcordhose.github.io/serious-javascript/workshop/2015_jax/index.html</a></p>
-                <p>Or: TODO</p>
+                <p>Online Version: <a href="http://bit.ly/1EKba2b">http://bit.ly/1EKba2b</a></p>
             </section>
 
             <section>
@@ -129,10 +154,943 @@ Ablauf:
                 <section>
                     <h2>Inhalte</h2>
                     <ul>
-                        <li><a href="intro.html">Teil 1: Intro</a>
-                        <li><a href="libs.html">Teil 2: Praxis mit Bibilotheken</a>
+                        <li class="fragment">Basiswissen
+                        <li class="fragment">Funktionen
+                        <li class="fragment">Objekte und Klassen
+                        <li class="fragment">Module
+                        <li class="fragment">Optional: Unit-Tests
+                        <li class="fragment">Optional: jQuery
+                        <li class="fragment">Optional: Die Zukunft von JavaScript
                     </ul>
                 </section>
+
+                                <section>
+                    <section>
+                        <h1>Hello World</h1>
+                    </section>
+                    <section>
+                        <h2>Hello World #1</h2>
+                        <pre><code class="xml" contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;script&gt;
+      alert("Hello World");
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+                    <a href="helloworld.html" target="_blank">Run</a>
+                    </section>
+                    <section>
+                        <h2>Hello World #2</h2>
+                        <pre><code class="xml" contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div id="log">&lt;/div>
+      &lt;script&gt;
+          var element = document.getElementById("log");
+          element.innerHTML = "&lt;h1>Hello World&lt;/h1>";
+      &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                        <a href="helloworld2.html" target="_blank">Run</a>
+                    </section>
+                    <section>
+                        <h2>Hello World #3</h2>
+                        <pre><code class="javascript" contenteditable>
+node -e "console.log('Hello World');"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Hello World #4</h2>
+                        <img src="Devtools-Screenshot.png">
+                    </section>
+                    <section>
+                        <h2>Hello World #5</h2>
+                        <img src="JS_Bin.png">
+                        <br>
+                        <a href="http://jsbin.com/sagub/1/edit?js,console" target="_blank">JS Bin Öffnen</a>
+                    </section>
+
+                </section>
+
+                <section>
+                    <h2>Object</h2>
+                        <pre><code class="javascript" contenteditable>var map = {
+    feld1: 'Huhu',
+    zweites$Feld: "Auch sowas geht!"
+};
+console.log(typeof map === "object"); // true
+console.log(map.feld1); // Huhu
+console.log(map["zweites$Feld"]); // Auch sowas geht!
+
+map.hund = "Ganz neu geht auch";
+</code></pre>
+                </section>
+                <section>
+                    <h2>Typen</h2>
+                        <pre><code class="javascript" contenteditable>var string = "String";
+typeof string === "string";
+
+var int = 1;
+typeof int === "number";
+
+var float = 1.0;
+typeof float === "number";
+
+var bool = true;
+typeof bool === "boolean";
+
+var func = function() {};
+typeof func === "function";
+
+typeof michGibtEsNicht === "undefined";</code></pre>
+                </section>
+
+                <section>
+                    <h2>Array</h2>
+                        <pre><code class="javascript" contenteditable>
+var array = ["a", "b", "c"];
+var el = array[2];
+array[1] = 20;
+typeof array === "object";
+// fügt die 4 am Ende hinzu
+array.push(4);
+                        </code></pre>
+                </section>
+
+                <section>
+                <section>
+                    <h2>Kontrollstrukturen</h2>
+                </section>
+                <section>
+                    <h2>for</h2>
+                        <pre><code class="javascript" contenteditable>
+for (var i=0; i &lt; array.length; i++) {
+    console.log(i + ": " + array[i]);
+}
+
+// Durch alle Feld-Namen iterieren
+// Geht für Map / Object und für Array!
+for (var i in map) {
+    console.log(i + ": " + map[i]);
+}
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>Kontrollstrukturen ansonsten wie in Java / C#</h2>
+                    <ul>
+                        <li>if / else
+                        <li>while / do
+                        <li>switch
+                        <li>break / continue
+                        <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Statements">Referenz</a></li>
+                    </ul>
+                </section>
+            </section>
+                <section>
+                <section>
+                    <h2>Funktionen</h2>
+                        <pre><code class="javascript" contenteditable>
+function f2() {
+    console.log("Called!");
+}
+var result2 = f2();
+result2 === undefined;
+
+var f1 = function(p1, p2) {
+    return p1 + p2;
+};
+var result1 = f1(1,2);
+result1 === 3;
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Optionale Parameter</h2>
+                        <pre><code class="javascript" contenteditable>function f1(p1) {
+    if (typeof p1 === 'undefined') {
+        return null;
+    } else {
+        return p1;
+    }
+}
+
+var result1 = f1(1);
+console.log(result1 === 1);
+
+var result2 = f1();
+console.log(result2 === null);</code></pre>
+                </section>
+
+                    <section>
+                        <h2>Varargs</h2>
+                    <pre><code class="javascript" contenteditable>function summe() {
+    var sum = 0;
+    for (var a in arguments) {
+        sum += arguments[a];
+    }
+    return sum;
+}
+
+var result5 = summe(1,2,3);
+console.log(result5 === 6);</code></pre>
+                    </section>
+            </section>
+
+                <section>
+                    <section>
+                    <h1>Scopes</h1>
+                    </section>
+                    <section>
+                        <h2>So nicht!</h2>
+    <pre><code class="javascript" contenteditable>
+{
+    var huch = "Ich bin noch da";
+}
+
+console.log(huch); // Ich bin noch da
+    </code></pre>
+
+                    </section>
+                    <section>
+                        <h2>So!</h2>
+    <pre><code class="javascript" contenteditable>
+(function () {
+    var achso = "Ich bin weg";
+}());
+
+console.log(achso); // ReferenceError
+    </code></pre>
+                <p><a target="_blank" href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">Immediately-Invoked Function Expression (IIFE)</a></p>
+
+                    </section>
+                </section>
+
+                    <section>
+                        <h2>Übung: Basiswissen</h2>
+                        <ul>
+                            <li>Erzeuge ein Array mit Personen-Objekten mit mindestens den Eigenschaften
+                                <ul>
+                                    <li>Name
+                                    <li>Alter
+                                    <li>Geschlecht
+                                </ul>
+                            </li>
+                            <li>Gib alle Personen nacheinander aus
+                                <ul>
+                                    <li>Erstelle eine Funktion, die eine Person auf der Console ausgibt
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </section>
+                        <section>
+                <section>
+                    <h2>Objekte, die Zweite</h2>
+                    <ul>
+                        <li class="fragment">Objekte können auch Funktionen als Properties haben
+                        <li class="fragment">Diese funktionieren dann wie Methoden, d.h. <code>this</code> ist an das Objekt gebunden über das sie aufgerufen werden
+    <li class="fragment"><pre><code class="javascript" contenteditable>var obj = {
+    field: 10,
+    log: function() {
+        console.log(this.field);
+    }
+};
+
+obj.log(); // 10
+    </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Call / Apply</h2>
+                    <ul>
+                    <li class="fragment">call und apply sind Methoden auf Funktionen
+                    <li class="fragment">Erlauben das freie Binden an einen anderen Kontext
+    <li class="fragment"><pre><code class="javascript" contenteditable>var field = "Reingelegt";
+obj.log.call(this);
+// => ???
+</code></pre>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Typen mit JavaScript</h2>
+                    <ul>
+                        <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+                        <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
+                        <li class="fragment">Einfachvererbung ist ebenso möglich
+                        <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
+                        <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
+                        <li class="fragment">Grundlage ist die prototypische Vererbung
+                    </ul>
+                </section>
+                <section>
+                <h2>Prototypen</h2>
+                <ul>
+                    <li class="fragment">Jedes Objekt hat zusätzlich eine Referenz auf seinen Prototyp
+                        <ul>
+                            <li><code>Object.getPrototypeOf()</code> in neueren Browsern</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><code>Object</code> hat keinen Prototypen, ist aber Prototyp aller anderen Objekte
+                    <li class="fragment">Lesende Property-Zugriffe können transitiv an Prototypen delegiert werden
+                    <li class="fragment">Dies heißt prototypische Vererbung
+                </ul>
+            </section>
+            <section>
+                <h2>Setzen des Prototypen aka das Typen-System</h2>
+                <p >Der Prototyp kann nicht direkt, aber durch Aufruf von <code>new</code> gesetzt werden
+                </p>
+    <pre class="fragment"><code class="javascript" contenteditable>/** @constructor */
+function Person(name) {
+    this.name = name;
+}</code></pre>
+    <pre class="fragment"><code class="javascript" contenteditable>// Methode
+Person.prototype.getName = function() {
+    return this.name;
+};</code></pre>
+    <pre ><code class="javascript" contenteditable>
+var olli = new Person('Olli');
+olli.getName() === 'Olli';
+    </code></pre>
+            </section>
+
+            <section>
+                <h4>Ablauf eines Konstruktoraufrufs mit <code>new</code></h4>
+                <ol>
+                    <li class="fragment">ein leeres, neues Objekt wird erzeugt
+                    <li class="fragment">die Konstruktor-Funktion hat ein Property <code>prototype</code>, dies wird als Prototyp des neuen Objekts verwendet
+                    <li class="fragment"><code>this</code> wird an dieses neue Objekte gebunden
+                    <li class="fragment">die Konstruktor-Funktion wird aufgerufen (mit <code>this</code> gebunden)
+                    <li class="fragment">das neue Objekt wird implizit zurückgegeben (wenn die Funktion kein explizites <code>return</code> hat)
+                </ol>
+            </section>
+
+            <section>
+                <h2>"Typsystem"</h2>
+                <p>Ein Objekt ist <code>instanceof</code> aller seiner Prototypen
+                </p>
+    <pre><code class="javascript" contenteditable>var olli = new Person('Olli');
+Object.getPrototypeOf(olli) === Person.prototype;
+olli instanceof Object;
+olli instanceof Person;
+    </code></pre>
+            </section>
+        </section>
+        <section>
+            <h2>Warnung</h2>
+            <h3 class="fragment">Douglas Crockford findet Klassen und <em>this</em> doof</h3>
+            <h3 class="fragment">Douglas Crockford hatte vor einigen Jahren großen Einfluss auf die Entwicklung von JavaScript</h3>
+            <h3 class="fragment">Douglas Crockford schrieb das Buch "JavaScript the good parts"</h3>
+            <h3 class="fragment">Die Zukunft von JavaScript gibt ihm allerdings nicht Recht (später mehr)</h3>
+        </section>
+                <section>
+                    <section>
+                        <h3>Vererbung</h3>
+                        <ol>
+                            <li class="fragment">Typen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
+                            <li class="fragment">Typen-Hierarchien werden einmal aufgebaut und als Prototypen der Instanzen verwendet
+                            <li class="fragment">Typen-Hierarchien werden ebenso über Prototypen erstellt
+                            <li class="fragment">Object.create erzeugt ein neues Object mit einem anderen Objekt als Prototypen
+                            <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>Vererbung #1</h3>
+    <pre><code class="javascript" contenteditable>function Person(name, gender) {
+    this.name = name;
+    this.gender = gender;
+}
+Person.prototype.getName = function() {
+    return this.name;
+};
+
+function Male(name) {
+    Person.call(this, name, "Male"); // super call
+}
+Male.prototype = Object.create(Person.prototype);</code></pre>
+                    </section>
+                    <section>
+                        <h3>Vererbung #2</h3>
+    <pre><code class="javascript" contenteditable>Male.prototype.getName = function() {
+    // super call
+    return "Mr " + Person.prototype.getName.call(this);
+};
+
+var olli = new Male('Olli');
+olli.getName() === 'Mr Olli';
+olli.gender === 'Male';
+olli instanceof Male;
+olli instanceof Person;
+olli instanceof Object;</code></pre>
+                    </section>
+
+                </section>
+                <section>
+                                <section>
+                <h2>Vererbungshierarchien - revisited</h2>
+                <ul>
+                    <li class="fragment">Das verwirrendste Thema in JavaScript
+                    <li class="fragment">Alternative zu Klassen-Hierarchien sind Mixins
+                    <li class="fragment">Viele Bibliotheken nehmen sich dieses Themas an
+                    <li class="fragment">Bei Mixins werden alle Properties eines Prototypen in einen anderen hineinkopiert
+                </ul>
+            </section>
+        <section>
+            <h3>Beispiel</h3>
+                <pre><code class="javascript" contenteditable>function Programmer(name, language) {
+    Person.call(this, name);
+    this.language = language;
+}
+_.extend(Programmer.prototype, Person.prototype);
+// instead of
+//Programmer.prototype = Object.create(Person.prototype);
+
+Programmer.prototype.code = function() {
+    return this.getName() + " codes in " + this.language;
+};
+var programmer = new Programmer('Erna', 'JavaScript');
+console.log(programmer.getName()); // Erna
+console.log(programmer.code()); // Erna codes in JavaScript
+console.log(programmer instanceof Programmer); // true
+// true for Object.create, false for _.extend
+console.log(programmer instanceof Person);</code></pre>
+        </section>
+        <section>
+            <h2>Underscore</h2>
+            <ul>
+                <li class="fragment"><em>_.extend</em> eine von vielen Hilfsfunktionen der Bibliothek <em>Underscore</em>
+                <li class="fragment"><a target="_blank" href="http://underscorejs.org/">http://underscorejs.org/</a>
+                <li class="fragment">Versucht Unzulänglichkeiten der Sprache als Bibliothek auszugleichen
+                <li class="fragment">Ein Klassiker unter den JavaScript-Bibliotheken
+                <li class="fragment">wird typischerweise als <em>_</em> importiert (daher der Name)
+                <li class="fragment"><a target="_blank" href="https://lodash.com/">https://lodash.com/</a> ist die moderne Variante
+                <li class="fragment">Neues JavaScript-Versionen enthalten bereits eine ganze Reihe der Funktionen dieser Bibliotheken
+            </ul>
+        </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Übung: Typen</h2>
+                        <ol>
+                            <li>Schreibe einen Typen für Person
+                                <ul>
+                                    <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
+                                        <code>alter</code> und <code>geschlecht</code> zu
+                                    <li>Mache aus allen Funktionen, die auf Personen arbeiten, Methoden
+                                </ul>
+                            </li>
+                            <li>Erzeuge ein Objekt vom Typ Person und rufe Methoden darauf auf
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3>Optionaler Zusatzübung: Vererbung</h3>
+                        <ol>
+                            <li>Schreibe den Typen Customer
+                                <ul>
+                                    <li>Customer soll von Person erben
+                                    <li>Berechne im Konstruktor aus den Parametern zumindest ein zusätzliches Feld, das
+                                        den vermuteten bevorzugten Kaufgegenstand angibt
+                                    <li>Rufe aus dem Customer-Konstruktor den Person-Konstruktor auf
+                                    <li>Überschreibe die Methode <code>getName</code>
+                                    <li>Füge die Methode <code>shop</code> hinzu, die den bevorzugten Gegenstand ausgibt
+                                </ul>
+                            </li>
+                            <li>Erzeuge mindestens ein Objekt vom Typ Customer und rufe Methoden darauf auf
+                        </ol>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Module</h2>
+                        <p class="fragment">Module in JavaScript werden über <code>Closures</code> realisiert</p>
+                    </section>
+                    <section>
+                        <h2>Closure in einem Satz</h2>
+                        <p>Eine innere Funktion hat immer Zugriff auf alle Variablen und Parameter ihrer äußeren Funktion, <em>auch wenn diese äußere Funktion bereits beendet ist</em>.</p>
+                        <p><small>Frei nach <em>Douglas Crockford</em></small></p>
+                    </section>
+
+                <section>
+                    <h3>Beispiel Closure</h3>
+                        <pre><code class="javascript" contenteditable>function outer() {
+    var used = "Olli";
+    var unused = "Weg";
+    return (function() {
+        return "Text: " + used;
+    });
+}
+
+var inner = outer();
+console.log(inner());</code></pre>
+                </section>
+                    <section>
+                        <h2>Closure Definition</h2>
+                        <p class="fragment">Eine Closure ist eine spezielle Art von Objekt, welche zwei Dinge kombiniert</p>
+                        <ol>
+                            <li class="fragment">Eine Funktion</li>
+                            <li class="fragment">die Umgebung in welcher diese Funktion erzeugt wurde
+                                - diese Umgebung besteht aus allen lokalen Variablen und Parametern, die sichtbar waren als die Closure erzeugt wurde</li>
+                        </ol>
+                        <p class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures">Aus der Definition auf MDN</a></p>
+                    </section>
+                    <section>
+                        <h3>Revealing Module Pattern</h3>
+<pre><code class="javascript" contenteditable>var humanresources = (function () {
+    function InternalStuff() {
+    }
+
+    function Person(name) {
+        this.name = name;
+        // uses internal stuff
+    }
+
+    return {
+        Person: Person
+    };
+})();
+</code></pre>
+                    </section>
+                    <section>
+                    <h3>Sichtbarkeit bei Revealing Module Pattern</h3>
+<pre><code class="javascript" contenteditable>var olli = new humanresources.Person('Olli');
+olli.name === 'Olli';
+// TypeError: undefined is not a function
+new humanresources.InternalStuff();</code></pre>
+                </section>
+
+                    <section>
+        <h3>Es gibt zwei grundsätzlich unterschiedliche Modul-Systeme als Defacto-Standard</h3>
+        <ul>
+            <li class="fragment">AMD
+                <ul>
+                    <li class="fragment">Module werden nicht blockierend und potentiell asynchron geladen
+                    <li class="fragment">Module werden über bower oder manuell installiert
+                    <li class="fragment">Verwendung auf Client-Seite
+                    <li class="fragment">Default-Implementierung: RequireJS
+                    <!--<li class="fragment">Für blockierendes Laden auf Server-Seite: r.js-->
+                </ul>
+            </li>
+            <li class="fragment">CommonJS
+                <ul>
+                    <li class="fragment">Module werden blockierend und synchron geladen
+                    <li class="fragment">Module werden über npm installiert
+                    <li class="fragment">Verwendung auf Server-Seite
+                    <!--<li class="fragment">Für nicht blockierendes Laden auf Client-Seite: Browserify-->
+                </ul>
+            </li>
+            <li class="fragment">Beide Modul-Systeme können über r.js / Browserify auch auf Server / Client benutzt werden
+        </ul>
+    </section>
+                    <section>
+        <h3>Definieren eines commonJS Moduls bei node</h3>
+<pre><code class="javascript" contenteditable>// in der Datei "eater.js"
+var eatThis = function (name) {
+    console.log(name);
+};
+exports.eatThis = eatThis;</code></pre>
+    </section>
+                    <section>
+                        <h3>Benutzen eines commonJS Moduls bei node</h3>
+<pre><code class="javascript" contenteditable>var eaterModule = require("eater");
+
+eaterModule.eatThis(name);
+</code></pre>
+                    </section>
+                                    <section>
+                        <h4>Definieren eines AMD Moduls mit requireJS</h4>
+<pre><code class="javascript" contenteditable>// Ein Modul pro Datei:
+// js/modules/accounting.js
+define(function () {
+    return {
+        getIdNumberForName: function(name) {
+            // ...
+        }
+    };
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <h4>Benutzen eines AMD Moduls mit requireJS</h4>
+<pre><code class="javascript" contenteditable>
+require(['js/modules/accounting'], function (Accounting) {
+    var name = // ...
+    var id = Accounting.getIdNumberForName(name);
+    // ...
+});
+</code></pre>
+                    </section>
+
+                </section>
+                <section>
+                    <h2>Übung: Module</h2>
+                    <ol>
+                        <li>Schreibe ein Modul, in das du die vorhandenen Typendefinitionen verschiebst. Dieses Modul soll
+                            <ul>
+                                <li>nach außen nur den <code>Customer</code>-Typen exportieren
+                            </ul>
+                        </li>
+                        <li>Schreibe den aufrufenden Code so um, dass er mit den neuen Modulen arbeitet
+                    </ol>
+                </section>
+            <section>
+                <section>
+					<h2>Testen mit Jasmine</h2>
+				</section>
+
+                <section>
+                    <h3>Grundlagen Jasmine</h3>
+                    <ul>
+                        <li class="fragment">weit verbreitetes JavaScript Unit-Testframework
+                        <li class="fragment">Stil BDD orientiert, etwas anders als JUnit
+                        <li class="fragment">Ausführung im Browser
+                        <li class="fragment"><code>describe</code>: eine komplette Test-Suite
+                        <li class="fragment"><code>it</code>: ein einzelner Testfall
+                        <li class="fragment"><code>expect</code>: erwartetes Ergebnis ausdrücken
+                        <li class="fragment"><code>beforeEach / afterEach</code>: Vorbereitung / Aufräumarbeiten
+                        <li class="fragment"><a href="http://jasmine.github.io/2.0/introduction.html" target="_blank">Hauptseite Jasmine</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Test-Suite</h3>
+                        <pre><code class="javascript" contenteditable>describe("Calculator", function () {
+    var data;
+    beforeEach(function () {
+        data = calculateMortgage(200000, 10, 7.5, 30);
+    });
+    afterEach(function() {
+    });
+
+    it("principle", function () {
+        expect(data.principle).toEqual(199990.00);
+    });
+    it("invalid", function () {
+        expect(function () {
+            calculateMortgage(1, 10, 7.5, 30);
+        }).toThrowError("You do not need any money");
+    });
+});</code></pre>
+                </section>
+
+                    <section>
+                        <h2>Beispiel-Test-Lauf</h2>
+                        <a target="_blank" href="code/jasmine-example/SpecRunner.html">Tests laufen lassen</a>
+                    </section>
+                <section>
+                    <h3>Spies (am Beispiel von Ext Js)</h3>
+                        <pre><code class="javascript" contenteditable>it('that click calls calculate method', function() {
+    spyOn(formCtrl, 'calculateMortgage');
+    var btn = formCtrl.getCalculateButton();
+    btn.fireEvent('click');
+
+    expect(formCtrl.calculateMortgage).toHaveBeenCalled();
+});
+
+it('that fired event is received', function() {
+    spyOn(formCtrl, 'openMortgageEditor');
+
+    // main controller fires event that should be called by form controller
+    mainCtrl.fireEvent('edit', mortgage);
+
+    expect(formCtrl.openMortgageEditor).toHaveBeenCalledWith(mortgage);
+});</code></pre>
+                </section>
+
+                </section>
+                <section>
+                    <h2>Übung: Teste deine eigenen Klassen</h2>
+                    <ul>
+                        <li>Nutze dafür dieses JsBin-Projekt als Grundlage
+                            <a target="_blank" href="http://jsbin.com/jijuri/2/edit?js,output">http://jsbin.com/jijuri/2/edit?js,output</a>
+                        <li>Clone das Projekt und verschiebe deine Klassen in den JavaScript-Bereich
+                        <li>Schreibe mit Jasmine sinnvollen Spezifikationen für deine Klassen
+                        <li>Achtung: Aus technischen Gründen, läuft Jasmine hier in der älteren Version 1.3.1
+                    </ul>
+                </section>
+                <section>
+				<section>
+					<h2>jQuery</h2>
+				</section>
+
+                <section>
+                        <h2>Hello World jQuery</h2>
+                        <pre><code class="xml" contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello World jQuery!&lt;/title&gt;
+    &lt;body&gt;
+      &lt;div id="log">&lt;/div>
+      &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">&lt;/script>
+
+      &lt;script&gt;
+        $(document).ready(function(){
+            $("#log").html("&lt;h1>Hello World&lt;/h1>");
+        });
+      &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+                        <a href="helloworld-jQuery.html" target="_blank">Run</a>
+                    </section>
+                <section>
+                    <h3>Überblick</h3>
+                    <ul>
+                        <li class="fragment">Standard-JavaScript-Bibliothek
+                        <li class="fragment">Fast überall zu finden
+                        <li class="fragment">Adressiert Probleme bei der Programmierung des DOMs
+                        <li class="fragment">Flexible Trennung von View und Logik
+                        <li class="fragment">Funktionalität unterteilbar in "Auswahl" und "Manipulation"
+                        <li class="fragment">Core, UI und Mobile Bibliothek vorhanden
+                        <li class="fragment">Viele Plugins vorhanden,
+                    z.B. <a target="_blank" href="http://sorgalla.com/jcarousel/">jcarousel</a>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Selectors</h3>
+                    <ul>
+                        <li class="fragment">Zur Auswahl von Elementen
+                        <li class="fragment">Spucken immer ein Array von Elementen aus
+                        <li class="fragment">nach CSS-Klasse: <code>$(".class")</code>
+                        <li class="fragment">nach Tag: <code>$("tag")</code>
+                        <li class="fragment">nach id: <code>$("#id")</code>
+                        <li class="fragment">nach Attribut: <code>$("[name='value']")</code> bzw. <code>$("tag[name='value']")</code>
+                        <li class="fragment">Hierarchie: <code>$("form input")</code>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Manipulation</h3>
+                    <ul>
+                        <li class="fragment">Operieren auf der Ausgabe der Selektoren
+                        <li class="fragment">anzeigen <code>show()</code> / verbergen <code>hide()</code>
+                        <li class="fragment">Wert des ersten Elements holen <code>val()</code> - für Inputs in Form
+                        <li class="fragment">Wert des ersten Elements setzen <code>val(value)</code> - für Outputs in Form
+                        <li class="fragment">Z.B.
+                    </ul>
+                    <pre class="fragment"><code class="javascript" contenteditable>log.show();</code></pre>
+                </section>
+
+                <section>
+                    <h3>Listener</h3>
+                    <ul>
+                        <li class="fragment">Listener werden auf der Ausgabe von Selektoren definiert
+                        <li class="fragment"><code>on(eventName, handler)</code> Listener registrieren
+                        <li class="fragment">Events z.B. <code>click</code> oder <code>submit</code>
+                        <li class="fragment">Z.B.
+                    <pre class="fragment"><code class="javascript" contenteditable>var log = $("#log");
+log.on('click', function(event) { // ... });</code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Tiefere Einsichten in jQuery</h3>
+                    <ul>
+                        <li class="fragment"><code>$</code> ist ein kürzerer Name für die globale Funktion <code>jQuery</code>
+                        <li class="fragment"><code>$</code> hat statische Methoden, z.B. <code>getJSON</code>
+                        <li class="fragment"><code>$</code> erzeugt Objekte vom Typ <code>$</code>
+                        <li class="fragment">CSS-Selektoren sind denen von jQuery sehr ähnlich
+                        <li class="fragment">HTML5 bietet Selektoren mit ähnlicher Mächtigkeit, z.B. <code>document.querySelector('#log');</code>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Plugins</h3>
+                        <p class="fragment"><code>jQuery</code> kann um eigene Funktionalität erweitert werden</p>
+                        <p class="fragment"><code>$</code> als Factory</p>
+                        <pre class="fragment"><code class="javascript" contenteditable>var log = $("#log");
+Object.getPrototypeOf(log) === $.prototype; // true
+log instanceof $; // true</code></pre>
+
+                    <p class="fragment">Erweiterung der Funktionalität von <code>$</code> über Plugins</p>
+                        <pre class="fragment"><code class="javascript" contenteditable>$.fn === $.prototype;
+$.fn.myPlugin = function() {
+  // ...
+};
+log.myPlugin();
+</code></pre>
+                    <p class="fragment"><a href="http://speckyboy.com/2013/12/11/jquery-plugins-2013/">Die 50 nützlichsten Plugins 2013</a></p>
+                </section>
+            <section>
+                <h2>Code-Beispiel: Einfaches Plugin</h2>
+                <p class="fragment">Alle durch den Selektor gefundenen Elemente ausgeben</p>
+                <pre class="fragment"><code class="javascript" contenteditable>var log = $("#log");
+$.fn.dump = function() {
+    // iterate over all elements found by selector
+    this.each(function() {
+        // this is a DOM element,
+        // make it a $ object if desired
+        console.log($(this));
+    });
+    // return $ element for chaining
+    return this;
+};
+// chaining does work
+log.dump().show();</code></pre>
+
+                <p class="fragment"><a href="http://learn.jquery.com/plugins/basic-plugin-creation/">Tutorial jQuery-Plugins</a></p>
+
+            </section>
+
+        </section>
+            <section>
+                <section>
+                    <h2>Übung: jQuery</h2>
+                    <ul>
+                        <li>Nutze dafür dieses JsBin-Projekt als Grundlage
+                            <a target="_blank" href="http://jsbin.com/zofure/1/edit?html,js,console,output">http://jsbin.com/zofure/1/edit?html,js,console,output</a>
+                        <li>Clone das Projekt für und führe die dort beschriebenen Anweisungen aus
+                        <li>Ziel ist es, einen Textbereich ein- und auszublenden
+                        <li>Falls du lieber ein bisschen spielen möchtest, kannst du auch hier mit der Lösung beginnen
+                            <a target="_blank" href="http://jsbin.com/rutede/3/edit?html,js,console,output">http://jsbin.com/rutede/3/edit?html,js,console,output</a>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Optionale Zusatz-Übung: jQuery</h2>
+                    <ul>
+                        <li>Zeige eine Instanz einer deiner Klassen an
+                        <li>Mache alle Eigenschaften (Properties) per Click sichtbar oder unsichtbar
+                        <li>Beginne mit der Lösung der ersten Aufgabe, wenn du eine Grundlage brauchst
+                            <a target="_blank" href="http://jsbin.com/rutede/3/edit?html,js,console,output">http://jsbin.com/rutede/3/edit?html,js,console,output</a>
+                    </ul>
+                </section>
+            </section>
+    <section>
+        <section>
+            <h2>Die Zukunft von JavaScript</h2>
+            <ul>
+                <li class="fragment">JavaScript gewinnt immer mehr an Bedeutung
+                <li class="fragment">Wer für den Browser entwickelt, kommt an JavaScript nicht vorbei
+                <li class="fragment">JavaScript hat allerdings viele Klippen
+                    <ul>
+                        <li class="fragment">keine deklarierte Typen
+                        <li class="fragment">Klassen und Vererbung umständlich
+                        <li class="fragment">keine lexikalischen Scopes
+                        <li class="fragment">Bindung von <em>this</em> kann verwirrend sein
+                        <li class="fragment">Kein Einheitliches Modul-Konzept
+                    </ul>
+                </li>
+                <li class="fragment">Die nächste Version von JavaScript wird diese Klippen entfernen (außer Typen)
+                <li class="fragment">Es gibt Ansätze für deklarierte Typen in JavaScript
+            </ul>
+        </section>
+        <section>
+            <h3>JavaScript vs ECMAScript 6 vs ECMAScript 2015 vs Projekt Harmony</h3>
+            <ul>
+                <li class="fragment">ECMAScript ist der Standard und JavaScript ist die Implementierung
+                <li class="fragment">Ab IE9 sind wir bei ECMAScript 5 (2009)
+                <li class="fragment">ECMAScript 2015 ist der neue Name für ECMAScript 6
+                <li class="fragment">Projekt Harmony ist ECMAScript >=6
+                <li class="fragment">Spec für ES6 beinahe final
+                <li class="fragment">In 5 Jahren breit verfügbar (lauf Wirfs-Brock, Editor der Spec)
+                <li class="fragment">Vieles bereits heute nutzbar
+            </ul>
+        </section>
+    <section>
+        <h3>Neue Spracheigenschaften</h3>
+            <h4 class="fragment"><em>keine</em> statischen Typen</h4>
+
+            <ul>
+            <li class="fragment">Module
+            <li class="fragment">Klassen
+            <li class="fragment">Destructuring (Pattern Matching)
+            <li class="fragment">let, const
+            <li class="fragment">Fat arrow <b>=></b> für besseres Binding von <b>this</b>
+            <li class="fragment">vararg, optional, spread operator
+            <li class="fragment">Collection Types (Map, Set, WeakMap, WeakSet)
+        </ul>
+    </section>
+        <section>
+            <h3>Gesprengte Klippe #1: Lexikalisches Scoping</h3>
+            <pre><code class="javascript" contenteditable>{
+  let a = 10;
+  // or
+  const a = 10;
+  a = 20;
+  // when a is const:
+  // => TypeError: Assignment to constant variable.
+}
+
+console.log(a);
+// => ReferenceError: a is not defined</code></pre>
+        </section>
+        <section>
+            <h3>Gesprengte Klippe #2: Klassen</h3>
+                <pre><code class="javascript" contenteditable>class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    getName() {
+        return this.name;
+    }
+}
+class Programmer extends Person {
+    constructor(name, language) {
+        super(name);
+        this.language = language;
+    }
+    code() {
+        return this.getName() + " codes in " + this.language;
+    }
+}
+const programmer = new Programmer('Erna', 'JavaScript');
+console.log(programmer.code());
+console.log(programmer instanceof Programmer); // true
+console.log(programmer instanceof Person); // true</code></pre>
+        </section>
+        <section>
+            <h3>Weitere gesprengte Klippen</h3>
+            <ul>
+                <li class="fragment">Binden von this für Callbacks etc. mit <em>=></em>
+                <li class="fragment">Module
+                <li class="fragment">Unicode support
+                <li class="fragment">Reflection API
+                <li class="fragment">Tail Recursion
+            </ul>
+        </section>
+
+        <section>
+            <h3>Wo läuft ES 2015 schon jetzt?</h3>
+            <ul>
+                <li class="fragment">Chrome
+                <li class="fragment">Firefox
+                <li class="fragment"><em>node --harmony --use-strict</em>
+                <li class="fragment">io.js
+                <li class="fragment">Transpiler
+                    <ul>
+                        <li class="fragment"><a target="_blank" href="https://babeljs.io/">https://babeljs.io/</a>, ehemals 6to5, wird von JsBin unterstützt
+                        <li class="fragment"><a target="_blank" href="https://github.com/google/traceur-compiler">https://github.com/google/traceur-compiler</a>
+                        <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a> (plus statische Typen)
+                        <li class="fragment">Liste weiterer Transpiler <a target="_blank" href="https://github.com/addyosmani/es6-tools">https://github.com/addyosmani/es6-tools</a>
+                    </ul>
+                </li>
+                <li class="fragment">Wie viel läuft?: <a target="_blank" href="http://kangax.github.io/es5-compat-table/es6">http://kangax.github.io/es5-compat-table/es6</a></li>
+            </ul>
+        </section>
+    </section>
+
+                <section>
+                    <h2>Übung: ES 2015 Klassen</h2>
+                    <ol>
+                        <li>Schreibe deine Klassen auf die neue Klassensyntax von ES 2015 um
+                        <li>Nutze dafür den Babel-Übersetzer in JsBin:
+                            <a target="_blank" href="http://jsbin.com/jobaci/1/edit?js,console">http://jsbin.com/jobaci/1/edit?js,console</a>
+
+                    </ol>
+                </section>
+
+
             </div>
 
 		</div>
