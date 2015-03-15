@@ -1,4 +1,6 @@
 /*
+ * /usr/local/bin/iojs --harmony --es_staging --harmony_classes --harmony_object_literals jax2015.js
+ *
  * Content:
  *
  * ES5 part
