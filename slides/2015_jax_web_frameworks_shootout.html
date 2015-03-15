@@ -110,6 +110,7 @@
 
 <section>
     <h2>Why client side (browser) rendering in the first place?</h2>
+    <h3>TL'DR: Single Page Applications (SPAs) move the application to the browser</h3>
 </section>
     <section>
         <h3>Classic Server Side Rendering (Blue: Server, Violett: Browser)</h3>
@@ -142,6 +143,29 @@
         </ul>
         <p><small>Copyright 2015, Oliver Zeigermann</small></p>
     </section>
+        <section>
+            <h2>Implications when you have an SPA</h2>
+            <ul>
+                <li class="fragment">All code is loaded into the browser at runtime
+                    <ul>
+                        <li class="fragment">How do you structure that code to keep it maintainable?
+                        <li class="fragment">Initialization phases become much more complex
+                    </ul>
+                </li>
+                <li class="fragment">All rendering is done in the browser
+                    <ul>
+                        <li class="fragment">How do you render in the browser in the first place?
+                        <li class="fragment">How do you make it fast enough?
+                    </ul>
+                </li>
+                <li class="fragment">Business logic tends to live for a long time
+                    <ul>
+                        <li class="fragment">How do you write unit tests for that?
+                        <li class="fragment">How do you analyze and refactor that code?
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </section>
 
     <section>

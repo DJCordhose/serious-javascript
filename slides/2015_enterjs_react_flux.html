@@ -13,14 +13,18 @@
     <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
     <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
 
-    <!-- For syntax highlighting -->
-    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+    <!-- Uncomment for presentation -->
     <style>
         pre code {
             display: block;
             padding: 0.5em;
             background: #FFFFFF;
             color: #000000;
+        }
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
         }
     </style>
 
@@ -42,14 +46,6 @@ Plan
 - React native?
 - Yahoos Flux-Implementierung mit Router als Beispiel nehmen
 - Yahoos Flux Auf Server: http://fluxible.io/guides/bringing-flux-to-the-server.html
-- React Beispiele auf 13 umstellen: http://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html
-
-Links:
-- http://kevinold.com/2015/01/31/takeaways-from-reactjs-conf-2015.html?utm_content=bufferff07f&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-- Immutable.ls and Flux: https://twitter.com/fisherwebdev/status/568837214412517376?s=03
-- Concise intro into flux: http://ryanclark.me/getting-started-with-flux/
-- http://ryanclark.me/getting-started-with-flux/
-- https://medium.com/@dan_abramov/the-case-for-flux-379b7d1982c6
 
 Native Links
 - https://twitter.com/Vjeux/status/570247867014598657?s=03 (https://www.facebook.com/business/news/ads-manager-app)
@@ -78,7 +74,7 @@ und Diskussionen mit React-Kernentwicklern.
         <section>
             <h1>Flux</h1>
 
-            <h3>An Architecture for React</h3>
+            <h3>An Architecture for (not only) React</h3>
 
             <p>
                 <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
@@ -101,39 +97,85 @@ und Diskussionen mit React-Kernentwicklern.
 
         </ul>
     </section>
+        <!-- Time including questions: 45 minutes -->
         <section>
             <h2>Contents</h2>
             <ol>
                 <!-- 5 minutes -->
                 <li class="fragment">Frontend Architecture
-                    <!-- 10 minutes -->
-                <!-- Short intro -->
+                <!-- 5 minutes -->
                 <li class="fragment">React in a nut shell
-                    <!-- 5 minutes -->
+                <!-- 10 minutes -->
+                <li class="fragment">Introduction to the core ideas of Flux
+                <!-- 10 minutes -->
+                <li class="fragment">A Sample Implementation: Yahoo's Fluxible
+                <!-- 5 minutes -->
+                <li class="fragment">FAQ
+                <!-- 5 minutes -->
                 <li class="fragment">Questions and discussion
             </ol>
         </section>
 
+    <section>
         <section>
             <h2>Why Frontend Architecture?</h2>
-        <ul>
-            <li class="fragment">Applications have moved to the frontend
-            <li class="fragment">Esp. with offline mode you have business logic on
-        </ul>
         </section>
-
+    <section>
+        <h3>SPA Fat: Sample Scenario for high need of good architecture</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">
+            <li class="fragment">Single Page Application - a single HTML pages gets loaded containing all  HTML and JavaScript
+            <li class="fragment">Rendering entirely in Browser
+            <li class="fragment">Business logic in browser allows for offline support
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
         <section>
-            <h2>Why is Frontend Architecture hard to get right?</h2>
+            <h2>Why is Frontend Architecture for an SPA hard to get right?</h2>
             <ul>
-                <li class="fragment">- Interaktiv
-                    - noch nicht lange studiert
-                    - Umfeld (Frontend) nicht traditionell mit Nachhaltigkeit betrieben
+                <li class="fragment">Not as much experience with frontend architecture as with backend
+                    <ul>
+                        <li class="fragment">Traditionally, frontend code has not been engineered with maintainability in mind
+                        <li class="fragment">Data and control flow in frontend does not play well with layers
+                    </ul>
+                </li>
+                <li class="fragment">All code is loaded into the browser at runtime
+                    <ul>
+                        <li class="fragment">How do you structure that code to keep it maintainable?
+                        <li class="fragment">How do the components of the system play together in the browser?
+                        <li class="fragment">Initialization phases become much more complex
+                    </ul>
+                </li>
+                <li class="fragment">All rendering and interaction is done in the browser
+                    <ul>
+                        <li class="fragment">How do you render in the browser in the first place?
+                        <li class="fragment">How do you make it fast enough?
+                        <li class="fragment">Communication with server requires asynchronous code
+                    </ul>
+                </li>
             </ul>
         </section>
 
+    </section>
 <section>
     <section>
-    <h2>React in a nushell</h2>
+    <h2>React in a nutshell</h2>
+    </section>
+
+    <section>
+        <h3>Flux - An Architecture for (not only) React</h3>
+        <ul>
+            <li class="fragment">React is a "JavaScript libarary for building user interfaces"
+            <li class="fragment">Facebook and Instagram has been built using React
+            <li class="fragment">Flux is an architecture for React developed and used by Facebook
+            <li class="fragment">Ideas found in Flux can not only be applied to React Web Applications
+                <ul>
+                    <li class="fragment">In fact those ideas play well with other Web Frameworks as well
+                    <li class="fragment">It is possible to implement Flux with Backbone
+                    <li class="fragment">It is also possible to implement Flux in a classic Desktop Application
+                </ul>
+            </li>
+        </ul>
     </section>
 
     <section>
@@ -158,23 +200,23 @@ und Diskussionen mit React-Kernentwicklern.
         <p><a target="_blank" href="http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html">http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html</a></p>
     </section>
 
-        <section>
-            <h2>Concepts</h2>
-            <ul>
-                <li class="fragment">Based on components, holding both view and logic
-                <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
-                <li class="fragment">Uses a virtual DOM (tree structure) as view representation
-                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
-                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
-                <li class="fragment">Browser DOM experiences minimal amount of updates
-                <li class="fragment">Can render both on server and on client side
-                <li class="fragment">Server side rendering also for SEO or quick first page impression
-                <li class="fragment">Uses ES6 (next JavaScript version) syntax
-                <li class="fragment">Needs tool to translate ES6 and JSX to standard ES5
-                <li class="fragment">Tools can handle type annotations and Flow tool can make subtle checks
-                <li class="fragment">Flux architecture guides you for complete application
-            </ul>
-        </section>
+        <!--<section>-->
+            <!--<h2>Concepts</h2>-->
+            <!--<ul>-->
+                <!--<li class="fragment">Based on components, holding both view and logic-->
+                <!--<li class="fragment">Templates can be written in pure JavaScript or using the JSX template language-->
+                <!--<li class="fragment">Uses a virtual DOM (tree structure) as view representation-->
+                <!--<li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically-->
+                <!--<li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM-->
+                <!--<li class="fragment">Browser DOM experiences minimal amount of updates-->
+                <!--<li class="fragment">Can render both on server and on client side-->
+                <!--<li class="fragment">Server side rendering also for SEO or quick first page impression-->
+                <!--<li class="fragment">Uses ES6 (next JavaScript version) syntax-->
+                <!--<li class="fragment">Needs tool to translate ES6 and JSX to standard ES5-->
+                <!--<li class="fragment">Tools can handle type annotations and Flow tool can make subtle checks-->
+                <!--<li class="fragment">Flux architecture guides you for complete application-->
+            <!--</ul>-->
+        <!--</section>-->
 
                 <section>
             <h3>Hello World React</h3>
@@ -204,22 +246,81 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
 
 </section>
 
+    <section>
+        <section>
+            <h2>Introduction</h2>
+            <h1 style="color: red">TODO</h1>
+        </section>
+        <section>
+            <h3>Overview</h3>
+        </section>
+        <section>
+            <h3>Views</h3>
+        </section>
+        <section>
+            <h3>Actions</h3>
+        </section>
+        <section>
+            <h3>Dispatcher</h3>
+        </section>
+        <section>
+            <h3>Stores</h3>
+        </section>
+    </section>
+
+        <section>
+            <h3>A Sample Implementation: Yahoo's Fluxible</h3>
+            <h1 style="color: red">TODO</h1>
+            <ul>
+                <li class="fragment"><a target="_blank" href="http://fluxible.io/">Fluxible: Flux @Yahoo</a>
+                <li class="fragment"><a target="_blank" href="http://fluxible.io/guides/bringing-flux-to-the-server.html">
+                Yahoo's Fluxible on the server side
+                </a>
+
+            </ul>
+        </section>
+
+        <section>
+            <h3>FAQ</h3>
+            <ul>
+                <li class="fragment">Where does server communication happen?
+                    <ul>
+                        <li class="fragment">Implementations differ
+                        <li class="fragment">Some do it in actions, others in stores
+                        <li class="fragment">Choose whatever fits you best
+                    </ul>
+                </li>
+                <li class="fragment">Is this really a flow? Why are views accessing stores directly?
+                    <ul>
+                        <li class="fragment">Technically, views access stores, so yes, it does not flow in a cycle
+                        <li class="fragment">It would be possible to deliver data from stores to views using events
+                        <li class="fragment">What would be the point in not accessing stores from views?
+                    </ul>
+                </li>
+            </ul>
+        </section>
         <section>
             <h3>Wrap-Up</h3>
+            <h1 style="color: red">TODO</h1>
             <ul>
                 <li class="fragment">
             </ul>
         </section>
-            <section>
+        <section>
                 <h3>Links / Where to go from there</h3>
             <ul>
-                <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/blog/">
-                    React Blog</a>
                 <li class="fragment"><a target="_blank" href="http://facebook.github.io/flux/docs/overview.html">
                     Application architecture at Facebook with Flux</a>
                 <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html">
                     Flux Blog Post</a>
-                <li class="fragment"><a target="_blank" href="https://github.com/yahoo/flux-router-component">Flux @Yahoo</a>
+                <li class="fragment"><a target="_blank" href="http://kevinold.com/2015/01/31/takeaways-from-reactjs-conf-2015.html">
+                State of React and Flux from latest Conference</a>
+                <li class="fragment"><a target="_blank" href="http://ryanclark.me/getting-started-with-flux/">
+                Concise intro into Flux</a>
+                <li class="fragment"><a target="_blank" href="https://medium.com/@dan_abramov/the-case-for-flux-379b7d1982c6">
+                    The case for Flux</a>
+                <li class="fragment"><a target="_blank" href="https://twitter.com/dan_abramov/status/576542504524345344">
+                    Flux: How to make it right(TM)?</a>
 
             </ul>
             </section>
@@ -233,6 +334,21 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 </small>
             </p>
 
+        </section>
+        <section>
+            <section>
+                <h1>Bonus Material</h1>
+            </section>
+            <section>
+                <h3>Immutable data structures in Store</h3>
+                <ul>
+                    <li class="fragment"><a target="_blank" href="http://facebook.github.io/react/docs/advanced-performance.html">
+                        http://facebook.github.io/react/docs/advanced-performance.html
+                    </a> suggests to use Flux Stores with immutable data structures
+                    <li class="fragment"><a target="_blank" href="http://facebook.github.io/immutable-js/">
+                        http://facebook.github.io/immutable-js/</a> features immutable, persistent data structures
+                </ul>
+            </section>
         </section>
     </div>
 
