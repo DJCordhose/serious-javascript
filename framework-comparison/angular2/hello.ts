@@ -18,8 +18,8 @@ class HelloCmp {
     this.greeting = '';
     input.focus();
   }
-  updateModel($event) {
-    this.greeting = $event.target.value;
+  updateModel(value) {
+    this.greeting = value;
   }
 }
 

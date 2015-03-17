@@ -1,4 +1,4 @@
 <input [value]="greeting" #in
-       (keyup)="updateModel($event)">
+       (keyup)="updateModel(in.value)">
 <p>{{greeting}}, World</p>
 <button (click)="reset(in)">Clear</button>

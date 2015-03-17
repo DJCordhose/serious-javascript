@@ -321,8 +321,6 @@ server.route({
                 </ul>
             </li>
             <li class="fragment">designed for good testability
-            <li class="fragment">2.0 in the make
-            <li class="fragment">2.0 version based on TypeScript, needs a compiler
         </ul>
     </section>
 
@@ -344,13 +342,26 @@ HelloController.prototype.clear = function() {
 </code></pre>
         <a target="_blank" href="../framework-comparison/end/helloWorldAngular.html">Run</a>
                 </section>
+        <section>
+            <h2>Angular 2.x</h2>
+        <ul>
+            <li class="fragment">
+            <a target="_blank" href="https://angular.io/">2.0 version</a> in the make
+            <li class="fragment">say goodby to two-way data binding
+            <li class="fragment">say goodby to controllers
+            <li class="fragment">say goodby to scopes
+            <li class="fragment">works very well with TypeScript
+            <li class="fragment">embraces ES6
+            <li class="fragment">does still work with pure ES5
+        </ul>
+    </section>
                 <section>
                     <h3>Hello World AngularJS 2.x</h3>
 <pre><code class="xml" contenteditable>@Component({
   selector: 'hello-app'
 })
 @Template({
-inline: `&lt;input [value]="greeting" #in (keyup)="updateModel($event)">
+inline: `&lt;input [value]="greeting" #in (keyup)="updateModel(in.value)">
   &lt;p>{{greeting}}, World&lt;/p>
   &lt;button (click)="reset(in)">Clear&lt;/button>`
 })</code></pre>
@@ -363,8 +374,8 @@ inline: `&lt;input [value]="greeting" #in (keyup)="updateModel($event)">
     this.greeting = '';
     input.focus();
   }
-  updateModel($event) {
-    this.greeting = $event.target.value;
+  updateModel(value) {
+    this.greeting = value;
   }
 }</code></pre>
                 </section>
@@ -669,11 +680,6 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                 <li class="fragment">By Google
                 <!--<li class="fragment">the "Visual Basic" of JavaScript ;)-->
                 <!--<li class="fragment">Mildly used inside of Google-->
-                <li class="fragment">Announcement of largely incompatible grand 2.0 development caused mistrust
-                    <ul>
-                        <li class="fragment">Recent news sound prett reasonable, though
-                    </ul>
-                </li>
                 <li class="fragment">Angular is opinionated about almost everything
                     <ul>
                         <li class="fragment">this can be good to give you guidance
@@ -682,6 +688,11 @@ Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-Ap
                     </ul>
                 </li>
                 <li class="fragment">easy to adopt for Java developers
+                <li class="fragment">Announcement of largely incompatible grand 2.0 development caused mistrust
+                    <ul>
+                        <li class="fragment">Recent news sound pretty reasonable, though
+                    </ul>
+                </li>
             </ul>
         </section>
         <section>
