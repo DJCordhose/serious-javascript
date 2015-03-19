@@ -9,6 +9,9 @@
  * ES6 on io.js
  * - https://iojs.org/en/es6.html
  *
+ * ES6 features:
+ * - http://www.2ality.com/2015/03/destructuring-algorithm.html
+ *
  * Content:
  * let, const
  * class, extends
