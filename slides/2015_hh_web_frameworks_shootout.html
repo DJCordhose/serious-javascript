@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>JavaScript Web Framework Shootout</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/simple.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/sky.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/moon.css" id="theme">-->
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/blood.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">-->
+    <!--<link rel="stylesheet" href="../reveal.js/css/theme/serif.css" id="theme">-->
+
+
+    <!-- Uncomment for presentation -->
+    <style>
+        pre code {
+            display: block;
+            padding: 0.5em;
+            background: #FFFFFF;
+            color: #000000;
+        }
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+    </style>
+
+
+
+    <!-- Uncomment for PDF generation -->
+    <!-- and add ?print-pdf to url -->
+    <!--<link rel="stylesheet" href="../reveal.js/css/print/pdf.css">-->
+    <!--<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">-->
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<div class="slides">
+
+<section>
+    <h1>JavaScript Web Framework Shootout</h1>
+
+    <p>
+        <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </small>
+    </p>
+    <p>Online Version: <a href="http://bit.ly/1EicQwV">http://bit.ly/1EicQwV</a></p>
+</section>
+    <section>
+        <h2>Oliver Zeigermann</h2>
+        <img src="SF-Olli.jpg" height="200" align="right">
+        <ul>
+            <!--<li>Freelancer: Projekte, Architektur, Coaching, Workshops-->
+            <!--<li>Embarc-->
+            <li><a target="_blank" href="http://zeigermann.eu">http://zeigermann.eu</a>
+            <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
+            <li><a target="_blank" href="http://javatojavascript.blogspot.de/">javatojavascript.blogspot.de</a>
+            <li><a target="_blank" href="https://entwickler.de/press/buecher/javascript-fuer-java-entwickler-2-119804.html">JavaScript für
+            Java-Entwickler</a>
+
+        </ul>
+    </section>
+
+<!-- TODO: JsUnconf Version only with Part II and IV) -->
+<section>
+    <h2>Contents</h2>
+    <ol>
+        <!-- 5 minutes -->
+        <li class="fragment">Part I: Motivation
+            <!-- 20 minutes -->
+        <li class="fragment">Part II: Introduction to the Framework Candidates
+            <!-- 20 minutes -->
+        <li class="fragment">Part III: Evaluation
+            <!-- 5 minutes -->
+        <li class="fragment">Part IV: (Executive) Summary
+        <!-- 5 minutes -->
+        <li class="fragment">Questions and discussion
+    </ol>
+
+</section>
+
+    <section>
+        <section>
+            <h2>Part I: Motivation</h2>
+        </section>
+
+        <section>
+            <h2>We are not alone</h2>
+            <a target="_blank" href="http://www.quora.com/I-am-Java-developer-who-wants-to-learn-JavaScript-Which-technology-Angular-jQuery-or-Node-js-is-better-to-learn-nowadays">
+                http://www.quora.com/I-am-Java-developer-who-wants-to-learn-JavaScript-Which-technology-Angular-jQuery-or-Node-js-is-better-to-learn-nowadays
+            </a>
+
+        </section>
+
+<section>
+    <h2>Why client side (browser) rendering in the first place?</h2>
+    <h3>TL'DR: Single Page Applications (SPAs) move the application to the browser</h3>
+</section>
+    <section>
+        <h3>Classic Server Side Rendering (Blue: Server, Violett: Browser)</h3>
+        <ul>
+            <img src="Classic%20Web%20Application.png" class="right-img">
+            <li class="fragment">You can render on the server and still have a fully functional Web Application
+            <li class="fragment">HTML will be displayed on client
+            <li class="fragment">Optionally you add a little JavaScript for some visual effects
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
+    <section>
+        <h3>SPA Lean: Rendering and UI in Browser</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" class="right-img">
+            <li class="fragment">Single Page Application - a single HTML pages gets loaded containing all  HTML and JavaScript
+            <li class="fragment">Rendering entirely in Browser
+            <li class="fragment">Best User Experience because of fast responses
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
+    <section>
+        <h3>SPA Fat: Additional business logic in Browser</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">
+            <li class="fragment">Business logic in browser allows for offline support
+            <li class="fragment">Brought to an extreme no (or only occasional) online connectivity required
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+        <section>
+            <h2>Implications when you have an SPA</h2>
+            <ul>
+                <li class="fragment">All code is loaded into the browser at runtime
+                    <ul>
+                        <li class="fragment">How do you structure that code to keep it maintainable?
+                        <li class="fragment">Initialization phases become much more complex
+                    </ul>
+                </li>
+                <li class="fragment">All rendering is done in the browser
+                    <ul>
+                        <li class="fragment">How do you render in the browser in the first place?
+                        <li class="fragment">How do you make it fast enough?
+                    </ul>
+                </li>
+                <li class="fragment">Business logic tends to live for a long time
+                    <ul>
+                        <li class="fragment">How do you write unit tests for that?
+                        <li class="fragment">How do you analyze and refactor that code?
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </section>
+
+    <section>
+        <section>
+            <h2>Part II: Introduction to the Framework Candidates</h2>
+        </section>
+        <section>
+            <h2>Our candidates</h2>
+            <ol>
+                <li class="fragment">Classic Backend: hapi
+                <li class="fragment">Frontend Classic: jQuery
+                <li class="fragment">Adding structure: Backbone
+                <li class="fragment">Introducing Magic: Angular
+                <li class="fragment">Back to simplicity: React
+            </ol>
+        </section>
+        <section>
+            <h2>Overview</h2>
+            <img src="techradar/js-frameworks.jpg" height="500px">
+            <p><small>Copyright 2015, Mike North (@michaellnorth), https://twitter.com/ModernWebUI/status/575532649948790784/photo/1</small></p>
+        </section>
+
+        <section>
+            <!-- https://frederic-hemberger.de/talks/hapi/#/cover -->
+            <h2>Classic Backend: hapi</h2>
+            <h3>To start with something more familiar</h3>
+            <ul>
+                <li class="fragment">Server Side JavaScript framework
+                <li class="fragment">Driven by team at Walmart
+                <li class="fragment">runs on node.js / io.js
+                <li class="fragment">Request/Response based
+                <li class="fragment">Server side rendering using template language of your choice
+                <li class="fragment">Based on ideas of main stream framework "express"
+                <li class="fragment">Adds better error handling and better modularity
+            </ul>
+        </section>
+                <section>
+            <h3>Hello World Hapi / Handlebars Template</h3>
+<pre><code class="xml" contenteditable>&lt;form>
+    &lt;input name="greeting" value="{{greeting}}">
+    &lt;p>{{greeting}}, World&lt;/p>
+    &lt;a href="/?greeting=">Clear&lt;/a>
+    &lt;input type="submit" value="Send">
+&lt;/form></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>var server = new Hapi.Server();
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply.view('index', { greeting: request.query.greeting || 'Hello' });
+    }
+});</code></pre>
+                <a target="_blank" href="http://localhost:8080">Run: node index.js</a>
+        </section>
+        <section>
+            <h2>Frontend Classic: jQuery</h2>
+            <ul>
+                <li class="fragment">Standard JavaScript library
+                <li class="fragment">Found almost everywhere
+                <li class="fragment">"Fixes" DOM programming
+                <li class="fragment">Does not abstract from DOM, though
+                <li class="fragment">Core, UI und Mobile library
+                <li class="fragment">Abundance of Plugins including
+                <li class="fragment">Basis for
+                    <a target="_blank" href="http://getbootstrap.com/javascript/">Twitter Bootstrap</a>
+            </ul>
+        </section>
+
+            <section>
+        <h2>Hello World jQuery</h2>
+        <pre><code class="xml" contenteditable>&lt;input id="in">
+&lt;p>&lt;span id="log">&lt;/span>, World&lt;/p>
+&lt;input id="btn" type="button" value="Clear">
+&lt;script>
+    var model;
+    function setModel(value) {
+        model = value;
+        $("#log").html(model);
+        $("#in").val(model);
+    }
+    $(document).ready(function () {
+        $("#in").on("keyup", function (event) {
+            setModel($("#in").val());
+        });
+        $("#btn").on("click", function () {
+            setModel("");
+        });
+        setModel("Hello");
+    });
+&lt;/script></code></pre>
+                        <a target="_blank" href="../framework-comparison/end/helloworld-jQuery.html">Run</a>
+                    </section>
+        <section>
+            <h2>Adding structure: Backbone</h2>
+            <ul>
+                <li class="fragment">Builds on jQuery and underscore
+                <li class="fragment">Key component is a model
+                <li class="fragment">Model interacts with RESTful servers using CRUD operations
+                <li class="fragment">Views structure application
+                <li class="fragment">View re-renders once model has changed
+                <li class="fragment">Loose coupling using events
+                <li class="fragment">Not tied to a specific view technology
+                <li class="fragment">Marionette implements a lot of best practices, adds guidance
+                <li class="fragment">Using additional libraries makes it convenient (binding, eventbus, view management)
+            </ul>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette: Model</h3>
+<pre><code class="xml" contenteditable>var Model = Backbone.Model.extend({
+    defaults: {
+        greeting: 'Hello'
+    }
+});</code></pre>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette: View</h3>
+<pre><code class="xml" contenteditable>var HelloView = Marionette.ItemView.extend({
+    events: {
+        'click #btn': 'onBtnClick'
+    },
+    bindings: {
+        '#in': 'greeting',
+        '#out': 'greeting'
+    },
+    onBtnClick: function () {
+        this.model.set('greeting', '');
+    },
+    onRender: function () {
+        this.stickit(); // sets 2-way bindings
+    },
+    template: _.template('<input id="in"><p><span id="out"></span>, World</p>' +
+                         '<input id="btn" type="button" value="Clear">')
+});</code></pre>
+        </section>
+        <section>
+            <h3>Hello World Backbone/Marionette: Putting it together</h3>
+<pre><code class="xml" contenteditable>(new HelloView({
+    model: new Model(),
+    el: '#example'
+})).render();</code></pre>
+            <a target="_blank" href="../framework-comparison/backbone/hello.html">Run</a>
+        </section>
+        <section>
+            <h2>Introducing Magic: Angular</h2>
+        <ul>
+            <li class="fragment">HTML enhanced for web apps!
+            <li class="fragment">HTML extended by <em>directives</em> (=== components)
+            <li class="fragment">Three Ds
+                <ul>
+                    <li class="fragment">Data Binding (2-way)
+                    <li class="fragment">Dependency Injection
+                    <li class="fragment">Directives (you can write your own directives)
+                </ul>
+            </li>
+            <li class="fragment">designed for good testability
+        </ul>
+    </section>
+
+                <section>
+                    <h3>Hello World AngularJS 1.x</h3>
+<pre><code class="xml" contenteditable>&lt;body np-app ng-controller="HelloController as helloController">
+&lt;input ng-model="helloController.greeting.text">
+&lt;p>{{helloController.greeting.text}}, World!&lt;/p>
+&lt;input type="button" value="Clear" ng-click="helloController.clear()">
+&lt;/body></code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>function HelloController() {
+    this.greeting = {
+        text: 'Hello'
+    };
+}
+HelloController.prototype.clear = function() {
+    this.greeting.text = '';
+};
+</code></pre>
+        <a target="_blank" href="../framework-comparison/end/helloWorldAngular.html">Run</a>
+                </section>
+        <section>
+            <h2>Angular 2.x</h2>
+        <ul>
+            <li class="fragment">
+            <a target="_blank" href="https://angular.io/">2.0 version</a> in the make
+            <li class="fragment">say goodby to two-way data binding
+            <li class="fragment">say goodby to controllers
+            <li class="fragment">say goodby to scopes
+            <li class="fragment">works very well with TypeScript
+            <li class="fragment">embraces ES6
+            <li class="fragment">does still work with pure ES5
+        </ul>
+    </section>
+                <section>
+                    <h3>Hello World AngularJS 2.x</h3>
+<pre><code class="xml" contenteditable>@Component({
+  selector: 'hello-app'
+})
+@Template({
+inline: `&lt;input [value]="greeting" #in (keyup)="updateModel(in.value)">
+  &lt;p>{{greeting}}, World&lt;/p>
+  &lt;button (click)="reset(in)">Clear&lt;/button>`
+})</code></pre>
+<pre class="fragment"><code class="javascript" contenteditable>class HelloCmp {
+  greeting: string;
+  constructor() {
+    this.greeting = 'Hello';
+  }
+  reset(input) {
+    this.greeting = '';
+    input.focus();
+  }
+  updateModel(value) {
+    this.greeting = value;
+  }
+}</code></pre>
+                </section>
+
+
+        <section>
+            <h2>Back to simplicity: React</h2>
+            <ul>
+                <li class="fragment">Framework for Facebook und Instagram
+                <li class="fragment">Based on components, holding both view and logic
+                <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
+                <li class="fragment">Uses a virtual DOM (tree structure) as view representation
+                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
+                <li class="fragment">Browser DOM experiences minimal amount of updates
+                <li class="fragment">Can render both on server and on client side
+                <li class="fragment">Server side rendering also for SEO or quick first page impression
+                <li class="fragment">Uses ES6 (next JavaScript version) syntax
+                <li class="fragment">Needs tool to translate ES6 and JSX to standard ES5
+                <li class="fragment">Flux architecture guides you for complete application
+            </ul>
+        </section>
+
+                <section>
+            <h3>Hello World React</h3>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {greeting: this.props.greeting};
+    }
+    updateModel(event) {
+        this.setState({greeting: event.target.value});
+    }
+    reset() {
+        this.setState({greeting: ""});
+    }
+    render() {
+        return (<div>
+            <input value={this.state.greeting} onChange={this.updateModel.bind(this)} />
+            <p>{this.state.greeting}, World</p>
+            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
+        </div>);
+    }
+}
+var mountNode = document.getElementById('example');
+React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
+                <a target="_blank" href="../framework-comparison/react/index.html">Run</a>
+        </section>
+
+    </section>
+
+
+    <section>
+        <section>
+            <h2>Part III: Evaluation</h2>
+            <h3 class="fragment">General requirement: Create a well structured JavaScript Application</h3>
+        </section>
+
+    <section>
+        <h2>Technology radar</h2>
+        <div>
+            <img src="techradar/tech-radar.jpg" class="right-img" style="height: 350px">
+            <ol>
+                <li class="fragment">Four rings
+                <li class="fragment">expressing maturity of technology
+                <li class="fragment">requirements have to match
+                <li class="fragment">Adopt: use it
+                <li class="fragment">Trial: try it out in a small project
+                <li class="fragment">Asses: play with it
+                <li class="fragment">Hold: no new project with it
+            </ol>
+        </div>
+        <p style="clear: both">
+            <small>http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar</small>
+        </p>
+
+        <!--
+        <!--
+- Hold:
+- Asses:
+- Trial:
+- Adopt: all
+
+Unterscheiden jQuery als Basistechnologie bzw. Library, Ergänzung zu anderen Frameworks und als echte Framework-Alternative ohne anderes Framework
+
+Zitieren aus
+http://www.thoughtworks.com/insights/blog/build-your-own-technology-radar
+
+"We firmly believe that you can't really fully assess technology unless you've used it to solve real problems, to help understand both its weaknesses and strengths"
+
+-->
+    </section>
+        <section>
+            <h2>ThoughtWorks JavaScript framework technology radar</h2>
+            <div>
+                <img src="techradar/framework-radar-thoughtworks.png" class="right-img">
+                <ol>
+                    <li class="fragment">jQuery (implied)
+                    <li class="fragment">Backbone
+                    <li class="fragment">Angular.js
+                    <li class="fragment">React
+                </ol>
+            </div>
+            <p style="clear: both">
+                <small><a target="_blank" href="http://www.thoughtworks.com/radar/a-z">http://www.thoughtworks.com/radar/a-z</a></small>
+            </p>
+        </section>
+        <!--<section>-->
+            <!--<h2>If we took this seriously we would only use jQuery???</h2>-->
+        <!--</section>-->
+
+        <!--<section data-state="radar">-->
+            <!--<h2>My JavaScript framework technology radar</h2>-->
+
+            <!--<div>-->
+                <!--<ol>-->
+                    <!--<li>jQuery-->
+                    <!--<li>Backbone/Marionette-->
+                    <!--<li>Angular.js-->
+                    <!--<li>React-->
+                    <!--<li>Hapi-->
+                <!--</ol>-->
+                <!--<img src="techradar/framework-radar.png" class="fragment right-img">-->
+            <!--</div>-->
+            <!--<p style="clear: both">-->
+                <!--<small>Done by code forked from https://github.com/bdargan/techradar</small>-->
+            <!--</p>-->
+        <!--</section>-->
+
+        <!--<section>-->
+            <!--<h2>All frameworks should be adopted!</h2>-->
+            <!--<h3 class="fragment">Provided your requirements/context matches the framework</h3>-->
+            <!--<h4 class="fragment">What requirement/context matches which framework is the topic of this section</h4>-->
+        <!--</section>-->
+
+
+        <!--<section>-->
+            <!--<h3>Categories and Aspects of Evaluation / Requirements</h3>-->
+            <!--&lt;!&ndash;-->
+            <!--Teil 3: Bewertung anhand von Aspekten / Anforderungen-->
+
+            <!-&#45;&#45; Wer soll damit Entwickeln?-->
+            <!-&#45;&#45; Was soll entwickelt werden?-->
+            <!-&#45;&#45; Wie lange lebt das Projekt?-->
+            <!-&#45;&#45; Wie komplex sind die Interaktion von Teilen der App?-->
+            <!-&#45;&#45; Wie dynamisch ist die App?-->
+    <!--&ndash;&gt;-->
+
+            <!--&lt;!&ndash;-->
+                            <!--Flux Architektur Kompatibel?-->
+                            <!--Einsatzbereich-->
+                            <!--Abstraktheit-->
+                            <!--Complexity of use-->
+
+<!--&ndash;&gt;-->
+
+            <!--<ul>-->
+                <!--<li class="fragment">What is the history of your programmers?-->
+                <!--<li class="fragment">Trends and hype curves-->
+                <!--<li class="fragment">What is the live cycle of the application?-->
+                <!--<li class="fragment">How dynamic is the application?-->
+                <!--<li class="fragment">How complex are interactions between parts of the application?-->
+            <!--</ul>-->
+        <!--</section>-->
+        <section>
+            <!--
+            Backbone: Struktur für klassische Frontend-Entwickler
+
+Es kommt darauf an aus welcher Seite man sich einer strukturierten JavaScript-App nähert
+- CSS/HTML jQuery => Backbone
+- Java/C# => Angular
+- Ruby => EmberJS
+- Andere js - frameworks => React
+
+-->
+            <h3>What is history of your programmers?</h3>
+            <ul>
+                <li class="fragment">CSS/HTML without jQuery
+                    <ul>
+                        <li class="fragment">=> jQuery
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">CSS/HTML with jQuery
+                    <ul>
+                        <li class="fragment">=> Backbone/Marionette
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">Java, C# or C++
+                    <ul>
+                        <li class="fragment">=> Angular
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">JavaScript (maybe with other frameworks)
+                    <ul>
+                        <li class="fragment">=> React
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Trends</h3>
+            <img src="techradar/framework-trend-jquery.png">
+            <p style="clear: both">
+                <small>https://www.google.com/trends/</small>
+            </p>
+        </section>
+        <section>
+            <h3>Trends (without jQuery)</h3>
+            <img src="techradar/framework-trend-no-jquery.png">
+            <p style="clear: both">
+                <small>https://www.google.com/trends/</small>
+            </p>
+        </section>
+
+        <section>
+            <h3>Hype curve</h3>
+            <div>
+                <img src="techradar/DiffusionOfInnovation-Frameworks.png" class="right-img" style="height: 450px">
+                <ol>
+                    <li>jQuery
+                    <li>Backbone
+                    <li>Angular
+                    <li>React
+                    <li>Hapi
+                </ol>
+            </div>
+
+            <p style="clear: both">
+                <small>Based on <a href="http://en.wikipedia.org/wiki/File:DiffusionOfInnovation.png#mediaviewer/File:DiffusionOfInnovation.png">DiffusionOfInnovation</a>". Licensed under <a href="http://creativecommons.org/licenses/by/2.5/" title="Creative Commons Attribution 2.5">CC BY 2.5</a> via <a href="//en.wikipedia.org/wiki/">Wikipedia</a>.
+                from <a target="_blank" href="http://en.wikipedia.org/wiki/Technology_adoption_lifecycle">http://en.wikipedia.org/wiki/Technology_adoption_lifecycle</a></small>
+            </p>
+        </section>
+        <section>
+            <h3>Magic and Flexibility</h3>
+            <div>
+                <img src="techradar/magic-guiding.jpg" class="right-img" style="height: 450px">
+                <ol>
+                    <li>jQuery
+                    <li>Backbone/Marionette
+                    <li>Angular
+                    <li>React
+                </ol>
+            </div>
+            <p style="clear: both">
+            <small>Copyright 2015, Oliver Zeigermann</small>
+            </p>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Part IV: (Executive) Summary</h2>
+        </section>
+        <section>
+            <h3>jQuery</h3>
+            <h4 class="fragment">Dynamic extensions of classic Web Applications</h4>
+            <ul>
+                <li class="fragment">basis for other libraries
+                <li class="fragment">almost no abstraction from DOM, thus universally applicable
+                <li class="fragment">application is not highly dynamic
+                <li class="fragment">best when you have an existing DOM, e.g. a classic web application
+                    <ul>
+                        <li class="fragment">modify something (make something visible depending on a click)
+                        <li class="fragment">extract data (get data from input fields and do validation, fill
+                            other areas etc.)
+                        <li class="fragment">It is possible to create new nodes or clone sections but then you are
+                            probably already lost.
+                        <li class="fragment">locate something (find a button or an input field and submit a click
+                            or data - e.g. for E2E Tests)
+                    </ul>
+                </li>
+                <li class="fragment">be careful: your jQuery application might slow and silently grow to become almost unmaintainable
+            </ul>
+        </section>
+        <section>
+            <h3>Backbone/Marionette</h3>
+            <h4 class="fragment">data only AJAX, client side rendering</h4>
+            <ul>
+                <li class="fragment">Previous Hype
+                <li class="fragment">Allows to add the structure missing in pure jQuery applications
+                <li class="fragment">Easy do adopt for frontend developers
+                <li class="fragment">Works well with data centric applications
+                <li class="fragment">Opinionated about the way data models are handled
+                    <ul>
+                        <li class="fragment">flat data models are favored over nested
+                        <li class="fragment">model almost feels like a database model
+                        <li class="fragment">natural function of server is to provide a CRUD API for those models
+                    </ul>
+                </li>
+                <li class="fragment">Marionette makes some additional design decisions for you
+                <li class="fragment">Otherwise you are pretty free to choose
+            </ul>
+        </section>
+        <section>
+            <h3>Angular</h3>
+            <h4 class="fragment">All in one framework for Single Page Applications</h4>
+            <ul>
+                <li class="fragment">Current Hype
+                <li class="fragment">By Google
+                <!--<li class="fragment">the "Visual Basic" of JavaScript ;)-->
+                <!--<li class="fragment">Mildly used inside of Google-->
+                <li class="fragment">Angular is opinionated about almost everything
+                    <ul>
+                        <li class="fragment">this can be good to give you guidance
+                        <li class="fragment">this can be bad as everything now works the angular way
+                        <li class="fragment">you might have to relearn
+                    </ul>
+                </li>
+                <li class="fragment">easy to adopt for Java developers
+                <li class="fragment">Announcement of largely incompatible grand 2.0 development caused mistrust
+                    <ul>
+                        <li class="fragment">Recent news sound pretty reasonable, though
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>React</h3>
+            <h4 class="fragment">Minimal API for Single Page Applications</h4>
+            <ul>
+                <li class="fragment">Next Hype
+                <li class="fragment">Minimal API for simplicity
+                <li class="fragment">@sebmarkbage: @ReactJS is known for transforming anti-patterns into best practices.
+                <li class="fragment">Facebook and Instagram based on it
+                <li class="fragment">Works on Client and on Server
+                <li class="fragment">React is opinionated about almost nothing
+                    <ul>
+                        <li class="fragment">this can be bad as there is little guidance
+                        <li class="fragment">Flux architecture offers missing guidance
+                        <li class="fragment">this can be good as you can reuse everything you knew before
+                        <li class="fragment">React also plays very well with other libs
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+        <section>
+            <h3>Summary of Summary</h3>
+            <ul>
+                <li class="fragment">Hypes come and go quickly in JavaScript land
+                <li class="fragment">There is no perfect "silver bullet" framework
+                <li class="fragment">What is the framework for you depends on your context und requirements
+            </ul>
+        </section>
+    </section>
+
+    <section>
+            <h1>Thank you!</h1>
+
+            <h3>Questions / Discussion</h3>
+
+            <p>
+                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+                </small>
+            </p>
+
+        </section>
+    <section>
+            <h3>Links</h3>
+
+            <ul>
+                <li class="fragment">On JavaScript Web Frameworks in general
+                    <ul>
+                        <li class="fragment">
+                            <a target="_blank" href="http://www.allenpike.com/2015/javascript-framework-fatigue">
+                                A JS framework on every table</a>
+                    </ul>
+                </li>
+
+                <li class="fragment">Backbone
+                    <ul>
+                        <li class="fragment">
+                            <a target="_blank" href="http://rocketmodule.com/blog/backbonejs-opinionated-or-why-using-nested-models-and-collections-backbone-so-hard/">why using nested models and collections in Backbone is so hard</a>
+                    </ul>
+                </li>
+                <li class="fragment">Angular
+                    <ul>
+                        <li class="fragment">
+                            <a target="_blank" href="http://www.infoq.com/news/2015/03/angular-2-concerns-addressed">2.0 concerns addressed</a>
+                        <li class="fragment">
+                            <a target="_blank" href="http://blogs.msdn.com/b/typescript/archive/2015/03/05/angular-2-0-built-on-typescript.aspx">Angular 2 built on TypeScript</a>
+                        <li class="fragment">
+                            <a target="_blank" href="http://blogs.msdn.com/b/visualstudio/archive/2015/03/12/a-preview-of-angular-2-and-typescript-in-visual-studio.aspx">Angular 2 and TypeScript in Visual Studio</a>
+                    </ul>
+                </li>
+                <li class="fragment">React
+                    <ul>
+                        <li class="fragment">
+                            <a target="_blank" href="https://www.pandastrike.com/posts/20150311-react-bad-idea">React Is A Terrible Idea</a>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </section>
+
+
+</div>
+
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/../reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on ../reveal.js
+        dependencies: [
+            { src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+<script>
+    Reveal.addEventListener( 'radar', function() {
+        console.log( '"radar" has fired' );
+    } );
+</script>
+
+
+</body>
+</html>
