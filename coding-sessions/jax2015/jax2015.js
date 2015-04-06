@@ -1,5 +1,5 @@
 /*
- * /usr/local/bin/iojs --harmony --es_staging --harmony_classes --harmony_object_literals jax2015.js
+ * /usr/local/bin/iojs --use_strict --harmony --es_staging --harmony_modules --harmony_arrow_functions --harmony_classes --harmony_object_literals jax2015.js
  *
  * Content:
  *
@@ -42,3 +42,8 @@ const programmer = new Programmer('Erna', 'JavaScript');
 console.log(programmer.code());
 console.log(programmer instanceof Programmer);
 console.log(programmer instanceof Person);
+
+var a = () => console.log("Aha");
+console.log(typeof a)
+console.log(typeof a.__proto__)
+console.log(a instanceof Function)

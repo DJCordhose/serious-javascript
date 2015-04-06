@@ -11,6 +11,7 @@
  *
  * ES6 features:
  * - http://www.2ality.com/2015/03/destructuring-algorithm.html
+ * - http://es6-features.org/
  *
  * Content:
  * let, const
