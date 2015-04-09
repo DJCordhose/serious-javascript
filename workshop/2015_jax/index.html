@@ -426,10 +426,10 @@ obj.log.call(this);
             </section>
             <section>
                 <section>
-                    <h2>Typen mit JavaScript</h2>
+                    <h2>Klassen mit JavaScript</h2>
                     <ul>
-                        <li class="fragment">Typen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
-                        <li class="fragment">Auch in JavaScript können eigene Typen definiert werden
+                        <li class="fragment">Klassen und Konstruktoren sind Mechanismen, um mehrere, strukturell gleiche oder ähnliche Objekte zu erzeugen
+                        <li class="fragment">Auch in JavaScript können eigene Klassen definiert werden
                         <li class="fragment">Einfachvererbung ist ebenso möglich
                         <li class="fragment">Der Mechanismus ist nicht direkt in die Sprache eingebaut
                         <li class="fragment">Stattdessen benutzen wir Best-Practice-Patterns
@@ -500,9 +500,9 @@ olli instanceof Person;
                     <section>
                         <h3>Vererbung</h3>
                         <ol>
-                            <li class="fragment">Typen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
-                            <li class="fragment">Typen-Hierarchien werden einmal aufgebaut und als Prototypen der Instanzen verwendet
-                            <li class="fragment">Typen-Hierarchien werden ebenso über Prototypen erstellt
+                            <li class="fragment">Klassen-Hierarchien und Instanzen nutzen beide Prototypische Vererbung
+                            <li class="fragment">Klassen-Hierarchien werden einmal aufgebaut und als Prototypen der Instanzen verwendet
+                            <li class="fragment">Klassen-Hierarchien werden ebenso über Prototypen erstellt
                             <li class="fragment">Object.create erzeugt ein neues Object mit einem anderen Objekt als Prototypen
                             <li class="fragment">Aufruf von Super-Konstruktoren und Super-Methoden über call / apply
                         </ol>
@@ -583,9 +583,9 @@ console.log(programmer instanceof Person);</code></pre>
                 </section>
                 <section>
                     <section>
-                        <h2>Übung: Typen</h2>
+                        <h2>Übung: Klassen</h2>
                         <ol>
-                            <li>Schreibe einen Typen für Person
+                            <li>Schreibe eine Klasse für Person
                                 <ul>
                                     <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
                                         <code>alter</code> und <code>geschlecht</code> zu
@@ -599,7 +599,7 @@ console.log(programmer instanceof Person);</code></pre>
                     <section>
                         <h3>Optionaler Zusatzübung: Vererbung</h3>
                         <ol>
-                            <li>Schreibe den Typen Customer
+                            <li>Schreibe die Klasse Customer
                                 <ul>
                                     <li>Customer soll von Person erben
                                     <li>Berechne im Konstruktor aus den Parametern zumindest ein zusätzliches Feld, das
@@ -740,7 +740,7 @@ require(['js/modules/accounting'], function (Accounting) {
                     <ol>
                         <li>Schreibe ein Modul, in das du die vorhandenen Typendefinitionen verschiebst. Dieses Modul soll
                             <ul>
-                                <li>nach außen nur den <code>Customer</code>-Typen exportieren
+                                <li>nach außen nur die <code>Customer</code>-Klasse exportieren
                             </ul>
                         </li>
                         <li>Schreibe den aufrufenden Code so um, dass er mit den neuen Modulen arbeitet
