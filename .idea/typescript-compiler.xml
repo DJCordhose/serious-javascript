@@ -2,6 +2,8 @@
 <project version="4">
   <component name="TypeScriptCompiler">
     <option name="isCompilerEnabled" value="true" />
+    <option name="typeScriptServiceDirectory" value="/usr/local/lib/node_modules/typescript/bin" />
     <option name="typeScriptCompilerParams" value="&quot;&quot; --module commonjs" />
+    <option name="versionType" value="SERVICE_DIRECTORY" />
   </component>
 </project>

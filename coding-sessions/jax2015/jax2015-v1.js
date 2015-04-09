@@ -24,24 +24,25 @@
  */
 'use strict';
 
-class Programmer {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
+var programmer = {
+    name: 'Olli',
+    age: 44
+};
+
+var programmers = [programmer, {
+    name: 'Oma',
+    age: 88
+} ];
+
+var log = function (p) {
+    console.log(p.name + ": " + p.age);
+};
+
+(function () {
+    for (var i in programmers) {
+        var p = programmers[i];
+        log(p);
     }
+})();
 
-    log() {
-        console.log(this.name + ": " + this.age);
-    }
-
-}
-
-const programmer = new Programmer('Olli', 44);
-const programmers = [programmer, new Programmer('Oma', 88)];
-
-for (let i in programmers) {
-    let p = programmers[i];
-    p.log();
-}
-
-console.log(p);
+//console.log(p);

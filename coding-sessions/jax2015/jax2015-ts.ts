@@ -24,24 +24,11 @@
  */
 'use strict';
 
-class Programmer {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
+import Programmer from './Programmer';
 
-    log() {
-        console.log(this.name + ": " + this.age);
-    }
+const programmer = new Programmer('Olli', 'JavaScript');
+const programmers = [programmer, new Programmer('Oma', 'F#')];
 
+for (let p of programmers) {
+    console.log(p.code());
 }
-
-const programmer = new Programmer('Olli', 44);
-const programmers = [programmer, new Programmer('Oma', 88)];
-
-for (let i in programmers) {
-    let p = programmers[i];
-    p.log();
-}
-
-console.log(p);

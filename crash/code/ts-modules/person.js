@@ -6,7 +6,7 @@ var __extends = this.__extends || function (d, b) {
 };
 var Person = (function () {
     function Person(name, alter, geschlecht) {
-        if (typeof geschlecht === "undefined") { geschlecht = "F"; }
+        if (geschlecht === void 0) { geschlecht = "F"; }
         this.name = name;
         this.alter = alter;
         this.geschlecht = geschlecht;
@@ -16,13 +16,11 @@ var Person = (function () {
         this.notify();
         return this.name;
     };
-
     Person.prototype.notify = function () {
         this.watchers.forEach(function (watcherWithScope) {
             watcherWithScope.watcher.call(watcherWithScope.scope);
         });
     };
-
     Person.prototype.registerWatcher = function (watcher, scope) {
         this.watchers.push({
             watcher: watcher,
@@ -32,7 +30,6 @@ var Person = (function () {
     return Person;
 })();
 exports.Person = Person;
-
 var Customer = (function (_super) {
     __extends(Customer, _super);
     function Customer(name, alter, geschlecht) {
@@ -42,7 +39,6 @@ var Customer = (function (_super) {
     Customer.prototype.shop = function () {
         return "Shopping: " + this.preferredArticle;
     };
-
     Customer.prototype.getName = function () {
         return "Dear " + _super.prototype.getName.call(this);
     };

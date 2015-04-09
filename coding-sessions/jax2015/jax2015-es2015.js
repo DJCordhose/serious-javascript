@@ -24,24 +24,25 @@
  */
 'use strict';
 
-class Programmer {
-    constructor(name, age) {
+class Person {
+    constructor(name) {
         this.name = name;
-        this.age = age;
     }
-
-    log() {
-        console.log(this.name + ": " + this.age);
+    getName() {
+        return this.name;
     }
-
 }
-
-const programmer = new Programmer('Olli', 44);
-const programmers = [programmer, new Programmer('Oma', 88)];
-
-for (let i in programmers) {
-    let p = programmers[i];
-    p.log();
+class Programmer extends Person {
+    constructor(name, language) {
+        super(name);
+        this.language = language;
+    }
+    code() {
+        return this.getName() + " codes in " + this.language;
+    }
 }
+const programmer = new Programmer('Erna', 'JavaScript');
+console.log(programmer.code());
+console.log(programmer instanceof Programmer);
+console.log(programmer instanceof Person);
 
-console.log(p);
