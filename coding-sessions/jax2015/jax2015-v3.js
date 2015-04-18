@@ -43,5 +43,7 @@ for (let i in programmers) {
     let p = programmers[i];
     p.log();
 }
+// or
+programmers.forEach((p) => p.log());
 
-console.log(p);
+//console.log(p);

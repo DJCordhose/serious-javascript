@@ -19,6 +19,11 @@
  * let, const
  * class, extends
  *
+ * TypeScript
+ * types and fields
+ * import
+ * for..of
+ *
  * Links:
  * - http://blogs.msdn.com/b/typescript/archive/2015/03/27/announcing-typescript-1-5-alpha.aspx
  */

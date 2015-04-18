@@ -531,6 +531,24 @@ array[10] = 3;
             </ul>
         </section>
         <section>
+            <h3>Haskell (sort of): PureScript.js</h3>
+            <p><a target="_blank" href="http://www.purescript.org/">http://www.purescript.org/</a></p>
+            <ul>
+                <li class="fragment">Typed and functional
+                <li class="fragment">Based on Haskell infrastructure
+                <li class="fragment">Compiles to JavaScript only
+                <li class="fragment">Example code for Person class and show method
+<pre class="fragment"><code class="java javascript" contenteditable>data Person = Person { name :: String, age :: Number }
+
+showPerson :: Person -> String
+showPerson (Person o) = o.name ++ ", aged " ++ o.age</code></pre>
+                <li class="fragment">Example code for creation of a person
+<pre class="fragment"><code class="java javascript" contenteditable>examplePerson :: Person
+examplePerson = Person { name: "Bonnie", age: 26 }</code></pre>
+                <li class="fragment">Compiled JavaScript is surprisingly readable
+            </ul>
+        </section>
+        <section>
             <h3>BUT: Remember and Consider the Semantic Gap</h3>
             <img src="Flow_Talk_Typed_JavaScript.png" height="450">
             <p><small>Copyright 2014, Avik Chaudhuri, Facebook</small></p>

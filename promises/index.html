@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script>
+    var deferred = $.Deferred()
+    var promise = deferred.promise()
+
+    promise.then(function(x) {
+        var number = 1;
+        console.log(number, x)
+        return number
+    }).then(function(x) {
+        var number = 2;
+        console.log(number, x)
+        return number
+    }).then(function(x) {
+        var number = 3;
+        console.log(number, x)
+        return number
+    }).done(function(x) {
+        var number = 1;
+        console.log(number, x)
+        return number
+    }).done(function(x) {
+        var number = 2;
+        console.log(number, x)
+        return number
+    }).done(function(x) {
+        var number = 3;
+        console.log(number, x)
+        return number
+    })
+
+
+    deferred.resolve(0);
+</script>
+<body>
+
+</body>
+</html>
