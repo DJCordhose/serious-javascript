@@ -1,4 +1,4 @@
-export default class Person {
+class Person {
     private name: string;
     constructor(name) {
         this.name = name
@@ -7,3 +7,5 @@ export default class Person {
         return this.name
     }
 }
+
+export default Person;

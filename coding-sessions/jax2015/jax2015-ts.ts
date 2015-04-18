@@ -19,16 +19,15 @@
  * let, const
  * class, extends
  *
- * Links:
- * - http://blogs.msdn.com/b/typescript/archive/2015/03/27/announcing-typescript-1-5-alpha.aspx
  */
 'use strict';
 
 import Programmer from './Programmer';
 
 const programmer = new Programmer('Olli', 'JavaScript');
-const programmers = [programmer, new Programmer('Oma', 'F#')];
+const programmers = new Set<Programmer>();
+programmers.add(programmer);
+programmers.add(new Programmer('Oma', 'Cobol'));
+//const programmers = [programmer, new Programmer('Oma', 'F#')];
 
-for (let p of programmers) {
-    console.log(p.code());
-}
+programmers.forEach((p) => console.log(p.code()));

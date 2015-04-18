@@ -1,6 +1,6 @@
 import Person from './Person';
 
-export default class Programmer extends Person {
+class Programmer extends Person {
     private language: string;
     constructor(name, language) {
         super(name);
@@ -10,3 +10,5 @@ export default class Programmer extends Person {
         return [this.getName(), this.language];
     }
 }
+
+export default Programmer;
