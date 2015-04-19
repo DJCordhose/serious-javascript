@@ -472,7 +472,7 @@ olli.getName() === 'Olli';
                 <ol>
                     <li class="fragment">ein leeres, neues Objekt wird erzeugt
                     <li class="fragment">die Konstruktor-Funktion hat ein Property <code>prototype</code>, dies wird als Prototyp des neuen Objekts verwendet
-                    <li class="fragment"><code>this</code> wird an dieses neue Objekte gebunden
+                    <li class="fragment"><code>this</code> wird an dieses neue Objekte gebunden, d.h. man kann darauf über <code>this</code> zugreifen
                     <li class="fragment">die Konstruktor-Funktion wird aufgerufen (mit <code>this</code> gebunden)
                     <li class="fragment">das neue Objekt wird implizit zurückgegeben (wenn die Funktion kein explizites <code>return</code> hat)
                 </ol>
@@ -538,6 +538,21 @@ olli instanceof Object;</code></pre>
                     </section>
 
                 </section>
+                                    <section>
+                        <h2>Übung: Klassen</h2>
+                        <ol>
+                            <li>Schreibe eine Klasse für Person
+                                <ul>
+                                    <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
+                                        <code>alter</code> und <code>geschlecht</code> zu
+                                    <li>Mache aus allen Funktionen, die auf Personen arbeiten, Methoden
+                                </ul>
+                            </li>
+                            <li>Erzeuge ein Objekt vom Typ Person und rufe Methoden darauf auf
+                        </ol>
+                    </section>
+
+
                 <section>
                                 <section>
                 <h2>Vererbungshierarchien - revisited</h2>
@@ -581,23 +596,8 @@ console.log(programmer instanceof Person);</code></pre>
             </ul>
         </section>
                 </section>
-                <section>
                     <section>
-                        <h2>Übung: Klassen</h2>
-                        <ol>
-                            <li>Schreibe eine Klasse für Person
-                                <ul>
-                                    <li>Lasse im Konstruktor die drei bekannten Parameter für <code>name</code>,
-                                        <code>alter</code> und <code>geschlecht</code> zu
-                                    <li>Mache aus allen Funktionen, die auf Personen arbeiten, Methoden
-                                </ul>
-                            </li>
-                            <li>Erzeuge ein Objekt vom Typ Person und rufe Methoden darauf auf
-                        </ol>
-                    </section>
-
-                    <section>
-                        <h3>Optionaler Zusatzübung: Vererbung</h3>
+                        <h3>Übung: Vererbung</h3>
                         <ol>
                             <li>Schreibe die Klasse Customer
                                 <ul>
@@ -612,7 +612,6 @@ console.log(programmer instanceof Person);</code></pre>
                             <li>Erzeuge mindestens ein Objekt vom Typ Customer und rufe Methoden darauf auf
                         </ol>
                     </section>
-                </section>
                 <section>
                     <section>
                         <h2>Module</h2>
@@ -816,7 +815,7 @@ it('that fired event is received', function() {
                         <li>Nutze dafür dieses JsBin-Projekt als Grundlage
                             <a target="_blank" href="http://jsbin.com/jijuri/2/edit?js,output">http://jsbin.com/jijuri/2/edit?js,output</a>
                         <li>Clone das Projekt und verschiebe deine Klassen in den JavaScript-Bereich
-                        <li>Schreibe mit Jasmine sinnvollen Spezifikationen für deine Klassen
+                        <li>Schreibe mit Jasmine sinnvolle Spezifikationen für deine Klassen
                         <li>Achtung: Aus technischen Gründen, läuft Jasmine hier in der älteren Version 1.3.1
                     </ul>
                 </section>
@@ -864,7 +863,7 @@ it('that fired event is received', function() {
                     <h3>Selectors</h3>
                     <ul>
                         <li class="fragment">Zur Auswahl von Elementen
-                        <li class="fragment">Spucken immer ein Array von Elementen aus
+                        <li class="fragment">Spucken immer ein jQuery-Objet aus, das ein Array von Elementen kapselt
                         <li class="fragment">nach CSS-Klasse: <code>$(".class")</code>
                         <li class="fragment">nach Tag: <code>$("tag")</code>
                         <li class="fragment">nach id: <code>$("#id")</code>
@@ -902,8 +901,7 @@ log.on('click', function(event) { // ... });</code></pre>
                         <li class="fragment"><code>$</code> ist ein kürzerer Name für die globale Funktion <code>jQuery</code>
                         <li class="fragment"><code>$</code> hat statische Methoden, z.B. <code>getJSON</code>
                         <li class="fragment"><code>$</code> erzeugt Objekte vom Typ <code>$</code>
-                        <li class="fragment">CSS-Selektoren sind denen von jQuery sehr ähnlich
-                        <li class="fragment">HTML5 bietet Selektoren mit ähnlicher Mächtigkeit, z.B. <code>document.querySelector('#log');</code>
+                        <li class="fragment">jQuery-Selektoren sind eine Obermenge von CSS-Selektoren
                     </ul>
                 </section>
                 <section>
@@ -926,8 +924,7 @@ log.myPlugin();
             <section>
                 <h2>Code-Beispiel: Einfaches Plugin</h2>
                 <p class="fragment">Alle durch den Selektor gefundenen Elemente ausgeben</p>
-                <pre class="fragment"><code class="javascript" contenteditable>var log = $("#log");
-$.fn.dump = function() {
+                <pre class="fragment"><code class="javascript" contenteditable>$.fn.dump = function() {
     // iterate over all elements found by selector
     this.each(function() {
         // this is a DOM element,
@@ -937,8 +934,9 @@ $.fn.dump = function() {
     // return $ element for chaining
     return this;
 };
-// chaining does work
-log.dump().show();</code></pre>
+
+var log = $("#log");
+log.dump().show(); // chaining does work</code></pre>
 
                 <p class="fragment"><a href="http://learn.jquery.com/plugins/basic-plugin-creation/">Tutorial jQuery-Plugins</a></p>
 
@@ -991,10 +989,12 @@ log.dump().show();</code></pre>
             <ul>
                 <li class="fragment">ECMAScript ist der Standard und JavaScript ist die Implementierung
                 <li class="fragment">Ab IE9 sind wir bei ECMAScript 5 (2009)
-                <li class="fragment">ECMAScript 2015 ist der neue Name für ECMAScript 6
+                <li class="fragment">ECMAScript 2015 ist der offizielle, neue Name für ECMAScript 6
+                <li class="fragment">ES 2015 ist die Abkürzung für ECMAScript 2015
                 <li class="fragment">Projekt Harmony ist ECMAScript >=6
                 <li class="fragment">Spec für ES6 beinahe final
-                <li class="fragment">In 5 Jahren breit verfügbar (lauf Wirfs-Brock, Editor der Spec)
+                <li class="fragment">An der Spec für ES7 wird bereits gearbeitet
+                <li class="fragment">In spätestens 5 Jahren breit nativ verfügbar (lauf Wirfs-Brock, Editor der Spec)
                 <li class="fragment">Vieles bereits heute nutzbar
             </ul>
         </section>
