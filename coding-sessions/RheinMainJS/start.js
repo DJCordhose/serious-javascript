@@ -43,13 +43,13 @@ Programmer.prototype.code = function () {
 
 var programmer = new Programmer('Olli', 44);
 
-var programmers = [programmer, new Programmer('Oma',88) ];
+var programmers = [programmer, new Programmer('Oma', 88)];
 
-(function () {
-    for (var i in programmers) {
+for (var i in programmers) {
+    (function () {
         var p = programmers[i];
         console.log(p.code());
-    }
-})();
+    })();
+}
 
-//console.log(p);
+console.log(typeof p);

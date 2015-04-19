@@ -194,8 +194,8 @@ In diesem Talk untersuchen wir unterschiedliche Typensysteme, die passenden Werk
             <li class="fragment">Optional Static type information in comments
             <li class="fragment">Supports a superset of <a target="_blank" href="http://usejsdoc.org/">JSDoc</a>
             <li class="fragment">Compiler uses type information for static checks and optimizations
-            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Main Page of Compilers</a>
             <li class="fragment">Used in many Google products and standard way to write JavaScript at Google
+            <li class="fragment"><a target="_blank" href="https://developers.google.com/closure/compiler/">Main Page of Compiler</a>
         </ul>
     </section>
         <section>
@@ -265,15 +265,15 @@ var olli = new Person('Olli', 43);
             <h3>Key Features</h3>
             <ul>
                 <li class="fragment">Developed by Microsoft, v1.0 released April, 2nd, 2014
-                <li class="fragment">More or less ECMAScript 6 with optional declared types
+                <li class="fragment">More or less ECMAScript 6 with optional declared types and access modifiers
                 <li class="fragment">Compiles to human readable JavaScript
-                <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
                 <li class="fragment">External declarations allow for type declarations for existing JavaScript code
                 <li class="fragment">in release <a target="_blank"
                                                    href="https://groups.google.com/forum/#!topic/closure-compiler-discuss/5EVAw6oO2BI">v20150126</a>
                     even Google's Closure Compiler will support TypeScript's type annotations
                 <li class="fragment">Version 1.5 will feature Annotations and type introspection
                 <li class="fragment">IDE WebStorm 10 features native support
+                <li class="fragment"><a target="_blank" href="http://www.typescriptlang.org/Playground/">TypeScript-Playground</a>
             </ul>
         </section>
         <section>
@@ -348,7 +348,7 @@ interface Function {
                 <li class="fragment">
                     <a target="_blank" href="http://flowtype.org/">http://flowtype.org/</a>
                 <li class="fragment">Done and used by Facebook
-                <li class="fragment">Uses TypeScripts type annotations
+                <li class="fragment">Understands TypeScript's type annotations
                 <li class="fragment">Can infer types even without any type annotations
                 <li class="fragment">Also supports a larger set of type annotations (maybe types, intersection types, open methods, mixed type)
                 <li class="fragment">Special support for Facebook React's JSX
@@ -362,7 +362,7 @@ interface Function {
         <section>
         <h3>Code Sample</h3>
 <pre><code class="java javascript" contenteditable>// type inference with zero type annotations:
-//  x must be string or number, function returns number
+// x must be string or number, function returns number
 function foo(x) {
     if (typeof(x) === 'string') {
         return x.length;
@@ -371,9 +371,8 @@ function foo(x) {
     }
 }
 // fails as there is no support for boolean
-var res = foo("Hello") + foo(42) + foo(true);
-
-// tupple types
+var res = foo("Hello") + foo(42) + foo(true);</code></pre>
+<pre class="fragment"><code class="java javascript" contenteditable>// tupple types
 var tup: [string, number, boolean, string] = ["1", 1, true, "positive"];
 var b = tup[0] + tup[1].toFixed();</code></pre>
     </section>
@@ -383,7 +382,7 @@ var b = tup[0] + tup[1].toFixed();</code></pre>
                 <li class="fragment">Pros
                     <ul>
                         <li class="fragment">Open Source
-                        <li class="fragment">Builds on TypeScript
+                        <li class="fragment">Compatible with TypeScript style type annotations
                         <li class="fragment">Very strong type inference
                         <li class="fragment">Richer type annotations, matching most JavaScript use cases
                         <li class="fragment">Forced TypeScript to add least add tupple types and unions
@@ -443,7 +442,7 @@ var b = tup[0] + tup[1].toFixed();</code></pre>
                 <li class="fragment">
                     <a target="_blank" href="https://github.com/arv/traceur-compiler/tree/strong-mode">Traceur Compiler can also translate Strong Mode</a> to ordinary JavaScript
                 <li class="fragment">Next level of "strict mode"
-                <li class="fragment">Aim is retire some of the really "bad parts" of JavaScript
+                <li class="fragment">Aim is to retire some of the really "bad parts" of JavaScript
                 <li class="fragment">Still in an early stage, not fully implemented
             </ul>
         </section>
@@ -494,9 +493,9 @@ array[10] = 3;
                 <li class="fragment">Tech lead former Chrome V8 tech lead
                 <li class="fragment">Optional Types
                 <li class="fragment">Compiles to JavaScript
-                <li class="fragment">Meant to be a replacement for JavaScript (because JavaScrip is just too bad)
+                <li class="fragment">Meant to be a replacement for JavaScript - because JavaScript is just too bad (in the opinion of Dart's creators)
                 <li class="fragment">Semantics very different from JavaScript as a design choice
-                <li class="fragment">Integration of JavaScript a toughir (partly because of different semantics, partly because of different VM)
+                <li class="fragment">Integration of JavaScript a toughie (partly because of different semantics, partly because of different VM)
                 <li class="fragment">Also runs natively in Dartium browser (derived from Chromium)
                 <li class="fragment">Runs on server on special VM
                 <li class="fragment"><a target="_blank" href="http://www.reddit.com/r/dartlang/comments/2vljo6/should_we_put_dart_to_rest/">considered obsolete by some people</a>
@@ -510,7 +509,7 @@ array[10] = 3;
                 <li class="fragment">Now open project
                 <li class="fragment">Compiles Java to JavaScript
                 <li class="fragment">Uses Google Closure compiler to shrink complete application
-                <li class="fragment">Semantics even more different from JavaScript as this is Java
+                <li class="fragment">Semantics even more different from JavaScript than Dart (as this is Java)
                 <li class="fragment">Integration of JavaScript a toughie (because of different semantics)
                 <li class="fragment">Integrates well in Java environment (language, Eclipse IDE, Maven)
                 <li class="fragment"><a target="_blank" href="https://twitter.com/jbandi/status/584930147406639104?s=03">
