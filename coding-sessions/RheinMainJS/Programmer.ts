@@ -2,7 +2,7 @@ import Person from './Person';
 
 class Programmer extends Person {
     private language: string;
-    constructor(name, language) {
+    constructor(name: string, language: string) {
         super(name);
         this.language = language;
     }

@@ -1,5 +1,5 @@
 /*
- * /usr/local/bin/iojs --use_strict --harmony --es_staging --harmony_modules --harmony_arrow_functions --harmony_classes --harmony_object_literals jax2015.js
+ * /usr/local/bin/iojs --use_strict --harmony --es_staging --harmony_modules --harmony_arrow_functions --harmony_classes --harmony_object_literals index.js
  *
  * Content:
  *
@@ -25,38 +25,73 @@
  *
  */
 'use strict';
+var PersonModul = {};
+(function () {
 
-// ECMAScript 2015
-class Person {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        log() {
+            console.log(this.name + " ist " + this.age + " Jahre alt");
+        }
     }
-    log() {
-        console.log("Person:", this);
+
+    class Programmer extends Person {
+        constructor(name, age, programmersprache) {
+            super(name, age);
+            this.programmersprache = programmersprache;
+        }
+
+        code() {
+            console.log(this.name + " programmiert in " + this.programmersprache);
+        }
     }
+    let andereLokaleVariable = 32;
+    if (true) {
+        const andereLokaleVariable = 47;
+        //console.log("Im Sichtbarkeitsbereich", andereLokaleVariable);
+    }
+    //console.log(andereLokaleVariable);
+
+    PersonModul.Programmer = Programmer;
+}());
+
+var opa = new PersonModul.Programmer('Opa', 86, 'Cobol');
+var oma = new PersonModul.Programmer('Oma', 88, 'Fortran');
+
+var programmierer = new Set();
+programmierer.add(opa);
+programmierer.add(oma);
+for (let p of programmierer) {
+    p.code();
 }
+var s = JSON.stringify(programmierer);
+console.log(s);
 
-class Programmer extends Person {
-    constructor(name, age, language) {
-        super(name, age);
-        this.language = language;
-    }
-    code() {
-        console.log(this.name, "codes in", this.language)
-    }
-}
+/*
+//opa.code();
 
-var olli = new Programmer('Olli', 44, 'JavaScript');
+ function log(person) {
+ console.log("Arguments", arguments);
+ console.log("Das erste Elemet", arguments[1]);
+ console.log(person);
+ }
 
-var array = [olli, new Programmer('Oma', 88, 'PureScript')];
+ var person = {
+ name: 'Olli',
+ age: 44,
+ sprachen: ['Java', 'JavaScript']
+ };
+ person.haarfarbe = 'blond';
 
-// ECMAScript 2015
-for (let person of array) {
-    person.log();
-    person.code();
-}
-console.log("Typ von Person: ");
-console.log(typeof person);
+ var array = [person, {name: 'Oma', age: 88, haarfarbe: 'grau'}];
+ for (var i=0; i < array.length; i++) {
+ var p = array[i];
+ log(person, 10, 10);
+ }
 
+*/
 
