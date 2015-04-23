@@ -41,9 +41,9 @@ Programmer.prototype.code = function () {
     return this.getName() + " codes in " + this.language;
 };
 
-var programmer = new Programmer('Olli', 44);
+var programmer = new Programmer('Olli', 'Cobol');
 
-var programmers = [programmer, new Programmer('Oma', 88)];
+var programmers = [programmer, new Programmer('Oma', 'Haskell')];
 
 for (var i in programmers) {
     (function () {

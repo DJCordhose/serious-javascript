@@ -68,8 +68,8 @@ programmierer.add(oma);
 for (let p of programmierer) {
     p.code();
 }
-var s = JSON.stringify(programmierer);
-console.log(s);
+//var s = JSON.stringify(programmierer);
+//console.log(s);
 
 /*
 //opa.code();

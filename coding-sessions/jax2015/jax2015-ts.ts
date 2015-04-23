@@ -29,5 +29,7 @@ const programmers = new Set<Programmer>();
 programmers.add(programmer);
 programmers.add(new Programmer('Oma', 'Cobol'));
 //const programmers = [programmer, new Programmer('Oma', 'F#')];
+//var s = JSON.stringify([...programmers]);
+//console.log(s);
 
 programmers.forEach((p) => console.log(p.code()));
