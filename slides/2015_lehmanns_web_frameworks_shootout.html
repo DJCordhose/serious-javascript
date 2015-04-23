@@ -67,11 +67,39 @@
         <img src="techradar/js-frameworks.jpg" height="500px">
         <p><small>Copyright 2015, Mike North (@michaellnorth), https://twitter.com/ModernWebUI/status/575532649948790784/photo/1</small></p>
     </section>
+    <section>
+    <h2>Why client side (browser) rendering and frameworks in the first place?</h2>
+    <h3 class="fragment roll-in">Single Page Applications (SPAs) move the application to the browser</h3>
+</section>
+    <section>
+        <h3>Classic Server Side Rendering (Blue: Server, Violett: Browser)</h3>
+        <ul>
+            <img src="Classic%20Web%20Application.png" style="height: 500px;">
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
+    <section>
+        <h3>SPA Lean: Rendering and UI in Browser</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" style="height: 500px;">
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
+    <section>
+        <h3>SPA Fat: Additional business logic in Browser</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" style="height: 500px;">
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
         <section>
             <h2>Our candidates</h2>
             <ol>
                 <li class="fragment grow">Frontend Classic: jQuery
-                <li class="fragment grow">Adding structure: Backbone
+                <li class="fragment grow">Adding structure: Backbone <span style="color: red">TODO: Marionette weg</span>
                 <li class="fragment grow">Ember <span style="color: red">TODO: fehlt</span>
                 <li class="fragment grow">Introducing Magic: Angular 1.x <span style="color: red">TODO: Umstellung auf Angular 1.4</span>
                 <li class="fragment grow">More Magic?: Angular 2.x
@@ -297,6 +325,70 @@ var mountNode = document.getElementById('example');
 React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a target="_blank" href="../framework-comparison/react/index.html">Run</a>
         </section>
+    <section>
+    <section>
+        <h1>Which framework is right for me?</h1>
+    </section>
+        <section>
+            <h2>ThoughtWorks JavaScript framework technology radar</h2>
+            <div>
+                <img src="techradar/framework-radar-thoughtworks.png" class="right-img">
+                <ol>
+                    <li class="fragment">jQuery (implied)
+                    <li class="fragment">Backbone
+                    <li class="fragment">Angular.js
+                    <li class="fragment">React
+                </ol>
+            </div>
+            <p style="clear: both">
+                <small><a target="_blank" href="http://www.thoughtworks.com/radar/a-z">http://www.thoughtworks.com/radar/a-z</a></small>
+            </p>
+        </section>
+        <section>
+            <h3>Magic and Flexibility</h3>
+            <div>
+                <img src="techradar/magic-guiding.jpg" class="right-img" style="height: 450px">
+                <ol>
+                    <li class="fragment">jQuery
+                    <li class="fragment">Backbone/Marionette
+                    <li class="fragment">Angular
+                    <li class="fragment">React
+                </ol>
+            </div>
+            <p style="clear: both">
+            <small>Copyright 2015, Oliver Zeigermann</small>
+            </p>
+        </section>
+        <section>
+            <h3>Consider: What is your history?</h3>
+            <ul>
+                <li class="fragment">CSS/HTML without jQuery
+                    <ul>
+                        <li class="fragment">=> jQuery
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">CSS/HTML with jQuery
+                    <ul>
+                        <li class="fragment">=> Backbone/Marionette
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">Java, C# or C++
+                    <ul>
+                        <li class="fragment">=> Angular
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">JavaScript (maybe with other frameworks)
+                    <ul>
+                        <li class="fragment">=> React
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </section>
 
         <section>
             <h1>Summary</h1>
