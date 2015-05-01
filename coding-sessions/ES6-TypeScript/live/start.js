@@ -1,26 +1,17 @@
 /*
  * /usr/local/bin/iojs --use_strict --harmony --es_staging --harmony_modules --harmony_arrow_functions --harmony_classes --harmony_object_literals jax2015.js
  *
- * Content:
- *
- * ES5 part
- * 'use strict'
- * var
- * object
- * console.log
- * environments: node und chrome
- * array
- * for
- * function
- * iife
- * class pattern (keine Vererbung)
- *
- * ES6 part
- * let, const
- * class, extends
- *
- * Links:
- * - http://blogs.msdn.com/b/typescript/archive/2015/03/27/announcing-typescript-1-5-alpha.aspx
+ * - let/const (ES6)
+ * - class, extends (ES6)
+ * - types and fields (TypeScript)
+ * - visibility (TypeScript)
+ * - constructor shortcuts (TypeScript)
+ * - for..of (ES6)
+ * - destructuring (ES6)
+ * - module / import (ES6)
+ * - String interpolation (`${name} codes in ${language}`) (ES6)
+ * - Set, Map (ES6)
+ * - Interfaces (HasName) (TypeScript)
  */
 'use strict';
 
