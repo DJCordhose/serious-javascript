@@ -54,7 +54,7 @@
 <div class="slides">
 
 <section>
-    <h1>JavaScript Web Frameworks</h1>
+    <h2>JavaScript Single Page Application Web Frameworks</h2>
 
     <p>
         <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
@@ -99,7 +99,7 @@
             <h2>Our candidates</h2>
             <ol>
                 <li class="fragment grow">Frontend Classic: jQuery
-                <li class="fragment grow">Adding structure: Backbone <span style="color: red">TODO: Marionette weg</span>
+                <li class="fragment grow">Adding structure: Backbone (with Marionette)
                 <li class="fragment grow">Ember <span style="color: red">TODO: fehlt</span>
                 <li class="fragment grow">Introducing Magic: Angular 1.x <span style="color: red">TODO: Umstellung auf Angular 1.4</span>
                 <li class="fragment grow">More Magic?: Angular 2.x
@@ -113,17 +113,6 @@
                 <li class="fragment">Found almost everywhere
                 <li class="fragment">"Fixes" DOM programming
                 <li class="fragment">Does not abstract from DOM, though
-                <li class="fragment">best when you have an existing DOM, e.g. a classic web application
-                    <ul>
-                        <li class="fragment">modify something (make something visible depending on a click)
-                        <li class="fragment">extract data (get data from input fields and do validation, fill
-                            other areas etc.)
-                        <li class="fragment">It is possible to create new nodes or clone sections but then you are
-                            probably already lost.
-                        <li class="fragment">locate something (find a button or an input field and submit a click
-                            or data - e.g. for E2E Tests)
-                    </ul>
-                </li>
             </ul>
         </section>
 
@@ -159,6 +148,8 @@
                 <li class="fragment">Model interacts with RESTful servers using CRUD operations
                 <li class="fragment">Views structure application
                 <li class="fragment">2-way binding using Stickit
+                <li class="fragment">Backbone is not opinionated about much at all
+                <li class="fragment">Marionette adds opinionated patters
             </ul>
         </section>
         <section>
@@ -212,13 +203,6 @@
                 </ul>
             </li>
             <li class="fragment">designed for good testability
-            <!--<li class="fragment">Angular is opinionated about almost everything-->
-                <!--<ul>-->
-                    <!--<li class="fragment">this can be good to give you guidance-->
-                    <!--<li class="fragment">this can be bad as everything now works the angular way-->
-                    <!--<li class="fragment">you might have to relearn-->
-                <!--</ul>-->
-            <!--</li>-->
         </ul>
     </section>
 
@@ -290,13 +274,6 @@ inline: `&lt;input [value]="greeting" #in (keyup)="updateModel(in.value)">
                 <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
                 <li class="fragment">Browser DOM experiences minimal amount of updates
                 <li class="fragment">Can render both on server and on client side
-                <!--<li class="fragment">React is opinionated about almost nothing-->
-                    <!--<ul>-->
-                        <!--<li class="fragment">this can be bad as there is little guidance-->
-                        <!--<li class="fragment">this can be good as you can reuse everything you knew before-->
-                        <!--<li class="fragment">React also plays very well with other libs-->
-                    <!--</ul>-->
-                <!--</li>-->
             </ul>
         </section>
 
@@ -325,79 +302,140 @@ var mountNode = document.getElementById('example');
 React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <a target="_blank" href="../framework-comparison/react/index.html">Run</a>
         </section>
-    <section>
-    <section>
-        <h1>Which framework is right for me?</h1>
-    </section>
-        <section>
-            <h2>ThoughtWorks JavaScript framework technology radar</h2>
-            <div>
-                <img src="techradar/framework-radar-thoughtworks.png" class="right-img">
-                <ol>
-                    <li class="fragment">jQuery (implied)
-                    <li class="fragment">Backbone
-                    <li class="fragment">Angular.js
-                    <li class="fragment">React
-                </ol>
-            </div>
-            <p style="clear: both">
-                <small><a target="_blank" href="http://www.thoughtworks.com/radar/a-z">http://www.thoughtworks.com/radar/a-z</a></small>
-            </p>
-        </section>
-        <section>
-            <h3>Magic and Flexibility</h3>
-            <div>
-                <img src="techradar/magic-guiding.jpg" class="right-img" style="height: 450px">
-                <ol>
-                    <li class="fragment">jQuery
-                    <li class="fragment">Backbone/Marionette
-                    <li class="fragment">Angular
-                    <li class="fragment">React
-                </ol>
-            </div>
-            <p style="clear: both">
-            <small>Copyright 2015, Oliver Zeigermann</small>
-            </p>
-        </section>
-        <section>
-            <h3>Consider: What is your history?</h3>
-            <ul>
-                <li class="fragment">CSS/HTML without jQuery
-                    <ul>
-                        <li class="fragment">=> jQuery
-                        </li>
-                    </ul>
-                </li>
-                <li class="fragment">CSS/HTML with jQuery
-                    <ul>
-                        <li class="fragment">=> Backbone/Marionette
-                        </li>
-                    </ul>
-                </li>
-                <li class="fragment">Java, C# or C++
-                    <ul>
-                        <li class="fragment">=> Angular
-                        </li>
-                    </ul>
-                </li>
-                <li class="fragment">JavaScript (maybe with other frameworks)
-                    <ul>
-                        <li class="fragment">=> React
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-    </section>
+    <!--<section>-->
+    <!--<section>-->
+        <!--<h1>Which framework is right for me?</h1>-->
+    <!--</section>-->
+        <!--<section>-->
+            <!--<h2>ThoughtWorks JavaScript framework technology radar</h2>-->
+            <!--<div>-->
+                <!--<img src="techradar/framework-radar-thoughtworks.png" class="right-img">-->
+                <!--<ol>-->
+                    <!--<li class="fragment">jQuery (implied)-->
+                    <!--<li class="fragment">Backbone-->
+                    <!--<li class="fragment">Angular.js-->
+                    <!--<li class="fragment">React-->
+                <!--</ol>-->
+            <!--</div>-->
+            <!--<p style="clear: both">-->
+                <!--<small><a target="_blank" href="http://www.thoughtworks.com/radar/a-z">http://www.thoughtworks.com/radar/a-z</a></small>-->
+            <!--</p>-->
+        <!--</section>-->
+        <!--<section>-->
+            <!--<h3>Magic and Flexibility</h3>-->
+            <!--<div>-->
+                <!--<img src="techradar/magic-guiding.jpg" class="right-img" style="height: 450px">-->
+                <!--<ol>-->
+                    <!--<li class="fragment">jQuery-->
+                    <!--<li class="fragment">Backbone/Marionette-->
+                    <!--<li class="fragment">Angular-->
+                    <!--<li class="fragment">React-->
+                <!--</ol>-->
+            <!--</div>-->
+            <!--<p style="clear: both">-->
+            <!--<small>Copyright 2015, Oliver Zeigermann</small>-->
+            <!--</p>-->
+        <!--</section>-->
+        <!--<section>-->
+            <!--<h3>Consider: What is your history?</h3>-->
+            <!--<ul>-->
+                <!--<li class="fragment">CSS/HTML without jQuery-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">=> jQuery-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="fragment">CSS/HTML with jQuery-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">=> Backbone/Marionette-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="fragment">Java, C# or C++-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">=> Angular-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="fragment">JavaScript (maybe with other frameworks)-->
+                    <!--<ul>-->
+                        <!--<li class="fragment">=> React-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</section>-->
+    <!--</section>-->
 
         <section>
-            <h1>Summary</h1>
+            <h1>The Verdict</h1>
             <ul>
                 <li class="fragment">Hypes come and go quickly in JavaScript land
                 <li class="fragment">There is no perfect "silver bullet" framework
                 <li class="fragment">What is the framework for you depends on your context und requirements
             </ul>
         </section>
+    <section>
+        <h1>When to use...</h1>
+    </section>
+    <section>
+        <h1>jQuery</h1>
+        <ul>
+            <li class="fragment">best when you have an existing DOM, e.g. a classic web application
+                <ul>
+                    <li class="fragment">modify something (make something visible depending on a click)
+                    <li class="fragment">extract data (get data from input fields and do validation, fill
+                        other areas etc.)
+                    <li class="fragment">It is possible to create new nodes or clone sections but then you are
+                        probably already lost.
+                    <li class="fragment">locate something (find a button or an input field and submit a click
+                        or data - e.g. for E2E Tests)
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h1>Backbone</h1>
+        <!--Backbone-->
+<!-- - Viel Spielraum-->
+<!-- - Struktur für klassische Frontend-Entwickler-->
+<!-- - Mit Marionette dagegen klare Richtung-->
+
+        <ul>
+            <li class="fragment">
+        </ul>
+    </section>
+        <section>
+            <h1>Angular 1.x</h1>
+            <!--Angular-->
+            <!-&#45;&#45; geringe Komplexität, überschaubare Anwendung-->
+            <!-&#45;&#45; Java oder C#-Entwickler-->
+            <ul>
+                <li class="fragment">Angular is opinionated about almost everything
+                    <ul>
+                        <li class="fragment">this can be good to give you guidance
+                        <li class="fragment">this can be bad as everything now works the angular way
+                        <li class="fragment">you might have to relearn
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+
+
+<!--Ember-->
+<!-- - Ideal für RoR-Entwickler-->
+
+<!--React-->
+<!-- - große und komplexe Anwendungen-->
+<!-- - Für erfahrene JavaScript-Entwicker-->
+    <!--<li class="fragment">React is opinionated about almost nothing-->
+    <!--<ul>-->
+    <!--<li class="fragment">this can be bad as there is little guidance-->
+    <!--<li class="fragment">this can be good as you can reuse everything you knew before-->
+    <!--<li class="fragment">React also plays very well with other libs-->
+    <!--</ul>-->
+    <!--</li>-->
 
     <section>
             <h1>Thank you!</h1>
