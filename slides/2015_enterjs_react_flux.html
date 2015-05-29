@@ -98,8 +98,86 @@ und Diskussionen mit React-Kernentwicklern.
         </ul>
     </section>
 
+        <!-- Time including questions: 45 minutes -->
+        <!--http://www.enterjs.de/abstracts#flux-->
         <section>
-            <h2>Let us beginn by having a quick look at React</h2>
+            <h2>Contents</h2>
+            <ol>
+                <!-- 5 minutes -->
+                <li class="fragment">Frontend Architecture: Why?
+                <!-- 5 minutes -->
+                <li class="fragment">React in a nut shell
+                <!-- 10 minutes -->
+                <li class="fragment">Introduction to the core ideas of Flux
+                <!-- 10 minutes -->
+                <li class="fragment">A Sample Implementation: Yahoo's Fluxible
+                <!-- 5 minutes -->
+                <li class="fragment">FAQ
+                <!-- 5 minutes -->
+                <li class="fragment">Questions and discussion
+            </ol>
+        </section>
+
+    <section>
+        <section>
+            <h2>1. Why Frontend Architecture?</h2>
+        </section>
+    <section>
+        <h3>Classic Server Side Rendering (Blue: Server, Violet: Browser)</h3>
+        <ul>
+            <!--<img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">-->
+            <img src="Classic%20Web%20Application.png" class="right-img">
+            <li class="fragment">Classic Web Application
+            <li class="fragment">each interaction triggers a new request and rendering on the server
+            <li class="fragment">All business logic on Server
+            <li class="fragment">Optionally some client side tweaks using JavaScript
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+
+    <section>
+        <h3>SPA: Sample Scenario for high need of good architecture</h3>
+        <ul>
+            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">
+            <li class="fragment">Single Page Application
+            <li class="fragment">a single HTML pages gets loaded containing all HTML and JavaScript
+            <li class="fragment">Rendering entirely in Browser
+            <li class="fragment">Business logic in browser allows for offline support
+        </ul>
+        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
+    </section>
+        <section>
+            <h2>Why is Frontend Architecture for an SPA hard to get right?</h2>
+            <ul>
+                <li class="fragment">Not as much experience with frontend architecture as with backend
+                    <ul>
+                        <li class="fragment">Traditionally, frontend code has not been engineered with maintainability in mind
+                        <li class="fragment">Data and control flow in frontend does not play well with layers
+                    </ul>
+                </li>
+                <li class="fragment">All code is loaded into the browser at runtime
+                    <ul>
+                        <li class="fragment">How do you structure that code to keep it maintainable?
+                        <li class="fragment">How do the components of the system play together in the browser?
+                        <li class="fragment">Initialization phases become much more complex
+                    </ul>
+                </li>
+                <li class="fragment">All rendering and interaction is done in the browser
+                    <ul>
+                        <li class="fragment">How do you render in the browser in the first place?
+                        <li class="fragment">How do you make it fast enough?
+                        <li class="fragment">Communication with server requires asynchronous code
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+    </section>
+
+
+    <section>
+        <section>
+            <h2>2. React in a nut shell</h2>
         </section>
         <section>
             <h2>React</h2>
@@ -178,13 +256,14 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
             </ul>
         </section>
 
+    <section>
         <section>
-            <h3>Flux - An Architecture for (not only) React</h3>
+            <h3>3. Flux - An Architecture for (not only) React</h3>
             <ul>
                 <li class="fragment">React is a "JavaScript libarary for building user interfaces"
                 <li class="fragment">Facebook and Instagram have been built using React
                 <li class="fragment">Flux is an architecture for React developed and used by Facebook
-                <li class="fragment">Objective is to make applications maintainable and to understand
+                <li class="fragment">Objective is to make applications maintainable and easy to understand
                 <li class="fragment">Ideas found in Flux can not only be applied to React Web Applications
                     <!--<ul>-->
                         <!--<li class="fragment">In fact those ideas play well with other Web Frameworks as well-->
@@ -225,88 +304,12 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
         <section>
             <h3>Stores</h3>
         </section>
+    </section>
 
 
-
-        <!-- Time including questions: 45 minutes -->
-        <!--<section>-->
-            <!--<h2>Contents</h2>-->
-            <!--<ol>-->
-                <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-                <!--<li class="fragment">Frontend Architecture-->
-                <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-                <!--<li class="fragment">React in a nut shell-->
-                <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-                <!--<li class="fragment">Introduction to the core ideas of Flux-->
-                <!--&lt;!&ndash; 10 minutes &ndash;&gt;-->
-                <!--<li class="fragment">A Sample Implementation: Yahoo's Fluxible-->
-                <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-                <!--<li class="fragment">FAQ-->
-                <!--&lt;!&ndash; 5 minutes &ndash;&gt;-->
-                <!--<li class="fragment">Questions and discussion-->
-            <!--</ol>-->
-        <!--</section>-->
-<!--
     <section>
         <section>
-            <h2>Why Frontend Architecture?</h2>
-        </section>
-    <section>
-        <h3>Classic Server Side Rendering (Blue: Server, Violett: Browser)</h3>
-        <ul>
-            <img src="Classic%20Web%20Application.png" style="height: 500px;">
-        </ul>
-        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
-    </section>
-
-    <section>
-        <h3>SPA Lean: Rendering and UI in Browser</h3>
-        <ul>
-            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Lean.jpg" style="height: 500px;">
-        </ul>
-        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
-    </section>
-    <section>
-        <h3>SPA Fat: Sample Scenario for high need of good architecture</h3>
-        <ul>
-            <img src="Application%20SPA%20Web%20Client%20BASTA%202014%20-%20Fat.jpg" class="right-img">
-            <li>Single Page Application - a single HTML pages gets loaded containing all  HTML and JavaScript
-            <li>Rendering entirely in Browser
-            <li>Business logic in browser allows for offline support
-        </ul>
-        <p><small>Copyright 2015, Oliver Zeigermann</small></p>
-    </section>
-        <section>
-            <h2>Why is Frontend Architecture for an SPA hard to get right?</h2>
-            <ul>
-                <li class="fragment">Not as much experience with frontend architecture as with backend
-                    <ul>
-                        <li class="fragment">Traditionally, frontend code has not been engineered with maintainability in mind
-                        <li class="fragment">Data and control flow in frontend does not play well with layers
-                    </ul>
-                </li>
-                <li class="fragment">All code is loaded into the browser at runtime
-                    <ul>
-                        <li class="fragment">How do you structure that code to keep it maintainable?
-                        <li class="fragment">How do the components of the system play together in the browser?
-                        <li class="fragment">Initialization phases become much more complex
-                    </ul>
-                </li>
-                <li class="fragment">All rendering and interaction is done in the browser
-                    <ul>
-                        <li class="fragment">How do you render in the browser in the first place?
-                        <li class="fragment">How do you make it fast enough?
-                        <li class="fragment">Communication with server requires asynchronous code
-                    </ul>
-                </li>
-            </ul>
-        </section>
-
-    </section>
-    -->
-
-        <section>
-            <h3>A Sample Implementation: Yahoo's Fluxible</h3>
+            <h3>4. A Sample Implementation: Yahoo's Fluxible</h3>
             <h1 style="color: red">TODO</h1>
             <ul>
                 <li class="fragment"><a target="_blank" href="http://fluxible.io/">Fluxible: Flux @Yahoo</a>
@@ -316,6 +319,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
 
             </ul>
         </section>
+    </section>
 
         <section>
             <h3>FAQ</h3>
@@ -345,6 +349,21 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">On the downside Flux requires you to write more boilerplate code
             </ul>
         </section>
+    <section>
+            <h1>Thank you!</h1>
+
+            <h3>Questions / Discussion</h3>
+
+            <p>
+                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+                </small>
+            </p>
+        <a href="http://www.embarc.de/"><img src="http://www.embarc.de/wp-content/uploads/2014/01/embarc13.png" height="150"></a>
+        </section>
+        <section>
+            <section>
+                <h1>Bonus Material</h1>
+            </section>
         <section>
                 <h3>Links / Where to go from there</h3>
             <ul>
@@ -362,21 +381,6 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                     Flux: How to make it right(TM)?</a>
 
             </ul>
-            </section>
-    <section>
-            <h1>Thank you!</h1>
-
-            <h3>Questions / Discussion</h3>
-
-            <p>
-                <small><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-                </small>
-            </p>
-        <a href="http://www.embarc.de/"><img src="http://www.embarc.de/wp-content/uploads/2014/01/embarc13.png" height="150"></a>
-        </section>
-        <section>
-            <section>
-                <h1>Bonus Material</h1>
             </section>
             <section>
                 <h3>Immutable data structures in Store</h3>
