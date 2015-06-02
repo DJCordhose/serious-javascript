@@ -1,7 +1,7 @@
 /* @flow */
 
 class HelloMessage extends React.Component {
-    state: string;
+    state: Object;
     constructor(props) {
         super(props);
         this.state = {greeting: this.props.greeting};

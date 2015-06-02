@@ -95,9 +95,21 @@ und Diskussionen mit React-Kernentwicklern.
             <li><a target="_blank" href="https://twitter.com/DJCordhose">@DJCordhose</a>
             <li><a target="_blank" href="https://entwickler.de/press/buecher/javascript-fuer-java-entwickler-2-119804.html">Book: JavaScript für
             Java-Entwickler</a>
+            <li>Book: React, dpunkt.verlag, November 2015
         </ul>
     </section>
 
+        <section>
+            <h2>Flux - An Architecture for (not only) React</h2>
+            <ul>
+                <li class="fragment">React is a "JavaScript libarary for building user interfaces"
+                <li class="fragment">Facebook and Instagram have been built using React
+                <li class="fragment">Flux is an architecture for React developed and used by Facebook
+                <li class="fragment">Objective is to make applications maintainable and easy to understand
+                <li class="fragment">Ideas found in Flux can not only be applied to React Web Applications
+                <li class="fragment">Companies using React and a Flux-architecture include Facebook, Yahoo, and Netflix
+            </ul>
+        </section>
         <!-- Time including questions: 45 minutes -->
         <!--http://www.enterjs.de/abstracts#flux-->
         <section>
@@ -195,29 +207,21 @@ und Diskussionen mit React-Kernentwicklern.
             <p class="fragment">When the data changes, React conceptually hits the "refresh" button, and knows to only update the changed parts.</p>
             <a class="fragment" target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>
         </section>
-    <!--<section>-->
-        <!--<h3>Who uses React?</h3>-->
-        <!--<img src="react_users.png">-->
-        <!--<p><a target="_blank" href="http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html">http://facebook.github.io/react/blog/2014/09/12/community-round-up-22.html</a></p>-->
-    <!--</section>-->
 
-        <!--<section>-->
-            <!--<h2>Core Concepts</h2>-->
-            <!--<ul>-->
-                <!--<li class="fragment">Based on components, holding both view and logic-->
-                <!--<li class="fragment">Templates can be written in pure JavaScript or using the JSX template language-->
-                <!--&lt;!&ndash;<li class="fragment">Uses a virtual DOM (tree structure) as view representation&ndash;&gt;-->
-                <!--<li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically-->
-                <!--<li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM-->
-                <!--<li class="fragment">Browser DOM experiences minimal amount of updates-->
-                <!--<li class="fragment">Can render both on server and on client side-->
-                <!--<li class="fragment">Server side rendering also for SEO or quick first page impression-->
-                <!--<li class="fragment">Uses ES6 (next JavaScript version) syntax-->
-                <!--<li class="fragment">Needs tool to translate ES6 and JSX to standard ES5-->
-                <!--&lt;!&ndash;<li class="fragment">Tools can handle type annotations and Flow tool can make subtle checks&ndash;&gt;-->
-                <!--&lt;!&ndash;<li class="fragment">Flux architecture guides you for complete application&ndash;&gt;-->
-            <!--</ul>-->
-        <!--</section>-->
+        <section>
+            <h2>Core Concepts</h2>
+            <ul>
+                <li class="fragment">Based on components, holding both view and logic
+                <li class="fragment">Templates can be written in pure JavaScript or using the JSX template language
+                <li class="fragment">Reactive one-way data-binding: Changes to state will be rendered automatically
+                <li class="fragment">Smart diffing algorithm computes the changes between old and new virtual DOM
+                <li class="fragment">Browser DOM experiences minimal amount of updates
+                <li class="fragment">Can render both on server and on client side
+                <li class="fragment">Server side rendering also for SEO or quick first page impression
+                <li class="fragment">ES6 (next JavaScript version) syntax recommended and supported
+                <li class="fragment">Needs tool to translate ES6 and JSX to standard ES5
+            </ul>
+        </section>
 
                 <section>
             <h3>Hello World React</h3>
@@ -246,30 +250,21 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
         </section>
 
 </section>
-        <section>
-            <h2>But ...</h2>
-            <ul>
-                <li class="fragment">... how do you structure your complete application?
-                <li class="fragment">... how and where do you access the server side?
-                <li class="fragment">... how do you manage your server side models?
-                <li class="fragment">... how do you notify and propagate data changes?
-            </ul>
-        </section>
 
     <section>
         <section>
             <h2>3. Flux - An Architecture for (not only) React</h2>
             <ul>
-                <li class="fragment">React is a "JavaScript libarary for building user interfaces"
-                <li class="fragment">Facebook and Instagram have been built using React
-                <li class="fragment">Flux is an architecture for React developed and used by Facebook
-                <li class="fragment">Objective is to make applications maintainable and easy to understand
-                <li class="fragment">Ideas found in Flux can not only be applied to React Web Applications
-                    <!--<ul>-->
-                        <!--<li class="fragment">In fact those ideas play well with other Web Frameworks as well-->
-                        <!--<li class="fragment">It is possible to implement Flux with Backbone-->
-                        <!--<li class="fragment">It is also possible to implement Flux in a classic Desktop Application-->
-                    <!--</ul>-->
+                <li class="fragment">Not a framework, but a set of architectural ideas
+                <li class="fragment">Born at Facebook to bring structure into their complex application
+                <li class="fragment">Core idea is a unidirectional flow of control
+                <li class="fragment">Objectives of architecture
+                    <ul>
+                        <li class="fragment">Suitable for interactive applications (not only in the browser)
+                        <li class="fragment">Guideline how to structure your complete application when it grows
+                        <li class="fragment">Make clear how data and control flow through the system
+                        <li class="fragment">What depends on what? What uses what?
+                    </ul>
                 </li>
             </ul>
         </section>
@@ -296,7 +291,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
         <section>
             <h3>Actions</h3>
             <ul>
-                <li class="fragment">Contains at list a symbol of what is the intention of the action
+                <li class="fragment">Contains at least a symbol of what is the intention of the action
                 <li class="fragment">Can be as basic as a pure string
                 <li class="fragment">Often contains some payload
                 <li class="fragment">Can also be implemented as a function or an object
@@ -311,13 +306,14 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">Update themselves in response to actions
                 <li class="fragment">Fire events when they are updated
                 <li class="fragment">Components working as Controller Views listen to changes in them
-                <li class="fragment">More than one component can listen to store
+                <li class="fragment">More than one component can listen to a store
                 <li class="fragment">In a real world app, there would be many stores
             </ul>
         </section>
         <section>
             <h3>Controller Views</h3>
             <ul>
+                <li class="fragment">A React component
                 <li class="fragment">Top-Level component
                 <li class="fragment">Creates and dispatches actions in response to user interaction
                 <li class="fragment">Passes callbacks to child views to execute logic
@@ -328,7 +324,8 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
         <section>
             <h3>Child Views</h3>
             <ul>
-                <li class="fragment">Are just really dumb views
+                <li class="fragment">A React component
+                <li class="fragment">Just really dumb views
                 <li class="fragment">Can contain listeners, but those just unwrap events and call logic in Controller Views
                 <li class="fragment">Do not create actions
                 <li class="fragment">Do not listen to stores
@@ -352,16 +349,6 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">Buzz word: <em>isomorphic JavaScript</em>: can render on server and on client using the same code
                 <li class="fragment">Works very well with ES6, Babel translator, Gulp and Webpack
             </ul>
-
-            <!--<ul>-->
-                <!--https://github.com/yahoo/flux-examples-->
-                <!--https://github.com/yahoo/fluxible-->
-                <!--http://fluxible.io/-->
-                <!--<li class="fragment"><a target="_blank" href="http://fluxible.io/guides/bringing-flux-to-the-server.html">-->
-                <!--Yahoo's Fluxible on the server side-->
-                <!--</a>-->
-
-            <!--</ul>-->
         </section>
         <section>
             <h3>Putting it all together</h3>
@@ -431,8 +418,6 @@ context.executeAction(action, defaultGreeting, err => {
             // child views
             &lt;MessageDisplay message={this.props.greeting + ', World'}/>
             &lt;ResetButton resetHandler={this.reset.bind(this)} />
-
-    // ...
     }
 }
 export default provideContext(connectToStores(HelloMessage, [MessageStore], (stores) => {
@@ -443,7 +428,7 @@ export default provideContext(connectToStores(HelloMessage, [MessageStore], (sto
             </section>
 
         <section>
-            <h3>Child View</h3>
+            <h3>Child Views</h3>
 <pre><code class="html" contenteditable>export default class MessageDisplay extends React.Component {
     render() {
         return <p>{this.props.message}</p>;
@@ -462,50 +447,34 @@ export default provideContext(connectToStores(HelloMessage, [MessageStore], (sto
 </code></pre>
 
             </section>
-        <section>
-            <h3>Putting it all together (repeated)</h3>
-<pre><code class="html" contenteditable>const app = new Fluxible({
-    component: HelloMessage,
-    stores: [MessageStore]
-});
-
-const context = app.createContext();
-const mountNode = document.getElementById('example');
-const defaultGreeting = 'Hello';
-context.executeAction(action, defaultGreeting, err => {
-    React.render(context.createElement(), mountNode);
-});
-</code></pre>
-        </section>
 
         <section>
-            <h3>Routes</h3>
-<pre><code class="html" contenteditable>import {RouteStore} from 'fluxible-router';
-
-const routes = {
-    home: {
-        path: '/',
-        method: 'get',
-        name: 'home',
-        title: 'Home',
-        handler: require('../components/Home') // just a react component
-    },
-    about: {
-        path: '/about',
-        method: 'get',
-        name: 'about',
-        title: 'About',
-        handler: require('../components/About')
-    }
-};
-
-export default RouteStore.withStaticRoutes(routes);
-</code></pre>
+            <h3>Routing</h3>
+            <ul>
+                <li class="fragment">Provides a mapping from path/method to component (nothing too fancy)
+                <li class="fragment">Implemented as a Fluxible store
+                <li class="fragment">Triggered using a navigation action, URL as payload
+                <li class="fragment">Rendering of links using a dedicated React component (NavLink)
+                <li class="fragment"><a target="_blank" href="https://github.com/yahoo/fluxible-router#fluxible-router">
+                    Fluxible Router
+                </a>
+            </ul>
         </section>
         <section>
             <h2>Isomorphic Rendering</h2>
             <ul>
-                <li class="fragment">TODO
+                <li class="fragment">React allows to render component on server (into HTML) and on client (into DOM)
+                <li class="fragment">SEO possible by rendering pages on server using same components
+                <li class="fragment">Fast first page impression is a more challenging
+                    <ul>
+                        <li class="fragment">requires rendering on server and making it interactive on client
+                        <li class="fragment">React has a mechanism to attach listener on client side only (no unnecessary re-rendering)
+                        <li class="fragment">Transferring state of stores works via serialization and rendering into HTML as well (Dehydration/Rehydration)
+                    </ul>
+                </li>
+                <li class="fragment"><a target="_blank" href="http://fluxible.io/api/bringing-flux-to-the-server.html">
+                    Bringing Flux to the server
+                </a>
             </ul>
         </section>
 
@@ -524,7 +493,9 @@ export default RouteStore.withStaticRoutes(routes);
                 <li class="fragment">Is this really a flow? Why are views accessing stores directly?
                     <ul>
                         <li class="fragment">Technically, views access stores, so yes, it does not flow in a cycle
-                        <li class="fragment">It would be possible to deliver data from stores to views using events
+                        <li class="fragment">It would be possible to deliver data from stores to views
+                        using actions also flowing through dispatcher
+                        <li class="fragment">some implementations actually do this
                         <li class="fragment">What would be the point in not accessing stores from views?
                     </ul>
                 </li>
@@ -534,9 +505,13 @@ export default RouteStore.withStaticRoutes(routes);
             <h3>Wrap-Up</h3>
             <ul>
                 <li class="fragment">Flux comes as an architectural idea based around React
+                <li class="fragment">It forces you to think about architecture
                 <li class="fragment">Flux makes it easy to reason about flow of control and data and thus complex data changes
                 <li class="fragment">You manage your data in whatever way you see it fit in stores
                 <li class="fragment">On the downside Flux requires you to write more boilerplate code
+                <li class="fragment">There will be
+                <a target="_blank" href="https://jax.de/wjax2015/sessions/flux-facebooks-beitrag-zur-ui-architektur-der-zukunft">a Flux talk at W-JAX 2015</a>
+                    concentrating on the architecture rather than the concrete implementation
             </ul>
         </section>
     <section>
