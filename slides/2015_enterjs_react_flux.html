@@ -258,7 +258,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
 
     <section>
         <section>
-            <h3>3. Flux - An Architecture for (not only) React</h3>
+            <h2>3. Flux - An Architecture for (not only) React</h2>
             <ul>
                 <li class="fragment">React is a "JavaScript libarary for building user interfaces"
                 <li class="fragment">Facebook and Instagram have been built using React
@@ -280,45 +280,235 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
             <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
         </section>
         <section>
-            <h3>Overview - cont'd</h3>
-            <img src="flux/flux-simple-f8-diagram-explained-1300w.png">
-            <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
-        </section>
-        <section>
-            <h3>Views</h3>
+            <h3>Dispatcher</h3>
             <ul>
-                <li class="fragment">Two kinds of views
+                <li class="fragment">Singleton
+                <li class="fragment">Dispatches Actions to registered stores
+                <li class="fragment">All stores register to dispatcher
+                <li class="fragment">Can synchronize actions
                     <ul>
-                        <li class="fragment">Controler-View
-                        <li class="fragment">Child-View
+                        <li class="fragment">to allow at most no active action per time
+                        <li class="fragment">might be necessary to still understand application
                     </ul>
                 </li>
             </ul>
         </section>
         <section>
             <h3>Actions</h3>
-        </section>
-        <section>
-            <h3>Dispatcher</h3>
+            <ul>
+                <li class="fragment">Contains at list a symbol of what is the intention of the action
+                <li class="fragment">Can be as basic as a pure string
+                <li class="fragment">Often contains some payload
+                <li class="fragment">Can also be implemented as a function or an object
+            </ul>
         </section>
         <section>
             <h3>Stores</h3>
+            <ul>
+                <li class="fragment">Hold the state and data of an application
+                <li class="fragment">Many times making the state of a component obsolete
+                <li class="fragment">Register to Dispatcher to listen for actions
+                <li class="fragment">Update themselves in response to actions
+                <li class="fragment">Fire events when they are updated
+                <li class="fragment">Components working as Controller Views listen to changes in them
+                <li class="fragment">More than one component can listen to store
+                <li class="fragment">In a real world app, there would be many stores
+            </ul>
+        </section>
+        <section>
+            <h3>Controller Views</h3>
+            <ul>
+                <li class="fragment">Top-Level component
+                <li class="fragment">Creates and dispatches actions in response to user interaction
+                <li class="fragment">Passes callbacks to child views to execute logic
+                <li class="fragment">Listens to updates from stores
+                <li class="fragment">Propagates changes from stores to child views
+            </ul>
+        </section>
+        <section>
+            <h3>Child Views</h3>
+            <ul>
+                <li class="fragment">Are just really dumb views
+                <li class="fragment">Can contain listeners, but those just unwrap events and call logic in Controller Views
+                <li class="fragment">Do not create actions
+                <li class="fragment">Do not listen to stores
+                <li class="fragment">Receive data and callbacks as properties from Controller Views
+            </ul>
+        </section>
+        <section>
+            <h3>Summary</h3>
+            <img src="flux/flux-simple-f8-diagram-explained-1300w.png">
+            <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
         </section>
     </section>
 
-
     <section>
         <section>
-            <h3>4. A Sample Implementation: Yahoo's Fluxible</h3>
-            <h1 style="color: red">TODO</h1>
+            <h2>4. A Sample Implementation: Yahoo's Fluxible</h2>
             <ul>
                 <li class="fragment"><a target="_blank" href="http://fluxible.io/">Fluxible: Flux @Yahoo</a>
-                <li class="fragment"><a target="_blank" href="http://fluxible.io/guides/bringing-flux-to-the-server.html">
-                Yahoo's Fluxible on the server side
-                </a>
+                <li class="fragment">Flux concept turned into a framework
+                <li class="fragment">Adds a router component
+                <li class="fragment">Buzz word: <em>isomorphic JavaScript</em>: can render on server and on client using the same code
+                <li class="fragment">Works very well with ES6, Babel translator, Gulp and Webpack
+            </ul>
 
+            <!--<ul>-->
+                <!--https://github.com/yahoo/flux-examples-->
+                <!--https://github.com/yahoo/fluxible-->
+                <!--http://fluxible.io/-->
+                <!--<li class="fragment"><a target="_blank" href="http://fluxible.io/guides/bringing-flux-to-the-server.html">-->
+                <!--Yahoo's Fluxible on the server side-->
+                <!--</a>-->
+
+            <!--</ul>-->
+        </section>
+        <section>
+            <h3>Putting it all together</h3>
+<pre><code class="html" contenteditable>const app = new Fluxible({
+    component: HelloMessage,
+    stores: [MessageStore]
+});
+
+const context = app.createContext();
+const mountNode = document.getElementById('example');
+const defaultGreeting = 'Hello';
+context.executeAction(action, defaultGreeting, err => {
+    React.render(context.createElement(), mountNode);
+});
+</code></pre>
+        </section>
+        <section>
+            <h2>Context</h2>
+            <ul>
+                <li class="fragment">Works as dispatcher
+                <li class="fragment">Uses reacts build-in concept of a context
             </ul>
         </section>
+
+        <section>
+            <h3>Action and Dispatching</h3>
+<pre><code class="html" contenteditable>export default (actionContext, messagePayload) => {
+    actionContext.dispatch('MESSAGE_ACTION', messagePayload);
+}
+</code></pre>
+            </section>
+        <section>
+            <h3>Store</h3>
+<pre><code class="html" contenteditable>export default class MessageStore extends BaseStore {
+    static get storeName() {
+        return 'MessageStore';
+    }
+    static get handlers() {
+        return {
+            'MESSAGE_ACTION': 'handleMessage'
+        };
+    }
+    handleMessage(payload) {
+        this._message = payload;
+        this.emitChange();
+    }
+    get message() {
+        return this._message;
+    }
+}
+</code></pre>
+            </section>
+
+        <section>
+            <h3>Controller View</h3>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    // ...
+    reset() {
+        this.context.executeAction(action, '');
+    }
+    updateModel(event) {
+        this.context.executeAction(action, event.target.value);
+    }
+    render() {
+        return
+            // ...
+            // child views
+            &lt;MessageDisplay message={this.props.greeting + ', World'}/>
+            &lt;ResetButton resetHandler={this.reset.bind(this)} />
+
+    // ...
+    }
+}
+export default provideContext(connectToStores(HelloMessage, [MessageStore], (stores) => {
+    return {
+        greeting: stores.MessageStore.message
+    };
+}))</code></pre>
+            </section>
+
+        <section>
+            <h3>Child View</h3>
+<pre><code class="html" contenteditable>export default class MessageDisplay extends React.Component {
+    render() {
+        return <p>{this.props.message}</p>;
+    }
+}
+</code></pre>
+<pre class="fragment"><code class="html" contenteditable>export default class ResetButton extends React.Component {
+    render() {
+        return (
+            <button
+                onClick={this.props.resetHandler}>Clear
+            </button>
+        );
+    }
+}
+</code></pre>
+
+            </section>
+        <section>
+            <h3>Putting it all together (repeated)</h3>
+<pre><code class="html" contenteditable>const app = new Fluxible({
+    component: HelloMessage,
+    stores: [MessageStore]
+});
+
+const context = app.createContext();
+const mountNode = document.getElementById('example');
+const defaultGreeting = 'Hello';
+context.executeAction(action, defaultGreeting, err => {
+    React.render(context.createElement(), mountNode);
+});
+</code></pre>
+        </section>
+
+        <section>
+            <h3>Routes</h3>
+<pre><code class="html" contenteditable>import {RouteStore} from 'fluxible-router';
+
+const routes = {
+    home: {
+        path: '/',
+        method: 'get',
+        name: 'home',
+        title: 'Home',
+        handler: require('../components/Home') // just a react component
+    },
+    about: {
+        path: '/about',
+        method: 'get',
+        name: 'about',
+        title: 'About',
+        handler: require('../components/About')
+    }
+};
+
+export default RouteStore.withStaticRoutes(routes);
+</code></pre>
+        </section>
+        <section>
+            <h2>Isomorphic Rendering</h2>
+            <ul>
+                <li class="fragment">TODO
+            </ul>
+        </section>
+
     </section>
 
         <section>
