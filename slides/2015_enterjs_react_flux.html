@@ -159,6 +159,28 @@ und Diskussionen mit React-Kernentwicklern.
         <p><small>Copyright 2015, Oliver Zeigermann</small></p>
     </section>
         <section>
+            <h2>Why Frontend Architecture in the first place?</h2>
+            <ul>
+                <li class="fragment">Even when frontend does not live as long as the backend
+                    <ul>
+                        <li class="fragment">you still spend more time reading the code than writing it
+                    </ul>
+                </li>
+                <li class="fragment">your aim should be to have the code as clear and easy to understand as possible, because
+                    <ul>
+                        <li class="fragment">velocity still degrades when people have a hard time understanding the code
+                        <li class="fragment">bug fixing and enhancements are easier when you can clearly tell which part of the code affects what part of the application
+                    </ul>
+                </li>
+                <li class="fragment">your code should follow a common architectural understanding, because
+                    <ul>
+                        <li class="fragment">onboarding of new people still is easier if the application is clearly structured
+                        <li class="fragment">shared code-ownership is easier if every module has the same design
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
             <h2>Why is Frontend Architecture for an SPA hard to get right?</h2>
             <ul>
                 <li class="fragment">Not as much experience with frontend architecture as with backend
@@ -199,14 +221,14 @@ und Diskussionen mit React-Kernentwicklern.
 
             <p><a target="_blank" href="https://github.com/facebook/react">https://github.com/facebook/react</a></p>
         </section>
-        <section>
-            <h2>Why React?</h2>
-            <p class="fragment">We built React to solve one problem: building large applications with data that changes over time.</p>
-            <p class="fragment">Simply express how your app should look at any given point in time, and React will automatically manage
-                all UI updates</p>
-            <p class="fragment">When the data changes, React conceptually hits the "refresh" button, and knows to only update the changed parts.</p>
-            <a class="fragment" target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>
-        </section>
+        <!--<section>-->
+            <!--<h2>Why React?</h2>-->
+            <!--<p class="fragment">We built React to solve one problem: building large applications with data that changes over time.</p>-->
+            <!--<p class="fragment">Simply express how your app should look at any given point in time, and React will automatically manage-->
+                <!--all UI updates</p>-->
+            <!--<p class="fragment">When the data changes, React conceptually hits the "refresh" button, and knows to only update the changed parts.</p>-->
+            <!--<a class="fragment" target="_blank" href="http://facebook.github.io/react/docs/why-react.html">http://facebook.github.io/react/docs/why-react.html</a>-->
+        <!--</section>-->
 
         <section>
             <h2>Core Concepts</h2>
@@ -223,9 +245,16 @@ und Diskussionen mit React-Kernentwicklern.
             </ul>
         </section>
 
-                <section>
+        <section>
             <h3>Hello World React</h3>
 <pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    render() {
+        return (<div>
+            <input value={this.state.greeting} onChange={this.updateModel.bind(this)} />
+            <p>{this.state.greeting}, World</p>
+            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
+        </div>);
+    }
     constructor(props) {
         super(props);
         this.state = {greeting: this.props.greeting};
@@ -235,13 +264,6 @@ und Diskussionen mit React-Kernentwicklern.
     }
     reset() {
         this.setState({greeting: ""});
-    }
-    render() {
-        return (<div>
-            <input value={this.state.greeting} onChange={this.updateModel.bind(this)} />
-            <p>{this.state.greeting}, World</p>
-            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
-        </div>);
     }
 }
 var mountNode = document.getElementById('example');
@@ -253,7 +275,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
 
     <section>
         <section>
-            <h2>3. Flux - An Architecture for (not only) React</h2>
+            <h2>3. Flux - An Architecture (not only) for React</h2>
             <ul>
                 <li class="fragment">Not a framework, but a set of architectural ideas
                 <li class="fragment">Born at Facebook to bring structure into their complex application
@@ -274,6 +296,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
             <img src="flux/flux-simple-f8-diagram-with-client-action-1300w.png">
             <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
         </section>
+
         <section>
             <h3>Dispatcher</h3>
             <ul>
@@ -288,6 +311,13 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 </li>
             </ul>
         </section>
+
+        <section>
+            <h3>Overview</h3>
+            <img src="flux/flux-simple-f8-diagram-with-client-action-1300w.png">
+            <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
+        </section>
+
         <section>
             <h3>Actions</h3>
             <ul>
@@ -297,6 +327,13 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">Can also be implemented as a function or an object
             </ul>
         </section>
+
+        <section>
+            <h3>Overview</h3>
+            <img src="flux/flux-simple-f8-diagram-with-client-action-1300w.png">
+            <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
+        </section>
+
         <section>
             <h3>Stores</h3>
             <ul>
@@ -310,6 +347,13 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">In a real world app, there would be many stores
             </ul>
         </section>
+
+        <section>
+            <h3>Overview</h3>
+            <img src="flux/flux-simple-f8-diagram-with-client-action-1300w.png">
+            <p><small>Copyright 2015, Facebook, <a target="_blank" href="//facebook.github.io/flux/docs/overview.html">http://facebook.github.io/flux/docs/overview.html</a></small></p>
+        </section>
+
         <section>
             <h3>Controller Views</h3>
             <ul>
@@ -350,6 +394,7 @@ React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
                 <li class="fragment">Works very well with ES6, Babel translator, Gulp and Webpack
             </ul>
         </section>
+<!--
         <section>
             <h3>Putting it all together</h3>
 <pre><code class="html" contenteditable>const app = new Fluxible({
@@ -365,24 +410,76 @@ context.executeAction(action, defaultGreeting, err => {
 });
 </code></pre>
         </section>
+-->
         <section>
-            <h2>Context</h2>
-            <ul>
-                <li class="fragment">Works as dispatcher
-                <li class="fragment">Uses reacts build-in concept of a context
-            </ul>
+            <h3>Transforming `Hello World` to a Controller View: The origin</h3>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    render() {
+        return (<div>
+            <input value={this.state.greeting} onChange={this.updateModel.bind(this)} />
+            <p>{this.state.greeting}, World</p>
+            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
+        </div>);
+    }
+    constructor(props) {
+        super(props);
+        this.state = {greeting: this.props.greeting};
+    }
+    updateModel(event) {
+        this.setState({greeting: event.target.value});
+    }
+    reset() {
+        this.setState({greeting: ""});
+    }
+}
+var mountNode = document.getElementById('example');
+React.render(&lt;HelloMessage greeting="Hello" />, mountNode);</code></pre>
         </section>
 
         <section>
-            <h3>Action and Dispatching</h3>
-<pre><code class="html" contenteditable>export default (actionContext, messagePayload) => {
+            <h3>Step 1: Removing component state with properties</h3>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    render() {
+        return (<div>
+            // `this.state.greeting` turns `this.props.greeting`
+            <input value={this.props.greeting} onChange={this.updateModel.bind(this)} />
+            <p>{this.props.greeting}, World</p>
+            <input type="button" value="Clear" onClick={this.reset.bind(this)} />
+        </div>);
+    }
+    updateModel(event) {
+        // What do we do here???
+        // this.setState({greeting: event.target.value});
+    }
+    reset() {
+        // What do we do here???
+        this.setState({greeting: ""});
+    }
+}
+</code></pre>
+        </section>
+        <section>
+            <h3>Step 2: Sending actions to change state</h3>
+<pre><code class="html" contenteditable>const messageAction = (actionContext, messagePayload) => {
     actionContext.dispatch('MESSAGE_ACTION', messagePayload);
 }
 </code></pre>
-            </section>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    render() {
+      // unchanged
+    }
+    reset() {
+        this.context.executeAction(messageAction, '');
+    }
+    updateModel(event) {
+        this.context.executeAction(messageAction, event.target.value);
+    }
+}
+</code></pre>
+        </section>
         <section>
-            <h3>Store</h3>
-<pre><code class="html" contenteditable>export default class MessageStore extends BaseStore {
+            <h3>Step 3: Handling actions in Store</h3>
+<pre><code class="html" contenteditable>class MessageStore extends BaseStore {
     static get storeName() {
         return 'MessageStore';
     }
@@ -401,41 +498,41 @@ context.executeAction(action, defaultGreeting, err => {
 }
 </code></pre>
             </section>
-
         <section>
-            <h3>Controller View</h3>
-<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
-    // ...
-    reset() {
-        this.context.executeAction(action, '');
-    }
-    updateModel(event) {
-        this.context.executeAction(action, event.target.value);
-    }
-    render() {
-        return
-            // ...
-            // child views
-            &lt;MessageDisplay message={this.props.greeting + ', World'}/>
-            &lt;ResetButton resetHandler={this.reset.bind(this)} />
-    }
-}
-export default provideContext(connectToStores(HelloMessage, [MessageStore], (stores) => {
+            <h3>Step 4: Connecting View to Store</h3>
+<pre><code class="html" contenteditable>// causes a re-rendering of component `HelloMessage`
+// when one of the stores calls `this.emitChange()`
+connectToStores(HelloMessage, [MessageStore], getStateFromStores);
+</code></pre>
+<pre class="fragment"><code class="html" contenteditable>// will be called to create props passed used for re-rendering
+const getStateFromStores = (stores) => {
     return {
         greeting: stores.MessageStore.message
     };
-}))</code></pre>
+});</code></pre>
             </section>
 
         <section>
-            <h3>Child Views</h3>
-<pre><code class="html" contenteditable>export default class MessageDisplay extends React.Component {
+            <h3>Step 5: Controller View with Child Views</h3>
+<pre><code class="html" contenteditable>class HelloMessage extends React.Component {
+    render() {
+        return (
+          <div>
+            <input value={this.props.greeting} onChange={this.updateModel.bind(this)} />
+            // child views
+            &lt;MessageDisplay message={this.props.greeting + ', World'}/>
+            &lt;ResetButton resetHandler={this.reset.bind(this)} />
+          </div>);
+    // rest unchanged
+}</code></pre>
+
+<pre class="fragment"><code class="html" contenteditable>class MessageDisplay extends React.Component {
     render() {
         return <p>{this.props.message}</p>;
     }
 }
 </code></pre>
-<pre class="fragment"><code class="html" contenteditable>export default class ResetButton extends React.Component {
+<pre class="fragment"><code class="html" contenteditable>class ResetButton extends React.Component {
     render() {
         return (
             <button
@@ -445,7 +542,6 @@ export default provideContext(connectToStores(HelloMessage, [MessageStore], (sto
     }
 }
 </code></pre>
-
             </section>
 
         <section>
@@ -490,13 +586,11 @@ export default provideContext(connectToStores(HelloMessage, [MessageStore], (sto
                         <li class="fragment">Choose whatever fits you best
                     </ul>
                 </li>
-                <li class="fragment">Is this really a flow? Why are views accessing stores directly?
+                <li class="fragment">Is this really a flow? Controller Views are accessing stores...
                     <ul>
                         <li class="fragment">Technically, views access stores, so yes, it does not flow in a cycle
-                        <li class="fragment">It would be possible to deliver data from stores to views
-                        using actions also flowing through dispatcher
-                        <li class="fragment">some implementations actually do this
                         <li class="fragment">What would be the point in not accessing stores from views?
+                        <li class="fragment">It would be possible to push the state from store to controller views if you really want to
                     </ul>
                 </li>
             </ul>
