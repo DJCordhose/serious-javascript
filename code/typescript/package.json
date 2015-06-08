@@ -1,6 +1,0 @@
-{
-    "devDependencies": {
-        "grunt" : "latest",
-        "grunt-ts" : "latest"
-    }
-}
