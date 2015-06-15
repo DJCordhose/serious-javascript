@@ -6,6 +6,9 @@
  * function
  * iife
  */
+
+'use strict';
+
 var programmer = {
     name: 'Olli',
     age: 44

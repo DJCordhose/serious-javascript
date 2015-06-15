@@ -3,6 +3,8 @@
  * higher order functions (foreach)
  */
 
+'use strict';
+
 function Programmer(name, age) {
     this.name = name;
     this.age = age;
