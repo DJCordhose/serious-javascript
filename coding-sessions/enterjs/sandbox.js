@@ -18,4 +18,6 @@
  *
  */
 
-console.log("I am here");
+'use strict';
+
+console.log('I am here');
