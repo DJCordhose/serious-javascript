@@ -8,13 +8,13 @@
  * for
  * function
  * iife
- * class pattern
+ * class
  *
  * ES6
  * let, const
- * class
  * for..of
- * arrow function
+ * class (optional extends, super)
+ * arrow function (with forEach, optional)
  *
  */
 
